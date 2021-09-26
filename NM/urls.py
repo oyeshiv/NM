@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('router/model-1', views.router_1, name='Router'),
+    path('router/model-2', views.router_2, name='Router'),
+    path('switch/model-1', views.switch_1, name='Switch'),
+    path('switch/model-2', views.switch_2, name='Switch'),
     
 ]
