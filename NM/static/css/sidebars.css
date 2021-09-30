@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: -webkit-fisssssssl-available;
 }
 
 html {
@@ -87,3 +87,12 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+/*---dropdown for sidebar---*/
+.links
+{
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
