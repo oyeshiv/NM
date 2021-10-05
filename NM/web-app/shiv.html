@@ -1,0 +1,216 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+    <title>Sidebar template</title>
+
+    <!-- using online links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar-themes.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}" />
+</head>
+
+<body>
+    <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <!-- sidebar-brand  -->
+                <div class="sidebar-item sidebar-brand">
+                    <a href="#">StelNet</a>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">Cisco
+                            <strong>Model</strong>
+                        </span>
+                        <span class="user-role">Router</span>
+
+                    </div>
+                </div>
+                
+                <!-- sidebar-menu  -->
+                <div class=" sidebar-item sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>General</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-D"></i>
+                                <span class="menu-text">Feature</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="ospf">Feature 1</label><input type="checkbox" id="ospf" name="ospf" value="ospf"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Feature 2</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Feature 2</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Feature 2</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Feature 2</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Feature 2</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="f1">Feature 1</label><input type="checkbox" id="f1" name="f1" value="f1"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <!-- sidebar-menu  -->
+            </div>
+        </nav>
+        <!-- page-content  -->
+        <main class="page-content pt-2">
+            <div id="overlay" class="overlay"></div>
+
+        </main>
+        <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+
+    <!-- using online scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        $('input:checkbox[name="ospf"]').click(function () {
+            $.each($('input:checkbox[name="ospf"]'), function () {
+                var checked = $(this)[0].checked;
+                if (checked) {
+                    $('<div id="form"><form action="/action_page.php"><label for="fname">First name:</label><br><input type="text" id="fname" name="fname" value="John"><br><label for="lname">Last name:</label><br><input type="text" id="lname" name="lname" value="Doe"><br><br><input type="submit" value="Submit"></form><button id="add">add</button></div>').appendTo('main');
+                }
+                if (!checked) {
+                    //For removing the unchecked checkbox values.
+                    $('div#form').remove();
+                    };
+            });
+            
+            })
+        $('div#form:form:input#add').click(function(){
+            
+                $('<div id="form"><form action="/action_page.php"><label for="fname">First name:</label><br><input type="text" id="fname" name="fname" value="John"><br><label for="lname">Last name:</label><br><input type="text" id="lname" name="lname" value="Doe"><br><br><input type="submit" value="Submit"></form><button id="remove">remove</button></div>').appendTo('main');
+            
+        })
+
+        $('input#remove').click(function(){
+            $('main:div#form:last').remove();
+        })
+    
+    </script>
+</body>
+
+</html>

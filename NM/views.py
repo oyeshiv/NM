@@ -16,3 +16,9 @@ def switch_1(request):
 
 def switch_2(request):
     return render(request, 'switch2.html')
+
+def test(request):
+    return render(request, 'testing.html')
+
+def shiv(request):
+    return render(request, 'shiv.html')

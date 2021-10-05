@@ -26,5 +26,7 @@ urlpatterns = [
     path('router/model-2', views.router_2, name='Router'),
     path('switch/model-1', views.switch_1, name='Switch'),
     path('switch/model-2', views.switch_2, name='Switch'),
+    path('test', views.test, name='Testing'),
+    path('shiv', views.shiv, name='Shiv')
     
 ]
