@@ -27,6 +27,6 @@ urlpatterns = [
     path('switch/model-1', views.switch_1, name='Switch'),
     path('switch/model-2', views.switch_2, name='Switch'),
     path('test', views.test, name='Testing'),
-    path('shiv', views.shiv, name='Shiv')
-    
+    path('shiv', views.shiv, name='Shiv'),
+    path('home', views.home, name='home')
 ]

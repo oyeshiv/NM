@@ -22,3 +22,5 @@ def test(request):
 
 def shiv(request):
     return render(request, 'shiv.html')
+def home(request):
+    return render(request, 'home.html')
