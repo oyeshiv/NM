@@ -28,77 +28,81 @@
             border: 1px solid grey;
             padding: 10px;
         }
+
         body {
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 0;
-      }
-      
-      html {
-        box-sizing: border-box;
-      }
-      
-      *, *:before, *:after {
-        box-sizing: inherit;
-      }
-      
-      .column {
-        float: left;
-        width: 33.3%;
-        margin-bottom: 16px;
-        padding: 0 8px;
-      }
-      
-      .card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        margin: 8px;
-      }
-      
-      .about-section {
-        padding: 50px;
-        text-align: center;
-        background-color: #474e5d;
-        color: white;
-      }
-      
-      .container {
-        padding: 0 16px;
-      }
-      
-      .container::after, .row::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
-      
-      .title {
-        color: grey;
-      }
-      
-      .button {
-        border: none;
-        outline: 0;
-        display: inline-block;
-        padding: 8px;
-        color: white;
-        background-color: #000;
-        text-align: center;
-        cursor: pointer;
-        width: 100%;
-      }
-      
-      .button:hover {
-        background-color: #555;
-      }
-      
-      @media screen and (max-width: 650px) {
-        .column {
-          width: 100%;
-          display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
         }
-       
-      }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
+
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
+
+        .container {
+            padding: 0 16px;
+        }
+
+        .container::after,
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .title {
+            color: grey;
+        }
+
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+
+        }
     </style>
-    
+
 </head>
 
 <body>
@@ -119,9 +123,9 @@
                             <span class="user-name">
                                 <strong>Routers</strong>
                             </span>
-                            
+
                         </a>
-                     
+
                     </div>
                 </div>
 
@@ -139,8 +143,8 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a><label for="ospf">EIGRP</label><input type="checkbox" id="ospf"
-                                                name="ospf" value="ospf"></a>
+                                        <a><label for="ospf">EIGRP</label><input type="checkbox" id="ospf" name="ospf"
+                                                value="ospf"></a>
                                     </li>
                                     <li>
                                         <a><label for="f1">BGP</label><input type="checkbox" id="f1" name="f1"
@@ -199,160 +203,165 @@
                         </li>
                     </ul>
                 </div>
-                        <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-                            <div class="user-pic">
-                                <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
-                            </div>
-                            <div class="user-info">
-                             <a href="#">
-                                <span class="user-name">
-                                    <strong>Switches</strong>
-                                </span>
-                                <span class="user-role">Layer-2</span>
-                             </a>
-                            </div>
-                        </div>
-                        <div class=" sidebar-item sidebar-menu">
-                            <ul>
-                                <li class="header-menu">
-                                    <span>Add-On</span>
-                                </li>
-                                <li class="sidebar-dropdown">
-                                    <a href="#">
-                                        <i class="fa fa-D"></i>
-                                        <span class="menu-text">Connectivity-Vlans</span>
-                                    </a>
-                                    <div class="sidebar-submenu">
-                                       
-                                            <ul>
-                                                <li>
-                                                    <a><label for="avlan">Access-Vlan</label><input type="checkbox" id="avlan"
-                                                            name="avlan" value="avlan"></a>
-                                                </li>
-                                                <li>
-                                                    <a><label for="trunk">Trunking</label><input type="checkbox" id="trunk" name="trunk"
-                                                            value="trunk"></a>
-                                                </li>
-                                               
-                                            </ul>
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <a href="#">
+                            <span class="user-name">
+                                <strong>Switches</strong>
+                            </span>
+                            <span class="user-role">Layer-2</span>
+                        </a>
+                    </div>
+                </div>
+                <div class=" sidebar-item sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>Add-On</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-D"></i>
+                                <span class="menu-text">Connectivity-Vlans</span>
+                            </a>
+                            <div class="sidebar-submenu">
 
-                                    </div>
-                                </li>
-                                    <li class="sidebar-dropdown">
-                                        <a href="#">
-                                            <i class="fa fa-"></i>
-                                            <span class="menu-text">Security</span>
-                                        </a>
-                                        <div class="sidebar-submenu">
-                                            <ul>
-                                                <li>
-                                                    <a><label for="aaa">AAA</label><input type="checkbox" id="aaa" name="aaa"
-                                                            value="aaa"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                <ul>
+                                    <li>
+                                        <a><label for="avlan">Access-Vlan</label><input type="checkbox" id="avlan"
+                                                name="avlan" value="avlan"></a>
                                     </li>
-                                    <li class="sidebar-dropdown">
-                                        <a href="#">
-                                            <i class="fa fa-"></i>
-                                            <span class="menu-text">IP Addressing</span>
-                                        </a>
-                                        <div class="sidebar-submenu">
-                                            <ul>
-                                                <li>
-                                                    <a><label for="int_2">Interface</label><input type="checkbox" id="int_s" name="int_s"
-                                                            value="int_s"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <li>
+                                        <a><label for="trunk">Trunking</label><input type="checkbox" id="trunk"
+                                                name="trunk" value="trunk"></a>
                                     </li>
-                                </li> 
-                            </ul>
-                       </div>       
-                       <div class="sidebar-item sidebar-header d-flex flex-nowrap">
-                        <div class="user-pic">
-                            <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
-                        </div>
-                        <div class="user-info">
-                           <a href="#">
+
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">Security</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="aaa">AAA</label><input type="checkbox" id="aaa" name="aaa"
+                                                value="aaa"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-"></i>
+                                <span class="menu-text">IP Addressing</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a><label for="int_2">Interface</label><input type="checkbox" id="int_s"
+                                                name="int_s" value="int_s"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-item sidebar-header d-flex flex-nowrap">
+                    <div class="user-pic">
+                        <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
+                    </div>
+                    <div class="user-info">
+                        <a href="#">
                             <span class="user-name">
                                 <strong>Switches</strong>
                             </span>
                             <span class="user-role">Layer-3</span>
-                           </a>
-                        </div>
+                        </a>
                     </div>
-                    <div class=" sidebar-item sidebar-menu">
-                        <ul>
-                            <li class="header-menu">
-                                <span>Add-On</span>
-                            </li>
-                            <li class="sidebar-dropdown">
-                                <a href="#">
-                                    <i class="fa fa-D"></i>
-                                    <span class="menu-text">IP Addressing</span>
-                                </a>
-                                <div class="sidebar-submenu">
-                                   
-                                        <ul>
-                                            <li>
-                                                <a><label for="int_3">Interface</label><input type="checkbox" id="int_3"
-                                                        name="int_3" value="int_3"></a>
-                                            </li>
-                                           
-                                        </ul>
+                </div>
+                <div class=" sidebar-item sidebar-menu">
+                    <ul>
+                        <li class="header-menu">
+                            <span>Add-On</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-D"></i>
+                                <span class="menu-text">IP Addressing</span>
+                            </a>
+                            <div class="sidebar-submenu">
 
-                                </div>
-                            </li>            
-                <!-- sidebar-menu  -->
-            </div>
+                                <ul>
+                                    <li>
+                                        <a><label for="int_3">Interface</label><input type="checkbox" id="int_3"
+                                                name="int_3" value="int_3"></a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </li>
+                        <!-- sidebar-menu  -->
+                </div>
         </nav>
         <!-- page-content  -->
-        <div class="page-content pt-2">
-            <div id="overlay" class="overlay"></div>
-            <div class="about-section">
-                <h1>StelNet</h1>
-                <p> Get your Net"WORKING" in few clicks.</p>
-                <p>An easy to use application for all your networking configurations</p>
-              </div>
-              
-              <h2 style="text-align:center">Features</h2>
-              <div class="row">
-                <div class="column">
-                  <div class="card">
-                    <img src="D:\NM\assets\img\security.jpg" alt="Security" style="width:100%">
-                    <div class="container">
-                      <h2>Security</h2>
-                      <p class="title">Network Devices</p>
-                      <p>Security protocols used to secure routers and switches </p>
+        <main>
+            <div class="page-content pt-2">
+                <div id="overlay" class="overlay"></div>
+                <div>
+                    <div class="about-section">
+                        <h1>StelNet</h1>
+                        <p> Get your Net"WORKING" in few clicks.</p>
+                        <p>An easy to use application for all your networking configurations</p>
                     </div>
-                  </div>
-                </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="{% static 'img/easy.jpg' %}" alt="Easy" style="width:100%">
-                    <div class="container">
-                      <h2>Easy configuration</h2>
-                      <p class="title">Simple user Interface</p>
-                      <p>Data selected for configuration to generate the script in clicks.</p>
+
+                    <h2 style="text-align:center">Features</h2>
+                    <div class="row">
+                        <div class="column">
+                            <div class="card">
+                                <img src="{% static 'img/security.jpg' %}" alt="Security" style="width:100%">
+                                <div class="container">
+                                    <h2>Security</h2>
+                                    <p class="title">Network Devices</p>
+                                    <p>Security protocols used to secure routers and switches </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="card">
+                                <img src="{% static 'img/easy.jpg' %}" alt="Easy" style="width:100%">
+                                <div class="container">
+                                    <h2>Easy configuration</h2>
+                                    <p class="title">Simple user Interface</p>
+                                    <p>Data selected for configuration to generate the script in clicks.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="card">
+                                <img src="{% static 'img/script.png' %}" alt="Script" style="width:100%">
+                                <div class="container">
+                                    <h2>Script Generation</h2>
+                                    <p class="title">Click and collect</p>
+                                    <p>Easy, scalable and secure script generation for your network</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+
                 </div>
-              
-                <div class="column">
-                  <div class="card">
-                    <img src="{% static 'img/script.png' %}" alt="Script" style="width:100%">
-                    <div class="container">
-                      <h2>Script Generation</h2>
-                      <p class="title">Click and collect</p>
-                      <p>Easy, scalable and secure script generation for your network</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <!-- page-content" -->
-        </div>
+                <!-- page-content" -->
+            </div>
+        </main>
         <!-- page-wrapper -->
 
         <!-- using online scripts -->
