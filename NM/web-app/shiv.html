@@ -21,7 +21,11 @@
     <link rel="stylesheet" href="{% static 'css/sidebar-themes.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}" />
 
+    {% block style %}
+    {% endblock %}
+
     <style>
+        
         i.formawe {
             background-color: white;
             border-radius: 50%;
