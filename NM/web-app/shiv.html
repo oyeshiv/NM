@@ -313,25 +313,25 @@
         </nav>
         <!-- page-content  -->
     
-          <!-- <div class="page-content pt-2">
+          <div class="page-content pt-2">
                 <div id="overlay" class="overlay"></div>
-                <div>
-                    <div class="about-section">
-                        <h1>StelNet</h1>
-                        <p> Get your Net"WORKING" in few clicks.</p>
-                        <p>An easy to use application for all your networking configurations</p>
+                
+                <div class="row">
+                    <div class="col-2 formC">
+                        <div><label for="fname">Host Name:</label><input type="text" id="fname" name="fname"
+                                value="John"><label for="lname">IP Address:</label><input type="text" id="lname"
+                                name="lname" value="Doe">
+    
+                        </div>
                     </div>
-
-                    
-
-                        
-
-                        
-                    </div>
-
+    
                 </div>
-                <!-- page-content" -->
-            </div>-->
+                <!-- page-content"> -->
+                <div>
+                    {% block router_content %}
+                    {% endblock %}
+                </div>
+            </div>
         
         <!-- page-wrapper -->
 
@@ -368,6 +368,7 @@
                 $('.formC').on('click', '.removeBT', function (e) {
                     e.preventDefault();
                     $(this).parent('div').remove();
+                    $('.addBT').remove();
                     $('<a href="javascript:void(0);" class="addBT"><i class="formawe fa fa-plus"></i></a>').appendTo('.formC div:last');
                 });
             });
