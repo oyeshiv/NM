@@ -114,7 +114,100 @@ input[type=submit] {
           <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password">
         </div>
       </div>
-      
+      <!--OSPF-->
+      <div class="row">
+        <hr> </hr>
+        <div class="col-25">
+          <label for="oname"> OSPF Number</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-25">
+            <label for="areaospf">Area Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="intfce"> Newtwork Interface </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="intfce" name="intfce" placeholder="Interface">
+          </div>
+        </div>
+       
+        <div class="row">
+          <div class="col-25">
+            <label for="ipv4">IP Address</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="sub1">Subnet</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="sub1" name="sub1" placeholder="Subnet">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="neintfce"> Neighbour Interface Address </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="neintfce" name="neintfce" placeholder=" Neighbour Interface Address">
+          </div>
+        </div>
+        <!--BGP-->
+        <div class="row">
+          <div class="col-25">
+            <hr></hr>
+            <label for="ename">BGP Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number ">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="ridbgp">Autonomous Number</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id">
+            </div>
+          </div>
+       </div>
+       <div class="row">
+        <div class="col-25">
+          <label for="intfce">Interface </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="intfce" name="intfce" placeholder="Interface">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="ipv4">IP Address</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="sub1">Subnet</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="sub1" name="sub1" placeholder="Subnet">
+        </div>
+      </div>
       <!--<div class="row">
         <div class="col-25">
           <label for="country">Country</label>
@@ -135,9 +228,10 @@ input[type=submit] {
           <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
         </div>
       </div>
-      <div class="row">
-        <input type="submit" value="Submit">
-      </div>-->
+      -->
+      {% block sub-form %}
+      {% endblock %}
+      
     </form>
   </div>
   

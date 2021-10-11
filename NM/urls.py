@@ -29,5 +29,6 @@ urlpatterns = [
     path('test', views.test, name='Testing'),
     path('shiv', views.shiv, name='Shiv'),
     path('home', views.home, name='home'),
-    path('base_router', views.base_router, name='base_router')
+    path('base_router', views.base_router, name='base_router'),
+    path('form_router', views.form_router, name='form_router')
 ]

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+        content="">
     <title>StelNet</title>
 
     <!-- using online links -->
@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/sidebar-themes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/routers.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}" />
 
     {% block style %}
@@ -150,18 +151,18 @@
                                         <a><label for="ospf">EIGRP</label><input type="checkbox" id="ospf" name="ospf"
                                                 value="ospf"></a>
                                     </li>
-                                    <li>
+                                   <!-- <li>
                                         <a><label for="f1">BGP</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
                                     </li>
                                     <li>
                                         <a><label for="f1">OSPFv3</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                       <!-- <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
                                 <span class="menu-text">Security</span>
@@ -186,7 +187,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
@@ -194,8 +195,8 @@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
-                                    <li>
-                                        <a><label for="f1">Interface</label><input type="checkbox" id="f1" name="f1"
+                                   <li>
+                                        <a><label for="f1">IPV6</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
                                     </li>
                                     <li>
@@ -335,6 +336,9 @@
                     </div>
     
                 </div>
+                <div class="row">
+                    <input type="submit" value="Submit">
+                  </div>
                 <!-- page-content"-->
                
             </div>

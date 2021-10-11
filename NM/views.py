@@ -26,3 +26,5 @@ def home(request):
     return render(request, 'home.html')
 def base_router(request):
     return render(request, 'base_router.html')
+def form_router(request):
+    return render(request, 'form_router.html')
