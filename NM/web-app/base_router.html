@@ -3,6 +3,7 @@
 
 
 {% block style %}
+
     /* Style inputs, select elements and textareas */
 input[type=text], select, textarea{
   width: 100%;
@@ -67,8 +68,7 @@ input[type=submit] {
 }
 
 
-<html>
-<body>
+{% block router_content %}
 
 <div class="container">
       <div class="row">
@@ -113,7 +113,6 @@ input[type=submit] {
     </form>
   </div>
   </form>
-</body>
-</html>
+{% endblock %}
  
   
