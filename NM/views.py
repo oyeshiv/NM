@@ -24,3 +24,5 @@ def shiv(request):
     return render(request, 'shiv.html')
 def home(request):
     return render(request, 'home.html')
+def base_router(request):
+    return render(request, 'base_router.html')
