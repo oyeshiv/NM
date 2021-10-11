@@ -115,7 +115,7 @@
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">StelNet</a>
+                    <a href="D:\NM\NM\web-app\shiv.html">StelNet</a>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
@@ -123,7 +123,7 @@
                         <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
                     </div>
                     <div class="user-info">
-                        <a href="#">
+                        <a href="D:\NM\NM\web-app\base_router.html">
                             <span class="user-name">
                                 <strong>Routers</strong>
                             </span>
@@ -318,23 +318,25 @@
         <!-- page-content  -->
     
           <div class="page-content pt-2">
-                <div id="overlay" class="overlay"></div>
+                <div id="overlay" class="overlay" style="background:#474e5d;"></div>
+                <div>
+                    <div class="about-section">
+                        <h1>StelNet</h1>
+                        <p> Get your Net"WORKING" in few clicks.</p>
+                        <p>An easy to use application for all your networking configurations</p>
+                    </div>
                 
                 <div class="row">
-                    <div class="col-2 formC">
-                        <div><label for="fname">Host Name:</label><input type="text" id="fname" name="fname"
-                                value="John"><label for="lname">IP Address:</label><input type="text" id="lname"
-                                name="lname" value="Doe">
-    
+                    <div class="formC">
+                        <div>
+                            {% block router_content %}
+                            {% endblock %}
                         </div>
                     </div>
     
                 </div>
-                <!-- page-content"> -->
-                <div>
-                    {% block router_content %}
-                    {% endblock %}
-                </div>
+                <!-- page-content"-->
+               
             </div>
         
         <!-- page-wrapper -->
