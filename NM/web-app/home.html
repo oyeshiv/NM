@@ -84,45 +84,48 @@
 
 
 {% block content %}
-    <div class="about-section">
+<div>
+  <div class="about-section">
       <h1>StelNet</h1>
       <p> Get your Net"WORKING" in few clicks.</p>
       <p>An easy to use application for all your networking configurations</p>
-    </div>
+  </div>
 
-    <h2 style="text-align:center">Features</h2>
-    <div class="row">
+  <h2 style="text-align:center">Features</h2>
+  <div class="row">
       <div class="column">
-        <div class="card">
-          <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
-          <div class="container">
-            <h2>Security</h2>
-            <p class="title">Network Devices</p>
-            <p>Security protocols used to secure routers and switches </p>
+          <div class="card">
+              <img src="{% static 'img/security.jpg' %}" alt="Security" style="width:100%">
+              <div class="container">
+                  <h2>Security</h2>
+                  <p class="title">Network Devices</p>
+                  <p>Security protocols used to secure routers and switches </p>
+              </div>
           </div>
-        </div>
       </div>
 
       <div class="column">
-        <div class="card">
-          <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
-          <div class="container">
-            <h2>Easy configuration</h2>
-            <p class="title">Simple user Interface</p>
-            <p>Data selected for configuration to generate the script in clicks.</p>
+          <div class="card">
+              <img src="{% static 'img/easy.jpg' %}" alt="Easy" style="width:100%">
+              <div class="container">
+                  <h2>Easy configuration</h2>
+                  <p class="title">Simple user Interface</p>
+                  <p>Data selected for configuration to generate the script in clicks.</p>
+              </div>
           </div>
-        </div>
       </div>
 
       <div class="column">
-        <div class="card">
-          <img src="/w3images/team3.jpg" alt="John" style="width:100%">
-          <div class="container">
-            <h2>Script Generation</h2>
-            <p class="title">Click and collect</p>
-            <p>Easy, scalable and secure script generation for your network</p>
+          <div class="card">
+              <img src="{% static 'img/script.png' %}" alt="Script" style="width:100%">
+              <div class="container">
+                  <h2>Script Generation</h2>
+                  <p class="title">Click and collect</p>
+                  <p>Easy, scalable and secure script generation for your network</p>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
- {% endblock %}
+  </div>
+
+</div>
+{% endblock %}
