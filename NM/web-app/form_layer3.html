@@ -1,0 +1,91 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/routers.css' %}">
+
+{% block sub-form %}
+<!--vlan access-->
+    <hr> <h4> VLAN</h4></hr>
+<div class="container">
+        <div class="row">
+          <div class="col-25">
+            <label for="accvlans3">Vlan </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="accvlans3" name="accvlans3" placeholder="Enter vlan -1 ">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="l3ipv4">IP Address</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="l3ipv4" name="l3ipv4" placeholder="Ipv4 Address">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="l3sub">Subnet</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="l3sub" name="l3sub" placeholder="Subnet">
+            </div>
+          </div>
+
+  <!--trunk mode vlan-->        
+        <div class="row">
+            <hr> <h4> trunk </h4></hr>
+            <div class="col-25">
+              <label for="trunks3">Port number</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="trunks3" name="trunks3" placeholder="Enter trunk - 1 ">
+            </div>
+          </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="s3int">Interface </label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="s3int" name="s3int" placeholder="Enter interface ">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="s3sub">Enter Neighbor network</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="s3sub" name="s3sub" placeholder="Enter subnet ">
+            </div>
+          </div>
+       </div>
+   
+  <!--IPV6-->
+ <div class="row">
+    <hr> <h4> IPV6 </h4></hr>
+    <div class="col-25">
+      <label for="ipv6r">IP Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="ipv6s" name="ipv6s" placeholder="Ipv6 Address">
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="ipv6sub3">Subnet</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="ipv6sub3" name="ipv6sub3" placeholder="Subnet">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="intfcev6s3"> Network Interface </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="intfcev6s3" name="intfcev6s3" placeholder="Interface">
+    </div> 
+  </div>
+  <!--IPV6-->
+  
+</div>
+{% endblock %}

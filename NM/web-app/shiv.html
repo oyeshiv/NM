@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
-        content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
+        content="">
     <title>StelNet</title>
 
     <!-- using online links -->
@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/sidebar-themes.css' %}">
+    <link rel="stylesheet" href="{% static 'css/routers.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}" />
 
     {% block style %}
@@ -115,7 +116,7 @@
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">StelNet</a>
+                    <a href="D:\NM\NM\web-app\shiv.html">StelNet</a>
                 </div>
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header d-flex flex-nowrap">
@@ -123,7 +124,7 @@
                         <img class="img-responsive img-rounded" src="{% static 'img/user.png' %}" alt="User picture">
                     </div>
                     <div class="user-info">
-                        <a href="#">
+                        <a href="D:\NM\NM\web-app\base_router.html">
                             <span class="user-name">
                                 <strong>Routers</strong>
                             </span>
@@ -150,18 +151,18 @@
                                         <a><label for="ospf">EIGRP</label><input type="checkbox" id="ospf" name="ospf"
                                                 value="ospf"></a>
                                     </li>
-                                    <li>
+                                   <!-- <li>
                                         <a><label for="f1">BGP</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
                                     </li>
                                     <li>
                                         <a><label for="f1">OSPFv3</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                       <!-- <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
                                 <span class="menu-text">Security</span>
@@ -186,7 +187,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
@@ -194,8 +195,8 @@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
-                                    <li>
-                                        <a><label for="f1">Interface</label><input type="checkbox" id="f1" name="f1"
+                                   <li>
+                                        <a><label for="f1">IPV6</label><input type="checkbox" id="f1" name="f1"
                                                 value="f1"></a>
                                     </li>
                                     <li>
@@ -246,7 +247,7 @@
 
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
+                       <!-- <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
                                 <span class="menu-text">Security</span>
@@ -259,7 +260,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>-->
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-"></i>
@@ -312,29 +313,55 @@
 
                             </div>
                         </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-D"></i>
+                                <span class="menu-text">Connectivity-Vlans</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li>
+                                        <a><label for="avlan">Access-Vlan</label><input type="checkbox" id="avlan"
+                                                name="avlan" value="avlan"></a>
+                                    </li>
+                                    <li>
+                                        <a><label for="trunk">Trunking</label><input type="checkbox" id="trunk"
+                                                name="trunk" value="trunk"></a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </li>
                         <!-- sidebar-menu  -->
                 </div>
         </nav>
         <!-- page-content  -->
     
           <div class="page-content pt-2">
-                <div id="overlay" class="overlay"></div>
+                <div id="overlay" class="overlay" style="background:#474e5d;"></div>
+                <div>
+                    <div class="about-section">
+                        <h1>StelNet</h1>
+                        <p> Get your Net"WORKING" in few clicks.</p>
+                        <p>An easy to use application for all your networking configurations</p>
+                    </div>
                 
                 <div class="row">
-                    <div class="col-2 formC">
+                    <div class="formC">
                         <div>
-                            
-                            <label for="fname">Host Name:</label><input type="text" id="fname" name="fname" value="John">
-                            <label for="lname">IP Address:</label><input type="text" id="lname" name="lname" value="Doe">
-    
+                            {% block router_content %}
+                            {% endblock %}
                         </div>
                     </div>
+    
                 </div>
-                <!-- page-content"> -->
-                <div>
-                    {% block router_content %}
-                    {% endblock %}
-                </div>
+              <!---  <div class="row">
+                    <input type="submit" value="Submit">
+                  </div>-->
+                <!-- page-content"-->
+               
             </div>
         
         <!-- page-wrapper -->
