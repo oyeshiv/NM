@@ -20,9 +20,9 @@ def switch_2(request):
 def test(request):
     return render(request, 'testing.html')
 
-def shiv(request):
-    return render(request, 'shiv.html')
-
+def index(request):
+    return render(request, 'index.html')
+    
 def home(request):
     return render(request, 'home.html')
 

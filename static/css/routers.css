@@ -15,7 +15,7 @@ input[type=text], select, textarea{
   
   /* Style the submit button */
   input[type=submit] {
-    background-color: #04AA6D;
+    background-color: #f5c906;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -41,7 +41,7 @@ input[type=text], select, textarea{
   /* Floating column for inputs: 75% width */
   .col-75 {
     float: left;
-    width: 75%;
+    width: 35%;
     margin-top: 6px;
   }
   
