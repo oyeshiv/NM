@@ -31,7 +31,7 @@ class CiscoRouterZoneSecurity():
     class_map_name = models.CharField()
     policy_map = models.CharField()
     inspect = models.BooleanField()
-    
+
 
 class CiscoRouterACL(models.Model):
     acl_name = models.CharField()
@@ -50,7 +50,8 @@ class Device(models.Model):
     device_manufacturer = models.CharField(max_length=100)
     router_features = ArrayField(ArrayField(models.ForeignKey(blank=True, size=3), size=8))
 
-class ISR4321(Device):
+    class ISR4321():
+        s = models.TextField()
     
 
 class Project(models.Model):
@@ -68,6 +69,3 @@ class Script(models.Model):
     en_pass = models.CharField()
     
 
-
-
-    
