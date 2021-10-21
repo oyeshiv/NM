@@ -1,375 +1,167 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description"
-    content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-  <title>Stelnet</title>
 
-  <!-- using online links -->
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 260px;
-      background: #11101d;
-      z-index: 100;
-      transition: all 0.5s ease;
-    }
-
-    .sidebar.close {
-      width: 78px;
-    }
-
-    .sidebar .logo-details {
-      height: 60px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    .sidebar .logo-details i {
-      font-size: 30px;
-      color: #fff;
-      height: 50px;
-      min-width: 78px;
-      text-align: center;
-      line-height: 50px;
-    }
-
-    .logo_name {
-      font-size: 22px;
-      color: #fff;
-      font-weight: 600;
-      transition: 0.3s ease;
-      transition-delay: 0.1s;
-    }
-
-    .sidebar.close .logo-details .logo_name {
-      transition-delay: 0s;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .sidebar .nav-links {
-      background: tomato;
-      height: 100%;
-      padding-top: 30px;
-    }
-
-    .sidebar.close .nav-links {
-      overflow: visible;
-    }
-
-    .sidebar .nav-links::-webkit-scrollbar {
-      display: none;
-    }
-
-    .sidebar .nav-links li {
-      position: relative;
-      list-style: none;
-      transition: all 0.4s ease;
-
-    }
-
-    .sidebar .nav-links li:hover {
-      background: #1d1b31;
-    }
-
-    .sidebar .nav-links li .iocn-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .sidebar.close .nav-links li .iocn-link {
-      display: block
-    }
-
-    .sidebar .nav-links li i {
-      height: 50px;
-      min-width: 78px;
-      text-align: center;
-      line-height: 50px;
-      color: #fff;
-      font-size: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar .nav-links li.showMenu i.arrow {
-      transform: rotate(-180deg);
-    }
-
-    .sidebar.close .nav-links i.arrow {
-      display: none;
-    }
-
-    .sidebar .nav-links li a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    .alinks {
-      color: #fff;
-      font-size: 15px;
-      padding: 5px 0px;
-    }
-
-    .sidebar .nav-links li a .link_name {
-      font-size: 18px;
-      font-weight: 400;
-      color: #fff;
-      transition: all 0.4s ease;
-    }
-
-    .sidebar.close .nav-links li a .link_name {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .sidebar .nav-links li.showMenu .sub-menu {
-      display: block;
-    }
-
-    .sidebar .nav-links li a {
-      color: #fff;
-      font-size: 15px;
-      padding: 5px 0;
-      white-space: nowrap;
-      opacity: 0.6;
-      transition: all 0.3s ease;
-    }
-
-    .sidebar .nav-links li .sub-menu a:hover {
-      opacity: 1;
-    }
-
-    .sidebar.close .nav-links li .sub-menu {
-      position: absolute;
-      left: 100%;
-      top: -10px;
-      margin-top: 0;
-      padding: 10px 20px;
-      border-radius: 0 6px 6px 0;
-      opacity: 0;
-      display: block;
-      pointer-events: none;
-      transition: 0s;
-    }
-
-    .sidebar.close .nav-links li:hover .sub-menu {
-      top: 0;
-      opacity: 1;
-      pointer-events: auto;
-      transition: all 0.4s ease;
-    }
-
-    .sidebar .nav-links li .sub-menu .link_name {
-      display: none;
-    }
-
-    .sidebar.close .nav-links li .sub-menu .link_name {
-      font-size: 18px;
-      opacity: 1;
-      display: block;
-    }
-
-    .sidebar .nav-links li .sub-menu.blank {
-      opacity: 1;
-      pointer-events: auto;
-      padding: 3px 20px 6px 16px;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .sidebar .nav-links li:hover .sub-menu.blank {
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .sidebar .profile-details {
-      position: fixed;
-      bottom: 0;
-      width: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #1d1b31;
-      padding: 12px 0;
-      transition: all 0.5s ease;
-    }
-
-    .sidebar.close .profile-details {
-      background: none;
-    }
-
-    .sidebar.close .profile-details {
-      width: 78px;
-    }
-
-    .sidebar .profile-details .profile-content {
-      display: flex;
-      align-items: center;
-    }
-
-    .sidebar .profile-details img {
-      height: 52px;
-      width: 52px;
-      object-fit: cover;
-      border-radius: 16px;
-      margin: 0 14px 0 12px;
-      background: #1d1b31;
-      transition: all 0.5s ease;
-    }
-
-    .sidebar.close .profile-details img {
-      padding: 10px;
-    }
-
-    .sidebar .profile-details .profile_name,
-    .sidebar .profile-details .job {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .sidebar.close .profile-details i,
-    .sidebar.close .profile-details .profile_name,
-    .sidebar.close .profile-details .job {
-      display: none;
-    }
-
-    .sidebar .profile-details .job {
-      font-size: 12px;
-    }
-
-    .home-section {
-      position: relative;
-      background: #E4E9F7;
-      height: 100vh;
-      left: 260px;
-      width: calc(100% - 260px);
-      transition: all 0.5s ease;
-    }
-
-    .sidebar.close~.home-section {
-      left: 78px;
-      width: calc(100% - 78px);
-    }
-
-    .home-section .home-content {
-      height: 60px;
-      display: flex;
-      align-items: center;
-    }
-
-    .home-section .home-content .bx-menu,
-    .home-section .home-content .text {
-      color: #11101d;
-      font-size: 35px;
-    }
-
-    .home-section .home-content .bx-menu {
-      margin: 0 15px;
-      cursor: pointer;
-    }
-
-    .home-section .home-content .text {
-      font-size: 26px;
-      font-weight: 600;
-    }
-
-    @media (max-width: 420px) {
-      .sidebar.close .nav-links li .sub-menu {
-        display: none;
-      }
-    }
-  </style>
   {% block style %}
-
   {% endblock %}
 
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+  <meta name="author" content="AdminKit">
+  <meta name="keywords"
+    content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+  <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+  <title>STELNET</title>
+
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
 </head>
 
 <body>
-  <div class="sidebar">
-    <div class="logo-details">
-      <i class='bx bx-station'></i>
-      <span
-        style="font-size: 22px; color: darkgrey;font-weight: 600; transition: 0.3s ease;transition-delay: 0.1s;">Stelnet</span>
-
-    </div>
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          <i class='bx bx-grid-alt'></i>
-          <span class="link_name">Dashboard</span>
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="index.html">
+          <span class="align-middle">STELNET</span>
         </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Category</a></li>
+
+        <ul class="sidebar-nav">
+          <li class="sidebar-header">
+            Projects
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="dash">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Projects</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="new_project">
+              <i class="align-middle" data-feather="plus"></i> <span class="align-middle">New Project</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
+            Devices
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="routers">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Routers</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="switches">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Switches</span>
+            </a>
+          </li>
+
+          <li class="sidebar-header">
+            Admin
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="settings">
+              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Settings</span>
+            </a>
+          </li>
         </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-collection'></i>
-            <span class="link_name">Category</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
+
+        <div class="sidebar-cta">
+          <div class="sidebar-cta-content">
+            <strong class="d-inline-block mb-2">Username</strong>
+            <div class="mb-3 text-sm">
+              <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Profile</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <a href="#" target="_blank" class="btn btn-primary btn-block">Logout</a>
+          </div>
         </div>
-        <ul style="padding: 6px 6px 14px 80px; margin-top: -10px;">
-          <li><a href="#" class="alinks">WAN-1</a></li>
-          <li><a href="#" class="alinks">WAN-2</a></li>
-          <li><a href="#" class="alinks">NATS</a></li>
+      </div>
+    </nav>
 
-        </ul>
-      </li>
+    <div class="main">
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle d-flex">
+          <i class="hamburger align-self-center"></i>
+        </a>
 
+        <form class="d-none d-sm-inline-block">
+          <div class="input-group input-group-navbar">
+            <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
+            <button class="btn" type="button">
+              <i class="align-middle" data-feather="search"></i>
+            </button>
+          </div>
+        </form>
 
-      </li>
-    </ul>
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav navbar-align">
+            <li class="nav-item dropdown">
+              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                <i class="align-middle" data-feather="settings"></i>
+              </a>
 
+              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                <span class="text-dark">Charles Hall</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i>
+                  Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1"
+                    data-feather="settings"></i> Settings</a>
+                <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help
+                  Center</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Log out</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
+      <main class="content">
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row text-muted">
+            <div class="col-6 text-left">
+              <p class="mb-0">
+                <a href="index.html" class="text-muted"><strong>STELNET</strong></a> &copy;
+              </p>
+            </div>
+            <div class="col-6 text-right">
+              <ul class="list-inline">
+                Created by
+                <li class="list-inline-item">
+                  <a class="text-primary" href="#">Team Name</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
-  <div>
-    {% block content %}
-    {% endblock %}
-  </div>
-  <script>
-    let arrow = document.querySelectorAll(".arrow");
-    for (var i = 0; i < arrow.length; i++) {
-      arrow[i].addEventListener("click", (e) => {
-        let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-        arrowParent.classList.toggle("showMenu");
-      });
-    }
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".bx-menu");
-    console.log(sidebarBtn);
-    sidebarBtn.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
-    });
-  </script>
+
+  <script src="{% static 'js/app.js' %}"></script>
+
 </body>
 
 </html>

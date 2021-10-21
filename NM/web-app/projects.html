@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .new_project {
+        background-color: transparent !important;
+        border: 1px solid #3E7DC0 !important;
+    }
+
+    div.new_project:hover {
+        background-color: #cce6ff !important;
+        border: 1px solid #00d9ff !important;
+    }
+</style>
+{% endblock %}
+
+{% block content%}
+<div class="container-fluid p-0">
+    <div class="row mb-2 mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+            <h3>Dashboard -> <strong>Projects</strong></h3>
+        </div>
+    </div>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-3">
+            <div class="card w-100 h-100">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">{{project.client_name}}</h5>
+                    <h1 class="mt-1 mb-3">{{project.project_name}}</h1>
+                    <div class="mb-1">
+                        <span class="text-muted">Script Count</span> <br>
+                        <form method='POST' action="scripts">
+                            {% csrf_token %}
+                            <input type='hidden' name='id' value='{{project.id}}'>
+                            <button class="btn btn-primary" type="=submit">Open</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-3 text-center align-items-stretch">
+            <div class="new_project card card-block d-flex h-100">
+                <div class="card-body align-items-center d-flex justify-content-center">
+                    <a class="card-link" href="new_project">
+                        <i class="align-middle" data-feather="plus"></i> <br> <span class="align-middle">New Project</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
