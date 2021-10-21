@@ -29,7 +29,7 @@
                     <h5 class="card-title mb-4">{{project.client_name}}</h5>
                     <h1 class="mt-1 mb-3">{{project.project_name}}</h1>
                     <div class="mb-1">
-                        <span class="text-muted">Script Count</span> <br>
+                        <span class="text-muted">{{project.desc}}</span> <br>
                         <form method='POST' action="scripts">
                             {% csrf_token %}
                             <input type='hidden' name='id' value='{{project.id}}'>
