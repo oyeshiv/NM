@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from NM.forms import ScriptFrom
+from NM.forms import ISR4321From
 
-
-
-from NM.models import Devices, Projects, Scripts
+from NM.models import ISR4321, Devices, Projects, Scripts
 # Create views
 
 def index(request):
@@ -16,11 +14,23 @@ def dash(request):
 
 def scripts(request):
     result_scripts = Scripts.objects.filter(project_id=request.POST['id']).select_related('device')
-    return render(request, 'scripts.html', {'scripts': result_scripts})
+    return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.POST['id']} )
 
-def new_script(request):
-    form = ScriptFrom(request.POST)
-    return form
+def edit_script(request):
+    
+    script_device = Scripts.objects.get(id=request.POST['script_id']).device_id
+    device = Devices.objects.get(id=script_device)
+    template = '404.html'
+    if device.device_model == 'ISR4321/K9':
+        script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
+        template = 'ISR4321.html'
+    return render(request, template, {'data':script , 'device': device})
+
+def form(request):
+
+    form = ISR4321From(request.POST)
+
+    return render(request, 'form.html', {'form':form})
 
 def base(request):
     return render(request, 'base.html')
