@@ -32,12 +32,16 @@ urlpatterns = [
     path('test', views.test, name='Testing'),
     path('index', views.index, name='index'),
 <<<<<<< HEAD
+<<<<<<< HEAD
     path('base', views.base, name='base'),
     path('dash', views.dash, name='Dashboard'),
     path('scripts', views.scripts, name='Scripts'),
     path('new_script', forms.New_Script.as_view(), name='New Script'),
     path('edit_script', views.edit_script, name='Edit Script'),
     path('form', views.form, name='Form'),
+=======
+    path('home', views.home, name='home'),
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
 =======
     path('home', views.home, name='home'),
 >>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)

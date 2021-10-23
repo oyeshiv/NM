@@ -9,6 +9,7 @@ def home(request):
     return render(request, 'index.html')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def dash(request):
     projects = Projects.objects.all()
     return render(request, 'projects.html', {'projects': projects})
@@ -37,6 +38,8 @@ def base(request):
     return render(request, 'base.html')
 
 =======
+=======
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
 def router_1(request):
     return render(request, 'router1.html')
     
@@ -54,6 +57,9 @@ def test(request):
 
 def index(request):
     return render(request, 'index.html')
+<<<<<<< HEAD
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
+=======
 >>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
 def home(request):
     return render(request, 'home.html')
