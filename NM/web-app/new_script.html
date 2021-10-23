@@ -1,4 +1,6 @@
-{% extends 'index.html' %}
 
-{% block content %}
-{% endblock %}
+ <form method='POST'>
+{% csrf_token %}     
+{{ form.as_p }}
+<button>post</button>
+</form>

@@ -59,7 +59,7 @@
               <td colspan="6">
               <form class='w-100' method='POST' action="new_script">
                 {% csrf_token %}
-                <input type='hidden' name='project_id' value='{{project.id}}'>
+                <input type='hidden' name='project_id' value='{{project_id}}'>
                 <button class="btn btn-default w-100 text-white" type="=submit"><i data-feather="plus"></i> <span>New Script</span></button>
               </form>
             </td>

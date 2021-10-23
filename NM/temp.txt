@@ -42,7 +42,4 @@ class CiscoRouterSSH(models.Model):
     ssh_timeout = models.CharField()
     ssh_retries = models.CharField()
 
-class Device(models.Model):
-    device_model = models.CharField(max_length=100)
-    device_manufacturer = models.CharField(max_length=100)
-    router_features = ArrayField(ArrayField(models.ForeignKey(blank=True, size=3), size=8))
+

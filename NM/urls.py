@@ -18,6 +18,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from . import views
+from . import forms
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,7 +29,9 @@ urlpatterns = [
     path('base', views.base, name='base'),
     path('dash', views.dash, name='Dashboard'),
     path('scripts', views.scripts, name='Scripts'),
-    path('new_script', views.new_script, name='New Script'),
+    path('new_script', forms.New_Script.as_view(), name='New Script'),
+    path('edit_script', views.edit_script, name='Edit Script'),
+    path('form', views.form, name='Form'),
     path('base_router', views.base_router, name='base_router'),
     path('form_router', views.form_router, name='form_router'),
     path('base_switch', views.base_switch, name='base_switch'),
