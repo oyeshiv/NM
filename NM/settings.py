@@ -80,8 +80,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'NetworkManagement',
         'USER': 'postgres',
-        'PASSWORD': '0000',
-        'HOST': 'localhost'
+        'PASSWORD': 'Password_0000',
+        'HOST': 'networkmanagement.cxt2nlaeolwy.us-east-1.rds.amazonaws.com'
     }
 }
 
