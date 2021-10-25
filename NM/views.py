@@ -55,3 +55,10 @@ def form_layer3(request):
 
 def form_switch2(request):
     return render(request, 'form_switch2.html')
+def ISR4321(request):
+    return render(request, 'ISR4321.html')
+def dynamic_menu(request):
+    return render(request, 'dynamic_menu.html')
+def index_l3(request):
+    return render(request, 'index_l3.html')
+
