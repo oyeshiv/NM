@@ -27,7 +27,15 @@ def form(request):
 
     form = ISR4321From(request.POST)
 
-    return render(request, 'form.html', {'form':form})
+    return render(request, 'form.html', {'form':form}) 
+
+def login(request):
+
+    if request.method == 'POST':
+        print()
+
+    else:
+        return render(request, 'login.html')
 
 def base(request):
     return render(request, 'base.html')
@@ -55,10 +63,10 @@ def form_layer3(request):
 
 def form_switch2(request):
     return render(request, 'form_switch2.html')
-def ISR4321(request):
-    return render(request, 'ISR4321.html')
+
 def dynamic_menu(request):
     return render(request, 'dynamic_menu.html')
+
 def index_l3(request):
     return render(request, 'index_l3.html')
 
