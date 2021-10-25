@@ -4,13 +4,16 @@
 
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/routers.css' %}">
+
 
 
 {% block router_content %}
 
-<div class="container">
+<div class="container" style="background: #f7f7fc; border: cornflowerblue; border-style: solid; border-width: thin;">
+  <div style="font: bolder; color: deepskyblue;">Catalyst 9200</div>
+  <hr> </hr>
       <div class="row">
+        <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC  </h5> 
         <div class="col-25">
           <label for="sname">Device Name</label>
         </div>
@@ -54,7 +57,7 @@
     <hr></hr>
     <div class="row">
       
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;"> Access Vlans </h5>
+      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="#add_vlan"> Access Vlans </h5>
       <div class="col-25"> 
         <label for="ename">VLAN Numbers</label>
       </div>
@@ -89,7 +92,7 @@
     <hr></hr>
     <!--Trunk Vlan-->
     <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;"> Trunk Vlans </h5>
+      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_trunk"> Trunk Vlans </h5>
       <div class="col-25">
         <label for="trunk1">Port number</label>
       </div>
@@ -120,19 +123,18 @@
       <div class="col-75">
         <input type="text" id="s2int3" name="s2int3" placeholder="Enter interface  3">
       </div>
+      <div class="col-75" style="margin-left: 290px; margin-right: 460px;">
+        <input style="margin: 5px; float: left; " type="submit" value="Download Text">
+        <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
+        <input style="margin: 5px; float: left;"  type="submit" value="Save">
     </div>
-    <div class="col-75" style="margin-left: 250px; margin-right: 460px;">
-      <input style="margin: 5px; float: left; " type="submit" value="Download Text">
-      <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
-      <input style="margin: 5px; float: left;"  type="submit" value="Save">
-  </div>
+    </div>
+    
   
  </div>
-      {% block sub-form %}
-      {% endblock %}
       
     </form>
-  </div>
+
   
 {% endblock %}
  
