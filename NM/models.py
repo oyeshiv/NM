@@ -238,6 +238,3 @@ class ISR4321(Scripts):
     bgp_ipv6_neighbor_wan_ip_out = models.GenericIPAddressField()
     bgp_ipv6_neighbor_wan_route_map_out = models.CharField(max_length=100)
     
-    
-
-
