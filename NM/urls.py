@@ -24,14 +24,18 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', views.home, name='home'),
+    path('', views.home, name='home'),
+    path('router/model-1', views.router_1, name='Router'),
+    path('router/model-2', views.router_2, name='Router'),
+    path('switch/model-1', views.switch_1, name='Switch'),
+    path('switch/model-2', views.switch_2, name='Switch'),
+    path('test', views.test, name='Testing'),
     path('index', views.index, name='index'),
-    path('base', views.base, name='base'),
-    path('dash', views.dash, name='Dashboard'),
-    path('scripts', views.scripts, name='Scripts'),
-    path('new_script', forms.New_Script.as_view(), name='New Script'),
-    path('edit_script', views.edit_script, name='Edit Script'),
-    path('form', views.form, name='Form'),
+
+    path('home', views.home, name='home'),
+
+    path('home', views.home, name='home'),
+
     path('base_router', views.base_router, name='base_router'),
     path('form_router', views.form_router, name='form_router'),
     path('base_switch', views.base_switch, name='base_switch'),
