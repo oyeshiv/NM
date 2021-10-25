@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'index_l3.html' %}
 
 
 
@@ -52,6 +52,7 @@
       <!--OSPF-->
       <div class="row">
         <hr> </hr>
+        <h5 style="text-align: left; color: darkblue; font-family: monospace;"> OSPF </h5>
         <div class="col-25">
           <label for="s3oname"> OSPF Number</label>
         </div>
@@ -67,31 +68,7 @@
             <input type="text" id="s3areaospf" name="s3areaospf" placeholder="Enter OSPF ipv4-area number">
           </div>
         </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="s3intfce"> Newtwork Interface </label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="s3intfce" name="s3intfce" placeholder="Interface">
-          </div>
-        </div>
-       
-        <div class="row">
-          <div class="col-25">
-            <label for="ipv4s3">IP Address</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="ipv4s3" name="ipv4s3" placeholder="Ipv4 Address">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="subs3">Subnet</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="subs3" name="subs3" placeholder="Subnet">
-          </div>
-        </div>
+        
         <div class="row">
           <div class="col-25">
             <label for="neintfces3"> Neighbour Interface Address </label>
@@ -103,6 +80,7 @@
         <!--BGP-->
         <div class="row">
             <hr></hr>
+            <h5 style="text-align: left; color: darkblue; font-family: monospace;"> BGP </h5>
           <div class="col-25">
             
             <label for="s3bgpname">BGP Number</label>
@@ -121,49 +99,46 @@
         </div>
        <div class="row">
         <div class="col-25">
-          <label for="intfcebgp">Interface </label>
+          <label for="nbgp">Interface </label>
         </div>
         <div class="col-75">
-          <input type="text" id="intfcebgp" name="intfcebgp" placeholder="Interface">
+          <input type="text" id="nbgp" name="nbgp" placeholder="Interface">
         </div>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="ipv4bgps3">IP Address</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="ipv4bgps3" name="ipv4bgps3" placeholder="Ipv4 Address">
-        </div>
+     <!--TRUNK-->
+     <!--trunk mode vlan-->        
+     <div class="row">
+       <hr></hr>
+      <h5 style="text-align: left; color: darkblue; font-family: monospace;"> Ether Channel </h5>
+      <div class="col-25">
+        <label for="trunks3">Port number</label>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="subgp3">Subnet</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="subgp3" name="subgp3" placeholder="Subnet">
-        </div>
+      <div class="col-75">
+        <input type="text" id="trunks3" name="trunks3" placeholder="Enter trunk - 1 ">
       </div>
-      <!--<div class="row">
-        <div class="col-25">
-          <label for="country">Country</label>
-        </div>
-        <div class="col-75">
-          <select id="country" name="country">
-            <option value="australia">Australia</option>
-            <option value="canada">Canada</option>
-            <option value="usa">USA</option>
-          </select>
-        </div>
+    </div>
+  <div class="row">
+      <div class="col-25">
+        <label for="s3int">Interface </label>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="subject">Subject</label>
-        </div>
-        <div class="col-75">
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-        </div>
+      <div class="col-75">
+        <input type="text" id="s3int" name="s3int" placeholder="Enter interface ">
       </div>
-      -->
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="s3sub">Enter Neighbor network</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="s3sub" name="s3sub" placeholder="Enter subnet ">
+      </div>
+    </div>
+  </div>
+  <div class="col-75" style="margin-left: 250px; margin-right: 460px;">
+    <input style="margin: 5px; float: left; " type="submit" value="Download Text">
+    <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
+    <input style="margin: 5px; float: left;"  type="submit" value="Save">
+</div>
       {% block sub-form %}
       {% endblock %}
       

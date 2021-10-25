@@ -2,82 +2,9 @@
 
 
 
-<<<<<<< HEAD
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/routers.css' %}">
-=======
-{% block style %}
-<style>
-  input[type=text],
-  select,
-  textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-  }
-
-  /* Style the label to display next to the inputs */
-  label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-  }
-
-  /* Style the submit button */
-  input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-
-  /* Style the container */
-  .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-
-  /* Floating column for labels: 25% width */
-  .col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-  }
-
-  /* Floating column for inputs: 75% width */
-  .col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-  }
-
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-
-    .col-25,
-    .col-75,
-    input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
-</style>
-{% endblock %}
->>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
 
 
 {% block router_content %}
@@ -151,13 +78,13 @@
       <!--OSPF-->
       <hr> </hr>
       <div class="row">
-<<<<<<< HEAD
-        <h5 style="text-align: left; color: darkblue; font-family: monospace;"> OSPF </h5>
-=======
-        <hr>
->>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
+      <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;"> OSPF </h5> </div>
+        <a style="display: inline; float: right; margin-bottom: 90px;" href="#" id="add_ospf"><i class='bx bx-plus'></i> </a>
+      
+      <div class="row">
         <div class="col-25">
-          <label for="oname"> OSPF Number</label>
+          <label name="oname"> OSPF Number</label> 
+         
         </div>
         <div class="col-75">
           <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
@@ -210,14 +137,16 @@
         <div class="col-75">
           <input type="text" name="neigbgp[]" placeholder=" Neighbour Interface Address">
           <div class="col-75">
-            <a href="#" id="add_intfce"><i class='bx bx-plus'></i> </a>
+            
             <a href="#" id="rmv_intfce"><i class='bx bx-minus'></i> </a>
           </div>
         </div>
         
       </div>
-       <div class="col-75">
-          <input type="submit" value="Submit">
+      <div class="col-75" style="margin-left: 250px; margin-right: 460px;">
+          <input style="margin: 5px; float: left; " type="submit" value="Download Text">
+          <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
+          <input style="margin: 5px; float: left;"  type="submit" value="Save">
       </div>
       
     
@@ -226,10 +155,10 @@
       
     </form>
   </div>
-<<<<<<< HEAD
   
 {% endblock %}
- <script type="text/javascript">
+
+<script type="text/javascript">
 var neigbgp= document.getElementById('neigbgp');
 var add_intfce= document.getElementById('add_intfce');
 var rmv_intfce= document.getElementById('rmv_intfce');
@@ -249,40 +178,18 @@ rmv_intfce.onclick = function()
     neigbgp.removeChild(input_tags[(input_tags.length) - 1]);
   }
 }
-</script>
-=======
-  <div class="row">
-    <div class="col-25">
-      <label for="lname">Last Name</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="country">Country</label>
-    </div>
-    <div class="col-75">
-      <select id="country" name="country">
-        <option value="australia">Australia</option>
-        <option value="canada">Canada</option>
-        <option value="usa">USA</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25">
-      <label for="subject">Subject</label>
-    </div>
-    <div class="col-75">
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <input type="submit" value="Submit">
-  </div>
-</div>
+var coll = document.getElementById('add_ospf');
+var i;
 
-{% endblock %}
->>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>

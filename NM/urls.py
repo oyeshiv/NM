@@ -41,6 +41,8 @@ urlpatterns = [
     path('base_switch', views.base_switch, name='base_switch'),
     path('base_switch3', views.base_switch3, name='base_switch3'),
     path('form_layer3', views.form_layer3, name='form_layer3'),
-    path('form_switch2', views.form_switch2, name='form_switch2')
-    
+    path('form_switch2', views.form_switch2, name='form_switch2'),
+    path('ISR4321', views.ISR4321, name='ISR4321'),
+    path('dynamic_menu', views.dynamic_menu, name='dynamic_menu'),
+
 ]
