@@ -5,9 +5,11 @@ from NM.forms import ISR4321From
 from NM.models import ISR4321, Devices, Projects, Scripts
 # Create views
 
-def index(request):
+def home(request):
     return render(request, 'index.html')
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 def dash(request):
     projects = Projects.objects.all()
     return render(request, 'projects.html', {'projects': projects})
@@ -35,23 +37,41 @@ def form(request):
 def base(request):
     return render(request, 'base.html')
 
+=======
+=======
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
+def router_1(request):
+    return render(request, 'router1.html')
+    
+def router_2(request):
+    return render(request, 'router2.html')
+
+def switch_1(request):
+    return render(request, 'switch1.html')
+
+def switch_2(request):
+    return render(request, 'switch2.html')
+
+def test(request):
+    return render(request, 'testing.html')
+
+def index(request):
+    return render(request, 'index.html')
+<<<<<<< HEAD
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
+=======
+>>>>>>> parent of 41f6e72 (Merge branch 'main' of https://github.com/oyeshiv/NM)
 def home(request):
     return render(request, 'home.html')
-
 def base_router(request):
     return render(request, 'base_router.html')
-
 def form_router(request):
     return render(request, 'form_router.html')
-
 def base_switch(request):
     return render(request, 'base_switch.html')
-
 def base_switch3(request):
     return render(request, 'base_switch3.html')
-
 def form_layer3(request):
     return render(request, 'form_layer3.html')
-    
 def form_switch2(request):
     return render(request, 'form_switch2.html')

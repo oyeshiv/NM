@@ -1,0 +1,288 @@
+{% extends 'index.html' %}
+
+
+
+<<<<<<< HEAD
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/routers.css' %}">
+=======
+{% block style %}
+<style>
+  input[type=text],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+
+  /* Style the container */
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  /* Floating column for labels: 25% width */
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  /* Floating column for inputs: 75% width */
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+
+    .col-25,
+    .col-75,
+    input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+</style>
+{% endblock %}
+>>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
+
+
+{% block router_content %}
+
+<div class="container">
+      <div class="row">
+        <div class="col-25">
+          <label for="rname">Device Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="rname" name="rname" placeholder="Router Name......">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="intfce">Interface </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="intfce" name="intfce" placeholder="Interface">
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-25">
+          <label for="ipv4">IP Address</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address">
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="sub1">Subnet</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="sub1" name="sub1" placeholder="Subnet">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="uname">User Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="uname" name="uname" placeholder="User Name......">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="motdr"> MOTD Banner</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="secpwd">Security Password </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="enpwd">Encryption Password </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password">
+        </div>
+      </div>
+      <!--OSPF-->
+      <hr> </hr>
+      <div class="row">
+<<<<<<< HEAD
+        <h5 style="text-align: left; color: darkblue; font-family: monospace;"> OSPF </h5>
+=======
+        <hr>
+>>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
+        <div class="col-25">
+          <label for="oname"> OSPF Number</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-25">
+            <label for="areaospf">Area Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number">
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-25">
+            <label for="neintfce"> Neighbour Interface Address </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="neiospf" name="neiospf[]" placeholder=" Neighbour Interface Address">
+            <div class="col-75">
+              <a href="#" id="add_intfce_ospf"><i class='bx bx-plus'></i> </a>
+            </div>
+          </div>
+        </div>
+        <hr></hr>
+        <!--BGP-->
+        <div class="row">
+          <h5 style="text-align: left; color: darkblue; font-family: monospace;"> BGP </h5>
+          <div class="col-25"> 
+            <label for="ename">BGP Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number ">
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="ridbgp">Autonomous Number</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id">
+            </div>
+        </div>
+      
+      <div class="row">
+        <div class="col-25">
+          <label for="neintfce"> Neighbour Interface Address </label>
+        </div>
+        <div class="col-75">
+          <input type="text" name="neigbgp[]" placeholder=" Neighbour Interface Address">
+          <div class="col-75">
+            <a href="#" id="add_intfce"><i class='bx bx-plus'></i> </a>
+            <a href="#" id="rmv_intfce"><i class='bx bx-minus'></i> </a>
+          </div>
+        </div>
+        
+      </div>
+       <div class="col-75">
+          <input type="submit" value="Submit">
+      </div>
+      
+    
+      {% block sub-form %}
+      {% endblock %}
+      
+    </form>
+  </div>
+<<<<<<< HEAD
+  
+{% endblock %}
+ <script type="text/javascript">
+var neigbgp= document.getElementById('neigbgp');
+var add_intfce= document.getElementById('add_intfce');
+var rmv_intfce= document.getElementById('rmv_intfce');
+add_intfce.onclick = function()
+{
+  var newfield = document.createElement('input');
+  newfield.setAttribute('type','text');
+  newfield.setAttribute('name','neigbgp[]');
+  newfield.setAttribute('placeholder','Neighbour Interface Address');
+  neigbgp.appendChild(newfield);
+}
+rmv_intfce.onclick = function()
+{
+  var input_tags = neigbgp.getElementsByTagName('input');
+  if(input_tags.length > 2)
+  {
+    neigbgp.removeChild(input_tags[(input_tags.length) - 1]);
+  }
+}
+</script>
+=======
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Last Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="country">Country</label>
+    </div>
+    <div class="col-75">
+      <select id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subject">Subject</label>
+    </div>
+    <div class="col-75">
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+</div>
+
+{% endblock %}
+>>>>>>> d90b1d7230ab4fc81647e5d322b32201876ead8c
