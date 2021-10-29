@@ -9,47 +9,149 @@
 {% block router_content %}
 
 {% for script in data %}
-<div class="container">
-  <form method='POST' action='save'>
-    <div class="row">
-      <div class="col-25">
-        <label for="rname">Device Name</label>
-      </div>
+<div class="container" style="background: #f7f7fc; border: cornflowerblue; border-style: solid; border-width: thin;">
+  <div style="font: bolder; color: deepskyblue;">ISR4321 Router Script</div>
+  <hr>
+  <div class="row">
+    <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h5>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="rname">Device Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="rname" name="rname" placeholder="Router Name......">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="intfce">Interface </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="intfce" name="intfce" placeholder="Interface">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="ipv4">IP Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="sub1">Subnet</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="sub1" name="sub1" placeholder="Subnet">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="uname">User Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="uname" name="uname" placeholder="User Name......">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="motdr"> MOTD Banner</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="secpwd">Security Password </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="enpwd">Encryption Password </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password">
+    </div>
+  </div>
+  <!--OSPF-->
+  <hr>
+  <div class="row">
+    <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_ospf"> OSPF </h5>
+  </div>
+  <a style="display: inline; float: right; margin-bottom: 90px;" href="#" id="add_ospf"><i class='bx bx-plus'></i> </a>
+  <div class="row">
+    <div class="col-25">
+      <label name="oname"> OSPF Number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="areaospf">Area Number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neintfce"> Neighbour Interface Address </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="neiospf" name="neiospf[]" placeholder=" Neighbour Interface Address">
       <div class="col-75">
-        <input type="text" id="rname" name="rname" placeholder="Router Name......" value='{{script.host_name}}'>
+        <a href="#" id="add_intfce_ospf"><i class='bx bx-plus'></i> </a>
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="intfce">Interface </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="intfce" name="intfce" placeholder="Interface" value='G0/0'>
-      </div>
+  </div>
+  <hr>
+  <!--BGP-->
+  <div class="row">
+    <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_bgp"> BGP </h5>
+    <div class="col-25">
+      <label for="ename">BGP Number</label>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="ipv4"> Public Ipv4 Address</label>
-      </div>
+    <div class="col-75">
+      <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number ">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="ridbgp">Autonomous Number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neintfce"> Neighbour Interface Address </label>
+    </div>
+    <div class="col-75">
+      <input type="text" name="neigbgp[]" placeholder=" Neighbour Interface Address">
       <div class="col-75">
-        <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address" value='{{script.g00_ip}}'>
-      </div>
 
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="sub1">Subnet</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="sub1" name="sub1" placeholder="Subnet" value='{{script.g00_subnet}}'>
+        <a href="#" id="rmv_intfce"><i class='bx bx-minus'></i> </a>
       </div>
     </div>
+    <!--advanced options-->
+    <!--ipv6-->
+    <hr>
     <div class="row">
+      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_ipv6"> IPV6 </h5>
       <div class="col-25">
-        <label for="ipv6r">IPv6 Address</label>
+        <label for="ipv6r">IP Address</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ipv6r" name="ipv6r" placeholder="Ipv6 Address" value='{{script.g00_ipv6_address}}'>
+        <input type="text" id="ipv6r" name="ipv6r" placeholder="Ipv6 Address">
       </div>
     </div>
     <div class="row">
@@ -57,119 +159,57 @@
         <label for="ipv6sub">Subnet</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ipv6sub" name="ipv6sub" placeholder="Subnet" value='64'>
+        <input type="text" id="ipv6sub" name="ipv6sub" placeholder="Subnet">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="intfcev6"> Link Local </label>
+        <label for="intfcev6"> Network Interface </label>
       </div>
       <div class="col-75">
-        <input type="text" id="intfcev6" name="intfcev6" placeholder="Interface" value='{{script.g00_ipv6_link}}'>
+        <input type="text" id="intfcev6" name="intfcev6" placeholder="Interface">
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="uname">User Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="uname" name="uname" placeholder="User Name......"  value='{{script.user_name}}'>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="motdr"> MOTD Banner</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner" value='{{script.banner_motd}}'>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="secpwd">Security Password </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password" value='{{script.user_pass}}'>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="enpwd">Service Password </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.en_pass}}'>
-      </div>
-    </div>
-    <!--OSPF-->
+    <!--NAT-->
     <hr>
     <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;"> OSPF </h5>
-      <div class="col-25">
-        <label for="oname"> OSPF Number</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="areaospf">Area Number</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="neintfce"> OSPF Interfaces Configuration </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="neiospf" name="neiospf[]" placeholder=" Neighbour Interface Address">
+      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_nat"> NAT </h5>
+      <div class="row">
+        <div class="col-25">
+          <label for="nat">NAT Name</label>
+        </div>
         <div class="col-75">
-
+          <input type="text" id="nat" name="nat" placeholder="NAT Name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="pubstrt">Start public address</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="pubstrt" name="pubstrt" placeholder="Start public address">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="pubend"> Last public address </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="pubend" name="pubend" placeholder="Last public address">
         </div>
       </div>
     </div>
-    <hr>
-    <!--BGP-->
-    <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;"> BGP </h5>
-      <div class="col-25">
-        <label for="ename">BGP Number</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number ">
-      </div>
+    <div class="col-75" style="margin-left: 280px; margin-right: 460px;">
+      <input style="margin: 5px; float: left; " type="submit" value="Download Text">
+      <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
+      <input style="margin: 5px; float: left;" type="submit" value="Save">
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="ridbgp">Autonomous Number</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="neintfce"> BGP Interfaces Configuration </label>
-      </div>
-      <div class="col-75">
-        <input type="text" name="neigbgp[]" placeholder=" Neighbour Interface Address">
-        <div class="col-75">
-
-        </div>
-      </div>
-
-    </div>
-    <div class="col-75">
-      <input type="submit" value="Submit">
-    </div>
+  </div>
 
 
 
-
+  {% block sub-form %}
+  {% endblock %}
 
   </form>
 </div>

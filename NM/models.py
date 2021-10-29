@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Group
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 
@@ -13,9 +14,11 @@ class Devices(models.Model):
         return self.device_category.category_name + ' | ' + self.device_model
 
 class Projects(models.Model):
+    organisation = models.ForeignKey(Group, default=1, on_delete=models.RESTRICT)
     project_name = models.CharField(max_length=100)
     desc = models.TextField()
     client_name = models.CharField(max_length=100)
+
 
     def __str__(self):
         return self.project_name
