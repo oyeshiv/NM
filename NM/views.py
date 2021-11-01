@@ -76,10 +76,13 @@ def new_script(request):
 
 def text_gen(request):
 
-    
+
 
     for x in dir(ISR4321):
-        print(x)
+        if x[0] == '_':
+            pass
+        else:
+            print(x)
 
     return redirect('/')
 
