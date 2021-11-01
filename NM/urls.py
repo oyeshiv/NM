@@ -38,5 +38,6 @@ urlpatterns = [
     path('form_switch2', views.form_switch2, name='form_switch2'),
     path('ISR4321', views.ISR4321, name='ISR4321'),
     path('dynamic_menu', views.dynamic_menu, name='dynamic_menu'),
+    path('about_us', views.about_us, name='about_us'),
 
 ]

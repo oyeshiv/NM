@@ -61,4 +61,6 @@ def dynamic_menu(request):
     return render(request, 'dynamic_menu.html')
 def index_l3(request):
     return render(request, 'index_l3.html')
+def about_us(request):
+    return render(request, 'about_us.html')
 
