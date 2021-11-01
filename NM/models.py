@@ -207,7 +207,6 @@ class ISR4321(Scripts):
 
     #ospfv3
     ospf_process_id = models.CharField(max_length=20)
-    ospf_ipv4_area = models.CharField(max_length=1, default=0)
     ospfv3_ipv4_rid = models.GenericIPAddressField()
     ospfv3_ipv6_rid = models.GenericIPAddressField()
 
