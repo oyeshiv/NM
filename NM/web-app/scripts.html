@@ -46,7 +46,7 @@
                   <input type='hidden' name='script_id' value='{{script.id}}'>
                   <button class="btn btn-primary" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
                 </form>
-                <form method='POST' action="edit_script">
+                <form method='POST' action="generate_text">
                   {% csrf_token %}
                   <input type='hidden' name='script_id' value='{{script.id}}'>
                   <button class="btn btn-primary" type="=submit"><i data-feather="download"></i> <span>Text</span></button>

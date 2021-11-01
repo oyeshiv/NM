@@ -74,6 +74,15 @@ def new_script(request):
     else:
         return render(request, 'new_script.html')
 
+def text_gen(request):
+
+    
+
+    for x in dir(ISR4321):
+        print(x)
+
+    return redirect('/')
+
 def form(request):
 
     form = ISR4321From(request.POST)
