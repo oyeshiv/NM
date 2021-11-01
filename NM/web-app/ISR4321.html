@@ -79,12 +79,79 @@
       <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.en_pass}}'>
     </div>
   </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="intg00">Interface g0/0 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="intg00" name="intg00" placeholder="Ip address for g0/0" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subg00">Subnet g0/0 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="subg00" name="subg00" placeholder="Subnet for g0/0" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="intg0/1">Private IP g0/1 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="intg0/1" name="intg0/1" placeholder=" Private Ip address for g0/1" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subg01">Subnet g0/1 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="subg01" name="subg01" placeholder="Subnet for g0/1" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="intg0/2">Private IP g0/2 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="intg0/2" name="intg0/2" placeholder=" Private Ip address for g0/2" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subg02">Subnet g0/2 </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="subg02" name="subg02" placeholder="Subnet for g0/2 " value=''>
+    </div>
+  </div>
   <!--OSPF-->
   <hr>
   <div class="row">
-    <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_ospf"> OSPF </h5>
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_ospf"> OSPF </h3>
   </div>
-  <a style="display: inline; float: right; margin-bottom: 90px;" href="#" id="add_ospf"><i class='bx bx-plus'></i> </a>
+  
+  <div class="row">
+    <div class="col-25">
+      <label name="rno"> Router Ospf Number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="rno" name="rno" placeholder="Enter your router number ">
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-25">
+        <label name="rid"> Router ID</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="rno" name="rno" placeholder="Enter your router id">
+      </div>
+      <div class="row">
+        <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;" id="add_ospf"> Interface g0/1 </h5>
+        </div>
+    </div>
   <div class="row">
     <div class="col-25">
       <label name="oname"> OSPF Number</label>
@@ -95,23 +162,40 @@
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="areaospf">Area Number</label>
+      <label for="areaospf">IPv4 Area Number</label>
     </div>
     <div class="col-75">
-      <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number" >
+      <input type="text" id="v4anum" name="v4anum" placeholder="IPv4 Area Number" >
     </div>
   </div>
   <div class="row">
-    <div class="col-25">
-      <label for="neintfce"> Neighbour Interface Address </label>
+    <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;" id="add_ospf"> Interface g0/2 </h5>
     </div>
-    <div class="col-75">
-      <input type="text" id="neiospf" name="neiospf[]" placeholder=" Neighbour Interface Address">
+    <div class="row">
+      <div class="col-25">
+        <label name="oname"> OSPF Number</label>
+      </div>
       <div class="col-75">
-        <a href="#" id="add_intfce_ospf"><i class='bx bx-plus'></i> </a>
+        <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
       </div>
     </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="g2v4anum">IPv4 Area Number</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="g2v4anum" name="g2v4anum" placeholder="IPv4 Area Number" >
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="g2v6anum">Ipv6 Area Number</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="g2v6anum" name="g2v6anum" placeholder="IPv6 Area Number" >
+    </div>
   </div>
+  
   <hr>
   <!--BGP-->
   <div class="row">
@@ -122,32 +206,103 @@
     <div class="col-75">
       <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number " value='{{script.isr4321.bgp_process_id}}'>
     </div>
+    </div>
+    <div class="row">
+    <div class="col-25">
+      <label for="bgprid">BGP Router Id</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="bgprid" name="bgprid" placeholder="Enter your BGP Router Id " value='{{script.isr4321.bgp_router_id}}'>
+    </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="ridbgp">Autonomous Number</label>
+      <label for="bgpipv4add">Neighbour IPV4 Address</label>
     </div>
     <div class="col-75">
-      <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id"value='{{script.isr4321.bgp_router_id}}'>
+      <input type="text" id="bgpipv4add" name="bgpipv4add" placeholder="ipv4 neighbour address" value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_in}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="neintfce"> Neighbour Interface Address </label>
+      <label for="bgpipv4add">Neighbour IPV6 Address</label>
     </div>
     <div class="col-75">
-      <input type="text" name="neigbgp[]" placeholder=" Neighbour Interface Address">
-      <div class="col-75">
-
-        <a href="#" id="rmv_intfce"><i class='bx bx-minus'></i> </a>
-      </div>
+      <input type="text" id="bgpipv4add" name="bgpipv4add" placeholder="ipv4 neighbour address" value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_in}}'>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="wanip"> Neighbor WAN IP Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="wanip" name="wanip" placeholder="WAN IP Address" value=''>
+    </div>
+  </div>
+  
     <!--advanced options-->
     <!--ipv6-->
     <hr>
     <div class="row">
       <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_ipv6"> IPV6 </h5>
-      <div class="col-25">
+      <div class="row">
+        <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;"> Interface g0/0 </h5>
+        </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="v6g00">Interface g0/0 IPv6 </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="v6g00" name="v6g00" placeholder="Ipv6 address for g0/0" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="linkadd">Link Local g0/0</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="linkadd" name="linkadd" placeholder="Link Local address for g0/0" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;"> Interface g0/1 </h5>
+        </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="v6g01">Interface g0/1 IPv6 </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="v6g01" name="v6g01" placeholder="Ipv6 address for g0/1" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="linkg01">Link Local g0/0</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="linkg01" name="linkg01" placeholder="Link Local address for g0/1" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;"> Interface g0/2 </h5>
+        </div>
+      <div class="row">
+        <div class="col-25">
+           <label for="v6g02">Interface g0/2 IPv6 </label>
+        </div>
+       <div class="col-75">
+            <input type="text" id="v6g02" name="v6g02" placeholder="Ipv6 address for g0/2" value=''>
+        </div>
+      </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="linkg02">Link Local g0/2</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="linkg02" name="linkg02" placeholder="Link Local address for g0/2" value=''>
+    </div>
+  </div>
+     <!-- <div class="col-25">
         <label for="ipv6r">IP Address</label>
       </div>
       <div class="col-75">
@@ -169,7 +324,7 @@
       <div class="col-75">
         <input type="text" id="intfcev6" name="intfcev6" placeholder="Interface">
       </div>
-    </div>
+    </div>-->
     <!--NAT-->
     <hr>
     <div class="row">
@@ -205,6 +360,8 @@
       <input style="margin: 5px; float: left;" type="submit" value="Save">
     </div>
   </div>
+  </div>
+  </div>
 
 
 
@@ -213,23 +370,8 @@
 
   </form>
 </div>
-<script type="text/javascript">
-  var neigbgp = document.getElementById('neigbgp');
-  var add_intfce = document.getElementById('add_intfce');
-  var rmv_intfce = document.getElementById('rmv_intfce');
-  add_intfce.onclick = function () {
-    var newfield = document.createElement('input');
-    newfield.setAttribute('type', 'text');
-    newfield.setAttribute('name', 'neigbgp[]');
-    newfield.setAttribute('placeholder', 'Neighbour Interface Address');
-    neigbgp.appendChild(newfield);
-  }
-  rmv_intfce.onclick = function () {
-    var input_tags = neigbgp.getElementsByTagName('input');
-    if (input_tags.length > 2) {
-      neigbgp.removeChild(input_tags[(input_tags.length) - 1]);
-    }
-  }
-</script>
+
 {% endfor %}
 {% endblock %}
+
+    
