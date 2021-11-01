@@ -126,4 +126,6 @@ def index_l3(request):
     return render(request, 'index_l3.html')
 def team(request):
     return render(request, 'team.html')
+def team(request):
+    return render(request, 'home.html')
 

@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% block style %}
+  {% endblock %}
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="STELNET">
+  <meta name="keywords" content="">
+
+  <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+  <title>STELNET</title>
+
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/routers.css' %}">
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="index.html">
+          <span class="align-middle">STELNET</span>
+        </a>
+
+        <ul class="sidebar-nav">
+          <li class="sidebar-header">
+            Layer 2 Switch Scripts
+        </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#basic">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
+            </a>
+          </li>
+
+         
+
+          <li class="sidebar-header">
+            Connectivity-Vlans
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#add_vlan">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Access Vlans</span>
+            </a>
+          </li>
+
+          
+
+          <li class="sidebar-header">
+            Ethernet Channel Ports
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#add_trunk ">
+              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Trunk Vlans</span>
+            </a>
+          </li>
+         
+        </ul>
+
+       
+    </nav>
+
+    <div class="main">
+      <nav class="navbar navbar-expand navbar-light navbar-bg">
+        <a class="sidebar-toggle d-flex">
+          <i class="hamburger align-self-center"></i>
+        </a>
+
+        <form class="d-none d-sm-inline-block">
+          <div class="input-group input-group-navbar">
+             <img src="{% static 'img/logo.PNG' %}" style="display:inline; float: left;">
+          </div>
+         <!-- <div class="input-group input-group-navbar">
+            <input type="text" class="form-control" placeholder="ISR4321" aria-label="Search">
+            <button class="btn" type="button">
+              <i class="align-middle" data-feather="check"></i>
+            </button>
+          </div>-->
+        </form>
+
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav navbar-align">
+            <li class="nav-item dropdown">
+              <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
+                <i class="align-middle" data-feather="settings"></i>
+              </a>
+
+              
+              
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="content">
+        {% block router_content %}
+        {% endblock %}
+      </main>
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row text-muted">
+            <div class="col-6 text-left">
+              <p class="mb-0">
+                <a href="index.html" class="text-muted"><strong>STELNET</strong></a> &copy;
+              </p>
+            </div>
+            <div class="col-6 text-right">
+              <ul class="list-inline">
+                Created by
+                <li class="list-inline-item">
+                  <a class="text-primary" href="#">Group 46</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+
+</html>
