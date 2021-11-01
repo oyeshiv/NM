@@ -76,13 +76,13 @@ def new_script(request):
 
 def text_gen(request):
 
+    script_var = []
+    for prop in dir(ISR4321):
 
-
-    for x in dir(ISR4321):
-        if x[0] == '_':
+        if prop[0] == '_' or prop=='':
             pass
         else:
-            print(x)
+            script_var.append(prop)
 
     return redirect('/')
 
