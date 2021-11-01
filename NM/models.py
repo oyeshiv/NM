@@ -180,12 +180,15 @@ class ISR4321(Scripts):
     tunnel_ipv6_add = models.CharField(max_length=100)
     tunnel_ipv6 = models.BooleanField()
     tunnel_source_interface = models.CharField(max_length=100)
+    tunnel_destination_address = models.CharField(max_length=100)
+    tunnel_protection_profile = models.CharField(max_length=100)
 
     #ntp
     ntp_peer_add = models.CharField(max_length=100)
     ntp_master_num = models.IntegerField()
     ntp_auth_key_num = models.IntegerField()
     ntp_auth_key_pass = models.CharField(max_length=100)
+    ntp_trust_key = models.IntegerField()
 
     #ip_prefix
     ip_prefix_list_name = models.CharField(max_length=100)
