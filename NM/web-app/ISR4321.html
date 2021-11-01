@@ -20,7 +20,7 @@
       <label for="rname">Device Name</label>
     </div>
     <div class="col-75">
-      <input type="text" id="rname" name="rname" placeholder="Router Name......">
+      <input type="text" id="rname" name="rname" placeholder="Router Name......" value="{{script.host_name}}">
     </div>
   </div>
   <div class="row">
@@ -36,7 +36,7 @@
       <label for="ipv4">IP Address</label>
     </div>
     <div class="col-75">
-      <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address">
+      <input type="text" id="ipv4" name="ipv4" placeholder="Ipv4 Address" value='{{script.isr4321.g00_ip}}'>
     </div>
   </div>
   <div class="row">
@@ -44,7 +44,7 @@
       <label for="sub1">Subnet</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sub1" name="sub1" placeholder="Subnet">
+      <input type="text" id="sub1" name="sub1" placeholder="Subnet" value='{{script.isr4321.g00_subnet}}'>
     </div>
   </div>
   <div class="row">
@@ -52,7 +52,7 @@
       <label for="uname">User Name</label>
     </div>
     <div class="col-75">
-      <input type="text" id="uname" name="uname" placeholder="User Name......">
+      <input type="text" id="uname" name="uname" placeholder="User Name......" value='{{script.isr4321.user_name}}'>
     </div>
   </div>
   <div class="row">
@@ -60,7 +60,7 @@
       <label for="motdr"> MOTD Banner</label>
     </div>
     <div class="col-75">
-      <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner">
+      <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner"  value='{{script.banner_motd}}'>
     </div>
   </div>
   <div class="row">
@@ -68,7 +68,7 @@
       <label for="secpwd">Security Password </label>
     </div>
     <div class="col-75">
-      <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password">
+      <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password"  value='{{script.isr4321.user_pass}}'>
     </div>
   </div>
   <div class="row">
@@ -76,7 +76,7 @@
       <label for="enpwd">Encryption Password </label>
     </div>
     <div class="col-75">
-      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password">
+      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.en_pass}}'>
     </div>
   </div>
   <!--OSPF-->
@@ -90,7 +90,7 @@
       <label name="oname"> OSPF Number</label>
     </div>
     <div class="col-75">
-      <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number ">
+      <input type="text" id="oname" name="oname" placeholder="Enter your OSPFv3 number " value='{{script.isr4321.ospf_process_id}}'>
     </div>
   </div>
   <div class="row">
@@ -98,7 +98,7 @@
       <label for="areaospf">Area Number</label>
     </div>
     <div class="col-75">
-      <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number">
+      <input type="text" id="areaospf" name="areaospf" placeholder="Enter OSPF ipv4-area number" value='{{script.isr4321.ospf_ipv4_area}}'>
     </div>
   </div>
   <div class="row">
@@ -120,7 +120,7 @@
       <label for="ename">BGP Number</label>
     </div>
     <div class="col-75">
-      <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number ">
+      <input type="text" id="bgpname" name="bgpname" placeholder="Enter your BGP number " value='{{script.isr4321.bgp_process_id}}'>
     </div>
   </div>
   <div class="row">
@@ -128,7 +128,7 @@
       <label for="ridbgp">Autonomous Number</label>
     </div>
     <div class="col-75">
-      <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id">
+      <input type="text" id="ridbgp" name="ridbgp" placeholder="Enter your BGP router-id"value='{{script.isr4321.bgp_router_id}}'>
     </div>
   </div>
   <div class="row">
@@ -179,7 +179,7 @@
           <label for="nat">NAT Name</label>
         </div>
         <div class="col-75">
-          <input type="text" id="nat" name="nat" placeholder="NAT Name">
+          <input type="text" id="nat" name="nat" placeholder="NAT Name" value='{{script.isr4321.nat_pool_name}}'>
         </div>
       </div>
       <div class="row">
@@ -187,7 +187,7 @@
           <label for="pubstrt">Start public address</label>
         </div>
         <div class="col-75">
-          <input type="text" id="pubstrt" name="pubstrt" placeholder="Start public address">
+          <input type="text" id="pubstrt" name="pubstrt" placeholder="Start public address" value='{{script.isr4321.nat_start_address}}'>
         </div>
       </div>
       <div class="row">
@@ -195,7 +195,7 @@
           <label for="pubend"> Last public address </label>
         </div>
         <div class="col-75">
-          <input type="text" id="pubend" name="pubend" placeholder="Last public address">
+          <input type="text" id="pubend" name="pubend" placeholder="Last public address" value='{{script.isr4321.nat_end_address}}'>
         </div>
       </div>
     </div>
