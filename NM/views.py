@@ -53,6 +53,10 @@ def edit_script(request):
         template = 'ISR4321.html'
     return render(request, template, {'data':script , 'device': device})
 
+def new_script(request):
+    
+    return render(request, 'new_script.html')
+
 def form(request):
 
     form = ISR4321From(request.POST)
@@ -91,6 +95,6 @@ def dynamic_menu(request):
 
 def index_l3(request):
     return render(request, 'index_l3.html')
-def about_us(request):
-    return render(request, 'about_us.html')
+def team(request):
+    return render(request, 'team.html')
 

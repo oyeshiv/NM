@@ -28,6 +28,7 @@ urlpatterns = [
     path('login', include('django.contrib.auth.urls')),
     path('dash', views.dash, name='Dashboard'),
     path('edit_script', views.edit_script, name='Edit Script'),
+    path('new_script', views.new_script, name='New Script'),
     path('scripts', views.scripts, name='Scripts'),
     path('index', views.index, name='index'),
     path('base', views.base, name='Base'),
@@ -39,6 +40,6 @@ urlpatterns = [
     path('form_switch2', views.form_switch2, name='form_switch2'),
     path('ISR4321', views.ISR4321, name='ISR4321'),
     path('dynamic_menu', views.dynamic_menu, name='dynamic_menu'),
-    path('about_us', views.about_us, name='about_us'),
+    path('team', views.team, name='about_us'),
 
 ]
