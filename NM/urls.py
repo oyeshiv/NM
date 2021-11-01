@@ -23,13 +23,26 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    #admin
     path('admin/', admin.site.urls),
+
+    #login-logout
     path('', views.login_user, name='home'),
     path('login', include('django.contrib.auth.urls')),
+    path('logout', views.logout_user, name='Logout'),
+
+    #dashboard
     path('dash', views.dash, name='Dashboard'),
+    path('scripts', views.scripts, name='Scripts'),
+
+    #script-functions
     path('edit_script', views.edit_script, name='Edit Script'),
     path('new_script', views.new_script, name='New Script'),
-    path('scripts', views.scripts, name='Scripts'),
+    
+
+    #generate-functions
+
+    #forms
     path('index', views.index, name='index'),
     path('base', views.base, name='Base'),
     path('base_router', views.base_router, name='base_router'),
