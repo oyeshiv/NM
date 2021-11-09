@@ -30,6 +30,9 @@
           <span class="align-middle">{{organisation_name}}</span>
         </a>
 
+        {% block project %}
+        {% endblock %}
+        
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Projects
@@ -41,13 +44,13 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="new_project">
+            <a class="sidebar-link" data-toggle="modal" data-target="#new_project">
               <i class="align-middle" data-feather="plus"></i> <span class="align-middle">New Project</span>
             </a>
           </li>
 
           <li class="sidebar-header">
-            Devices
+            Supported Devices
           </li>
 
           <li class="sidebar-item">
@@ -61,36 +64,9 @@
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Switches</span>
             </a>
           </li>
-
-          <li class="sidebar-header">
-            Admin
-          </li>
-
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="settings">
-              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Settings</span>
-            </a>
-          </li>
-          <li class="sidebar-header">
-            <a href="{% url 'about_us' %}" style="text-decoration: none;">Devlopment Team</a>
-          </li>
         </ul>
 
-        <div class="sidebar-cta">
-          <div class="sidebar-cta-content">
-            <strong class="d-inline-block mb-2">{{user.username}}</strong>
-            <div class="mb-3 text-sm">
-              <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                  <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Profile</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <a href="#" target="_blank" class="btn btn-primary btn-block">Logout</a>
-          </div>
-        </div>
+        
       </div>
     </nav>
 
@@ -139,6 +115,44 @@
       <main class="content">
         {% block content %}
         {% endblock %}
+        <div class="modal" id="new_project" role="dialog" style="display: none;" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content" style="background:#222e3c">
+                  <div class="modal-header">
+                      <h4 class="modal-title text-white" id="myModalLabel">New Project</h4>
+                      <button type="button" class="close text-white" data-dismiss="modal">
+                          <span aria-hidden="true">×</span>
+                          <span class="sr-only">Close</span>
+                      </button>
+                  </div>
+                  <form method="POST" action="new_project">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                          <div class="mb-3">
+                              <label class="form-label text-white">Project name</label>
+                              <input type="text" class="form-control" name="pname" required>
+                              
+                          </div>
+                          <div class="mb-3">
+                              <label class="form-label text-white">Client name</label>
+                              <input type="text" class="form-control" name="cname" required>
+                              
+                          </div>
+                          <div class="mb-3">
+                              <label class="form-label text-white">Description</label>
+                              <textarea class="form-control" name="desc" required></textarea>
+                          </div>
+                          
+                      </div>
+  
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default text-white" data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
       </main>
 
       <footer class="footer">
@@ -164,6 +178,8 @@
   </div>
 
   <script src="{% static 'js/app.js' %}"></script>
+  {% block script %}
+  {% endblock %}
 
 </body>
 
