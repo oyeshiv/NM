@@ -13,7 +13,7 @@
   <div style="font: bolder; color: deepskyblue;">ISR4321 Router Script</div>
   <hr>
   <div class="row">
-    <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h5>
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h3>
   </div>
   <div class="row">
     <div class="col-25">
@@ -81,6 +81,70 @@
   </div>
   <div class="row">
     <div class="col-25">
+      <label for="enpwd">Domain Name </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.en_pass}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="login">Login block </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="login" name="login" placeholder="Login block" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="atmpt">Number of login attempt/s </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="atmpt" name="atmpt" placeholder="Login block" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="sec">Within seconds</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="sec" name="sec" placeholder="Within seconds" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="delay">Login Delay</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="delay" name="delay" placeholder="Login Delay" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lghost">Logging Host</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lghost" name="lghost" placeholder="Logging Host IP Address" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="Trap">Logging Trap</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="Trap" name="Trap" placeholder="Logging Trap" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="src-int">Login Source Interface</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="src-int" name="src-int" placeholder=">Login Source Interface" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
       <label for="intg00">Interface g0/0 </label>
     </div>
     <div class="col-75">
@@ -127,6 +191,46 @@
       <input type="text" id="subg02" name="subg02" placeholder="Subnet for g0/2 " value=''>
     </div>
   </div>
+  <!--g0/0-->
+  <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_g0/0"> Interface g0/0 </h3>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="vrrp"> VRRP number </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="vrrp" name="vrrp" placeholder="VRRP number" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="vip">Virtual IP Address </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="vip" name="vip" placeholder="Virtual IP Address" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="vip">Track Range </label>
+    </div>
+    <div class="col-75">
+      <input type="number" id="vipinc" name="vipinc" placeholder="Track start number" value=''>
+      <input type="number" id="vipdec" name="vipdec" placeholder="Track end number" value=''>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="priority">Priority Number </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="priority" name="priority" placeholder="Priority Number" value=''>
+    </div>
+  </div>
+  <!--OSPF-->
+  <!--OSPF-->
   <!--OSPF-->
   <hr>
   <div class="row">
@@ -195,11 +299,45 @@
       <input type="text" id="g2v6anum" name="g2v6anum" placeholder="IPv6 Area Number" >
     </div>
   </div>
-  
+  <!--Default routes-->
+  <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_default"> Default Routes </h3>
+    <div class="col-25">
+      <label for="wanlpbk">WAN Loopback </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="wanlpbk" name="wanlpbk" placeholder="WAN Loopback Network" value=''>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="wanexthop"> Next Hop Address </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="wanexthop" name="wanexthop" placeholder=" Next WAN Hop Address" value=''>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="roppnet"> Route opposite Loopback </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="roppnet" name="roppnet" placeholder=" R opposite Loopback  Network " value=''>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="rnexthop"> Route opposite Next Loopback </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="rnexthop" name="rnexthop" placeholder="  Route opposite Next Loopback Network" value=''>
+      </div>
+    </div>
+    </div>
   <hr>
   <!--BGP-->
   <div class="row">
-    <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_bgp"> BGP </h5>
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_bgp"> BGP </h3>
     <div class="col-25">
       <label for="ename">BGP Number</label>
     </div>
@@ -241,10 +379,47 @@
   </div>
   
     <!--advanced options-->
+    <!--acl-->
+    <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_acl"> ACL </h3>
+  </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="acl"> ACL Number </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="acl" name="acl" placeholder="ACL Number" value=''>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="privnet"> Private Network Address </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="privnet" name="privnet" placeholder="Private Network Address " value=''>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="wildcard"> Wild Card Mask </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="wildcard" name="wildcard" placeholder="wild card Mask" value=''>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="acl"> ACL Number </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="acl" name="acl" placeholder="ACL Number" value=''>
+      </div>
+    </div>
     <!--ipv6-->
     <hr>
     <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_ipv6"> IPV6 </h5>
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;"" id="add_ipv6"> IPV6 </h3>
       <div class="row">
         <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;"> Interface g0/0 </h5>
         </div>
@@ -328,7 +503,7 @@
     <!--NAT-->
     <hr>
     <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_nat"> NAT </h5>
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_nat"> NAT </h3>
       <div class="row">
         <div class="col-25">
           <label for="nat">NAT Name</label>
@@ -352,8 +527,227 @@
         <div class="col-75">
           <input type="text" id="pubend" name="pubend" placeholder="Last public address" value='{{script.isr4321.nat_end_address}}'>
         </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="nno"> NAT Number </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="nno" name="nno" placeholder="NAT Number" value=''>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="netmask"> Netmask </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="netmask" name="netmask" placeholder="Netmask" value=''>
+          </div>
+        </div>
+      </div>
+      <!--AAA-->
+      <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_aaa"> AAA </h3>
+  </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="aaa"> Radius Group Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="aaa" name="aaa" placeholder="Radius name" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="server"> Server Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="server" name="server" placeholder="server name" value=''>
+        </div>
+      </div>
+      <!--ZONE and ssh-->
+      <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="zns"> ZONE AND SSH </h3>
+  </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="timeout"> SSH Time-out </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="sshversion" name="sshversion" placeholder="SSH Time-out" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="auth"> Authenication Retirement</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="auth" name="auth" placeholder="Authenication Retirement" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="zone"> Match Protocol (Zone) </label>
+        </div>
+        <div class="col-75">
+          <input type="checkbox" id="zone" name="zone" placeholder="TCP" value=''>   TCP
+          <input type="checkbox" id="zone" name="zone" placeholder="UDP" value=''>   UDP
+          <input type="checkbox" id="zone" name="zone" placeholder="ICMP" value=''>  ICMP
+          <input type="checkbox" id="zone" name="zone" placeholder="HTTPS" value=''> HTTPS
+          <input type="checkbox" id="zone" name="zone" placeholder="SSH" value=''>   SSH
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="zsec"> Zone Security Name</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="zsec" name="zsec" placeholder="Zone Security Name" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="zint"> Zone Security Internet</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="zint" name="zint" placeholder="Zone Security Internet" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="policy"> Policy Map  </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="policy" name="policy" placeholder="Policy Map Nmae" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="route"> Route Map  </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="route" name="route" placeholder="Route Map Name" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="wei"> Weight  </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="wei" name="wei" placeholder="Weight" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="metric"> Set Metric </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="metric" name="metric" placeholder="Set Metric" value=''>
+        </div>
+      </div>
+      <!--crypto keys-->
+      <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="add_crypto"> CRYPTO SETTINGS</h3>
+  </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="keymod"> Crypto Key Modulus </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="keymod" name="keymod" placeholder="Crypto Key Modulus" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="policynum">  Policy Number</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="policynum" name="policynum" placeholder="Policy Number" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="cryptoname"> Crypto Map Name </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="cryptoname" name="cryptoname" placeholder="Crypto Map Name" value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="peerwan">  Peer Address </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="peerwan" name="peerwan" placeholder="Peer Address Network " value=''>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-25">
+          <label for="keyname">  Key Ring Name </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="keyname" name="keyname" placeholder="Key Ring Name " value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="ringpwd"> Key Ring Password </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ringpwd" name="ringpwd" placeholder="Key Ring Password " value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="transet">Transform Set </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="transet" name="transet" placeholder="Transform Set " value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="pro">Name Profile </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="pro" name="pro" placeholder="Name Profile " value=''>
+        </div>
+      </div>
+      <!--NTP-->
+      <hr>
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ntp"> NTP</h3>
+  </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="ntpnum">NTP Master</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="ntpnum" name="ntpnum" placeholder="NTP Master " value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="authkey"> Authentication Key</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="authkey" name="authkey" placeholder="Authentication Key " value=''>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="Md5"> Md5 Password </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="Md5" name="Md5" placeholder="Md5 Password " value=''>
+        </div>
       </div>
     </div>
+    
     <div class="col-75" style="margin-left: 280px; margin-right: 460px;">
       <input style="margin: 5px; float: left; " type="submit" value="Download Text">
       <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
