@@ -66,7 +66,7 @@ def edit_script(request):
         if device.device_model == 'ISR4321/K9':
             script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
             template = 'ISR4321.html'
-        return render(request, template, {'data':script , 'device': device})
+        return render(request, template, {'data':script , 'device': device} )
 
 def new_script(request):
     if 'username' not in request.session:
