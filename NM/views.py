@@ -72,7 +72,7 @@ def new_script(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
-        return render(request, 'new_script.html')
+        return render(request, 'ISR4321.html')
 
 def text_gen(request):
 
