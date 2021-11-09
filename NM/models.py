@@ -42,6 +42,7 @@ class ISR4321(Scripts):
     login_delay = models.IntegerField()
     login_host = models.GenericIPAddressField()
     login_trap_level = models.CharField(max_length=100)
+    login_source = models.CharField(max_length=100)
     en_pass_length = models.CharField(max_length=100)
     en_pass = models.CharField(max_length=100)
     domain_name = models.CharField(max_length=100)
@@ -80,10 +81,12 @@ class ISR4321(Scripts):
     #radius
     radius_server_name = models.CharField(max_length=100)
     server_address = models.GenericIPAddressField()
+    max_fail = models.IntegerField()
     radius_pass = models.CharField(max_length=100)
     group_name = models.CharField(max_length=100)
     server_name = models.CharField(max_length=100)
     zone_name = models.CharField(max_length=100)
+    zone_internet = models.CharField(max_length=100)
     class_map_name = models.CharField(max_length=100)
     match_tcp = models.BooleanField()
     match_udp = models.BooleanField()
@@ -97,6 +100,7 @@ class ISR4321(Scripts):
 
     #ssh
     enable = models.BooleanField()
+    ssh_crypto_key = models.IntegerField()
     ssh_timeout = models.CharField(max_length=100)
     ssh_retries = models.CharField(max_length=100)
 
