@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.template import RequestContext
 from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
 from NM.models import ISR4321, Devices, Projects, Scripts
-from shutil import copyfile
+import getpass, sys, telnetlib
+
 # Create views
 
 def dash(request):
@@ -82,17 +82,70 @@ def new_script(request):
 def text_generator(request):
     
     if request.method == 'POST':
-        script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')[0]
+        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+        if script_device.device_model == 'ISR4321/K9':
+            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
         script_var = []
-        input_file = open('NM\Default_Config\ISR4321.txt', 'rt')
+        script_val = []
+        with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
+            input_data = input_file.read()
         output_file = open('NM/Temp/playground.txt', 'wt')
         
-        for line in input_file:
-            for prop in dir(script):
-                if not prop.startswith('_') and not callable(getattr(script, prop)) and prop is not None:
-                    output_file.write(line.replace(' 1 ', ' '))
+        for k, v in script.__dict__.items():
+            script_var.append('@'+str(k))
+            script_val.append(str(v))
+        
+        print(script_val)
+        print(script_var)
+            
+        
+        for i in range(len(script_var)):
+            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+            
+        output_file.write(input_data)
+        response = HttpResponse(content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.txt'
+        
+        response.write(input_data)
+        
+        return response
     
-    return redirect('/')
+    else:
+        return redirect('/404')
+    
+def exe_generator(request):
+    
+    if request.method == 'POST':
+        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+        if script_device.device_model == 'ISR4321/K9':
+            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+        script_var = []
+        script_val = []
+        with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
+            input_data = input_file.read()
+        output_file = open('NM/Temp/playground.txt', 'wt')
+        
+        for k, v in script.__dict__.items():
+            script_var.append('@'+str(k))
+            script_val.append(str(v))
+        
+        print(script_val)
+        print(script_var)
+            
+        
+        for i in range(len(script_var)):
+            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+            
+        output_file.write(input_data)
+        response = HttpResponse(content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.txt'
+        
+        response.write(input_data)
+        
+        return response
+    
+    else:
+        return redirect('/404')
 
 def new_project(request):
     if 'username' not in request.session:

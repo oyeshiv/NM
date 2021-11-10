@@ -1,7 +1,5 @@
 from django.contrib.auth.models import Group
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-from django.db.models.base import Model
 
 class DeviceCategories(models.Model):
     category_name = models.CharField(max_length=100)
@@ -29,10 +27,12 @@ class Scripts(models.Model):
     date_created = models.DateField(auto_now=True)
     date_modified = models.DateField(auto_now_add=True)
     script_name = models.CharField(max_length=100)
-    host_name = models.CharField(max_length=100)
-    banner_motd = models.CharField(max_length=100)
+    
 
 class ISR4321(Scripts):
+    host_name = models.CharField(max_length=100)
+    banner_motd = models.CharField(max_length=100)
+    
     #login security
     user_name = models.CharField(max_length=100)
     user_pass = models.CharField(max_length=100)
@@ -120,11 +120,8 @@ class ISR4321(Scripts):
 
     g01_ip = models.GenericIPAddressField()
     g01_subnet = models.GenericIPAddressField()
-    
-    
     g01_ipv6_address = models.GenericIPAddressField()
     g01_ipv6_link = models.GenericIPAddressField()
-    
     g01_ospfv3_ipv4 = models.IntegerField()
     g01_ospfv3_area = models.IntegerField()
     g01_ospfv3_ipv6 = models.IntegerField()
@@ -136,18 +133,14 @@ class ISR4321(Scripts):
 
     g02_ip = models.GenericIPAddressField()
     g02_subnet = models.GenericIPAddressField()
-
-
     g02_ipv6_address = models.GenericIPAddressField()
     g02_ipv6_link = models.GenericIPAddressField()
-    
     g02_ospfv3_ipv4 = models.IntegerField()
     g02_ospfv3_area = models.IntegerField()
     g02_ospfv3_ipv6 = models.IntegerField()
     g02_ospfv3_ipv6_area = models.IntegerField()
     g02_ospfv3_encryption_num = models.IntegerField()
     g02_ospfv3_encryption_sha = models.PositiveBigIntegerField()
-    
     g02_nat = models.CharField(max_length=100)
     g02_zone = models.CharField(max_length=100)
 

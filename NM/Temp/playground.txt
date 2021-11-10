@@ -1,7 +1,255 @@
 enable 
-enable 
-enable 
-enable 
-enable 
-enable 
-enable 
+config t 
+hostname C1-R1
+banner motd # This is C1-R1. Unauthorised Access strictly prohibited. # 
+no ip domain lookup 
+ip routing 
+ipv6 unicast-routing
+security passwords min-length 8
+service password-encryption 
+enable algorithm-type sha256 secret cisco123
+username @username algorithm-type scrypt secret locpass101
+line vty 0 4 
+exec-timeout 2 0 
+login local 
+transport input ssh 
+exit 
+line aux 0 
+login local 
+exit 
+line console 0 
+exec-timeout 3 30 
+login local 
+logging synchronous 
+exit 
+! 
+login block-for 60 attempts 2 within 2_time
+ip access-list standard PERMIT-ADMIN
+permit 172.16.100.2
+exit 
+login quiet-mode access-class PERMIT-ADMIN
+login delay 10 
+login on-success log 
+login on-failure log 
+security authentication failure rate 1024 log 
+! 
+ip domain-name ccnasecurity.com
+crypto key generate rsa general-keys modulus 1024 
+ip ssh version 2 
+ip ssh time-out 60
+ip ssh authentication-retries 2
+! 
+logging host 192.168.10.2
+logging trap 5 
+logging source-int g0/0 
+logging on 
+! 
+no cdp run 
+! 
+aaa new-model  
+radius server <name-SERVER-R> 
+address ipv4 <ip address of server- 192.168.0.2> auth-port 1812 acct-port 1813 
+key <password-RADPASS> 
+exit 
+aaa group server radius @radius_group
+server name SERVER-R
+aaa local authentication attempts max-fail 3
+aaa authentication login default group @radius_group local  
+aaa authorization exec default group @radius_group local 
+aaa authorization network default group @radius_group local 
+aaa accounting exec default start-stop group @radius_group 
+aaa accounting network default start-stop group @radius_group
+! 
+zone security INSIDE
+exit 
+class-map type inspect match-any INSIDE_PROTOCOLS
+match protocol tcp
+match protocol udp
+match protocol icmp
+match protocol https
+match protocol ssh
+exit 
+zone security INTERNET
+! 
+policy-map type inspect INSIDE_TO_INTERNET
+class type inspect INSIDE_TO_INTERNET
+@inspect
+inspect 
+! 
+zone-pair security INSIDE_TO_INTERNET source INSIDE destination INTERNET
+service-policy type inspect INSIDE_TO_INTERNET
+exit 
+zone-pair security INSIDE_TO_INTERNET source INTERNET destination INSIDE 
+exit 
+exit
+!
+fhrp version vrrp v3 
+secure boot-image 
+secure boot-config 
+exit 
+copy ru st 
+! 
+interface g0/0 
+ip address 13.52.11.2 255.255.255.252
+vrrp 10 address-family ipv4 
+address 0.0.0.0    
+track 1 decrement 20
+priority 110
+track 1 decrement 20
+exit 
+ipv6 enable 
+ipv6 address 13.52.11.2v6_address
+ipv6 address 13.52.11.2v6_link link-local 
+vrrp 13.52.11.2v6_vrrp_num address-family ipv6 
+address 13.52.11.2v6_vrrp_address    
+track 13.52.11.2v6_track_num decrement 13.52.11.2v6_track_dec
+priority 13.52.11.2v6_priority
+track 13.52.11.2v6_track_num decrement 13.52.11.2v6_track_dec
+exit 
+ip nat outside 
+zone-member security INTERNET
+crypto map CMAP 
+no shutdown 
+! 
+interface g0/1 
+ip address 10.10.10.1 255.255.255.252
+ipv6 enable 
+ipv6 address 10.10.10.1v6_address
+ipv6 address 10.10.10.1v6_link link-local 
+ospfv3 10 ipv4 area 0
+ospfv3 10 ipv6 area 10_area
+ospfv3 encryption ipsec spi 1000 esp null sha1 1231213121312
+ip nat inside 
+zone-member security INSIDE 
+no shutdown 
+! 
+int g0/2 
+ip address 10.10.10.5 255.255.255.252
+ipv6 enable 
+ipv6 address 10.10.10.5v6_address
+ipv6 address 10.10.10.5v6_link link-local 
+ospfv3 10 ipv4 area 0
+ospfv3 10 ipv6 area 10_area
+ospfv3 encryption ipsec spi 1000 esp null sha1 1231321
+ip nat inside 
+zone-member security INSIDE 
+no shutdown 
+!
+interface loopback 1
+ip address 192.168.100.1 255.255.255.255
+ipv6 enable 
+ospfv3 10 ipv4 area 0
+! 
+ip nat pool NAT 180.150.115.139 180.150.115.139 netmask 255.255.255.252
+access-list 10 permit 10.10.10.0 10.10.10.0_wildcard
+ip nat inside source list 10 pool NAT
+! 
+router ospfv3 10
+address-family ipv4 unicast 
+router-id 1.1.1.1
+redistribute connected 
+exit 
+address-family ipv6 unicast 
+router-id 6.6.6.6
+redistribute connected 
+exit 
+exit 
+! 
+ip route 172.113.113.1 255.255.255.252 13.52.11.1
+ip route 192.168.200.1 255.255.255.252 23.52.11.2
+! 
+ip bgp-community new-format 
+route-map NO_EXPORT
+set community no-export 
+! 
+router bgp 13101
+bgp router-id 10.10.10.10
+no bgp default ipv4-unicast 
+neighbor 13.52.11.1 remote-as 1000
+neighbor 13.52.11.1 update-source Loopback 1
+neighbor 2013:fcd:3145:6151::1 remote-as 1000
+address-family ipv4 
+neighbor 13.52.11.1 activate 
+network 10.10.10.0 mask 255.255.255.252
+redistribute connected 
+neighbor 13.52.11.1 route-map NO_EXPORT in 
+neighbor 13.52.11.1 send-community 
+neighbor 13.52.11.1 route-map AS10 out 
+exit 
+address-family ipv6 
+neighbor 2013:fcd:3145:6151::1 activate 
+network 2001:db8:c100:a1::/64
+redistribute connected 
+neighbor 2013:fcd:3145:6151::1 route-map NO_EXPORT in 
+neighbor 2013:fcd:3145:6151::1 send-community 
+exit 
+! 
+crypto isakmp enable 
+crypto isakmp policy 10
+hash sha 
+authentication pre-share 
+group 14 
+lifetime 3600 
+encryption aes 256 
+exit 
+crypto isakmp key keyacc101 address 13.52.11.1 
+crypto ipsec transform-set 50 esp-aes 256 esp-sha-hmac 
+exit 
+crypto ipsec security-association lifetime seconds 3600 
+access-list 101 permit ip 10.10.10.0 0.0.0.255 10.10.10.0 0.0.0.255
+crypto map CMAP 10 ipsec-isakmp 
+match address 101
+set peer 13.52.11.1
+set pfs group14 
+set transform-set 50
+set security-association lifetime seconds 900
+exit 
+!
+crypto isakmp policy isakmp_ipv6_policy
+authentication pre-share 
+hash sha 
+group 2
+encryption aes 256 
+lifetime 3600 
+exit
+crypto isakmp key passwored address ipv6 2013:fecd:3145:6151::1/2013:fecd:3145:6151::1_prefix
+crypto keyring keyring
+pre-shared-key address ipv6 2013:fecd:3145:6151::1/64 key 6 ringpass
+exit 
+crypto ipsec transform-set secrset1 set esp-aes 256 esp-sha-hmac 
+mode tunnel 
+exit 
+crypto ipsec profile profile0
+set transform-set secrset1
+exit 
+crypto isakmp profile profile1
+self-identify address ipv6 
+match identity address ipv6 2013:FECD:3145:6151::1/2013:FECD:3145:6151::1_prefix
+keyring default 
+exit 
+interface tunnel 1
+ipv6 address 2001:acab:aaaa:bbbb::2 eui-64 
+ipv6 enable 
+tunnel source g0/0
+tunnel destination 2013:FECD:3145:6151::1/64
+tunnel mode ipsec ipv6 
+tunnel protection ipsec profile profile0
+end 
+! 
+clock set @current_time
+! 
+ntp peer ntp_peer_add
+ntp master 1
+ntp authenticate 
+ntp authentication-key 2 md5 ntppassword
+ntp trusted-key 2
+!   
+ip prefix-list PRE permit 10.10.10.0
+! 
+route-map AS10 permit 10
+match ip address prefix-list PRE 
+set weight 200
+set metric 50
+exit 
+route-map AS10 permit 20
+! 
