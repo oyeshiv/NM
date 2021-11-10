@@ -1,3 +1,4 @@
+from sys import executable
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -5,7 +6,11 @@ from django.contrib import messages
 from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
 from NM.models import ISR4321, Devices, Projects, Scripts
-import getpass, sys, telnetlib
+from shutil import copyfile
+from distutils.core import setup
+import py2exe
+import urllib
+import PyInstaller.__main__
 
 # Create views
 
@@ -79,31 +84,6 @@ def new_script(request):
     else:
         return render(request, 'ISR4321.html', {'data': [1]})
     
-def script_gen(request):
-    if request.method == 'POST':
-        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-        if script_device.device_model == 'ISR4321/K9':
-            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
-        script_var = []
-        script_val = []
-        with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
-            input_data = input_file.read()
-        output_file = open('NM/Temp/playground.txt', 'wt')
-        
-        for k, v in script.__dict__.items():
-            script_var.append('@'+str(k))
-            script_val.append(str(v))
-            
-        
-        for i in range(len(script_var)):
-            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
-            
-        output_data = input_data
-        
-        return output_data
-    
-    
-    
     
 def text_generator(request):
     
@@ -161,26 +141,32 @@ def exe_generator(request):
         
         output_file.write(input_data)            
             
-        python_output.writelines('import getpass \n')
-        python_output.writelines('import sys \n')
-        python_output.writelines('import telnetlib \n')
-        python_output.writelines('HOST="192.168.1.1" \n')
-        python_output.writelines('print("Injecting Scripts.......") \n')
-        python_output.writelines('tn = telnetlib.Telnet(HOST) \n')
-        python_output.writelines('tn.read_until("Router") \n')        
+        python_output.writelines('import getpass\n')
+        python_output.writelines('import sys\n')
+        python_output.writelines('import telnetlib\n')
+        python_output.writelines('HOST="192.168.1.1"\n')
+        python_output.writelines('print("Injecting Scripts.......")\n')
+        python_output.writelines('tn = telnetlib.Telnet(HOST)\n')
+        python_output.writelines('tn.read_until("Router")\n')        
 
+        output_file = open('NM/Temp/playground.txt', 'r')
         
-        for line in output_file:    
-            output_data = output_data.w("tn.write('"+ line +"\\n') \n")
+        for line in output_file:
+            line = line.replace('\n', '')
+            python_output.write("tn.write('"+ str(line) +"\\n')\n")
         
-        python_output.writelines('tn.write("end \n") \n')    
-        python_output.writelines('tn.write("exit \n") \n')   
+        python_output.writelines('tn.write("end \\n")\n')    
+        python_output.writelines('tn.write("exit \\n")\n')   
+        python_output = open('NM/Temp/python_playground.txt', 'r')
+        copyfile('NM/Temp/python_playground.txt', 'NM/Temp/python_playground.py')
         
-        response = HttpResponse(content_type='text/plain')
-        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.py'
+        PyInstaller.__main__.run(['NM/Temp/python_playground.py' ,'--onefile'])
         
-        with open('NM\Temp\python_playground.txt', 'r') as input_file:
-            response.write(input_file.read())
+        output = open('dist/python_playground.exe', 'rb')
+        
+        response = HttpResponse(output.read(), content_type='application/exe')
+        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.exe'
+
         
         return response
     
