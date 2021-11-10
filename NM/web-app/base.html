@@ -32,7 +32,7 @@
 
         {% block project %}
         {% endblock %}
-        
+
         <ul class="sidebar-nav">
           <li class="sidebar-header">
             Projects
@@ -78,7 +78,7 @@
 
         <form class="d-none d-sm-inline-block">
           <div class="input-group input-group-navbar">
-            <input type="text" class="form-control" placeholder="Search…" aria-label="Search">
+            <input type="text" class="form-control" placeholder="Search…" aria-label="Search">           
             <button class="btn" type="button">
               <i class="align-middle" data-feather="search"></i>
             </button>
@@ -127,19 +127,19 @@
                   </div>
                   <form method="POST" action="new_project">
                       {% csrf_token %}
-                      <div class="modal-body">
+                      <div class="modal-body" style="background:#f7f7fc">
                           <div class="mb-3">
-                              <label class="form-label text-white">Project name</label>
+                              <label class="form-label">Project name</label>
                               <input type="text" class="form-control" name="pname" required>
                               
                           </div>
                           <div class="mb-3">
-                              <label class="form-label text-white">Client name</label>
+                              <label class="form-label">Client name</label>
                               <input type="text" class="form-control" name="cname" required>
                               
                           </div>
                           <div class="mb-3">
-                              <label class="form-label text-white">Description</label>
+                              <label class="form-label">Description</label>
                               <textarea class="form-control" name="desc" required></textarea>
                           </div>
                           
