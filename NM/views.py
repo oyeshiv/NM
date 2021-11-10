@@ -3,23 +3,24 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.template import RequestContext
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
 from NM.models import ISR4321, Devices, Projects, Scripts
+from shutil import copyfile
 # Create views
 
 def dash(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
-        user = User.objects.get(username=request.session['username'])
-        all_group = user.groups.all()
-        request.session['organisation_id'] = all_group[0].id
-        request.session['organisation'] = all_group[0].name.upper()
-        if request.session['organisation_id'] == 2 or request.session['username']=='shivam':
+        if request.session['username']=='shivam':
             return redirect('admin/')
-        projects = Projects.objects.filter(organisation_id=request.session['organisation_id'])
-        return render(request ,'projects.html', {'projects': projects, 'user':user, 'organisation_name':request.session['organisation']})
+        elif request.session['organisation_id'] == 2:
+            return redirect('admin/')
+        else:
+            request.session['organisation'] = Group.objects.filter(id=request.session['organisation_id'])[0].name.upper()
+            projects = Projects.objects.filter(organisation_id=request.session['organisation_id'])
+            return render(request ,'projects.html', {'projects': projects, 'username':request.session['username'], 'organisation_name':request.session['organisation']})
     
 def login_user(request):
 
@@ -35,6 +36,9 @@ def login_user(request):
             if user is not None:
                 login(request, user)
                 request.session['username'] = username
+                logged_user = User.objects.get(username=request.session['username'])
+                if username != 'shivam' and user.groups.all() is not None:
+                    request.session['organisation_id'] = user.groups.all()[0].id
                 result = redirect('/dash')
             else:
                 messages.success(request, ('Incorrect User Credentials!'))
@@ -75,19 +79,19 @@ def new_script(request):
     else:
         return render(request, 'ISR4321.html', {'data': [1]})
 
-def text_gen(request):
-
-    script_var = []
-    script_skeleton = open('IS4321', 'r')
-    for prop in dir(ISR4321):
-        if prop[0] == '_' or prop=='':
-            pass
-        else:
-            script_var.append(prop)
+def text_generator(request):
     
+    if request.method == 'POST':
+        script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')[0]
+        script_var = []
+        input_file = open('NM\Default_Config\ISR4321.txt', 'rt')
+        output_file = open('NM/Temp/playground.txt', 'wt')
+        
+        for line in input_file:
+            for prop in dir(script):
+                if not prop.startswith('_') and not callable(getattr(script, prop)) and prop is not None:
+                    output_file.write(line.replace(' 1 ', ' '))
     
-    
-
     return redirect('/')
 
 def new_project(request):

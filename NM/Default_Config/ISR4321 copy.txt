@@ -31,17 +31,17 @@ login quiet-mode access-class @acl_name
 login delay @login_delay 
 login on-success log 
 login on-failure log 
-security authentication failure rate 1024 log 
+security authentication failure rate <threshold-1024> log 
 ! 
 ip domain-name @domain_name
-crypto key generate rsa general-keys modulus @ssh_crypto_key 
+crypto key generate rsa general-keys modulus @ssh_crypto_key  -----------
 ip ssh version 2 
 ip ssh time-out @ssh_timeout
 ip ssh authentication-retries @ssh_retries
 ! 
 logging host @login_host
 logging trap @login_trap_level 
-logging source-int @login_source 
+logging source-int @login_source -------------
 logging on 
 ! 
 no cdp run 
@@ -63,10 +63,15 @@ aaa accounting network default start-stop group @radius_group
 zone security @zone_name
 exit 
 class-map type inspect match-any @class_map_name
+@match_tcp
 match protocol tcp
+@match_udp
 match protocol udp
+@match_icmp
 match protocol icmp
+@match_https
 match protocol https
+@match_ssh
 match protocol ssh
 exit 
 zone security @zone_internet
@@ -81,8 +86,8 @@ service-policy type inspect @policy_map
 exit 
 zone-pair security @policy_map source @zone_internet destination @zone_name 
 exit 
-exit
-!
+exit 
+!-zone pair may be incorrect in gns3!!! 
 fhrp version vrrp v3 
 secure boot-image 
 secure boot-config 
@@ -108,7 +113,7 @@ track @g00_ipv6_track_num decrement @g00_ipv6_track_dec
 exit 
 ip nat outside 
 zone-member security @zone_internet
-crypto map @crypto_map_name 
+crypto map @crypto_map_name NOTE- ipsec needs to be configured first for this int cmd to wrk 
 no shutdown 
 ! 
 interface g0/1 
@@ -118,7 +123,7 @@ ipv6 address @g01_ipv6_address
 ipv6 address @g01_ipv6_link link-local 
 ospfv3 @g01_ospfv3_ipv4 ipv4 area @g01_ospfv3_area
 ospfv3 @g01_ospfv3_ipv6 ipv6 area @g01_ospfv3_ipv6_area
-ospfv3 encryption ipsec spi @g01_ospfv3_encryption_num esp null sha1 @g01_ospfv3_encryption_sha
+ospfv3 encryption ipsec spi <num-1000> esp <null> sha1 <40-digit number> ----------------------
 ip nat inside 
 zone-member security @zone_name 
 no shutdown 
@@ -128,103 +133,103 @@ ip address @g02_ip @g02_subnet
 ipv6 enable 
 ipv6 address @g02_ipv6_address
 ipv6 address @g02_ipv6_link link-local 
-ospfv3 @g02_ospfv3_ipv4 ipv4 area @g02_ospfv3_area
-ospfv3 @g02_ospfv3_ipv6 ipv6 area @g02_ospfv3_ipv6_area
-ospfv3 encryption ipsec spi @g02_ospfv3_encryption_num esp null sha1 @g02_ospfv3_encryption_sha
+ospfv3 <number> ipv4 area <as-num> 
+ospfv3 <number> ipv6 area <as-num> 
+ospfv3 encryption ipsec spi <num-1000> esp <null> sha1 <same-40-digit number> 
 ip nat inside 
-zone-member security @g02_zone 
+zone-member security <name-INSIDE> 
 no shutdown 
 !
-interface loopback 1
-ip address @lo1_ip @lo1_subnet
+interface loopback 1 NOTE- different per R router 
+ip address <loopback_ip_address-192.168.1.1> <subnet-mask- 255.255.255.255> 
 ipv6 enable 
-ospfv3 @lo1_ospfv3_ipv4 ipv4 area @lo1_ospfv3_area
+ospfv3 <number> ipv4 area <as-num> 
 ! 
-ip nat pool @nat_pool_name @nat_start_address @nat_end_address netmask @nat_subnet
-access-list @nat_acl_number permit @nat_acl_permit @nat_acl_permit_wildcard
-ip nat inside source list @nat_acl_number pool @nat_pool_name
+ip nat pool <name> <start public address> <end public address> netmask <subnet>  
+access-list <number> permit <private network address> <wildcard-mask> 
+ip nat inside source list <number> pool <name> 
 ! 
-router ospfv3 @ospf_process_id
+router ospfv3 <number> 
 address-family ipv4 unicast 
-router-id @ospfv3_ipv4_rid
+router-id <id-num> 
 redistribute connected 
 exit 
 address-family ipv6 unicast 
-router-id @ospfv3_ipv6_rid
+router-id <id-num> 
 redistribute connected 
 exit 
 exit 
 ! 
-ip route @route_wan_lo_network @route_wan_lo_subnet @next_hop_wan
-ip route @route_opp_lo_network @route_opp_lo_subnet @next_hop_router
+ip route <WAN-Loopback-network> <subnet-mask> <next-hop-WAN-int-ip-address> 
+ip route <R-opposite-Loopback-network> <subnet-mask> <next-hop-R-int-ip-address> 
 ! 
 ip bgp-community new-format 
-route-map @bgp_community_route_map
+route-map <name-NO-EXPORT> 
 set community no-export 
 ! 
-router bgp @bgp_process_id
-bgp router-id @bgp_router_id
+router bgp <number> NOTE- AS numbers will be the same for both internal routers 
+bgp router-id <id> 
 no bgp default ipv4-unicast 
-neighbor @neighbor_wan_lo_ip remote-as @neighbor_wan_lo_as
-neighbor @neighbor_wan_lo_update_ip update-source @neighbor_wan_lo_update_int
-neighbor @neighbor_ipv6_add remote-as @neighbor_ipv6_as
+neighbor <WAN-ip address> remote-as <number> 
+neighbor <WAN-ip address> update-source Loopback 1  
+neighbor <ipv6 address> remote-as <number> 
 address-family ipv4 
-neighbor @bgp_ipv4_neighbor_ip activate 
-network @bgp_ipv4_network mask @bgp_ipv4_subnet
+neighbor <ipv4 address> activate 
+network <network address> mask <subnet mask> 
 redistribute connected 
-neighbor @bgp_ipv4_neighbor_wan_ip_in route-map @bgp_ipv4_neighbor_wan_route_map_in in 
-neighbor @bgp_ipv4_community send-community 
-neighbor @bgp_ipv4_neighbor_wan_ip_out route-map @bgp_ipv4_neighbor_wan_route_map_out out 
+neighbor <WAN-ip address> route-map <name-NO-EXPORT> in 
+neighbor <WAN-ip address> send-community 
+neighbor <ip address of WAN> route-map <name-AS10> out 
 exit 
 address-family ipv6 
-neighbor @bgp_ipv6_neighbor_ip activate 
-network @bgp_ipv6_network/@bgp_ipv6_subnet
+neighbor <ipv6 address> activate 
+network <network address/prefix> 
 redistribute connected 
-neighbor @bgp_ipv6_neighbor_wan_ip_in route-map @bgp_ipv6_neighbor_wan_route_map_in in 
-neighbor @bgp_ipv6_community send-community 
+neighbor <WAN-ip address> route-map <name-NO-EXPORT> in 
+neighbor <WAN-ip address> send-community 
 exit 
 ! 
 crypto isakmp enable 
-crypto isakmp policy @isakmp_policy
+crypto isakmp policy <num-10> 
 hash sha 
 authentication pre-share 
 group 14 
 lifetime 3600 
 encryption aes 256 
 exit 
-crypto isakmp key @isakmp_password address @isakmp_remote_peer 
-crypto ipsec transform-set @isakmp_tag esp-aes 256 esp-sha-hmac 
+crypto isakmp key <password-keyacc101> address <remote peer ip adress of WAN-1> 
+crypto ipsec transform-set <tag-50> esp-aes 256 esp-sha-hmac 
 exit 
 crypto ipsec security-association lifetime seconds 3600 
-access-list @crypto_access_list permit ip @crypto_permit_ip_start @crypto_permit_start_wild @crypto_permit_ip_end @crypto_permit_end_wild
-crypto map @crypto_map_name @crypto_map_num ipsec-isakmp 
-match address @crypto_map_match_access_list
-set peer @crypto_map_peer
+access-list <num-101> permit ip <ip address range of accepted addresses (must suit our addressing scheme)-192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255> 
+crypto map <name-CMAP> <num-10> ipsec-isakmp 
+match address <acl num-101> 
+set peer <WAN-1 peer address> 
 set pfs group14 
-set transform-set @crypto_map_transform_set
-set security-association lifetime seconds @crypto_map_lifetime_seconds
+set transform-set <num-50> 
+set security-association lifetime seconds <num-900> 
 exit 
 !
-crypto isakmp policy isakmp_ipv6_policy
+crypto isakmp policy <num-15> 
 authentication pre-share 
 hash sha 
 group 2
 encryption aes 256 
 lifetime 3600 
 exit
-crypto isakmp key @isakmp_ipv6_password address ipv6 @isakmp_ipv6_remote_peer/@isakmp_ipv6_remote_peer_prefix
-crypto keyring @crypto_keyring
-pre-shared-key address ipv6 @crypto_pre_shared_key_ipv6/@crypto_pre_shared_key_prefix key 6 @crypto_pre_shared_key
+crypto isakmp key <password> address ipv6 <ipv6-address/prefix> 
+crypto keyring <name-keyring> 
+pre-shared-key address ipv6 <ipv6-address/prefix> key 6 <password-ringpass> 
 exit 
-crypto ipsec transform-set @ipsec_transform_set set esp-aes 256 esp-sha-hmac 
+crypto ipsec transform-set <name-sercset1> <set> esp-aes 256 esp-sha-hmac 
 mode tunnel 
 exit 
-crypto ipsec profile @ipsec_profile
-set transform-set @ipsec_transform_set
+crypto ipsec profile <name-profile0> 
+set transform-set <name-sercset1> 
 exit 
-crypto isakmp profile @isakmp_profile
+crypto isakmp profile <name-profile1> 
 self-identify address ipv6 
-match identity address ipv6 @isakmp_match_ipv6/@isakmp_match_ipv6_prefix
+match identity address ipv6 <WAN-ipv6-address/prefix> 
 keyring default 
 exit 
 interface tunnel @tunnel_num

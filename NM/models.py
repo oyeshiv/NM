@@ -46,11 +46,6 @@ class ISR4321(Scripts):
     en_pass_length = models.CharField(max_length=100)
     en_pass = models.CharField(max_length=100)
     domain_name = models.CharField(max_length=100)
-
-    #crypto
-    keychain_name = models.CharField(max_length=100)
-    key_string = models.CharField(max_length=100)
-    algo = models.CharField(max_length=100)
     
     isakmp_policy = models.IntegerField()
     isakmp_password = models.CharField(max_length=100)
@@ -92,12 +87,8 @@ class ISR4321(Scripts):
     zone_name = models.CharField(max_length=100)
     zone_internet = models.CharField(max_length=100)
     class_map_name = models.CharField(max_length=100)
-    match_tcp = models.BooleanField()
-    match_udp = models.BooleanField()
-    match_icmp = models.BooleanField()
-    match_https = models.BooleanField()
-    match_ssh = models.BooleanField()
     policy_map = models.CharField(max_length=100)
+    
     acl_name = models.CharField(max_length=100)
     acl_string = models.TextField()
 
@@ -199,7 +190,6 @@ class ISR4321(Scripts):
     nat_acl_number = models.IntegerField()
     nat_acl_permit = models.GenericIPAddressField()
     nat_acl_permit_wildcard = models.GenericIPAddressField()
-    nat_inside_list = models.CharField(max_length=100)
 
     #ospfv3
     ospf_process_id = models.CharField(max_length=20)
@@ -209,8 +199,10 @@ class ISR4321(Scripts):
     #ip-route
     route_wan_lo_network = models.GenericIPAddressField()
     route_wan_lo_subnet = models.GenericIPAddressField()
+    next_hop_wan = models.GenericIPAddressField()
     route_opp_lo_network = models.GenericIPAddressField()
     route_opp_lo_subnet = models.GenericIPAddressField()
+    next_hop_router = models.GenericIPAddressField()
 
     #bgp
     bgp_community_route_map = models.CharField(max_length=100)
@@ -227,13 +219,13 @@ class ISR4321(Scripts):
     bgp_ipv4_subnet = models.GenericIPAddressField()
     bgp_ipv4_neighbor_wan_ip_in = models.GenericIPAddressField()
     bgp_ipv4_neighbor_wan_route_map_in = models.CharField(max_length=100)
+    bgp_ipv4_community = models.GenericIPAddressField()
     bgp_ipv4_neighbor_wan_ip_out = models.GenericIPAddressField()
     bgp_ipv4_neighbor_wan_route_map_out = models.CharField(max_length=100)
     bgp_ipv6_neighbor_ip = models.GenericIPAddressField()
-    bgp_ipv6_network = models.CharField(max_length=100)
-    bgp_ipv6_subnet = models.GenericIPAddressField()
+    bgp_ipv6_network = models.GenericIPAddressField()
+    bgp_ipv6_subnet = models.CharField(max_length=100)
     bgp_ipv6_neighbor_wan_ip_in = models.GenericIPAddressField()
     bgp_ipv6_neighbor_wan_route_map_in = models.CharField(max_length=100)
-    bgp_ipv6_neighbor_wan_ip_out = models.GenericIPAddressField()
-    bgp_ipv6_neighbor_wan_route_map_out = models.CharField(max_length=100)
+    bgp_ipv6_community = models.GenericIPAddressField()
     

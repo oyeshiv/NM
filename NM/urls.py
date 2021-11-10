@@ -43,7 +43,7 @@ urlpatterns = [
     path('new_project', views.new_project, name='New Project'),
 
     #generate-functions
-    path('generate_text', views.text_gen, name='Generate Text'),
+    path('generate_text', views.text_generator, name='Generate Text'),
 
     #forms
     path('index', views.index, name='index'),
