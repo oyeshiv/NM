@@ -44,6 +44,7 @@ urlpatterns = [
 
     #generate-functions
     path('generate_text', views.text_generator, name='Generate Text'),
+    path('generate_exe', views.exe_generator, name='Generate Executable'),
 
     #forms
     path('index', views.index, name='index'),

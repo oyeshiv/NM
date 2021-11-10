@@ -78,7 +78,33 @@ def new_script(request):
         return redirect('/')
     else:
         return render(request, 'ISR4321.html', {'data': [1]})
-
+    
+def script_gen(request):
+    if request.method == 'POST':
+        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+        if script_device.device_model == 'ISR4321/K9':
+            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+        script_var = []
+        script_val = []
+        with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
+            input_data = input_file.read()
+        output_file = open('NM/Temp/playground.txt', 'wt')
+        
+        for k, v in script.__dict__.items():
+            script_var.append('@'+str(k))
+            script_val.append(str(v))
+            
+        
+        for i in range(len(script_var)):
+            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+            
+        output_data = input_data
+        
+        return output_data
+    
+    
+    
+    
 def text_generator(request):
     
     if request.method == 'POST':
@@ -129,18 +155,33 @@ def exe_generator(request):
             script_var.append('@'+str(k))
             script_val.append(str(v))
         
-        print(script_val)
-        print(script_var)
-            
-        
         for i in range(len(script_var)):
             input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
             
-        output_file.write(input_data)
-        response = HttpResponse(content_type='text/plain')
-        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.txt'
+        output_file.writelines('import getpass \n')
+        output_file.writelines('import sys \n')
+        output_file.writelines('import telnetlib \n')
+        output_file.writelines('HOST="192.168.1.1" \n')
+        output_file.writelines('print("Injecting Scripts.......") \n')
+        output_file.writelines('tn = telnetlib.Telnet(HOST) \n')
+        output_file.writelines('tn.read_until("Router") \n')        
+
         
-        response.write(input_data)
+        
+        
+        output_data = input_data
+        
+        for line in output_file:    
+            output_data = output_data.w("tn.write('"+ line +"\\n') \n")
+        
+        output_file.writelines('tn.write("end \n") \n')    
+        output_file.writelines('tn.write("exit \n") \n')   
+        
+        response = HttpResponse(content_type='text/plain')
+        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.py'
+        
+        with open('NM\Temp\python_playground.txt', 'r') as input_file:
+            response.write(input_file.read())
         
         return response
     
