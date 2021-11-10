@@ -1,104 +1,109 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
 <style>
   .button1 {
-        display: inline-block;
-        padding: 0.35em 1.2em;
-        border: 0.1em solid;
-        margin: 0 0.3em 0.3em 0;
-        border-radius: 0.12em;
-        box-sizing: border-box;
-        text-decoration: none;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        color: #2264c3;
-        text-align: center;
-        transition: all 0.2s;
-    }
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2264c3;
+    text-align: center;
+    transition: all 0.2s;
+  }
 
-    .button1:hover {
-        color:white;
-        background:skyblue;
-        
+  .button1:hover {
+    color: white;
+    background: skyblue;
+
+  }
+
+  @media all and (max-width:30em) {
+    .button1 {
+      display: block;
+      margin: 0.4em auto;
     }
-    @media all and (max-width:30em)
-    {
-      .button1{
-        display: block;
-        margin: 0.4em auto;
-      }
-    }
+  }
 </style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'sass/table.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
 {% endblock %}
-  
+
 {% block content %}
 <div class="container-fluid p-0">
   <div class="row mb-2 mb-xl-3">
     <div class="col-auto d-none d-sm-block">
-     
+
       <h3><strong>{{project.project_name}}</strong> &#8594; Scripts</h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 col-lg-8 col-xxl-9 d-flex">
-      <div class="card flex-fill" style="overflow-x:auto;">
-        <table class="table table-hover my-0">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th class="d-none d-xl-table-cell">Name</th>
-              <th class="d-none d-xl-table-cell">Device</th>
-              <th class="d-none d-xl-table-cell">Date Modified</th>
-              <th class="d-none d-md-table-cell">Date Created</th>
-              <th class="d-none d-md-table-cell">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for script in scripts %}
-            <tr>
-              <td><span class="badge bg-success">{% if script.device_id == 1 %} Router {% endif %}</span></td>
-              <td>{{script.script_name}}</td>
-              <td class="d-none d-xl-table-cell">{{script.device.device_model}}</td>
-              <td class="d-none d-xl-table-cell">{{script.date_modified}}</td>
-              <td class="d-none d-md-table-cell">{{script.date_created}}</td>
-              <td>
-                <div class='d-flex justify-content-between'>
-                <form method='POST' action="edit_script">
-                  {% csrf_token %}
-                  <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="button1" type="=submit"><i data-feather="edit"></i> <span>Edit</span></button>
-                </form>
-                <form method='POST' action="edit_script">
-                  {% csrf_token %}
-                  <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="button1" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
-                </form>
-                <form method='POST' action="generate_text">
-                  {% csrf_token %}
-                  <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="button1" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
-                </form>
-              </div>
-              </td>
-            </tr>
-            {% endfor %}
-            <tr class='bg-info'>
-              <td colspan="6">
-              <form class='w-100' method='POST' action="new_script">
+  <div style="overflow-x:auto;">
+    <table class="responsive-card-table unstriped">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th >Name</th>
+          <th >Device</th>
+          <th >Date Modified</th>
+          <th >Date Created</th>
+          <th >Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for script in scripts %}
+        <tr>
+          <td data-label="Type"><span class="badge bg-success">{% if script.device_id == 1 %} Router {% endif %}</span></td>
+          <td data-label="Name">{{script.script_name}}</td>
+          <td data-label="Devices">{{script.device.device_model}}</td>
+          <td data-label="Dtae Modified">{{script.date_modified}}</td>
+          <td data-label="Date Created">{{script.date_created}}</td>
+          <td data-label="Actions">
+            <div class='d-flex justify-content-between'>
+              <form method='POST' action="edit_script">
                 {% csrf_token %}
-                <input type='hidden' name='project_id' value='{{project_id}}'>
-                <button class="btn btn-default w-100 text-white" type="=submit"><i data-feather="plus"></i> <span>New Script</span></button>
+                <input type='hidden' name='script_id' value='{{script.id}}'>
+                <button class="button1" type="=submit"><i data-feather="edit"></i> <span>Edit</span></button>
               </form>
-            </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        
-      </div>
-    </div>
+              <form method='POST' action="edit_script">
+                {% csrf_token %}
+                <input type='hidden' name='script_id' value='{{script.id}}'>
+                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
+              </form>
+              <form method='POST' action="generate_text">
+                {% csrf_token %}
+                <input type='hidden' name='script_id' value='{{script.id}}'>
+                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+        <tr class='bg-info'>
+          <td colspan="6">
+            <form class='w-100' method='POST' action="new_script">
+              {% csrf_token %}
+              <input type='hidden' name='project_id' value='{{project_id}}'>
+              <button class="btn btn-default w-100 text-white" type="=submit"><i data-feather="plus"></i> <span>New
+                  Script</span></button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
+
+
+{% endblock %}
+
+{% block script %}
+
 {% endblock %}
