@@ -52,7 +52,10 @@ class ISR4321(Scripts):
     isakmp_remote_peer = models.GenericIPAddressField()
     isakmp_tag = models.IntegerField()
     crypto_access_list = models.IntegerField()
-    crypto_permit_ip_address = [models.GenericIPAddressField(),models.GenericIPAddressField(),models.GenericIPAddressField(),models.GenericIPAddressField()]
+    crypto_permit_ip_start = models.GenericIPAddressField()
+    crypto_permit_start_wild = models.GenericIPAddressField()
+    crypto_permit_ip_end = models.GenericIPAddressField()
+    crypto_permit_end_wild = models.GenericIPAddressField()
     crypto_map_name = models.CharField(max_length=100)
     crypto_map_num = models.IntegerField()
     crypto_map_match_access_list = models.CharField(max_length=100)
