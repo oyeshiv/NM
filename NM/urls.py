@@ -30,6 +30,7 @@ urlpatterns = [
     path('', views.login_user, name='home'),
     path('login', include('django.contrib.auth.urls')),
     path('logout', views.logout_user, name='Logout'),
+    path('profile', views.profile, name='Profile'),
 
     #dashboard
     path('dash', views.dash, name='Dashboard'),
@@ -38,6 +39,7 @@ urlpatterns = [
     #script-functions
     path('edit_script', views.edit_script, name='Edit Script'),
     path('new_script', views.new_script, name='New Script'),
+    path('save', views.save, name='Save'),
     
     #project-functions
     path('new_project', views.new_project, name='New Project'),
@@ -45,6 +47,9 @@ urlpatterns = [
     #generate-functions
     path('generate_text', views.text_generator, name='Generate Text'),
     path('generate_exe', views.exe_generator, name='Generate Executable'),
+    
+    #statics
+    path('devices', views.device_list, name='Devices'),
 
     #forms
     path('index', views.index, name='index'),

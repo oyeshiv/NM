@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+  .button1 {
+    display: inline-block;
+    padding: -1.35em 1.2em;
+    border: 0.1em solid;
+    
+    margin: 5px;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2264c3;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .button1:hover {
+    color: white;
+    background: skyblue;
+
+  }
+
+  @media all and (max-width:640em) {
+    .button1 {
+      display: block;
+      margin: 0.4em auto;
+    }
+    
+
+    
+  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'sass/table.scss' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+  <div class="row mb-2 mb-xl-3">
+    <div class="col-auto d-none d-sm-block">
+
+      <h3><strong>{{organisation_name}}</strong> &#8594; Supported Devices</h3>
+    </div>
+  </div>
+  <div style="overflow-x:auto;">
+    <table style="border: opx solid transparent;" class="responsive-card-table unstriped">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th >Device Type</th>
+          <th >Manufacturer</th>
+          <th >Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for device in devices %}
+        <tr>
+          <td data-label="Type"> {% if device.device_category_id == 1 %}<span class="badge bg-success">Supported</span>  {% endif %}{% if device.device_category_id == 2 %}<span class="badge bg-danger"> Under Development </span>{% endif %}</td>
+          <td data-label="Dtae Modified">{% if device.device_category_id == 1 %} Router {% endif %}{% if device.device_category_id == 2 %} Switch {% endif %}</td>
+          <td data-label="Devices">{{device.device_manufacturer}}</td>
+          <td data-label="Name">{{device.device_model}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>     
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

@@ -5,6 +5,13 @@
 <head>
 
   {% block style %}
+  <style>
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+  }
+  </style>
   {% endblock %}
 
 
@@ -27,8 +34,8 @@
   <div class="wrapper">
     <nav id="sidebar" class="sidebar">
       <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="index.html">
-          <span class="align-middle">STELNET</span>
+        <a class="sidebar-brand" href="/">
+          <span class="align-middle">{{organisation_name}}</span>
         </a>
 
         <ul class="sidebar-nav">
@@ -150,14 +157,14 @@
           <div class="row text-muted">
             <div class="col-6 text-left">
               <p class="mb-0">
-                <a href="index.html" class="text-muted"><strong>STELNET</strong></a> &copy;
+                <a href="/" class="text-muted"><strong>NETMAN</strong></a> &copy;
               </p>
             </div>
             <div class="col-6 text-right">
               <ul class="list-inline">
                 Created by
                 <li class="list-inline-item">
-                  <a class="text-primary" href="#">Group 46</a>
+                  <a class="text-primary" href="team">Team 46</a>
                 </li>
               </ul>
             </div>
