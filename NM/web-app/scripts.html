@@ -5,9 +5,10 @@
 <style>
   .button1 {
     display: inline-block;
-    padding: 0.35em 1.2em;
+    padding: -1.35em 1.2em;
     border: 0.1em solid;
-    margin: 0 0.3em 0.3em 0;
+    
+    margin: 5px;
     border-radius: 0.12em;
     box-sizing: border-box;
     text-decoration: none;
@@ -24,11 +25,14 @@
 
   }
 
-  @media all and (max-width:30em) {
+  @media all and (max-width:640em) {
     .button1 {
       display: block;
       margin: 0.4em auto;
     }
+    
+
+    
   }
 </style>
 
@@ -45,7 +49,7 @@
     </div>
   </div>
   <div style="overflow-x:auto;">
-    <table class="responsive-card-table unstriped">
+    <table style="border: opx solid transparent;" class="responsive-card-table unstriped">
       <thead>
         <tr>
           <th>Type</th>
@@ -85,18 +89,19 @@
           </td>
         </tr>
         {% endfor %}
-        <tr class='bg-info'>
-          <td colspan="6">
-            <form class='w-100' method='POST' action="new_script">
-              {% csrf_token %}
-              <input type='hidden' name='project_id' value='{{project_id}}'>
-              <button class="btn btn-default w-100 text-white" type="=submit"><i data-feather="plus"></i> <span>New
-                  Script</span></button>
-            </form>
-          </td>
-        </tr>
       </tbody>
     </table>
+        
+        <div class="responsive-card-table">
+            <form method='POST' action="new_script">
+              {% csrf_token %}
+              <input type='hidden' name='project_id' value='{{project_id}}'>
+              <button style="border: steelblue; background: steelblue; color: white;" type="=submit"><i data-feather="plus"></i> <span>New
+                  Script</span></button>
+            </form>
+          </div>
+        
+      
   </div>
 </div>
 

@@ -1,6 +1,8 @@
 
 .responsive-card-table {
     border-collapse: collapse;
+    border-style: none;
+    border: 0px solid transparent;
   }
   
   .responsive-card-table.unstriped tbody {
@@ -14,11 +16,12 @@
   .responsive-card-table tr,
   .responsive-card-table th,
   .responsive-card-table td {
-    border: 1px solid #0a0a0a;
+    border: 1px solid transparent;
+    padding: 8px;
   }
   
   @media screen and (max-width: 640px) {
-    .responsive-card-table {
+    .responsive-card-table { display: block;
       
     }
     .responsive-card-table thead tr {
@@ -27,7 +30,7 @@
       left: -9999em;
     }
     .responsive-card-table tr {
-      border: 1px solid #0a0a0a;
+      border: 1px solid transparent;
       display: block;
     }
     .responsive-card-table tr + tr {

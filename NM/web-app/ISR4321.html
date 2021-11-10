@@ -23,12 +23,12 @@
       <input type="text" id="rname" name="rname" placeholder="Router Name......" value="{{script.host_name}}">
     </div>
   </div>
-  <div class="row">
+ <!---<div class="row">
     <div class="col-25">
       <label for="intfce">Interface </label>
     </div>
     <div class="col-75">
-      <input type="text" id="intfce" name="intfce" placeholder="Interface">
+      <input type="text" id="intfce" name="intfce" placeholder="Interface" value="{{script.host_name}}">
     </div>
   </div>
   <div class="row">
@@ -46,7 +46,7 @@
     <div class="col-75">
       <input type="text" id="sub1" name="sub1" placeholder="Subnet" value='{{script.isr4321.g00_subnet}}'>
     </div>
-  </div>
+  </div>-->
   <div class="row">
     <div class="col-25">
       <label for="uname">User Name</label>
@@ -84,7 +84,7 @@
       <label for="enpwd">Domain Name </label>
     </div>
     <div class="col-75">
-      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.en_pass}}'>
+      <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.domain_name}}'>
     </div>
   </div>
   <div class="row">
@@ -92,7 +92,7 @@
       <label for="login">Login block </label>
     </div>
     <div class="col-75">
-      <input type="text" id="login" name="login" placeholder="Login block" value=''>
+      <input type="text" id="login" name="login" placeholder="Login block" value='{{script.isr4321.domain_name}}'>
     </div>
   </div>
   <div class="row">
@@ -100,7 +100,7 @@
       <label for="atmpt">Number of login attempt/s </label>
     </div>
     <div class="col-75">
-      <input type="text" id="atmpt" name="atmpt" placeholder="Login block" value=''>
+      <input type="text" id="atmpt" name="atmpt" placeholder="Login block" value='{{script.isr4321.domain_name}}'>
     </div>
   </div>
   <div class="row">
@@ -108,7 +108,7 @@
       <label for="sec">Within seconds</label>
     </div>
     <div class="col-75">
-      <input type="text" id="sec" name="sec" placeholder="Within seconds" value=''>
+      <input type="text" id="sec" name="sec" placeholder="Within seconds" value='{{script.isr4321.domain_name}}'>
     </div>
   </div>
   <div class="row">
@@ -116,7 +116,7 @@
       <label for="delay">Login Delay</label>
     </div>
     <div class="col-75">
-      <input type="text" id="delay" name="delay" placeholder="Login Delay" value=''>
+      <input type="text" id="delay" name="delay" placeholder="Login Delay" value='{{script.isr4321.login_delay}}'>
     </div>
   </div>
   <div class="row">
@@ -124,7 +124,7 @@
       <label for="lghost">Logging Host</label>
     </div>
     <div class="col-75">
-      <input type="text" id="lghost" name="lghost" placeholder="Logging Host IP Address" value=''>
+      <input type="text" id="lghost" name="lghost" placeholder="Logging Host IP Address" value='{{script.isr4321.login_host}}'>
     </div>
   </div>
   <div class="row">
@@ -132,7 +132,7 @@
       <label for="Trap">Logging Trap</label>
     </div>
     <div class="col-75">
-      <input type="text" id="Trap" name="Trap" placeholder="Logging Trap" value=''>
+      <input type="text" id="Trap" name="Trap" placeholder="Logging Trap" value='{{script.isr4321.login_trap_level}}'>
     </div>
   </div>
   <div class="row">
@@ -140,7 +140,7 @@
       <label for="src-int">Login Source Interface</label>
     </div>
     <div class="col-75">
-      <input type="text" id="src-int" name="src-int" placeholder=">Login Source Interface" value=''>
+      <input type="text" id="src-int" name="src-int" placeholder=">Login Source Interface" value='{{script.isr4321.login_source}}'>
     </div>
   </div>
   <div class="row">
@@ -148,7 +148,7 @@
       <label for="intg00">Interface g0/0 </label>
     </div>
     <div class="col-75">
-      <input type="text" id="intg00" name="intg00" placeholder="Ip address for g0/0" value=''>
+      <input type="text" id="intg00" name="intg00" placeholder="Ip address for g0/0" value='{{script.isr4321.g00_ip}}'>
     </div>
   </div>
   <div class="row">
@@ -156,7 +156,7 @@
       <label for="subg00">Subnet g0/0 </label>
     </div>
     <div class="col-75">
-      <input type="text" id="subg00" name="subg00" placeholder="Subnet for g0/0" value=''>
+      <input type="text" id="subg00" name="subg00" placeholder="Subnet for g0/0" value='{{script.isr4321.g00_ip}}'>
     </div>
   </div>
   <div class="row">
@@ -164,7 +164,7 @@
       <label for="intg0/1">Private IP g0/1 </label>
     </div>
     <div class="col-75">
-      <input type="text" id="intg0/1" name="intg0/1" placeholder=" Private Ip address for g0/1" value=''>
+      <input type="text" id="intg0/1" name="intg0/1" placeholder=" Private Ip address for g0/1" value='{{script.isr4321.g01_ip}}'>
     </div>
   </div>
   <div class="row">
@@ -172,7 +172,7 @@
       <label for="subg01">Subnet g0/1 </label>
     </div>
     <div class="col-75">
-      <input type="text" id="subg01" name="subg01" placeholder="Subnet for g0/1" value=''>
+      <input type="text" id="subg01" name="subg01" placeholder="Subnet for g0/1" value='{{script.isr4321.g01_subnet}}'>
     </div>
   </div>
   <div class="row">
