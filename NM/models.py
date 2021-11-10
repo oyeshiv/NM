@@ -51,12 +51,13 @@ class ISR4321(Scripts):
     keychain_name = models.CharField(max_length=100)
     key_string = models.CharField(max_length=100)
     algo = models.CharField(max_length=100)
+    
     isakmp_policy = models.IntegerField()
     isakmp_password = models.CharField(max_length=100)
     isakmp_remote_peer = models.GenericIPAddressField()
     isakmp_tag = models.IntegerField()
     crypto_access_list = models.IntegerField()
-    crypto_permit_ip_address = models.GenericIPAddressField()
+    crypto_permit_ip_address = [models.GenericIPAddressField(),models.GenericIPAddressField(),models.GenericIPAddressField(),models.GenericIPAddressField()]
     crypto_map_name = models.CharField(max_length=100)
     crypto_map_num = models.IntegerField()
     crypto_map_match_access_list = models.CharField(max_length=100)
@@ -67,8 +68,10 @@ class ISR4321(Scripts):
     isakmp_ipv6_policy = models.IntegerField()
     isakmp_ipv6_password = models.CharField(max_length=100)
     isakmp_ipv6_remote_peer = models.GenericIPAddressField()
+    isakmp_ipv6_remote_peer_prefix = models.CharField(max_length=2)
     crypto_keyring = models.CharField(max_length=100)
     crypto_pre_shared_key_ipv6 = models.GenericIPAddressField()
+    crypto_pre_shared_key_prefix = models.CharField(max_length=2)
     crypto_pre_shared_key = models.CharField(max_length=100)
     crypto_ipsec_transform_set = models.CharField(max_length=100)
     
@@ -77,6 +80,7 @@ class ISR4321(Scripts):
 
     isakmp_profile = models.CharField(max_length=100)
     isakmp_match_ipv6 = models.CharField(max_length=100)
+    isakmp_match_ipv6_prefix = models.CharField(max_length=2)
 
     #radius
     radius_server_name = models.CharField(max_length=100)
@@ -94,12 +98,10 @@ class ISR4321(Scripts):
     match_https = models.BooleanField()
     match_ssh = models.BooleanField()
     policy_map = models.CharField(max_length=100)
-    inspect = models.BooleanField()
     acl_name = models.CharField(max_length=100)
     acl_string = models.TextField()
 
     #ssh
-    enable = models.BooleanField()
     ssh_crypto_key = models.IntegerField()
     ssh_timeout = models.CharField(max_length=100)
     ssh_retries = models.CharField(max_length=100)
@@ -112,7 +114,6 @@ class ISR4321(Scripts):
     g00_track_num = models.IntegerField()
     g00_track_dec = models.IntegerField()
     g00_priority = models.IntegerField()
-    g00_ipv6 = models.BooleanField()
     g00_ipv6_address = models.GenericIPAddressField()
     g00_ipv6_link = models.GenericIPAddressField()
     g00_ipv6_vrrp_num = models.IntegerField()
@@ -120,75 +121,57 @@ class ISR4321(Scripts):
     g00_ipv6_track_num = models.IntegerField()
     g00_ipv6_track_dec = models.IntegerField()
     g00_ipv6_priority = models.IntegerField()
-    g00_ospfv3_ipv4 = models.IntegerField()
-    g00_ospfv3_area = models.IntegerField()
-    g00_ospfv3_ipv6 = models.IntegerField()
-    g00_ospfv3_ipv6_area = models.IntegerField()
-    g00_ospfv3_encryption_num = models.IntegerField()
-    g00_ospfv3_encryption_sha = models.PositiveBigIntegerField()
+    g00_nat = models.CharField(max_length=100)
     g00_zone = models.CharField(max_length=100)
 
     g01_ip = models.GenericIPAddressField()
     g01_subnet = models.GenericIPAddressField()
-    g01_vrrp_num = models.IntegerField()
-    g01_vrrp_address = models.GenericIPAddressField()
-    g01_track_num = models.IntegerField()
-    g01_track_dec = models.IntegerField()
-    g01_priority = models.IntegerField()
-    g01_ipv6 = models.BooleanField()
+    
+    
     g01_ipv6_address = models.GenericIPAddressField()
     g01_ipv6_link = models.GenericIPAddressField()
-    g01_ipv6_vrrp_num = models.IntegerField()
-    g01_ipv6_vrrp_address = models.GenericIPAddressField()
-    g01_ipv6_track_num = models.IntegerField()
-    g01_ipv6_track_dec = models.IntegerField()
-    g01_ipv6_priority = models.IntegerField()
+    
     g01_ospfv3_ipv4 = models.IntegerField()
     g01_ospfv3_area = models.IntegerField()
     g01_ospfv3_ipv6 = models.IntegerField()
     g01_ospfv3_ipv6_area = models.IntegerField()
     g01_ospfv3_encryption_num = models.IntegerField()
     g01_ospfv3_encryption_sha = models.PositiveBigIntegerField()
+    g01_nat = models.CharField(max_length=100)
     g01_zone = models.CharField(max_length=100)
 
     g02_ip = models.GenericIPAddressField()
     g02_subnet = models.GenericIPAddressField()
-    g02_vrrp_num = models.IntegerField()
-    g02_vrrp_address = models.GenericIPAddressField()
-    g02_track_num = models.IntegerField()
-    g02_track_dec = models.IntegerField()
-    g02_priority = models.IntegerField()
-    g02_ipv6 = models.BooleanField()
+
+
     g02_ipv6_address = models.GenericIPAddressField()
     g02_ipv6_link = models.GenericIPAddressField()
-    g02_ipv6_vrrp_num = models.IntegerField()
-    g02_ipv6_vrrp_address = models.GenericIPAddressField()
-    g02_ipv6_track_num = models.IntegerField()
-    g02_ipv6_track_dec = models.IntegerField()
-    g02_ipv6_priority = models.IntegerField()
+    
     g02_ospfv3_ipv4 = models.IntegerField()
     g02_ospfv3_area = models.IntegerField()
     g02_ospfv3_ipv6 = models.IntegerField()
     g02_ospfv3_ipv6_area = models.IntegerField()
     g02_ospfv3_encryption_num = models.IntegerField()
     g02_ospfv3_encryption_sha = models.PositiveBigIntegerField()
+    
+    g02_nat = models.CharField(max_length=100)
     g02_zone = models.CharField(max_length=100)
 
     lo1_ip = models.GenericIPAddressField()
     lo1_subnet = models.GenericIPAddressField()
-    lo1_ipv6 = models.BooleanField()
     lo1_ospfv3_ipv4 = models.IntegerField()
     lo1_ospfv3_area = models.IntegerField()
 
     tunnel_num = models.IntegerField()
-    tunnel_ipv6_add = models.CharField(max_length=100)
-    tunnel_ipv6 = models.BooleanField()
+    tunnel_ipv6_add = models.GenericIPAddressField()
+    tunnel_ipv6_prefix = models.CharField(max_length=2)
     tunnel_source_interface = models.CharField(max_length=100)
     tunnel_destination_address = models.CharField(max_length=100)
     tunnel_protection_profile = models.CharField(max_length=100)
 
     #ntp
-    ntp_peer_add = models.CharField(max_length=100)
+    ntp_peer_add1 = models.GenericIPAddressField()
+    ntp_peer_add2 = models.GenericIPAddressField()
     ntp_master_num = models.IntegerField()
     ntp_auth_key_num = models.IntegerField()
     ntp_auth_key_pass = models.CharField(max_length=100)
@@ -196,7 +179,9 @@ class ISR4321(Scripts):
 
     #ip_prefix
     ip_prefix_list_name = models.CharField(max_length=100)
-    ip_prefix_list_network = models.CharField(max_length=100)
+    ip_prefix_list_network = models.GenericIPAddressField()
+    ip_prefix_list_subnet = models.GenericIPAddressField()
+    
 
     #route-map
     route_map_name = models.CharField(max_length=100)
@@ -210,6 +195,10 @@ class ISR4321(Scripts):
     nat_pool_name = models.CharField(max_length=100)
     nat_start_address = models.GenericIPAddressField()
     nat_end_address = models.GenericIPAddressField()
+    nat_subnet = models.GenericIPAddressField()
+    nat_acl_number = models.IntegerField()
+    nat_acl_permit = models.GenericIPAddressField()
+    nat_acl_permit_wildcard = models.GenericIPAddressField()
     nat_inside_list = models.CharField(max_length=100)
 
     #ospfv3

@@ -39,6 +39,8 @@ urlpatterns = [
     path('edit_script', views.edit_script, name='Edit Script'),
     path('new_script', views.new_script, name='New Script'),
     
+    #project-functions
+    path('new_project', views.new_project, name='New Project'),
 
     #generate-functions
     path('generate_text', views.text_gen, name='Generate Text'),

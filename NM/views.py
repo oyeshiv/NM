@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.template import RequestContext
-from NM.forms import ISR4321From
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from NM.models import ISR4321, Devices, Projects, Scripts
@@ -15,11 +14,11 @@ def dash(request):
     else:
         user = User.objects.get(username=request.session['username'])
         all_group = user.groups.all()
-        user_group = all_group[0].id
+        request.session['organisation_id'] = all_group[0].id
         request.session['organisation'] = all_group[0].name.upper()
-        if user_group == 2 or request.session['username']=='shivam':
+        if request.session['organisation_id'] == 2 or request.session['username']=='shivam':
             return redirect('admin/')
-        projects = Projects.objects.filter(organisation_id=user_group)
+        projects = Projects.objects.filter(organisation_id=request.session['organisation_id'])
         return render(request ,'projects.html', {'projects': projects, 'user':user, 'organisation_name':request.session['organisation']})
     
 def login_user(request):
@@ -52,9 +51,11 @@ def scripts(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
-        request.session['project_id'] = request.POST['id']
-        result_scripts = Scripts.objects.filter(project_id=request.POST['id']).select_related('device')
-        return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.POST['id'], 'organisation_name':request.session['organisation']} )
+        if request.method == 'POST':
+            request.session['project_id'] = request.POST['id']
+            project = Projects.objects.filter(id=request.POST['id'])[0]
+        result_scripts = Scripts.objects.filter(project_id=request.session['project_id']).select_related('device')
+        return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.session['project_id'], 'organisation_name':request.session['organisation'], 'project':project} )
 
 def edit_script(request):
     if 'username' not in request.session:
@@ -87,6 +88,22 @@ def text_gen(request):
     
 
     return redirect('/')
+
+def new_project(request):
+    if 'username' not in request.session:
+        redirect('/')
+    else:
+        if request.method == 'POST':
+            project_name = request.POST['pname']
+            client_name = request.POST['cname']
+            desc = request.POST['desc']
+            organisation = User.objects.get(username=request.session['username']).groups.all()
+            organisation = organisation[0]
+            
+            project = Projects(project_name=project_name, organisation=organisation, client_name=client_name, desc=desc)
+            project.save()
+            request.session['project_id'] = project.id
+    return redirect('/scripts')
 
 def form(request):
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
 <style>
@@ -24,7 +25,7 @@
     </div>
     <div class="row">
         {% for project in projects %}
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-md-5 col-lg-4">
             <div class="card w-100 h-100">
                 <div class="card-body">
                     <h5 class="card-title mb-4">{{project.client_name}}</h5>
@@ -41,16 +42,21 @@
             </div>
         </div>
         {% endfor %}
-        <div class="col-sm-6 col-lg-3 text-center align-items-stretch">
+        <div class="col-sm-6 col-md-5 col-lg-4 text-center align-items-stretch" data-toggle="modal" data-target="#new_project">
             <div class="new_project card card-block d-flex h-100">
                 <div class="card-body align-items-center d-flex justify-content-center">
-                    <a class="card-link" href="new_project">
-                        <i class="align-middle" data-feather="plus"></i> <br> <span class="align-middle">New Project</span>
+                    <a class="card-link">
+                        <i class="align-middle" data-feather="plus"></i> <br> <span class="align-middle">New
+                            Project</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block script %}
 
 {% endblock %}
