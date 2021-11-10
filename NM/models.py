@@ -38,7 +38,7 @@ class ISR4321(Scripts):
     user_pass = models.CharField(max_length=100)
     login_block_time = models.IntegerField()
     login_tries = models.IntegerField()
-    login_tries_time = models.IntegerField()
+    tries_time = models.IntegerField()
     login_delay = models.IntegerField()
     login_host = models.GenericIPAddressField()
     login_trap_level = models.CharField(max_length=100)
@@ -65,7 +65,7 @@ class ISR4321(Scripts):
 
     isakmp_ipv6_policy = models.IntegerField()
     isakmp_ipv6_password = models.CharField(max_length=100)
-    isakmp_ipv6_remote_peer = models.GenericIPAddressField()
+    isakmp_ipv6_remote_peer_ip = models.GenericIPAddressField()
     isakmp_ipv6_remote_peer_prefix = models.CharField(max_length=2)
     crypto_keyring = models.CharField(max_length=100)
     crypto_pre_shared_key_ipv6 = models.GenericIPAddressField()
@@ -77,7 +77,7 @@ class ISR4321(Scripts):
     ipsec_transform_set = models.CharField(max_length=100)
 
     isakmp_profile = models.CharField(max_length=100)
-    isakmp_match_ipv6 = models.CharField(max_length=100)
+    isakmp_match_ipv6_add = models.CharField(max_length=100)
     isakmp_match_ipv6_prefix = models.CharField(max_length=2)
 
     #radius
@@ -125,7 +125,7 @@ class ISR4321(Scripts):
     g01_ospfv3_ipv4 = models.IntegerField()
     g01_ospfv3_area = models.IntegerField()
     g01_ospfv3_ipv6 = models.IntegerField()
-    g01_ospfv3_ipv6_area = models.IntegerField()
+    g01_ospfv3_v6_area = models.IntegerField()
     g01_ospfv3_encryption_num = models.IntegerField()
     g01_ospfv3_encryption_sha = models.PositiveBigIntegerField()
     g01_nat = models.CharField(max_length=100)
@@ -138,7 +138,7 @@ class ISR4321(Scripts):
     g02_ospfv3_ipv4 = models.IntegerField()
     g02_ospfv3_area = models.IntegerField()
     g02_ospfv3_ipv6 = models.IntegerField()
-    g02_ospfv3_ipv6_area = models.IntegerField()
+    g02_ospfv3_v6_area = models.IntegerField()
     g02_ospfv3_encryption_num = models.IntegerField()
     g02_ospfv3_encryption_sha = models.PositiveBigIntegerField()
     g02_nat = models.CharField(max_length=100)
@@ -184,7 +184,7 @@ class ISR4321(Scripts):
     nat_end_address = models.GenericIPAddressField()
     nat_subnet = models.GenericIPAddressField()
     nat_acl_number = models.IntegerField()
-    nat_acl_permit = models.GenericIPAddressField()
+    nat_acl_permit_ip = models.GenericIPAddressField()
     nat_acl_permit_wildcard = models.GenericIPAddressField()
 
     #ospfv3

@@ -23,7 +23,7 @@ login local
 logging synchronous 
 exit 
 ! 
-login block-for @login_block_time attempts @login_tries within @login_tries_time
+login block-for @login_block_time attempts @login_tries within @tries_time
 ip access-list standard @acl_name
 @acl_string
 exit 
