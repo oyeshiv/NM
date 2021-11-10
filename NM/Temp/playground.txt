@@ -23,7 +23,7 @@ login local
 logging synchronous 
 exit 
 ! 
-login block-for 60 attempts 2 within 2_time
+login block-for 60 attempts 2 within 30
 ip access-list standard PERMIT-ADMIN
 permit 172.16.100.2
 exit 
@@ -141,7 +141,7 @@ ipv6 enable
 ospfv3 10 ipv4 area 0
 ! 
 ip nat pool NAT 180.150.115.139 180.150.115.139 netmask 255.255.255.252
-access-list 10 permit 10.10.10.0 10.10.10.0_wildcard
+access-list 10 permit @nat_acl_permit 0.0.0.3
 ip nat inside source list 10 pool NAT
 ! 
 router ospfv3 10
@@ -212,7 +212,7 @@ group 2
 encryption aes 256 
 lifetime 3600 
 exit
-crypto isakmp key passwored address ipv6 2013:fecd:3145:6151::1/2013:fecd:3145:6151::1_prefix
+crypto isakmp key passwored address ipv6 @isakmp_ipv6_remote_peer/64
 crypto keyring keyring
 pre-shared-key address ipv6 2013:fecd:3145:6151::1/64 key 6 ringpass
 exit 
@@ -224,7 +224,7 @@ set transform-set secrset1
 exit 
 crypto isakmp profile profile1
 self-identify address ipv6 
-match identity address ipv6 2013:FECD:3145:6151::1/2013:FECD:3145:6151::1_prefix
+match identity address ipv6 @isakmp_match_ipv6/64
 keyring default 
 exit 
 interface tunnel 1
