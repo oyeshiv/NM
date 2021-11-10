@@ -927,9 +927,23 @@
     </div>
     
     <div class="col-75" style="margin-left: 280px; margin-right: 460px;">
-      <input style="margin: 5px; float: left; " type="submit" value="Download Text">
-      <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
-      <input style="margin: 5px; float: left;" type="submit" value="Save">
+      <div class='d-flex justify-content-between'>
+        <form method='POST' action="save">
+          {% csrf_token %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          <button class="btn btn-primary" type="=submit"><i data-feather="save"></i> <span>Save</span></button>
+        </form>
+        <form method='POST' action="generate_exe">
+          {% csrf_token %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          <button class="btn btn-secondary" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
+        </form>
+        <form method='POST' action="generate_text">
+          {% csrf_token %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          <button class="btn btn-secondary" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+        </form>
+      </div>
     </div>
   </div>
   </div>
