@@ -74,7 +74,7 @@
               <form method='POST' action="edit_script">
                 {% csrf_token %}
                 <input type='hidden' name='script_id' value='{{script.id}}'>
-                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
+                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Exe</span></button>
               </form>
               <form method='POST' action="generate_text">
                 {% csrf_token %}
