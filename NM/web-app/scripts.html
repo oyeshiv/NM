@@ -2,14 +2,41 @@
 
 {% block style %}
 <style>
+  .button1 {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid;
+        margin: 0 0.3em 0.3em 0;
+        border-radius: 0.12em;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        color: #2264c3;
+        text-align: center;
+        transition: all 0.2s;
+    }
+
+    .button1:hover {
+        color:white;
+        background:skyblue;
+        
+    }
+    @media all and (max-width:30em)
+    {
+      .button1{
+        display: block;
+        margin: 0.4em auto;
+      }
+    }
 </style>
 {% endblock %}
-
+  
 {% block content %}
 <div class="container-fluid p-0">
   <div class="row mb-2 mb-xl-3">
     <div class="col-auto d-none d-sm-block">
-      <h3>Dashboard -> <strong>Scripts</strong></h3>
+      <h3>Dashboard &#8594; <strong>Scripts</strong></h3>
     </div>
   </div>
   <div class="row">
@@ -39,17 +66,17 @@
                 <form method='POST' action="edit_script">
                   {% csrf_token %}
                   <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="btn btn-primary" type="=submit"><i data-feather="edit"></i> <span>Edit</span></button>
+                  <button class="button1" type="=submit"><i data-feather="edit"></i> <span>Edit</span></button>
                 </form>
                 <form method='POST' action="edit_script">
                   {% csrf_token %}
                   <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="btn btn-primary" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
+                  <button class="button1" type="=submit"><i data-feather="download"></i> <span>Executable</span></button>
                 </form>
                 <form method='POST' action="generate_text">
                   {% csrf_token %}
                   <input type='hidden' name='script_id' value='{{script.id}}'>
-                  <button class="btn btn-primary" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+                  <button class="button1" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
                 </form>
               </div>
               </td>

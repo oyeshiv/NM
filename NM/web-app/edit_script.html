@@ -160,25 +160,5 @@
     
   </form>
 </div>
-<script type="text/javascript">
-    var neigbgp= document.getElementById('neigbgp');
-    var add_intfce= document.getElementById('add_intfce');
-    var rmv_intfce= document.getElementById('rmv_intfce');
-    add_intfce.onclick = function()
-    {
-      var newfield = document.createElement('input');
-      newfield.setAttribute('type','text');
-      newfield.setAttribute('name','neigbgp[]');
-      newfield.setAttribute('placeholder','Neighbour Interface Address');
-      neigbgp.appendChild(newfield);
-    }
-    rmv_intfce.onclick = function()
-    {
-      var input_tags = neigbgp.getElementsByTagName('input');
-      if(input_tags.length > 2)
-      {
-        neigbgp.removeChild(input_tags[(input_tags.length) - 1]);
-      }
-    }
-    </script>
+
 {% endblock %}
