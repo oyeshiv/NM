@@ -150,6 +150,7 @@ def exe_generator(request):
         with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
             input_data = input_file.read()
         output_file = open('NM/Temp/playground.txt', 'wt')
+        python_output = open('NM/Temp/python_playground.txt', 'wt')
         
         for k, v in script.__dict__.items():
             script_var.append('@'+str(k))
@@ -157,25 +158,23 @@ def exe_generator(request):
         
         for i in range(len(script_var)):
             input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+        
+        output_file.write(input_data)            
             
-        output_file.writelines('import getpass \n')
-        output_file.writelines('import sys \n')
-        output_file.writelines('import telnetlib \n')
-        output_file.writelines('HOST="192.168.1.1" \n')
-        output_file.writelines('print("Injecting Scripts.......") \n')
-        output_file.writelines('tn = telnetlib.Telnet(HOST) \n')
-        output_file.writelines('tn.read_until("Router") \n')        
+        python_output.writelines('import getpass \n')
+        python_output.writelines('import sys \n')
+        python_output.writelines('import telnetlib \n')
+        python_output.writelines('HOST="192.168.1.1" \n')
+        python_output.writelines('print("Injecting Scripts.......") \n')
+        python_output.writelines('tn = telnetlib.Telnet(HOST) \n')
+        python_output.writelines('tn.read_until("Router") \n')        
 
-        
-        
-        
-        output_data = input_data
         
         for line in output_file:    
             output_data = output_data.w("tn.write('"+ line +"\\n') \n")
         
-        output_file.writelines('tn.write("end \n") \n')    
-        output_file.writelines('tn.write("exit \n") \n')   
+        python_output.writelines('tn.write("end \n") \n')    
+        python_output.writelines('tn.write("exit \n") \n')   
         
         response = HttpResponse(content_type='text/plain')
         response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.py'

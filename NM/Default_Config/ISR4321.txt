@@ -73,7 +73,6 @@ zone security @zone_internet
 ! 
 policy-map type inspect @policy_map
 class type inspect @policy_map
-@inspect
 inspect 
 ! 
 zone-pair security @policy_map source @zone_name destination @zone_internet
