@@ -6,32 +6,33 @@
 
   {% block style %}
   <style>
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-  }
+    body{
+      overflow:auto;
+      margin: auto;
+    }
+    
   </style>
   {% endblock %}
-
-
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
   <meta charset="utf-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content="STELNET">
+  <meta name="author" content="Team-46">
   <meta name="keywords" content="">
 
   <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-  <title>STELNET</title>
+  <title>NetMan</title>
 
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/routers.css' %}">
+  <link href="{% static 'css/routers.css' %}" rel="stylesheet">
 </head>
 
 <body>
   <div class="wrapper">
+
     <nav id="sidebar" class="sidebar">
       <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="/">
@@ -47,29 +48,22 @@
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
             </a>
           </li>
-
-         
-
           <li class="sidebar-header">
             Protocols
           </li>
-
           <li class="sidebar-item">
             <a class="sidebar-link" href="#add_bgp">
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">BGP</span>
             </a>
           </li>
-
           <li class="sidebar-item">
             <a class="sidebar-link" href="#add_ospf">
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">OSPF</span>
             </a>
           </li>
-
           <li class="sidebar-header">
             Advanced Options
           </li>
-
           <li class="sidebar-item">
             <a class="sidebar-link" href="#add_ipv6 ">
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">IPV6</span>
@@ -112,7 +106,7 @@
           </li>
         </ul>
 
-       
+      </div>
     </nav>
 
     <div class="main">
@@ -121,17 +115,7 @@
           <i class="hamburger align-self-center"></i>
         </a>
 
-        <form class="d-none d-sm-inline-block">
-          <div class="input-group input-group-navbar">
-             <img src="{% static 'img/logo.PNG' %}" style="display:inline; float: left;">
-          </div>
-         <!-- <div class="input-group input-group-navbar">
-            <input type="text" class="form-control" placeholder="ISR4321" aria-label="Search">
-            <button class="btn" type="button">
-              <i class="align-middle" data-feather="check"></i>
-            </button>
-          </div>-->
-        </form>
+        
 
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
@@ -140,8 +124,20 @@
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
-              
-              
+              <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                <span class="text-dark">{{user.username}}</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <!-- <a class="dropdown-item" href="pages-profile.html"><i class="align-middle mr-1" data-feather="user"></i>
+                  Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="pages-settings.html"><i class="align-middle mr-1"
+                    data-feather="settings"></i> Settings</a>
+                <a class="dropdown-item" href="#"><i class="align-middle mr-1" data-feather="help-circle"></i> Help
+                  Center</a> -->
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="logout">Log out</a>
+              </div>
             </li>
           </ul>
         </div>
@@ -157,14 +153,14 @@
           <div class="row text-muted">
             <div class="col-6 text-left">
               <p class="mb-0">
-                <a href="/" class="text-muted"><strong>NETMAN</strong></a> &copy;
+                <a href="dash" class="text-muted"><strong>NETMAN</strong></a> &copy;
               </p>
             </div>
             <div class="col-6 text-right">
               <ul class="list-inline">
                 Created by
                 <li class="list-inline-item">
-                  <a class="text-primary" href="team">Team 46</a>
+                  <a class="text-primary" href="team">Team-46</a>
                 </li>
               </ul>
             </div>
@@ -175,7 +171,6 @@
   </div>
 
   <script src="{% static 'js/app.js' %}"></script>
-
 </body>
 
 </html>
