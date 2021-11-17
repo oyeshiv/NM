@@ -62,7 +62,7 @@ def scripts(request):
     else:
         if request.method == 'POST':
             request.session['project_id'] = request.POST['id']
-            project = Projects.objects.filter(id=request.POST['id'])[0]
+        project = Projects.objects.filter(id=request.session['project_id'])[0]
         result_scripts = Scripts.objects.filter(project_id=request.session['project_id']).select_related('device')
         return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.session['project_id'], 'organisation_name':request.session['organisation'], 'project':project} )
 
