@@ -24,7 +24,7 @@
     </div>
   </form>
   <hr>
-  
+  <form method='POST' action="save">
   <div class="row">
     <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h3>
   </div>
@@ -1463,30 +1463,33 @@
       <hr>
       <div class="col">
         <div class='d-flex justify-content-between'>
-          <form method='POST' action="save">
+          
             {% csrf_token %}
-          {% if script.id is null %}
-          <input type='hidden' name='script_id' value='{{project.id}}'>
+          
+          <input type='hidden' name='device_id' value='1'>
+          {% if script.id is not null %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          {% endif %}
             <button class="btn btn-primary" type="=submit"><i data-feather="save"></i> <span>Save</span></button>
           </form>
 
-          <button class="btn btn-secondary">
-            <span><a href="dash" class="text-white">Cancel</a></span></button>
+          
 
-          {% endif %}
           {% if script.id is not null %}
           <form method='POST' action="generate_exe">
             {% csrf_token %}
             <input type='hidden' name='script_id' value='{{script.id}}'>
-            <button class="btn btn-secondary" type="=submit"><i data-feather="download"></i>
+            <button class="btn btn-success" type="=submit"><i data-feather="download"></i>
               <span>Executable</span></button>
           </form>
           <form method='POST' action="generate_text">
             {% csrf_token %}
             <input type='hidden' name='script_id' value='{{script.id}}'>
-            <button class="btn btn-secondary" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+            <button class="btn btn-success" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
           </form>
           {% endif %}
+          <button class="btn btn-primary">
+            <span><a href="dash" class="text-white">Cancel</a></span></button>
         </div>
       </div>
     </div>

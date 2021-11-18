@@ -1,4 +1,5 @@
 from sys import executable
+from django.contrib.auth import models
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -200,7 +201,7 @@ def device_list(request):
 
 def save(request):
     if request.method == 'POST':
-        device_id = request.POST['1']
+        device_id = request.POST['device_id']
         project_id = request.POST['project_id']
         script_name = "New Script"
         host_name = request.POST['rname']
@@ -342,7 +343,6 @@ def save(request):
         route_opp_lo_network = request.POST['route_opp_lo_network']
         route_opp_lo_subnet = request.POST['route_opp_lo_subnet']
         next_hop_router = request.POST['next_hop_router']
-        
         
         bgp_community_route_map = request.POST['neighbor_wan_lo_ip']
         bgp_process_id = request.POST['bgp_process_id']
