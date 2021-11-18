@@ -91,7 +91,7 @@ copy ru st
 interface g0/0 
 ip address 13.52.11.2 255.255.255.252
 vrrp 10 address-family ipv4 
-address 0.0.0.0    
+address 100.100.100.1 255.255.255.252    
 track 1 decrement 20
 priority 110
 track 1 decrement 20
@@ -129,7 +129,7 @@ ipv6 address 10.10.10.5v6_address
 ipv6 address 10.10.10.5v6_link link-local 
 ospfv3 10 ipv4 area 0
 ospfv3 10 ipv6 area 10_area
-ospfv3 encryption ipsec spi 1000 esp null sha1 1231321
+ospfv3 encryption ipsec spi 1000 esp null sha1 12313212316546
 ip nat inside 
 zone-member security INSIDE 
 no shutdown 
@@ -211,15 +211,15 @@ group 2
 encryption aes 256 
 lifetime 3600 
 exit
-crypto isakmp key passwored address ipv6 @isakmp_ipv6_remote_peer/64
-crypto keyring keyring
+crypto isakmp key isakey101 address ipv6 @isakmp_ipv6_remote_peer/64
+crypto keyring isakeyring
 pre-shared-key address ipv6 2013:fecd:3145:6151::1/64 key 6 ringpass
 exit 
-crypto ipsec transform-set secrset1 set esp-aes 256 esp-sha-hmac 
+crypto ipsec transform-set sercset-1 set esp-aes 256 esp-sha-hmac 
 mode tunnel 
 exit 
 crypto ipsec profile profile0
-set transform-set secrset1
+set transform-set sercset-1
 exit 
 crypto isakmp profile profile1
 self-identify address ipv6 

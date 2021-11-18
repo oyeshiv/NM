@@ -1,3 +1,4 @@
+from sys import _current_frames
 from django.contrib.auth.models import Group
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
@@ -26,7 +27,7 @@ class Projects(models.Model):
 class Scripts(models.Model):
     device = models.ForeignKey(Devices, on_delete=models.RESTRICT)
     project = models.ForeignKey(Projects, on_delete=models.RESTRICT)
-    date_created = models.DateField(auto_now=True)
+    date_created = models.DateField(auto_now_add=True)
     date_modified = models.DateField(auto_now_add=True)
     script_name = models.CharField(max_length=100)
     
@@ -106,14 +107,14 @@ class ISR4321(Scripts):
     g00_ip = models.GenericIPAddressField()
     g00_subnet = models.GenericIPAddressField()
     g00_vrrp_num = models.IntegerField()
-    g00_vrrp_address = models.GenericIPAddressField()
+    g00_vrrp_address = models.CharField(max_length=100)
     g00_track_num = models.IntegerField()
     g00_track_dec = models.IntegerField()
     g00_priority = models.IntegerField()
     g00_ipv6_address = models.GenericIPAddressField()
     g00_ipv6_link = models.GenericIPAddressField()
     g00_ipv6_vrrp_num = models.IntegerField()
-    g00_ipv6_vrrp_address = models.GenericIPAddressField()
+    g00_ipv6_vrrp_address = models.CharField(max_length=100)
     g00_ipv6_track_num = models.IntegerField()
     g00_ipv6_track_dec = models.IntegerField()
     g00_ipv6_priority = models.IntegerField()
