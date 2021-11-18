@@ -120,14 +120,10 @@ class ISR4321(Scripts):
     g00_ipv6_priority = models.IntegerField()
     g00_nat = models.CharField(max_length=100)
     g00_zone = models.CharField(max_length=100)
-
     g01_ipv4 = models.GenericIPAddressField()
     g01_subnet = models.GenericIPAddressField()
-    
-    
     g01_ipv6_address = models.GenericIPAddressField()
     g01_ipv6_link = models.GenericIPAddressField()
-    
     g01_ospfv3_ipv4 = models.IntegerField()
     g01_ospfv3_area = models.IntegerField()
     g01_ospfv3_ipv6 = models.IntegerField()
@@ -139,7 +135,6 @@ class ISR4321(Scripts):
 
     g02_ipv4 = models.GenericIPAddressField()
     g02_subnet = models.GenericIPAddressField()
-
 
     g02_ipv6_address = models.GenericIPAddressField()
     g02_ipv6_link = models.GenericIPAddressField()

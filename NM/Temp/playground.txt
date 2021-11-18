@@ -139,7 +139,7 @@ ipv6 enable
 ospfv3 10 ipv4 area 0
 ! 
 ip nat pool NAT 180.150.115.139 180.150.115.139 netmask 255.255.255.252
-access-list 10 permit @nat_acl_permit 0.0.0.3
+access-list 10 permit 10.10.10.0 0.0.0.3
 ip nat inside source list 10 pool NAT
 ! 
 router ospfv3 10
