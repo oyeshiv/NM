@@ -520,29 +520,81 @@
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="bgprid">BGP Router Id</label>
+      <label for="wanlo">Neighbor Loop WAN</label>
     </div>
     <div class="col-75">
-      <input type="text" id="bgprid" name="bgp_router_id" placeholder="Enter your BGP Router Id "
-        value='{{script.isr4321.bgp_router_id}}'>
+      <input type="text" id="wanlo" name="wanlo" placeholder="Enter Noeghbor WAN Loopback "
+        value='{{script.isr4321.neighbor_wan_lo_ip}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="bgpipv4add">Neighbour IPV4 Address</label>
+      <label for="wanas">AS number (WAN-Loopback)</label>
     </div>
     <div class="col-75">
-      <input type="text" id="bgpipv4add" name="bgp_ipv4_neighbor_wan_ip_in" placeholder="ipv4 neighbour address"
-        value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_in}}'>
+      <input type="text" id="wanas" name="wanas" placeholder="Enter your AS number  "
+        value='{{script.isr4321.neighbor_wan_lo_as}}'>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="wanupdt"> WAN Update IP</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="wanupdt" name="wanupdt" placeholder="WAN Update IP"
+          value='{{script.isr4321.neighbor_wan_lo_update_ip}}'>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="wanint">WAN Update Interface </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="wanint" name="wanint" placeholder="WAN Update Interface"
+            value='{{script.isr4321.neighbor_wan_lo_update_int}}'>
+        </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="bgpipv6add">Neighbour IPV6 Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="bgpipv6add" name="bgpipv6add" placeholder="Neighbour IPV6 Address"
+        value='{{script.isr4321.neighbor_ipv6_add}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="bgpipv4add">Neighbour IPV6 Address</label>
+      <label for="neighipv6as">Neighbour AS (IPV6)</label>
     </div>
     <div class="col-75">
-      <input type="text" id="bgpipv4add" name="bgp_ipv4_neighbor_wan_ip_in" placeholder="ipv4 neighbour address"
-        value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_in}}'>
+      <input type="text" id="neighipv6as" name="neighipv6as" placeholder="Neighbour AS (IPV6)"
+        value='{{script.isr4321.neighbor_ipv6_as}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neighipv4">IPV4 Neighbor (IP) </label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="neighipv4" name="neighipv4" placeholder="IPV4 Neighbor (IP)"
+        value='{{script.isr4321.bgp_ipv4_neighbor_ip}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neighnet4"> Neighbor IPv4 Network</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="wanineighnet4p" name="neighnet4" placeholder="Neighbor IPv4 Network"
+        value='{{script.isr4321.bgp_ipv4_network}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neighsub4"> Neighbor IPv4 Network Subnet</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="neighsub4" name="neighsub4" placeholder="Neighbor IPv4 Network Subnet"
+        value='{{script.isr4321.bgp_ipv4_subnet}}'>
     </div>
   </div>
   <div class="row">
@@ -556,61 +608,102 @@
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor WAN IP Remote</label>
+      <label for="routemapwan"> Neighbor WAN Route Map</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="neighbor_wan_lo_as" placeholder="WAN IP Address"
-        value='{{script.isr4321.neighbor_wan_lo_as}}'>
+      <input type="text" id="routemapwan" name="routemapwan" placeholder="Neighbor WAN Route Map"
+        value='{{script.isr4321.bgp_ipv4_neighbor_wan_route_map_in}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor IPv4 Network</label>
+      <label for="comipv4"> IPV4 Community</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="bgp_ipv4_network" placeholder="WAN IP Address"
-        value='{{script.isr4321.bgp_ipv4_network}}'>
+      <input type="text" id="comipv4" name="comipv4" placeholder="NIPV4 Community"
+        value='{{script.isr4321.bgp_ipv4_community}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor IPv4 Network Subnet</label>
+      <label for="neighwanout"> Neighbor WAN (Outward)</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="bgp_ipv4_subnet" placeholder="WAN IP Address"
-        value='{{script.isr4321.bgp_ipv4_subnet}}'>
+      <input type="text" id="neighwanout" name="neighwanout" placeholder="Neighbor WAN (Outward)"
+        value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_out}}'>
     </div>
   </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="comipv4"> IPV4 Community</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="comipv4" name="comipv4" placeholder="NIPV4 Community"
+        value='{{script.isr4321.bgp_ipv4_community}}'>
+    </div>
+  </div><div class="col-25">
+    <label for="routemapwanout"> Neighbor WAN Route Map (outward)</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="routemaroutemapwanoutpwan" name="routemapwanout" placeholder="Neighbor WAN Route Map (outward)"
+      value='{{script.isr4321.bgp_ipv4_neighbor_wan_route_map_out}}'>
+  </div>
+</div>
   
   
   
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor WAN IPv6 Address</label>
+      <label for="ipv6neigh"> Neighbor WAN IPv6 Address</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="bgp_ipv6_neighbor_ip" placeholder="WAN IP Address"
+      <input type="text" id="ipv6neigh" name="ipv6neigh" placeholder="Neighbor WAN IPv6 Address"
         value='{{script.isr4321.bgp_ipv6_neighbor_ip}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor IPv6 Network</label>
+      <label for="ipv6net"> Neighbor IPv6 Network</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="bgp_ipv6_network" placeholder="WAN IP Address"
+      <input type="text" id="ipv6net" name="ipv6net" placeholder="Neighbor IPv6 Network"
         value='{{script.isr4321.bgp_ipv6_network}}'>
     </div>
   </div>
   <div class="row">
     <div class="col-25">
-      <label for="wanip"> Neighbor IPv6 Network Subnet</label>
+      <label for="ipv6sub"> Neighbor IPv6 Network Subnet</label>
     </div>
     <div class="col-75">
-      <input type="text" id="wanip" name="bgp_ipv6_subnet" placeholder="WAN IP Address"
+      <input type="text" id="ipv6sub" name="ipv6sub" placeholder="Neighbor IPv6 Network Subnet"
         value='{{script.isr4321.bgp_ipv6_subnet}}'>
     </div>
   </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="neighwanIPV6"> Neighbor IPv6 WAN (Inside)</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="neighwanIPV6" name="neighwanIPV6" placeholder="Neighbor IPv6 WAN (Inside)"
+        value='{{script.isr4321.bgp_ipv6_neighbor_wan_ip_in}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="comipv6"> IPV6 Community</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="comipv6" name="comipv6" placeholder="IPV6 Community"
+        value='{{script.isr4321.bgp_ipv6_community}}'>
+    </div>
+  </div><div class="col-25">
+    <label for="routemapwanin"> Neighbor WAN Route Map (Inside)</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="routemapwanin" name="routemapwanin" placeholder=" Neighbor WAN Route Map (Inside)"
+      value='{{script.isr4321.bgp_ipv6_neighbor_wan_route_map_in}}'>
+  </div>
+</div>
   
 
   <!--advanced options-->
