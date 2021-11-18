@@ -104,7 +104,7 @@ class ISR4321(Scripts):
     ssh_retries = models.CharField(max_length=100)
 
     #interfaces
-    g00_ip = models.GenericIPAddressField()
+    g00_ipv4 = models.GenericIPAddressField()
     g00_subnet = models.GenericIPAddressField()
     g00_vrrp_num = models.IntegerField()
     g00_vrrp_address = models.CharField(max_length=100)
@@ -121,7 +121,7 @@ class ISR4321(Scripts):
     g00_nat = models.CharField(max_length=100)
     g00_zone = models.CharField(max_length=100)
 
-    g01_ip = models.GenericIPAddressField()
+    g01_ipv4 = models.GenericIPAddressField()
     g01_subnet = models.GenericIPAddressField()
     
     
@@ -137,7 +137,7 @@ class ISR4321(Scripts):
     g01_nat = models.CharField(max_length=100)
     g01_zone = models.CharField(max_length=100)
 
-    g02_ip = models.GenericIPAddressField()
+    g02_ipv4 = models.GenericIPAddressField()
     g02_subnet = models.GenericIPAddressField()
 
 

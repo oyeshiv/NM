@@ -10,21 +10,20 @@
 
 {% for script in data %}
 <div class="container">
-  <form action="script_name_check">
+  <form method='POST' action="save">
           
     <div class="input-group">
       
       <label for="script_name">Script Name</label>
       
       
-      <input type="text" class="form-control"  name="script_name" value="{% for script in data %}{{script.script_name}}{% endfor %}" aria-label="Script">
+      <input type="text" class="form-control"  name="script_name" value="{{script.script_name}}" aria-label="Script">
       <button class="btn btn-primary" type="submit" >
         <i class="align-middle" data-feather="check"></i>
       </button>
     </div>
-  </form>
   <hr>
-  <form method='POST' action="save">
+  
   <div class="row">
     <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h3>
   </div>
@@ -51,6 +50,14 @@
     <div class="col-75">
       <input type="text" class="form-control" style="background: white;" id="motdr" name="motdr" placeholder="Write your MOTD banner"
         value='{{script.isr4321.banner_motd}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="enpwd">Passwords Minimum Length</label>
+    </div>
+    <div class="col-75">
+      <input type="text" class="form-control" style="background: white;" id="enpwd" name="en_pass_length" placeholder="Encryption Password" value='{{script.isr4321.en_pass_length}}'>
     </div>
   </div>
   <div class="row">
@@ -83,7 +90,7 @@
       <label for="login">Login block </label>
     </div>
     <div class="col-75">
-      <input type="text" class="form-control" style="background: white;" id="login" name="login" placeholder="Login block" value='{{script.isr4321.domain_name}}'>
+      <input type="text" class="form-control" style="background: white;" id="login" name="login" placeholder="Login block" value='{{script.isr4321.login_block_time}}'>
     </div>
   </div>
   <div class="row">
@@ -91,7 +98,7 @@
       <label for="atmpt">Number of login attempt/s </label>
     </div>
     <div class="col-75">
-      <input type="text" class="form-control" style="background: white;" id="atmpt" name="atmpt" placeholder="Login block" value='{{script.isr4321.domain_name}}'>
+      <input type="text" class="form-control" style="background: white;" id="atmpt" name="atmpt" placeholder="Login block" value='{{script.isr4321.login_tries}}'>
     </div>
   </div>
   <div class="row">
@@ -99,7 +106,7 @@
       <label for="sec">Within seconds</label>
     </div>
     <div class="col-75">
-      <input type="text" class="form-control" style="background: white;" id="sec" name="sec" placeholder="Within seconds" value='{{script.isr4321.domain_name}}'>
+      <input type="text" class="form-control" style="background: white;" id="sec" name="sec" placeholder="Within seconds" value='{{script.isr4321.tries_time}}'>
     </div>
   </div>
   <div class="row">
@@ -141,7 +148,7 @@
       <label for="intg00">Interface g0/0 Ip Address</label>
     </div>
     <div class="col-75">
-      <input type="text" class="form-control" style="background: white;" id="intg00" name="g00_ip" placeholder="Ip address for g0/0" value='{{script.isr4321.g00_ip}}'>
+      <input type="text" class="form-control" style="background: white;" id="intg00" name="g00_ip" placeholder="Ip address for g0/0" value='{{script.isr4321.g00_ipv4}}'>
     </div>
   </div>
   <div class="row">
@@ -158,7 +165,7 @@
     </div>
     <div class="col-75">
       <input type="text" class="form-control" style="background: white;" id="intg0/1" name="g01_ip" placeholder=" Private Ip address for g0/1"
-        value='{{script.isr4321.g01_ip}}'>
+        value='{{script.isr4321.g01_ipv4}}'>
     </div>
   </div>
   <div class="row">
@@ -175,7 +182,7 @@
     </div>
     <div class="col-75">
       <input type="text" class="form-control" style="background: white;" id="intg0/2" name="g02_ip" placeholder=" Private Ip address for g0/2"
-        value='{{script.isr4321.g02_ip}}'>
+        value='{{script.isr4321.g02_ipv4}}'>
     </div>
   </div>
   <div class="row">
@@ -574,6 +581,24 @@
     <div class="col-75">
       <input type="text" class="form-control" style="background: white;" id="wanip" name="neighbor_wan_lo_as" placeholder="WAN IP Address"
         value='{{script.isr4321.neighbor_wan_lo_as}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="wanip"> Neighbor Update IP</label>
+    </div>
+    <div class="col-75">
+      <input type="text" class="form-control" style="background: white;" id="wanip" name="neighbor_wan_lo_update_ip" placeholder="WAN IP Address"
+        value='{{script.isr4321.neighbor_wan_lo_update_ip}}'>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="wanip"> Neighbor Update Interface</label>
+    </div>
+    <div class="col-75">
+      <input type="text" class="form-control" style="background: white;" id="wanip" name="neighbor_wan_lo_update_int" placeholder="WAN IP Address"
+        value='{{script.isr4321.neighbor_wan_lo_update_int}}'>
     </div>
   </div>
   <div class="row">
@@ -1179,7 +1204,7 @@
       </div>
       <div class="col-75">
         <input type="text" class="form-control" style="background: white;" id="srtip" name="acl" placeholder="Crytpo Strat id"
-          value='{{script.isr4321.crypto_permit_ip_start}}'>
+          value='{{script.isr4321.crypto_access_list}}'>
       </div>
     </div>
     <div class="row">
