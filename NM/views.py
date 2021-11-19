@@ -8,9 +8,6 @@ from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
 from NM.models import ISR4321, Devices, Projects, Scripts
 from shutil import copyfile
-from distutils.core import setup
-import py2exe
-import urllib
 import PyInstaller.__main__
 
 # Create views
