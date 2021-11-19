@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'netman'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AE54527110DF4AB7A5D24174D882A30D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_93AD51084A9544F7B967828E3A4CB5A1 }}
