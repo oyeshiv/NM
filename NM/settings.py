@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # use this for deployment
-STATICFILES_DIRS = 'whitenoise.storage.CompressedMainfestStaticFilesStorage'
+STATICFILES_DIRS = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
