@@ -1,0 +1,73 @@
+altgraph==0.17.2
+asgiref @ file:///home/conda/feedstock_root/build_artifacts/asgiref_1625395912402/work
+astroid @ file:///D:/bld/astroid_1631641749627/work
+auto-py-to-exe==2.11.0
+autopep8 @ file:///home/conda/feedstock_root/build_artifacts/autopep8_1619771482781/work
+awsebcli==3.20.2
+bcrypt==3.2.0
+botocore==1.21.65
+bottle==0.12.19
+bottle-websocket==0.2.9
+cachetools==4.2.4
+cement==2.8.2
+certifi==2021.5.30
+cffi==1.15.0
+charset-normalizer==2.0.7
+colorama==0.4.3
+cryptography==35.0.0
+Django @ file:///home/conda/feedstock_root/build_artifacts/django_1630483767824/work
+django-bootstrap4==1.1.1
+django-crispy-forms @ file:///home/conda/feedstock_root/build_artifacts/django-crispy-forms_1632605802473/work
+Eel==0.12.4
+furl @ file:///home/conda/feedstock_root/build_artifacts/furl_1622383325663/work
+future==0.16.0
+gevent==21.8.0
+gevent-websocket==0.10.1
+greenlet==1.1.2
+idna==3.3
+isort @ file:///home/conda/feedstock_root/build_artifacts/isort_1627548912727/work
+jmespath==0.10.0
+lazy-object-proxy @ file:///D:/bld/lazy-object-proxy_1616507138472/work
+mccabe==0.6.1
+modulegraph==0.19.2
+netmiko==3.4.0
+ntc-templates==3.0.0
+olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
+orderedmultidict==1.0.1
+paramiko==2.8.0
+pathspec==0.5.9
+pefile==2021.9.3
+Pillow @ file:///D:/bld/pillow_1630696805646/work
+platformdirs @ file:///home/conda/feedstock_root/build_artifacts/platformdirs_1630400214373/work
+psycopg2==2.9.1
+py2exe==0.10.4.1
+pycodestyle @ file:///home/conda/feedstock_root/build_artifacts/pycodestyle_1615833610040/work
+pycparser==2.21
+pyinstaller==4.7
+pyinstaller-hooks-contrib==2021.3
+pylint @ file:///home/conda/feedstock_root/build_artifacts/pylint_1631892890219/work
+PyNaCl==1.4.0
+pypiwin32==223
+pyserial==3.5
+python-dateutil==2.8.2
+pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1612179539967/work
+pywin32==302
+pywin32-ctypes==0.2.0
+PyYAML==5.4.1
+requests==2.26.0
+scp==0.14.1
+semantic-version==2.8.5
+six==1.14.0
+sqlparse @ file:///home/conda/feedstock_root/build_artifacts/sqlparse_1631317292236/work
+tenacity==8.0.1
+termcolor==1.1.0
+textfsm==1.1.2
+toml @ file:///home/conda/feedstock_root/build_artifacts/toml_1604308577558/work
+typing-extensions @ file:///home/conda/feedstock_root/build_artifacts/typing_extensions_1632313171031/work
+urllib3==1.26.7
+wcwidth==0.1.9
+whichcraft==0.6.1
+wincertstore==0.2
+wrapt @ file:///D:/bld/wrapt_1610095100080/work
+zope.event==4.5.0
+zope.interface==5.4.0
