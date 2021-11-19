@@ -356,22 +356,22 @@ def save(request):
         neighbor_wan_lo_as = request.POST['neighbor_wan_lo_as'],
         neighbor_wan_lo_update_ip = request.POST['neighbor_wan_lo_update_ip'],
         neighbor_wan_lo_update_int = request.POST['neighbor_wan_lo_update_int'],
-        neighbor_ipv6_add = request.POST['bgp_ipv4_neighbor_wan_ip_in'],
-        neighbor_ipv6_as = request.POST['neighbor_wan_lo_as'],
-        bgp_ipv4_neighbor_ip = request.POST['neighbor_wan_lo_ip'],
+        neighbor_ipv6_add = request.POST['neighbor_ipv6_add'],
+        neighbor_ipv6_as = request.POST['neighbor_ipv6_as'],
+        bgp_ipv4_neighbor_ip = request.POST['bgp_ipv4_neighbor_ip'],
         bgp_ipv4_network = request.POST['bgp_ipv4_network'],
         bgp_ipv4_subnet = request.POST['bgp_ipv4_subnet'],
         bgp_ipv4_neighbor_wan_ip_in = request.POST['bgp_ipv4_neighbor_wan_ip_in'],
-        bgp_ipv4_neighbor_wan_route_map_in = request.POST['neighbor_wan_lo_as'],
-        bgp_ipv4_community = request.POST['neighbor_wan_lo_ip'],
-        bgp_ipv4_neighbor_wan_ip_out = request.POST['neighbor_wan_lo_ip'],
-        bgp_ipv4_neighbor_wan_route_map_out = request.POST['neighbor_wan_lo_as'],
+        bgp_ipv4_neighbor_wan_route_map_in = request.POST['bgp_ipv4_neighbor_wan_route_map_in'],
+        bgp_ipv4_community = request.POST['bgp_ipv4_community'],
+        bgp_ipv4_neighbor_wan_ip_out = request.POST['bgp_ipv4_neighbor_wan_ip_out'],
+        bgp_ipv4_neighbor_wan_route_map_out = request.POST['bgp_ipv4_neighbor_wan_route_map_out'],
         bgp_ipv6_neighbor_ip = request.POST['bgp_ipv6_neighbor_ip'],
         bgp_ipv6_network = request.POST['bgp_ipv6_network'],
         bgp_ipv6_subnet = request.POST['bgp_ipv6_subnet'],
-        bgp_ipv6_neighbor_wan_ip_in = request.POST['bgp_ipv4_neighbor_wan_ip_in'],
-        bgp_ipv6_neighbor_wan_route_map_in = request.POST['neighbor_wan_lo_as'],
-        bgp_ipv6_community = request.POST['bgp_ipv6_neighbor_ip']
+        bgp_ipv6_neighbor_wan_ip_in = request.POST['bgp_ipv6_neighbor_wan_ip_in'],
+        bgp_ipv6_neighbor_wan_route_map_in = request.POST['bgp_ipv6_neighbor_wan_route_map_in'],
+        bgp_ipv6_community = request.POST['bgp_ipv6_community']
         )
         script.save()
         

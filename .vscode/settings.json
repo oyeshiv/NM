@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f508849b-0c03-4b4d-af17-6f6cd1b7595b/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/netman",
+    "appService.deploySubpath": "."
+}

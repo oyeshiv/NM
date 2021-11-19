@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-k1*)7lg+!4cbl8d(q#g#uba_r9^a4kpw!al$!#d(y6g3h)y7e!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['netman.azurewebsites.net']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.security.SecurityMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,7 +124,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# use this in development
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# use this for deployment
+STATICFILES_DIRS = 'whitenoise.storage.CompressedMainfestStaticFilesStorage'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 
