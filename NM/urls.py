@@ -33,7 +33,7 @@ urlpatterns = [
     path('profile', views.profile, name='Profile'),
 
     #dashboard
-    path('dash', views.dash, name='Dashboard'),
+    path('dashboard', views.dashboard, name='Dashboard'),
     path('scripts', views.scripts, name='Scripts'),
 
     #script-functions
@@ -42,7 +42,7 @@ urlpatterns = [
     path('save', views.save, name='Save'),
     
     #project-functions
-    path('new_project', views.new_project, name='New Project'),
+    path('save_project', views.save_project, name='Save Project'),
 
     #generate-functions
     path('generate_text', views.text_generator, name='Generate Text'),

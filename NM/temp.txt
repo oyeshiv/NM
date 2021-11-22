@@ -1,45 +1,198 @@
-class Ospf(models.Model):
-    process_identification = models.CharField(max_length=20)
+host_name = host_name,
+banner_motd = banner_motd,
+user_name = user_name,
+user_pass = user_pass,
+login_block_time = login_block_time,
+login_tries = login_tries,
+tries_time = tries_time,
+login_delay = login_delay,
+login_host = login_host,
+login_trap_level = login_trap_level,
+login_source = login_source,
+en_pass_length = en_pass_length,
+en_pass = en_pass,
+domain_name = domain_name,
 
-class CiscoRouterLoginSecutiy(models.Model):
-    user_name = models.CharField()
-    user_pass = models.CharField()
-    login_block_time = models.IntegerField()
-    login_tries = models.IntegerField()
-    login_tries_time = models.IntegerField()
-    login_delay = models.IntegerField()
-    login_host = models.IPAddressField()
-    login_trap_level = models.CharField()
-    en_pass_length = models.CharField()
-    en_pass = models.CharField()
-    domain_name = models.CharField()
+isakmp_policy = isakmp_policy,
+isakmp_password = isakmp_password,
+isakmp_remote_peer = isakmp_remote_peer,
+isakmp_tag = isakmp_tag,
+crypto_access_list = crypto_access_list,
+crypto_permit_ip_start = crypto_permit_ip_start,
+crypto_permit_start_wild = crypto_permit_start_wild,
+crypto_permit_ip_end = crypto_permit_ip_end,
+crypto_permit_end_wild = crypto_permit_end_wild,
+crypto_map_name = crypto_map_name,
+crypto_map_num = crypto_map_num,
+crypto_map_match_access_list = crypto_map_match_access_list,
+crypto_map_peer = crypto_map_peer,
+crypto_map_transform_set = crypto_map_transform_set,
+crypto_map_lifetime_seconds = crypto_map_lifetime_seconds,
+isakmp_ipv6_policy = isakmp_ipv6_policy,
+isakmp_ipv6_password = isakmp_ipv6_password,
+isakmp_ipv6_remote_peer_ip = isakmp_ipv6_remote_peer_ip,
+isakmp_ipv6_remote_peer_prefix = isakmp_ipv6_remote_peer_prefix,
+crypto_keyring = models.CharField(max_length=100)
+crypto_pre_shared_key_ipv6 = models.GenericIPAddressField()
+crypto_pre_shared_key_prefix = models.CharField(max_length=2)
+crypto_pre_shared_key = models.CharField(max_length=100)
+crypto_ipsec_transform_set = models.CharField(max_length=100)
 
-class CiscoRouterKeyChain(models.Model):
-    keychain_name = models.CharField()
-    key_string = models.CharField()
-    algo = models.CharField()
+ipsec_profile = models.CharField(max_length=100)
+ipsec_transform_set = models.CharField(max_length=100)
 
-class CiscoRouterAAA(models.Model):
-    radius_server_name = models.CharField()
-    server_address = models.IPAddressField()
-    radius_pass = models.CharField()
-    group_name = models.CharField()
-    server_name = models.CharField()
+isakmp_profile = models.CharField(max_length=100)
+isakmp_match_ipv6_add = models.CharField(max_length=100)
+isakmp_match_ipv6_prefix = models.CharField(max_length=2)
 
-class CiscoRouterZoneSecurity():
-    zone_name = models.CharField()
-    class_map_name = models.CharField()
-    policy_map = models.CharField()
-    inspect = models.BooleanField()
+#radius
+radius_server_name = models.CharField(max_length=100)
+server_address = models.GenericIPAddressField()
+max_fail = models.IntegerField()
+radius_pass = models.CharField(max_length=100)
+group_name = models.CharField(max_length=100)
+server_name = models.CharField(max_length=100)
+zone_name = models.CharField(max_length=100)
+zone_internet = models.CharField(max_length=100)
+class_map_name = models.CharField(max_length=100)
+policy_map = models.CharField(max_length=100)
+
+acl_name = models.CharField(max_length=100)
+acl_string = models.TextField()
+
+#ssh
+ssh_crypto_key = models.IntegerField()
+ssh_timeout = models.CharField(max_length=100)
+ssh_retries = models.CharField(max_length=100)
+
+#interfaces
+g00_ipv4 = models.GenericIPAddressField()
+g00_subnet = models.GenericIPAddressField()
+g00_vrrp_num = models.IntegerField()
+g00_vrrp_address = models.CharField(max_length=100)
+g00_track_num = models.IntegerField()
+g00_track_dec = models.IntegerField()
+g00_priority = models.IntegerField()
+g00_ipv6_address = models.GenericIPAddressField()
+g00_ipv6_link = models.GenericIPAddressField()
+g00_ipv6_vrrp_num = models.IntegerField()
+g00_ipv6_vrrp_address = models.CharField(max_length=100)
+g00_ipv6_track_num = models.IntegerField()
+g00_ipv6_track_dec = models.IntegerField()
+g00_ipv6_priority = models.IntegerField()
+g00_nat = models.CharField(max_length=100)
+g00_zone = models.CharField(max_length=100)
+
+g01_ipv4 = models.GenericIPAddressField()
+g01_subnet = models.GenericIPAddressField()
 
 
-class CiscoRouterACL(models.Model):
-    acl_name = models.CharField()
-    acl_string = models.TextField()
+g01_ipv6_address = models.GenericIPAddressField()
+g01_ipv6_link = models.GenericIPAddressField()
 
-class CiscoRouterSSH(models.Model):
-    enable = models.BooleanField()
-    ssh_timeout = models.CharField()
-    ssh_retries = models.CharField()
+g01_ospfv3_ipv4 = models.IntegerField()
+g01_ospfv3_area = models.IntegerField()
+g01_ospfv3_ipv6 = models.IntegerField()
+g01_ospfv3_v6_area = models.IntegerField()
+g01_ospfv3_encryption_num = models.IntegerField()
+g01_ospfv3_encryption_sha = models.PositiveBigIntegerField()
+g01_nat = models.CharField(max_length=100)
+g01_zone = models.CharField(max_length=100)
+
+g02_ipv4 = models.GenericIPAddressField()
+g02_subnet = models.GenericIPAddressField()
 
 
+g02_ipv6_address = models.GenericIPAddressField()
+g02_ipv6_link = models.GenericIPAddressField()
+
+g02_ospfv3_ipv4 = models.IntegerField()
+g02_ospfv3_area = models.IntegerField()
+g02_ospfv3_ipv6 = models.IntegerField()
+g02_ospfv3_v6_area = models.IntegerField()
+g02_ospfv3_encryption_num = models.IntegerField()
+g02_ospfv3_encryption_sha = models.PositiveBigIntegerField()
+
+g02_nat = models.CharField(max_length=100)
+g02_zone = models.CharField(max_length=100)
+
+lo1_ip = models.GenericIPAddressField()
+lo1_subnet = models.GenericIPAddressField()
+lo1_ospfv3_ipv4 = models.IntegerField()
+lo1_ospfv3_area = models.IntegerField()
+
+tunnel_num = models.IntegerField()
+tunnel_ipv6_add = models.GenericIPAddressField()
+tunnel_ipv6_prefix = models.CharField(max_length=2)
+tunnel_source_interface = models.CharField(max_length=100)
+tunnel_destination_address = models.CharField(max_length=100)
+tunnel_protection_profile = models.CharField(max_length=100)
+
+#ntp
+ntp_peer_add1 = models.GenericIPAddressField()
+ntp_peer_add2 = models.GenericIPAddressField()
+ntp_master_num = models.IntegerField()
+ntp_auth_key_num = models.IntegerField()
+ntp_auth_key_pass = models.CharField(max_length=100)
+ntp_trust_key = models.IntegerField()
+
+#ip_prefix
+ip_prefix_list_name = models.CharField(max_length=100)
+ip_prefix_list_network = models.GenericIPAddressField()
+ip_prefix_list_subnet = models.GenericIPAddressField()
+
+
+#route-map
+route_map_name = models.CharField(max_length=100)
+route_map_permit_1 = models.IntegerField()
+route_map_match_list = models.CharField(max_length=100)
+set_weight = models.IntegerField()
+set_metric = models.IntegerField()
+route_map_permit_2 = models.IntegerField()
+
+#nat
+nat_pool_name = models.CharField(max_length=100)
+nat_start_address = models.GenericIPAddressField()
+nat_end_address = models.GenericIPAddressField()
+nat_subnet = models.GenericIPAddressField()
+nat_acl_number = models.IntegerField()
+nat_acl_permit_ip = models.GenericIPAddressField()
+nat_acl_permit_wildcard = models.GenericIPAddressField()
+
+#ospfv3
+ospf_process_id = models.CharField(max_length=20)
+ospfv3_ipv4_rid = models.GenericIPAddressField()
+ospfv3_ipv6_rid = models.GenericIPAddressField()
+
+#ip-route
+route_wan_lo_network = models.GenericIPAddressField()
+route_wan_lo_subnet = models.GenericIPAddressField()
+next_hop_wan = models.GenericIPAddressField()
+route_opp_lo_network = models.GenericIPAddressField()
+route_opp_lo_subnet = models.GenericIPAddressField()
+next_hop_router = models.GenericIPAddressField()
+
+#bgp
+bgp_community_route_map = models.CharField(max_length=100)
+bgp_process_id = models.CharField(max_length=100)
+bgp_router_id = models.GenericIPAddressField()
+neighbor_wan_lo_ip = models.GenericIPAddressField()
+neighbor_wan_lo_as = models.IntegerField()
+neighbor_wan_lo_update_ip = models.GenericIPAddressField()
+neighbor_wan_lo_update_int = models.CharField(max_length=100)
+neighbor_ipv6_add = models.GenericIPAddressField()
+neighbor_ipv6_as = models.IntegerField()
+bgp_ipv4_neighbor_ip = models.GenericIPAddressField()
+bgp_ipv4_network = models.GenericIPAddressField()
+bgp_ipv4_subnet = models.GenericIPAddressField()
+bgp_ipv4_neighbor_wan_ip_in = models.GenericIPAddressField()
+bgp_ipv4_neighbor_wan_route_map_in = models.CharField(max_length=100)
+bgp_ipv4_community = models.GenericIPAddressField()
+bgp_ipv4_neighbor_wan_ip_out = models.GenericIPAddressField()
+bgp_ipv4_neighbor_wan_route_map_out = models.CharField(max_length=100)
+bgp_ipv6_neighbor_ip = models.GenericIPAddressField()
+bgp_ipv6_network = models.GenericIPAddressField()
+bgp_ipv6_subnet = models.CharField(max_length=100)
+bgp_ipv6_neighbor_wan_ip_in = models.GenericIPAddressField()
+bgp_ipv6_neighbor_wan_route_map_in = models.CharField(max_length=100)
+bgp_ipv6_community = models.GenericIPAddressField()
