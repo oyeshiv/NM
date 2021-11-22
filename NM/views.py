@@ -75,16 +75,26 @@ def edit_script(request):
         script_device = Scripts.objects.get(id=request.POST['script_id']).device_id
         device = Devices.objects.get(id=script_device)
         template = '404.html'
-        if device.device_model == 'ISR4321/K9':
+        if device.device_model is not None:
             script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
-            template = 'ISR4321.html'
+            template = device.nm_model + ".html"
         return render(request, template, {'data':script , 'device': device, 'organisation_name':request.session['organisation']} )
 
 def new_script(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
-        return render(request, 'ISR4321.html', {'data': [1], 'organisation_name':request.session['organisation']})
+        if request.method == 'POST':
+            project_id = request.POST['project']
+            device_id = request.POST['device']
+            nm_model = Devices.objects.get(id=device_id).nm_model
+            script_name = request.POST['script_name']
+            script = ''
+            if nm_model == "ISR4321":
+                script = ISR4321(project_id=project_id, device_id=device_id, script_name=script_name)
+            script.save()
+            scripts = [script]
+            return render(request, nm_model+'.html', {'data': scripts, 'organisation_name':request.session['organisation']})
     
     
 def text_generator(request):
@@ -186,7 +196,7 @@ def save_project(request):
             desc = request.POST['desc']
             organisation = User.objects.get(username=request.session['username']).groups.all()
             organisation = organisation[0]
-            if request.POST['id']:
+            if id in request.POST:
                 project = Projects.objects.get(id=request.POST['id'])
                 project.project_name = project_name
                 project.client_name = client_name
