@@ -55,7 +55,7 @@
             Projects
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="dash">
+            <a class="sidebar-link" href="dashboard">
               <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Projects</span>
             </a>
           </li>
@@ -151,7 +151,7 @@
                   <span class="sr-only">Close</span>
                 </button>
               </div>
-              <form method="POST" action="new_project">
+              <form method="POST" action="save_project">
                 {% csrf_token %}
                 <div class="modal-body" style="background:#f7f7fc">
                   <div class="mb-3">
@@ -186,7 +186,7 @@
           <div class="row text-muted">
             <div class="col-6 text-left">
               <p class="mb-0">
-                <a href="dash" class="text-muted"><strong>NETMAN</strong></a> &copy;
+                <a href="dashboard" class="text-muted"><strong>NETMAN</strong></a> &copy;
               </p>
             </div>
             <div class="col-6 text-right">

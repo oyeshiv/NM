@@ -12,7 +12,7 @@ import PyInstaller.__main__
 
 # Create views
 
-def dash(request):
+def dashboard(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
@@ -28,7 +28,7 @@ def dash(request):
 def login_user(request):
 
     if 'username' in request.session:
-        result = redirect('/dash')
+        result = redirect('/dashboard')
     
     else:
         result = render(request, 'login.html')
@@ -42,7 +42,7 @@ def login_user(request):
                 logged_user = User.objects.get(username=request.session['username'])
                 if username != 'shivam' and user.groups.all() is not None:
                     request.session['organisation_id'] = user.groups.all()[0].id
-                result = redirect('/dash')
+                result = redirect('/dashboard')
             else:
                 messages.success(request, ('Incorrect User Credentials!'))
                 result = redirect('/')
@@ -62,7 +62,11 @@ def scripts(request):
             request.session['project_id'] = request.POST['id']
         project = Projects.objects.filter(id=request.session['project_id'])[0]
         result_scripts = Scripts.objects.filter(project_id=request.session['project_id']).select_related('device')
-        return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.session['project_id'], 'organisation_name':request.session['organisation'], 'project':project} )
+        projects = Projects.objects.all()
+        devices = Devices.objects.all()
+        return render(request, 'scripts.html', {'scripts': result_scripts, 'project_id': request.session['project_id'], 
+                                                'organisation_name':request.session['organisation'], 'project':project,
+                                                'projects':projects, 'devices':devices} )
 
 def edit_script(request):
     if 'username' not in request.session:
@@ -171,19 +175,27 @@ def exe_generator(request):
     else:
         return redirect('/404')
 
-def new_project(request):
+def save_project(request):
     if 'username' not in request.session:
         redirect('/')
     else:
         if request.method == 'POST':
+            
             project_name = request.POST['pname']
             client_name = request.POST['cname']
             desc = request.POST['desc']
             organisation = User.objects.get(username=request.session['username']).groups.all()
             organisation = organisation[0]
-            
-            project = Projects(project_name=project_name, organisation=organisation, client_name=client_name, desc=desc)
-            project.save()
+            if request.POST['id']:
+                project = Projects.objects.get(id=request.POST['id'])
+                project.project_name = project_name
+                project.client_name = client_name
+                project.desc = desc
+                project.save()
+                return redirect('/dashboard')
+            else:
+                project = Projects(project_name=project_name, organisation=organisation, client_name=client_name, desc=desc)
+                project.save()
             request.session['project_id'] = project.id
     return redirect('/scripts')
 
@@ -372,7 +384,7 @@ def save(request):
         )
         script.save()
         
-        return redirect('/dash')
+        return redirect('/dashboard')
         
     return redirect('/')
 
