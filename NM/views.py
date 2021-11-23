@@ -144,10 +144,10 @@ def exe_generator(request):
             script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
         script_var = []
         script_val = []
-        with open('NM\Default_Config\ISR4321.txt', 'r') as input_file:
+        with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
             input_data = input_file.read()
-        output_file = open('NM/Temp/playground.txt', 'wt')
-        python_output = open('NM/Temp/python_playground.txt', 'wt')
+        output_file = open('static/Temp/playground.txt', 'wt')
+        python_output = open('static/Temp/python_playground.txt', 'wt')
         
         for k, v in script.__dict__.items():
             script_var.append('@'+str(k))
@@ -166,7 +166,7 @@ def exe_generator(request):
         python_output.writelines('tn = telnetlib.Telnet(HOST)\n')
         python_output.writelines('tn.read_until("Router")\n')        
 
-        output_file = open('NM/Temp/playground.txt', 'r')
+        output_file = open('static/Temp/playground.txt', 'r')
         
         for line in output_file:
             line = line.replace('\n', '')
@@ -174,10 +174,10 @@ def exe_generator(request):
         
         python_output.writelines('tn.write("end \\n")\n')    
         python_output.writelines('tn.write("exit \\n")\n')   
-        python_output = open('NM/Temp/python_playground.txt', 'r')
-        copyfile('NM/Temp/python_playground.txt', 'NM/Temp/python_playground.py')
+        python_output = open('static/Temp/python_playground.txt', 'r')
+        copyfile('static/Temp/python_playground.txt', 'static/Temp/python_playground.py')
         
-        PyInstaller.__main__.run(['NM/Temp/python_playground.py' ,'--onefile'])
+        PyInstaller.__main__.run(['static/Temp/python_playground.py' ,'--onefile'])
         
         output = open('dist/python_playground.exe', 'rb')
         
