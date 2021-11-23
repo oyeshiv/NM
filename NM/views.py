@@ -108,9 +108,9 @@ def text_generator(request):
         script_var = []
         script_val = []
         
-        with open(os.path.dirname(os.path.realpath(__file__)) + '/Default_Config/ISR4321.txt', 'r') as input_file:
+        with open('/Default_Config/ISR4321.txt', 'r') as input_file:
             input_data = input_file.read()
-        output_file = open(os.path.dirname(os.path.realpath(__file__)) + '/Temp/playground.txt', 'wt')
+        output_file = open('/Temp/playground.txt', 'wt')
         
         for k, v in script.__dict__.items():
             script_var.append('@'+str(k))
