@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
-from NM.models import ISR4321, Devices, Projects, Scripts
+from NM.models import *
 from shutil import copyfile
 import PyInstaller.__main__
 
@@ -95,6 +95,8 @@ def new_script(request):
             script = ''
             if nm_model == "ISR4321":
                 script = ISR4321(project_id=project_id, device_id=device_id, script_name=script_name)
+            elif nm_model == "WSC3650":
+                script = WSC3650(project_id=project_id, device_id=device_id, script_name=script_name)   
             script.save()
             scripts = [script]
             return render(request, nm_model+'.html', {'data': scripts, 'organisation_name':request.session['organisation']})
@@ -137,8 +139,6 @@ def text_generator(request):
     response.write(input_data)
         
     return response
-    
-    
     
 def exe_generator(request):
     
