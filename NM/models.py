@@ -231,3 +231,9 @@ class ISR4321(Scripts):
     bgp_ipv6_neighbor_wan_route_map_in = models.CharField(max_length=100)
     bgp_ipv6_community = models.GenericIPAddressField()
     
+class C1000(Scripts):
+    
+    host_name = models.CharField(max_length=100)
+    
+    vlans = ArrayField(ArrayField(models.IntegerField(), models.CharField(max_length=100), null=True), null=True)
+    
