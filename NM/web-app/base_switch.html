@@ -21,15 +21,17 @@
     </button>
   </div>
   <hr>
-      <div class="row">
-        <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC  </h5> 
+  <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h3>
+  </div>
+  <div class="row">
         <div class="col-25">
           <label for="sname">Device Name</label>
         </div>
         <div class="col-75">
           <input type="text" id="sname" name="sname" placeholder="Switch Name......">
         </div>
-      </div>
+  </div>
       <div class="row">
         <div class="col-25">
           <label for="s2uname">User Name</label>
@@ -62,89 +64,347 @@
           <input type="text" id="s2enpwd" name="s2enpwd" placeholder="Encryption Password">
         </div>
       </div>
-    <!--ACCESS Vlan-->
-    <hr></hr>
+      <div class="row">
+        <div class="col-25">
+          <label for="minlen"> Password Minimum Length </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="minlen" name="minlen" placeholder="Password Minimum Length">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="time"> Executive Timeout</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="time" name="time" placeholder="Executive Timeout">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="minlen"> Password Minimum Length </label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="minlen" name="minlen" placeholder="Password Minimum Length">
+        </div>
+      </div>
+     <!-- login Details -->
+    <hr>
     <div class="row">
-      
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="#add_vlan"> Access Vlans </h5>
-      <div class="col-25"> 
-        <label for="ename">VLAN Numbers</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="vlan" name="vlan" placeholder="VLAN 99">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="svi">Vlan Interface Address</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="accessvlan" name="accessvlan" placeholder=" Interface Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="svi">Subnet</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="accsub" name="accsub" placeholder=" Subnet">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="svi">Access Vlan Interface</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="accint" name="accint" placeholder=" Access Vlan Interface">
-      </div>
-    </div>
-    <hr></hr>
-    <!--Trunk Vlan-->
-    <div class="row">
-      <h5 style="text-align: left; color: darkblue; font-family: monospace;" id="add_trunk"> Trunk Vlans </h5>
-      <div class="col-25">
-        <label for="trunk1">Port number</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="trunk1" name="trunk1" placeholder="Enter trunk -1 ">
-      </div>
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="pch1"> Login Protection </h3>
     </div>
   <div class="row">
-      <div class="col-25">
-        <label for="s2int1">Interface 1 </label>
+    <div class="col-25"> 
+      <label for="secblk">Block Login</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="secblk" name="secblk" placeholder="Block login (seconds) ">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="alwatmpt">Allowed Attempts</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="alwatmpt" name="alwatmpt" placeholder="Allowed Attempts (number)) ">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="occur">Occurence</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="occur" name="occur" placeholder="Occurence attempts in (seconds) ">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="acl">ACL List Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="acl" name="acl" placeholder="ACL List Name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="admipv4">Admin IPv4 Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="admipv4" name="admipv4" placeholder="Admin IPv4 Address">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="admipv6">Admin IPv6 Address</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="admipv6" name="admipv6" placeholder="Admin IPv6 Address">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="delay">Login Delay</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="delay" name="delay" placeholder="Login Delay in (seconds) ">
+    </div>
+  </div>
+  
+    <!--port channel 1 -->
+    <hr>
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="pch1"> Port Channel 1 </h3>
+    </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="portchannel1">Port Channel (g1/0-1)</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="portchannel1" name="portchannel1" placeholder="Port Channel Number 1 ">
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-25"> 
+    <label for="tvlan1">Trunk Vlan 1</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="tvlan1" name="tvlan1" placeholder="Trunk Vlan 1 ">
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-25"> 
+    <label for="tvlan1">Trunk Vlan 2</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="tvlan2" name="tvlan2" placeholder="Trunk Vlan 2">
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-25"> 
+    <label for="tvlan1">Trunk Vlan 3</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="tvlan3" name="tvlan3" placeholder="Trunk Vlan 3">
+  </div>
+ </div>
+ <div class="row">
+  <div class="col-25"> 
+    <label for="native">Native Trunk Vlan</label>
+  </div>
+  <div class="col-75">
+    <input type="text" id="native" name="native" placeholder="Native Trunk Vlan">
+  </div>
+ </div>
+   <!--port channel 2 -->
+   <hr>
+   <div class="row">
+    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="pch2"> Port Channel 2 </h3>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="portchannel2">Port Channel (g1/2-3)</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="portchannel2" name="portchanne2" placeholder="Port Channel Number 2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="tvlan1">Trunk Vlan 1</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="tvlan1" name="tvlan1" placeholder="Trunk Vlan 1 ">
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="tvlan1">Trunk Vlan 2</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="tvlan2" name="tvlan2" placeholder="Trunk Vlan 2">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="tvlan1">Trunk Vlan 3</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="tvlan3" name="tvlan3" placeholder="Trunk Vlan 3">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25"> 
+      <label for="native">Native Trunk Vlan</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="native" name="native" placeholder="Native Trunk Vlan">
+    </div>
+  </div>
+      <!--Interface g1/0-->
+      <hr>
+      <div class="row">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/0"> Interface g1/0</h3>
+      </div>
+    <div class="row">
+      <div class="col-25"> 
+        <label for="channel">Channel Group</label>
       </div>
       <div class="col-75">
-        <input type="text" id="s2int1" name="s2int1" placeholder="Enter interface  1">
+        <input type="text" id="channel" name="channel" placeholder="Channel group number">
+      </div>
+    </div>
+     
+   
+     <!--Interface g1/1-->
+     <hr>
+     <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/1"> Interface g1/1</h3>
+    </div>
+     <div class="row">
+      <div class="col-25"> 
+        <label for="channel1.1">Channel Group</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="channel1.1" name="channel1.1" placeholder="Channel group number">
+      </div>
+    </div>
+    <!--Interface g1/2-->
+    <hr>
+    <div class="row">
+     <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/2"> Interface g1/2</h3>
+   </div>
+      
+    <div class="row">
+      <div class="col-25"> 
+        <label for="channel2">Channel Group</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="channel2" name="channel2" placeholder="Channel group number 2">
+      </div>
+    </div>
+     <!--Interface g1/3-->
+     <hr>
+     <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/2"> Interface g1/3</h3>
+    </div>
+      
+      
+    <div class="row">
+      <div class="col-25"> 
+        <label for="channel2.2">Channel Group</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="channel2.2" name="channel2.2" placeholder="Channel group number">
+      </div>
+    </div>
+     
+    <!--AAA-->
+    <hr></hr>
+    <div class="row">
+      
+      <h3 style="text-align: left; color: darkblue; font-family: monospace;" id="#s2aaa"> AAA </h3>
+    </div>
+    <div class="row">
+      <div class="col-25"> 
+        <label for="rserver"> Radius Server Name </label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="rserver" name="rserver" placeholder="Radius Server Name">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="s2int2">Interface 2 </label>
+        <label for="ipserver">Server IP Address</label>
       </div>
       <div class="col-75">
-        <input type="text" id="s2int2" name="s2int2" placeholder="Enter interface  2">
+        <input type="text" id="ipserver" name="ipserver" placeholder=" Server IP Address">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="s2int3">Interface 3 </label>
+        <label for="keypwd">Key Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="s2int3" name="s2int3" placeholder="Enter interface  3">
+        <input type="text" id="keypwd" name="keypwd" placeholder="Keyword">
       </div>
-      <div class="col-75" style="margin-left: 290px; margin-right: 460px;">
-        <input style="margin: 5px; float: left; " type="submit" value="Download Text">
-        <input style="margin: 5px; float: left;" type="submit" value="Download Exec">
-        <input style="margin: 5px; float: left;"  type="submit" value="Save">
     </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="max1">Max Fail</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="max1" name="max1" placeholder="Max Fail">
+      </div>
     </div>
+    <!-- NTP-->
+    <div class="row">
+      <div class="col-25">
+        <label for="r1add">Router's IP Address</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="r1add" name="r1add" placeholder="Router's IP Address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntpauth">Authentication Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntpauth" name="ntpauth" placeholder="Authentication Key">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="md5pwd">Md5 SHA Password</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="md5pwd" name="md5pwd" placeholder="Md5 SHA Password">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="trstkey">Trusted Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="trstkey" name="trstkey" placeholder="Trusted Key">
+      </div>
+    </div>
+    <hr></hr>
     
   
- </div>
-      
-    </form>
-
   
+</div>
+<div class="row">
+  <hr>
+  <div class="col">
+    <div class='d-flex justify-content-between'>
+
+      {% csrf_token %}
+
+      <input type='hidden' name='device_id' value='1'>
+      {% if script.id is not null %}
+      <input type='hidden' name='script_id' value='{{script.id}}'>
+      {% endif %}
+      <button class="btn btn-primary" type="=submit"><i data-feather="save"></i> <span>Save</span></button>
+</form>
+  {% if script.id is not null %}
+  <form method='POST' action="generate_exe">
+    {% csrf_token %}
+    <input type='hidden' name='script_id' value='{{script.id}}'>
+    <button class="btn btn-success" type="=submit"><i data-feather="download"></i>
+      <span>Executable</span></button>
+  </form>
+  <form method='POST' action="generate_text">
+    {% csrf_token %}
+    <input type='hidden' name='script_id' value='{{script.id}}'>
+    <button class="btn btn-success" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+  </form>
+  {% endif %}
+  <button class="btn btn-primary">
+    <span><a href="dash" class="text-white">Cancel</a></span></button>
+</div>
+
+
 {% endblock %}
  
-  
+
