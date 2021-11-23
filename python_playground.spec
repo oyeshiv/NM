@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['NM\\Temp\\python_playground.py'],
+a = Analysis(['static\\Temp\\python_playground.py'],
              pathex=[],
              binaries=[],
              datas=[],
