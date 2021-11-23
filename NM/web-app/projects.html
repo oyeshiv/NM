@@ -24,7 +24,7 @@
 {% csrf_token %}
 <div class="container-fluid p-0">
     <div class="row mb-2 mb-xl-3">
-        <div class="col-auto d-none d-sm-block">
+        <div class="col-auto">
             <h3>Dashboard &#8594;<strong> Projects</strong></h3>
         </div>
     </div>
@@ -39,7 +39,7 @@
                         <span class="text-muted">{{project.desc}}</span> <br>
                     </div>
 
-                    <div class="buttons">
+                    <div>
                         <form method='POST' action="scripts">
                             {% csrf_token %}
                             <input type='hidden' name='id' value='{{project.id}}'>

@@ -11,6 +11,7 @@ class Devices(models.Model):
     device_category = models.ForeignKey(DeviceCategories, on_delete=models.RESTRICT)
     device_model = models.CharField(max_length=100)
     device_manufacturer = models.CharField(max_length=100)
+    nm_model = models.CharField(max_length=100)
 
     def __str__(self):
         return self.device_category.category_name + ' | ' + self.device_model
@@ -27,7 +28,7 @@ class Projects(models.Model):
 class Scripts(models.Model):
     device = models.ForeignKey(Devices, on_delete=models.RESTRICT)
     project = models.ForeignKey(Projects, on_delete=models.RESTRICT)
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateField(auto_now=True)
     date_modified = models.DateField(auto_now_add=True)
     script_name = models.CharField(max_length=100)
     
@@ -229,4 +230,10 @@ class ISR4321(Scripts):
     bgp_ipv6_neighbor_wan_ip_in = models.GenericIPAddressField()
     bgp_ipv6_neighbor_wan_route_map_in = models.CharField(max_length=100)
     bgp_ipv6_community = models.GenericIPAddressField()
+    
+class C1000(Scripts):
+    
+    host_name = models.CharField(max_length=100)
+    
+    vlans = ArrayField(ArrayField(models.IntegerField(), models.CharField(max_length=100), null=True), null=True)
     

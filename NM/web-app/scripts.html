@@ -30,9 +30,66 @@
       display: block;
       margin: 0.4em auto;
     }
+  }
 
+  @media (max-width: 400px) {                  
+    .hide-sm {
+       display: none;
+    }
+ }
 
+  @media only screen and (max-width: 800px) {
 
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+      display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    #no-more-tables tr {
+      border: 1px solid #ccc;
+    }
+
+    #no-more-tables td {
+      /* Behave  like a "row" */
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+      white-space: normal;
+      text-align: left;
+    }
+
+    #no-more-tables td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    /*
+    Label the data
+    */
+    #no-more-tables td:before {
+      content: attr(data-title);
+    }
   }
 </style>
 
@@ -51,31 +108,31 @@
           <span class="sr-only">Close</span>
         </button>
       </div>
-      <form method="POST" action="save_project">
+      <form method="POST" action="new_script">
         {% csrf_token %}
         <div class="modal-body" style="background:#f7f7fc">
           <div class="mb-3">
-            <label class="form-label" for="rpoject_id">Project:</label>
-            <select class="form-select" id="project_id" name="poject_id">
-              {% for project in projects %}
-              select=""
-              {% if project.id == project_id %}
-              select="selected"
+            <label class="form-label" for="project">Project:</label>
+            <select class="form-select" id="project" name="project">
+              {% for pj in projects %}
+              {% if pj.id == project.id %}
+              <option value="{{pj.id}}" selected>{{pj.project_name}}</option>
+              {% else %}
+              <option value="{{pj.id}}">{{pj.project_name}}</option>
               {% endif %}
-              <option value="{{project.id}}" {{select}} >{{project.project_name}}</option>
               {% endfor %}
             </select>
           </div>
 
           <div class="mb-3">
-            <label class="form-label" for="device_id">Device:</label>
-            <select class="form-select" id="device_id" name="device_id">
+            <label class="form-label" for="device">Device:</label>
+            <select class="form-select" id="device" name="device">
               {% for device in devices %}
               <option value="{{device.id}}">{{device}}</option>
               {% endfor %}
             </select>
           </div>
-          
+
           <div class="mb-3">
             <label class="form-label">Script Name</label>
             <input class="form-control" name="script_name" required>
@@ -92,14 +149,21 @@
   </div>
 </div>
 <div class="container-fluid p-0">
-  <div class="row mb-2 mb-xl-3">
-    <div class="col-auto d-none d-sm-block">
+  <div class="row mb-2 mb-xl-3 justify-content-between">
+    <div class="col-auto">
 
       <h3><strong>{{project.project_name}}</strong> &#8594; Scripts</h3>
     </div>
+    <div class="col-auto">
+      {% csrf_token %}
+      <input type='hidden' name='project_id' value='{{project_id}}'>
+      <button class='btn btn-primary' data-toggle="modal" data-target="#new_script"><i data-feather="plus"></i>
+        <span>New
+          Script</span></button>
+    </div>
   </div>
-  <div style="overflow-x:auto;">
-    <table style="border: opx solid transparent;" class="responsive-card-table unstriped">
+  <div style="overflow-x:auto;" id="no-more-tables">
+    <table style="border: 0px solid transparent;" class="table">
       <thead>
         <tr>
           <th>Type</th>
@@ -113,43 +177,35 @@
       <tbody>
         {% for script in scripts %}
         <tr>
-          <td data-label="Type"><span class="badge bg-success">{% if script.device_id == 1 %} Router {% endif %}</span>
+          <td data-title="Type"><span class="badge bg-success">{% if script.device_id == 1 %} Router {% endif %}</span>
           </td>
-          <td data-label="Name">{{script.script_name}}</td>
-          <td data-label="Devices">{{script.device.device_model}}</td>
-          <td data-label="Dtae Modified">{{script.date_modified}}</td>
-          <td data-label="Date Created">{{script.date_created}}</td>
-          <td data-label="Actions">
-            <div class='d-flex justify-content-between'>
-              <form method='POST' action="edit_script">
-                {% csrf_token %}
-                <input type='hidden' name='script_id' value='{{script.id}}'>
-                <button class="button1" type="=submit"><i data-feather="edit"></i> <span>Edit</span></button>
-              </form>
-              <form method='POST' action="generate_exe">
-                {% csrf_token %}
-                <input type='hidden' name='script_id' value='{{script.id}}'>
-                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Exe</span></button>
-              </form>
-              <form method='POST' action="generate_text">
-                {% csrf_token %}
-                <input type='hidden' name='script_id' value='{{script.id}}'>
-                <button class="button1" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
-              </form>
-            </div>
+          <td data-title="Name">{{script.script_name}}</td>
+          <td data-title="Devices">{{script.device.device_manufacturer}} {{script.device.device_model}}</td>
+          <td data-title="Dtae Modified">{{script.date_modified}}</td>
+          <td data-title="Date Created">{{script.date_created}}</td>
+          <td data-title="Actions" class="d-flex justify-content-between">
+            <form method='POST' action="edit_script">
+              {% csrf_token %}
+              <input type='hidden' name='script_id' value='{{script.id}}'>
+              <button class="btn btn-info p-1" type="submit"><i class="hide-sm" data-feather="edit"></i> <span>Edit</span></button>
+            </form>
+            <form method='POST' action="generate_exe">
+              {% csrf_token %}
+              <input type='hidden' name='script_id' value='{{script.id}}'>
+              <button class="btn btn-success p-1" type="submit"><i class="hide-sm" data-feather="download"></i> <span>Exe</span></button>
+            </form>
+            <form method='POST' action="generate_text">
+              {% csrf_token %}
+              <input type='hidden' name='script_id' value='{{script.id}}'>
+              <button class="btn btn-success p-1" type="submit"><i class="hide-sm" data-feather="download"></i> <span>Text</span></button>
+            </form>
           </td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
 
-    <div class="responsive-card-table">
-        {% csrf_token %}
-        <input type='hidden' name='project_id' value='{{project_id}}'>
-        <button style="border: steelblue; background: steelblue; color: white;" data-toggle="modal" data-target="#new_script"><i
-            data-feather="plus"></i> <span>New
-            Script</span></button>
-    </div>
+    
 
 
   </div>
