@@ -98,100 +98,87 @@ def new_script(request):
             script.save()
             scripts = [script]
             return render(request, nm_model+'.html', {'data': scripts, 'organisation_name':request.session['organisation']})
+        
+        
+def config_producer(request):
+    if request.method == 'POST':
+        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+        if script_device.device_model == 'ISR4321/K9':
+            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+        
+            with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
+                input_data = input_file.read()
+            
+        script_var = []
+        script_val = []
+        
+        for k, v in script.__dict__.items():
+            script_var.append('@'+str(k))
+            script_val.append(str(v))
+            
+        for i in range(len(script_var)):
+            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+            
+        return input_data
     
+    else:
+        return redirect('/404')
     
 def text_generator(request):
     
-    if request.method == 'POST':
-        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-        if script_device.device_model == 'ISR4321/K9':
-            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
-            
-        script_var = []
-        script_val = []
-        
-        with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
-            input_data = input_file.read()
-        output_file = open('static/Temp/playground.txt', 'wt')
-        
-        for k, v in script.__dict__.items():
-            script_var.append('@'+str(k))
-            script_val.append(str(v))
-        
-        print(script_val)
-        print(script_var)
-            
-        
-        for i in range(len(script_var)):
-            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
-            
-        output_file.write(input_data)
-        response = HttpResponse(content_type='text/plain')
-        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.txt'
-        
-        response.write(input_data)
-        
-        return response
+    input_data = config_producer(request)
+    script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+    if script_device.device_model == 'ISR4321/K9':
+        scriptname = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0].script_name
     
-    else:
-        return redirect('/404')
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename='+scriptname+'.txt'
+        
+    response.write(input_data)
+        
+    return response
+    
+    
     
 def exe_generator(request):
     
-    if request.method == 'POST':
-        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-        if script_device.device_model == 'ISR4321/K9':
-            script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
-        script_var = []
-        script_val = []
-        with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
-            input_data = input_file.read()
-        output_file = open('static/Temp/playground.txt', 'wt')
-        python_output = open('static/Temp/python_playground.txt', 'wt')
-        
-        for k, v in script.__dict__.items():
-            script_var.append('@'+str(k))
-            script_val.append(str(v))
-        
-        for i in range(len(script_var)):
-            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
-        
-        output_file.write(input_data)            
-            
-        python_output.writelines('import getpass\n')
-        python_output.writelines('import sys\n')
-        python_output.writelines('import telnetlib\n')
-        python_output.writelines('HOST="192.168.1.1"\n')
-        python_output.writelines('print("Injecting Scripts.......")\n')
-        python_output.writelines('tn = telnetlib.Telnet(HOST)\n')
-        python_output.writelines('tn.read_until("Router")\n')        
-
-        output_file = open('static/Temp/playground.txt', 'r')
-        
-        for line in output_file:
-            line = line.replace('\n', '')
-            python_output.write("tn.write('"+ str(line) +"\\n')\n")
-        
-        python_output.writelines('tn.write("end \\n")\n')    
-        python_output.writelines('tn.write("exit \\n")\n')   
-        python_output = open('static/Temp/python_playground.txt', 'r')
-        copyfile('static/Temp/python_playground.txt', 'static/Temp/python_playground.py')
-        
-        PyInstaller.__main__.run(['static/Temp/python_playground.py' ,'--onefile'])
-        
-        output = open('dist/python_playground.exe', 'rb')
-        
-        response = HttpResponse(output.read(), content_type='application/exe')
-        response['Content-Disposition'] = 'attachment; filename='+script.script_name+'.exe'
-
-        
-        return response
+    input_data = config_producer(request)
+    script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
+    if script_device.device_model == 'ISR4321/K9':
+        scriptname = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0].script_name
     
-    else:
-        return redirect('/404')
+    output_file = open('static/Temp/playground.txt', 'wt')
+    python_output = open('static/Temp/python_playground.txt', 'wt')
     
-def view1():
-    return 0
+    output_file.write(input_data)            
+        
+    python_output.writelines('import getpass\n')
+    python_output.writelines('import sys\n')
+    python_output.writelines('import telnetlib\n')
+    python_output.writelines('HOST="192.168.1.1"\n')
+    python_output.writelines('print("Injecting Scripts.......")\n')
+    python_output.writelines('tn = telnetlib.Telnet(HOST)\n')
+    python_output.writelines('tn.read_until("Router")\n')        
+
+    output_file = open('static/Temp/playground.txt', 'r')
+    
+    for line in output_file:
+        line = line.replace('\n', '')
+        python_output.write("tn.write('"+ str(line) +"\\n')\n")
+    
+    python_output.writelines('tn.write("end \\n")\n')    
+    python_output.writelines('tn.write("exit \\n")\n')   
+    python_output = open('static/Temp/python_playground.txt', 'r')
+    copyfile('static/Temp/python_playground.txt', 'static/Temp/python_playground.py')
+    
+    PyInstaller.__main__.run(['static/Temp/python_playground.py' ,'--onefile'])
+    
+    output = open('dist/python_playground.exe', 'rb')
+    
+    response = HttpResponse(output.read(), content_type='application/exe')
+    response['Content-Disposition'] = 'attachment; filename='+scriptname+'.exe'
+
+    return response
 
 def save_project(request):
     if 'username' not in request.session:

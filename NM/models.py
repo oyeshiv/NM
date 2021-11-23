@@ -231,9 +231,45 @@ class ISR4321(Scripts):
     bgp_ipv6_neighbor_wan_route_map_in = models.CharField(max_length=100)
     bgp_ipv6_community = models.GenericIPAddressField()
     
-class C1000(Scripts):
+class VLAN_C3650(models.Model):
+    number = models.IntegerField()
+    name = models.CharField(max_length=100)
+    ipv4_address = models.GenericIPAddressField()
+    ipv4_subnet = models.GenericIPAddressField()
+    ipv6_address = models.GenericIPAddressField()
+    ipv6_prefix = models.IntegerField(max_length=2)
+    ipv6_link = models.GenericIPAddressField()
     
+class Interface_C3650(models.Model):
+    status = models.CharField(max_length=8)
+    name = models.CharField(max_length=100)
+    switchport = models.CharField(max_length=2)
+    ipv4_address = models.GenericIPAddressField()
+    ipv4_subnet = models.GenericIPAddressField()
+    ipv6_address = models.GenericIPAddressField()
+    ipv6_prefix = models.IntegerField(max_length=2)
+    ipv6_link = models.GenericIPAddressField()
+    sw_mode = models.CharField(max_length=10)
+    sw_access = models.IntegerField()
+    encapsulation = models.CharField(max_length=5)
+    nonegotiate = models.CharField(max_length=2)
+    channel_group = models.IntegerField(max_length=1)
+    channel_mode = models.CharField(max_length=10)
+    stp_cost = models.IntegerField(max_length=1)
+    
+class STP_VLAN_3650(models.Model):
+    vlan = models.IntegerField()
+    root = models.CharField(max_length=9)
+    
+class DHCP_3650(models.Model):
+    name = models.CharField(max_length=100)
+    network_ip = models.GenericIPAddressField()
+    network_subnet = models.GenericIPAddressField()
+    default_router = models.GenericIPAddressField()
+    
+class C1000(Scripts):
     host_name = models.CharField(max_length=100)
     
-    vlans = ArrayField(ArrayField(models.IntegerField(), models.CharField(max_length=100), null=True), null=True)
+    dhcp_excluded = ArrayField()
+    
     
