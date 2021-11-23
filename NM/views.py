@@ -104,8 +104,10 @@ def text_generator(request):
         script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
         if script_device.device_model == 'ISR4321/K9':
             script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+            
         script_var = []
         script_val = []
+        
         with open(os.path.dirname(os.path.realpath(__file__)) + '/Default_Config/ISR4321.txt', 'r') as input_file:
             input_data = input_file.read()
         output_file = open(os.path.dirname(os.path.realpath(__file__)) + '/Temp/playground.txt', 'wt')
