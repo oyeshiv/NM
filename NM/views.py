@@ -436,3 +436,4 @@ def team(request):
 def team(request):
     return render(request, 'home.html')
 
+

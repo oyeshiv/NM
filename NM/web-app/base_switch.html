@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'index_l3.html' %}
 
 
 
@@ -9,9 +9,18 @@
 
 {% block router_content %}
 
-<div class="container" style="background: #f7f7fc; border: cornflowerblue; border-style: solid; border-width: thin;">
-  <div style="font: bolder; color: deepskyblue;">Catalyst 9200</div>
-  <hr> </hr>
+<div class="container"> 
+  <div class="input-group">
+
+    <label for="script_name">Script Name</label>
+
+
+    <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
+    <button class="btn btn-primary" type="submit">
+      <i class="align-middle" data-feather="check"></i>
+    </button>
+  </div>
+  <hr>
       <div class="row">
         <h5 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC  </h5> 
         <div class="col-25">

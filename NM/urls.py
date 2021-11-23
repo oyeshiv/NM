@@ -64,5 +64,5 @@ urlpatterns = [
     path('dynamic_menu', views.dynamic_menu, name='dynamic_menu'),
     path('team', views.team, name='about_us'),
     path('home', views.home, name='home'),
-
+    
 ]
