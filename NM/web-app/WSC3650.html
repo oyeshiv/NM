@@ -43,7 +43,7 @@
 
 
 {% block router_content %}
-{% for script in data %}
+
 <div class="container">
   <form method='POST' action="save">
 
@@ -53,7 +53,7 @@
 
 
       <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
-
+      
     </div>
     <hr>
     <div class="row">
@@ -64,7 +64,7 @@
         <label for="host_name">Device Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="host_name" name="host_name" value="{{script.host_name}}"placeholder="Device Name">
+        <input type="text" id="host_name" name="host_name" placeholder="Device Name">
       </div>
     </div>
     <div class="row">
@@ -72,7 +72,7 @@
         <label for="banner_motd">Banner MOTD</label>
       </div>
       <div class="col-75">
-        <input type="text" id="banner_motd" name="banner_motd" value="{{script.banner_motd}}" placeholder="Banner MOTD">
+        <input type="text" id="banner_motd" name="banner_motd" placeholder="Banner MOTD">
       </div>
     </div>
     <div class="row">
@@ -80,7 +80,7 @@
         <label for="secret">Secret Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="secret" name="secret" value="{{script.secret}}" placeholder="Secret Password">
+        <input type="text" id="secret" name="secret" placeholder="Secret Password">
       </div>
     </div>
     <div class="row">
@@ -88,7 +88,7 @@
         <label for="deafult_gateway">Default Gateway</label>
       </div>
       <div class="col-75">
-        <input type="text" id="default_gateway" name="default_gateway" value="{{script.default_gateway}}" placeholder="xxx.xxx.xxx.xxx">
+        <input type="text" id="default_gateway" name="default_gateway" placeholder="xxx.xxx.xxx.xxx">
       </div>
     </div>
     <hr>
@@ -101,15 +101,15 @@
         <label for="radius_server">Radius Server Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_server" name="radius_server" value="{{script.radius_server}}" placeholder="Server Name">
+        <input type="text" id="radius_server" name="radius_server" placeholder="Server Name">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
         <label for="radius_ip">Radius IP Address</label>
       </div>
-      <div class="col-75"> 
-        <input type="text" id="radius_ip" name="radius_ip" value="{{script.radius_ip}}" placeholder="xxx.xxx.xxx.xxx">
+      <div class="col-75">
+        <input type="text" id="radius_ip" name="radius_ip" placeholder="xxx.xxx.xxx.xxx">
       </div>
     </div>
     <div class="row">
@@ -117,7 +117,7 @@
         <label for="radius_group">Radius Group Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_group" name="radius_group" value="{{script.radius_group}}" placeholder="Group Name">
+        <input type="text" id="radius_group" name="radius_group" placeholder="Group Name">
       </div>
     </div>
     <div class="row">
@@ -125,7 +125,7 @@
         <label for="radius_key">Radius Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_key" name="radius_key" value="{{script.radius_key}}" placeholder="Radius Password">
+        <input type="text" id="radius_key" name="radius_key" placeholder="Radius Password">
       </div>
     </div>
     <div class="row">
@@ -133,7 +133,7 @@
         <label for="max_fail">Authentication Attempts</label>
       </div>
       <div class="col-75">
-        <input type="text" id="max_fail" name="max_fail" value="{{script.max_fail}}" placeholder="Number of Attempts">
+        <input type="text" id="max_fail" name="max_fail" placeholder="Number of Attempts">
       </div>
     </div>
     <hr>
@@ -147,7 +147,7 @@
         <label for="ntp_server">NTP Server</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_server" name="ntp_server" value="{{script.ntp_server}}" placeholder="xxx.xxx.xxx.xxx">
+        <input type="text" id="ntp_server" name="ntp_server" placeholder="xxx.xxx.xxx.xxx">
       </div>
     </div>
     <div class="row">
@@ -155,7 +155,7 @@
         <label for="ntp_auth_key">Authentication Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_auth_key" name="ntp_auth_key" value="{{script.ntp_auth_key}}" placeholder="Authentication Key Number">
+        <input type="text" id="ntp_auth_key" name="ntp_auth_key" placeholder="Authentication Key Number">
       </div>
     </div>
     <div class="row">
@@ -163,7 +163,7 @@
         <label for="ntp_trust_key">Trusted Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_trust_key" name="ntp_trust_key" value="{{script.ntp_trust_key}}"value="{{script.secret}}" placeholder="Trusted Key Number">
+        <input type="text" id="ntp_trust_key" name="ntp_trust_key" placeholder="Trusted Key Number">
       </div>
     </div>
     <div class="row">
@@ -171,7 +171,7 @@
         <label for="ntp_pass">Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_pass" name="ntp_pass" value="{{script.ntp_pass}}" placeholder="Password">
+        <input type="text" id="ntp_pass" name="ntp_pass" placeholder="Password">
       </div>
     </div>
     <hr>
@@ -186,7 +186,7 @@
         <label for="login_block_time">Login Block</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_block_time" name="login_block_time" value="{{script.login_block_time}}" placeholder="Time in Seconds">
+        <input type="text" id="login_block_time" name="login_block_time" placeholder="Time in Seconds">
       </div>
     </div>
     <div class="row">
@@ -194,7 +194,7 @@
         <label for="login_tries">Available Trials</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_tries" name="login_tries" value="{{script.login_tries}}" placeholder="Number of Tries">
+        <input type="text" id="login_tries" name="login_tries" placeholder="Number of Tries">
       </div>
     </div>
     <div class="row">
@@ -202,7 +202,7 @@
         <label for="tries_time">Login Timeout</label>
       </div>
       <div class="col-75">
-        <input type="text" id="tries_time" name="tries_time" value="{{script.tries_time}}" placeholder="Time in Seconds">
+        <input type="text" id="tries_time" name="tries_time" placeholder="Time in Seconds">
       </div>
     </div>
     <div class="row">
@@ -210,7 +210,7 @@
         <label for="login_delay">Login Delay</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_delay" name="login_delay" value="{{script.login_delay}}" placeholder="Time in Seconds">
+        <input type="text" id="login_delay" name="login_delay" placeholder="Time in Seconds">
       </div>
     </div>
     <div class="row">
@@ -218,22 +218,33 @@
         <label for="login_access">Login Access</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_access" name="login_access" value="{{script.login_access}}" placeholder="Access List Name">
+        <input type="text" id="login_access" name="login_access" placeholder="Access List Name">
       </div>
     </div>
     <hr>
      <!-- DHCP -->
      
-     <div class="row">
+  <div class="row">
+    <div class="col-25">
       <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="DHCP">DHCP
       </h3>
     </div>
+    
+  </div>
     <div class="row">
       <div class="col-25">
         <label for="dhcpname"> DHCP Name</label>
       </div>
       <div class="col-75">
         <input type="text" id="dhcpname" name="dhcpname" placeholder="Address">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="dhcpex"> Excluded Address</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="dhcpex" name="dhcpex" placeholder=" Excluded Address">
       </div>
     </div>
     <div class="row">
@@ -259,6 +270,10 @@
       <div class="col-75">
         <input type="text" id="dhcprout" name="dhcprout" placeholder="Address">
       </div>
+      <div class="row">
+      <div class="col-75"><button class="btn btn-primary" type="button" id="adhcp"><i data-feather="plus"></i>
+        <span>Add DHCP</span></button>
+      </div>
     </div>
      <!-- ospfv3 -->
      <hr>
@@ -282,6 +297,11 @@
         <input type="text" id="ospfrid" name="ospfrid" placeholder="Router ID">
       </div>
     </div>
+    <div class="row">
+    <div class="col-75"><button class="btn btn-primary" type="button" id="addospf"><i data-feather="plus"></i>
+      <span>Add OSPFv3</span></button>
+    </div>
+  </div>
      <!-- User Account -->
      <hr>
      <div class="row">
@@ -304,6 +324,11 @@
         <input type="text" id="userpass" name="userpass" placeholder="Name">
       </div>
     </div>
+    <div class="row">
+    <div class="col-75"><button class="btn btn-primary" type="button" id="adduser"><i data-feather="plus"></i>
+      <span>Add User</span></button>
+    </div>
+  </div>
     <!-- ACL -->
     <hr>
     <div class="row">
@@ -334,6 +359,11 @@
         <input type="text" id="acladd" name="acladd" placeholder=" ACL Address">
       </div>
     </div>
+    <div class="row">
+    <div class="col-75"><button class="btn btn-primary" type="button" id="addacl"><i data-feather="plus"></i>
+      <span>Add ACL</span></button>
+    </div>
+  </div>
     <!--STP_VLAN-->
     <hr>
     <div class="row">
@@ -356,6 +386,11 @@
         <input type="text" id="stproot" name="stproot" placeholder="Root Number">
       </div>
     </div>
+    <div class="row">
+    <div class="col-75"><button class="btn btn-primary" type="button" id="addstp"><i data-feather="plus"></i>
+      <span>Add STP</span></button>
+    </div>
+  </div>
      <!-- Interface -->
      <hr>
      <div class="row">
@@ -379,6 +414,7 @@
       <div class="col-75"><button class="btn btn-primary" type="button" id="addvlan"><i data-feather="plus"></i>
           <span>Add VLAN</span></button>
       </div>
+      
     </div>
     <hr>
     <div class="vlans">
@@ -417,13 +453,12 @@
   </form>
   {% endif %}
   <button class="btn btn-primary">
-    <span><a href="scripts" class="text-white">Cancel</a></span></button>
+    <span><a href="dashboard" class="text-white">Cancel</a></span></button>
 </div>
 </div>
 </div>
 </div>
 
-{% endfor %}
 {% endblock %}
 
 {% block script %}
@@ -432,13 +467,9 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function () {
 
-    $('#removevlan').click(function () {
-      console.log('111');
-    });
-
-    $('#addvlan').on('click', function () {
+  $('#addvlan').on('click', function () {
+    $('.vlans').each(function () {
       var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
       $('div.col-75 #removevlan').remove();
       $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
@@ -508,7 +539,6 @@
         "</div>" +
         "</div>" +
         "</div>");
-
     });
   });
   $('#addint').on('click', function () {
@@ -522,7 +552,192 @@
         "</div>" +
         "<div class='col-75'>" +
         "<button class='btn btn-secondary removebtn' type='button' id='removeintrfce' rmintrfce='" + id + "'>" +
-        "- Remove Interface " + id + "</button>" +
+        "- Remove Iterface " + id + "</button>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intstatus" + id + "'>Status</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intstatus" + id + "' name='intstatus" + id + "' placeholder=' Interface Status'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intname" + id + "'>Interface Name</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intname" + id + "' name='intname" + id + "' placeholder='Interface Name'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intsw" + id + "'>Switchport</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intsw" + id + "' name='intsw" + id + "' placeholder='Switchport Name'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intip" + id + "'>IPv4 Address</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intip" + id + "' name='intip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intsub" + id + "'>IPv4 Subnet</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intsub" + id + "' name='intsub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intipv6" + id + "'>IPv6 Address</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intipv6" + id + "' name='intipv6" + id + "' placeholder='IPv6 Address'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intpre" + id + "'>IPv6 Prefix</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intpre" + id + "' name='intpre" + id + "' placeholder='xx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intlink" + id + "'>IPv6 Link-Local</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intlink" + id + "' name='intlink" + id + "' placeholder='IPv6 Link-Local'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intswmode" + id + "'>SwitchPort Mode</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intswmode" + id + "' name='intswmode" + id + "' placeholder='SwitchPort Mode'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intswaccess" + id + "'>SwitchPort Access</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intswaccess" + id + "' name='intswaccess" + id + "' placeholder='SwitchPort Access'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intallvlan" + id + "'>Vlans Allowed</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intallvlan" + id + "' name='intallvlan" + id + "' placeholder='Vlans Allowed'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intnative" + id + "'>Native Vlan</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intnative" + id + "' name='intnative" + id + "' placeholder='Native Vlan'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intencap" + id + "'>Encapsulation</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intencap" + id + "' name='intencap" + id + "' placeholder='Encapsulation'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intencap" + id + "'>Non- Negiotate</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intnoneg" + id + "' name='intnoneg" + id + "' placeholder='Encapsulation'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intch" + id + "'>Channel Group</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intch" + id + "' name='intch" + id + "' placeholder='Encapsulation'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intchmode" + id + "'>Channel Mode</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intchmode" + id + "' name='intchmode" + id + "' placeholder='Channel Mode'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intstpcost" + id + "'>STP Cost</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intstpcost" + id + "' name='intstpcost" + id + "' placeholder='STP Cost'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intipospf" + id + "'>IPv4 OSPFv3</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intipospf" + id + "' name='intipospf" + id + "' placeholder='IPv4 OSPFv3'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intiparea" + id + "'>IPv4 Area</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intiparea" + id + "' name='intiparea" + id + "' placeholder='IPv4 Area'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intipv6ospf" + id + "'>IPv6 OSPFv3</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intipv6ospf" + id + "' name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='intipv6area" + id + "'>IPv6 Area</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='intipv6area" + id + "' name='intipv6area" + id + "' placeholder='IPv6 Area'>" +
+        "</div>" +
+        "</div>" +
+        "</div>");
+    });
+  });
+  $('#adhcp').on('click', function () {
+    $('.intrfcs').each(function () {
+      var id = parseInt($('.intrfces div.intrfceform:last-child').attr('id')) + 1;
+      $('div.col-75 #removeintrfce').remove();
+      $('.intrfcs').append("<div class='intrfceform' id='" + id + "'>" +
+        "<div class='row justify-content-between'>" +
+        "<div class='col-25'>" +
+        "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='interfacehead" + id + "'>Interface Form " + id + "</h5>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<button class='btn btn-secondary removebtn' type='button' id='removeintrfce' rmintrfce='" + id + "'>" +
+        "- Remove Iterface " + id + "</button>" +
         "</div>" +
         "</div>" +
         "<div class='row'>" +
