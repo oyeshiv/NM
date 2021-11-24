@@ -1,0 +1,391 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block sidebar %}
+<ul class="sidebar-nav">
+  <li class="sidebar-header">
+    Router - ISR4321
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#basic">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
+    </a>
+  </li>
+  <li class="sidebar-header">
+    Protocols
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_bgp">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">BGP</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_ospf">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">OSPF</span>
+    </a>
+  </li>
+  <li class="sidebar-header">
+    Advanced Options
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_ipv6 ">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">IPV6</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_nat">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NAT</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#zns">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Zone</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_aaa">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">AAA</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_default">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Default-Routes</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_acl">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">ACL</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_crypto">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Crypto-Keys</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#ntp">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NTP</span>
+    </a>
+  </li>
+  <li class="sidebar-header">
+    <a style="text-decoration: none; font-size:medium; color: honeydew;" href="dashboard">Go Back </a>
+  </li>
+</ul>
+{% endblock %}
+
+
+{% block router_content %}
+
+<div class="container">
+  <form method='POST' action="save">
+
+    <div class="input-group">
+
+      <label for="script_name">Script Name</label>
+
+
+      <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
+      <button class="btn btn-primary" type="submit">
+        <i class="align-middle" data-feather="check"></i>
+      </button>
+    </div>
+    <hr>
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic">BASIC</h3>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="host_name">Device Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="host_name" name="host_name" placeholder="Device Name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="banner_motd">Banner MOTD</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="banner_motd" name="banner_motd" placeholder="Banner MOTD">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="secret">Secret Password</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="secret" name="secret" placeholder="Secret Password">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="deafult_gateway">Default Gateway</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="default_gateway" name="default_gateway" placeholder="xxx.xxx.xxx.xxx">
+      </div>
+    </div>
+    <hr>
+    <!-- Radius -->
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="radius">Radius</h3>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_server">Radius Server Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_server" name="radius_server" placeholder="Server Name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_ip">Radius IP Address</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_ip" name="radius_ip" placeholder="xxx.xxx.xxx.xxx">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_group">Radius Group Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_group" name="radius_group" placeholder="Group Name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_key">Radius Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_key" name="radius_key" placeholder="Radius Password">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="max_fail">Authentication Attempts</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="max_fail" name="max_fail" placeholder="Number of Attempts">
+      </div>
+    </div>
+    <hr>
+    <!-- NTP -->
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ntp">NTP</h3>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_server">NTP Server</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_server" name="ntp_server" placeholder="xxx.xxx.xxx.xxx">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_auth_key">Authentication Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_auth_key" name="ntp_auth_key" placeholder="Authentication Key Number">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_trust_key">Trusted Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_trust_key" name="ntp_trust_key" placeholder="Trusted Key Number">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_pass">Password</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_pass" name="ntp_pass" placeholder="Password">
+      </div>
+    </div>
+    <hr>
+    <!-- Login Security -->
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="login_security">Login
+        Security</h3>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_block_time">Login Block</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_block_time" name="login_block_time" placeholder="Time in Seconds">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_tries">Tries</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_tries" name="login_tries" placeholder="Number of Tries">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="tries_time">Login Timeout</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="tries_time" name="tries_time" placeholder="Time in Seconds">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_delay">Login Delay</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_delay" name="login_delay" placeholder="Time in Seconds">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_access">Login Access</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_access" name="login_access" placeholder="Access List Name">
+      </div>
+    </div>
+    <hr>
+    <!-- VLAN -->
+    <div class="row">
+      <div class="col-auto">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="vlan">VLAN</h3>
+      </div>
+      <div class="col-auto"><button class="btn btn-primary" type="button" id="addvlan"><i data-feather="plus"></i>
+          <span>Add VLAN</span></button>
+      </div>
+    </div>
+    <hr>
+    <div class="vlans">
+      <div id="0"></div>
+    </div>
+
+
+
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class='d-flex justify-content-between'>
+
+          {% csrf_token %}
+
+          <input type='hidden' name='device_id' value='1'>
+          {% if script.id is not null %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          {% endif %}
+          <button class="btn btn-primary" type="submit"><i data-feather="save"></i> <span>Save</span></button>
+  </form>
+
+
+
+  {% if script.id is not null %}
+  <form method='POST' action="generate_exe">
+    {% csrf_token %}
+    <input type='hidden' name='script_id' value='{{script.id}}'>
+    <button class="btn btn-success" type="submit"><i data-feather="download"></i>
+      <span>Executable</span></button>
+  </form>
+  <form method='POST' action="generate_text">
+    {% csrf_token %}
+    <input type='hidden' name='script_id' value='{{script.id}}'>
+    <button class="btn btn-success" type="submit"><i data-feather="download"></i> <span>Text</span></button>
+  </form>
+  {% endif %}
+  <button class="btn btn-primary">
+    <span><a href="dashboard" class="text-white">Cancel</a></span></button>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+  
+  $('#addvlan').on('click', function () {
+    $('.vlans').each(function () {
+      var id = parseInt($('.vlans div:last').attr('id'), 10) + 1;
+      $('.vlans').append("<div id='" + id + "'>" +
+        "<div class='row justify-content-between'>" +
+        "<div class='col-25'>" +
+        "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<button class='btn btn-secondary' type='button id='remove'>" +
+        "<i data-feather='plus'></i> <span>Remove VLAN " + id + "</span>" +
+        "</button>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlannum" + id + "'>VLAN</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlannum" + id + "' name='vlannum" + id + "' placeholder='VLAN Number'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlanname" + id + "'>VLAN Name</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlanname" + id + "' name='vlanname" + id + "' placeholder='VLAN Name'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlanip" + id + "'>IPv4 Address</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlanip" + id + "' name='vlanip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlansub" + id + "'>IPv4 Subnet</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlansub" + id + "' name='vlansub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlanipv6" + id + "'>IPv6 Address</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlanipv6" + id + "' name='vlanipv6" + id + "' placeholder='IPv6 Address'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlanpre" + id + "'>IPv6 Prefix</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlanpre" + id + "' name='vlanpre" + id + "' placeholder='xx'>" +
+        "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='vlanlink" + id + "'>IPv6 Link-Local</label>" +
+        "</div>" +
+        "<div class='col-75'>" +
+        "<input type='text' id='vlanlink" + id + "' name='vlanlink" + id + "' placeholder='IPv6 Link-Local'>" +
+        "</div>" +
+        "</div>" +
+        "</div>");
+    })
+  });
+</script>
+
+{% endblock %}
