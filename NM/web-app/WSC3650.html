@@ -53,7 +53,7 @@
 
 
       <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
-      
+
     </div>
     <hr>
     <div class="row">
@@ -266,7 +266,7 @@
   </form>
   {% endif %}
   <button class="btn btn-primary">
-    <span><a href="dashboard" class="text-white">Cancel</a></span></button>
+    <span><a href="scripts" class="text-white">Cancel</a></span></button>
 </div>
 </div>
 </div>
@@ -280,9 +280,13 @@
 
 
 <script type="text/javascript">
+  $(document).ready(function () {
 
-  $('#addvlan').on('click', function () {
-    $('.vlans').each(function () {
+    $('#removevlan').click(function () {
+      console.log('111');
+    });
+
+    $('#addvlan').on('click', function () {
       var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
       $('div.col-75 #removevlan').remove();
       $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
@@ -352,11 +356,12 @@
         "</div>" +
         "</div>" +
         "</div>");
+
     });
   });
-  
-  
- 
+
+
+
 
 </script>
 
