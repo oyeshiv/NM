@@ -34,7 +34,6 @@ class Scripts(Model):
     date_created = DateField(auto_now_add=True)
     date_modified = DateField(auto_now=True)
     script_name = CharField(max_length=100)
-    
 
 class ISR4321(Scripts):
     
@@ -233,38 +232,6 @@ class ISR4321(Scripts):
     bgp_ipv6_neighbor_wan_ip_in = GenericIPAddressField()
     bgp_ipv6_neighbor_wan_route_map_in = CharField(max_length=100)
     bgp_ipv6_community = GenericIPAddressField()
-    
-class VLAN_C3650(Model):
-    number = IntegerField()
-    name = CharField(max_length=100)
-    ipv4_address = GenericIPAddressField()
-    ipv4_subnet = GenericIPAddressField()
-    ipv6_address = GenericIPAddressField()
-    ipv6_prefix = IntegerField()
-    ipv6_link = GenericIPAddressField()
-    
-class Interface_C3650(Model):
-    status = CharField(max_length=8)
-    name = CharField(max_length=100)
-    switchport = CharField(max_length=2)
-    ipv4_address = GenericIPAddressField()
-    ipv4_subnet = GenericIPAddressField()
-    ipv6_address = GenericIPAddressField()
-    ipv6_prefix = IntegerField()
-    ipv6_link = GenericIPAddressField()
-    sw_mode = CharField(max_length=10)
-    sw_access = IntegerField()
-    allowed_vlan = ArrayField(IntegerField())
-    native_vlan = IntegerField()
-    encapsulation = CharField(max_length=5)
-    nonegotiate = CharField(max_length=2)
-    channel_group = IntegerField()
-    channel_mode = CharField(max_length=10)
-    stp_cost = IntegerField(1)
-    ipv4_ospfv3 = CharField(max_length=10)
-    ipv4_area =IntegerField()
-    ipv6_ospfv3 = CharField(max_length=10)
-    ipv6_area = IntegerField()
           
 class WSC3650(Scripts):
     host_name = CharField(max_length=100)
@@ -278,17 +245,55 @@ class WSC3650(Scripts):
     login_access = GenericIPAddressField()
     
     default_gateway = GenericIPAddressField()
-    dhcp_excluded = ArrayField(GenericIPAddressField())
     
     radius_server = CharField(max_length=100)
     radius_ip = GenericIPAddressField()
     radius_key = CharField(max_length=100)
     radius_group = CharField(max_length=100)
+    max_fail = IntegerField()
     
     ntp_server = GenericIPAddressField()
     ntp_auth_key = IntegerField()
     ntp_pass = CharField(max_length=100)
     ntp_trust_key = IntegerField()
+    
+class DHCP_EX_C3650(models.Model):
+    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    address = GenericIPAddressField()
+    
+class VLAN_C3650(Model):
+    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    number = IntegerField()
+    name = CharField(max_length=100)
+    ipv4_address = GenericIPAddressField()
+    ipv4_subnet = GenericIPAddressField()
+    ipv6_address = GenericIPAddressField()
+    ipv6_prefix = IntegerField()
+    ipv6_link = GenericIPAddressField()
+    
+class Interface_C3650(Model):
+    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    status = CharField(max_length=8)
+    name = CharField(max_length=100)
+    switchport = CharField(max_length=2)
+    ipv4_address = GenericIPAddressField()
+    ipv4_subnet = GenericIPAddressField()
+    ipv6_address = GenericIPAddressField()
+    ipv6_prefix = IntegerField()
+    ipv6_link = GenericIPAddressField()
+    sw_mode = CharField(max_length=10)
+    sw_access = IntegerField()
+    allowed_vlan = CharField(max_length=100)
+    native_vlan = IntegerField()
+    encapsulation = CharField(max_length=5)
+    nonegotiate = CharField(max_length=2)
+    channel_group = IntegerField()
+    channel_mode = CharField(max_length=10)
+    stp_cost = IntegerField(1)
+    ipv4_ospfv3 = CharField(max_length=10)
+    ipv4_area =IntegerField()
+    ipv6_ospfv3 = CharField(max_length=10)
+    ipv6_area = IntegerField()
     
 class STP_VLAN_3650(Model):
     script = ForeignKey(WSC3650, on_delete=CASCADE)
@@ -315,8 +320,11 @@ class CiscoUser(Model):
 class ACL_3650(Model):
     script = ForeignKey(WSC3650, on_delete=CASCADE)
     name = CharField(max_length=100)
-    permit = ArrayField(GenericIPAddressField())
-    deny = ArrayField(GenericIPAddressField())
+    
+class ACL_EL_3650(Model):
+    acl = ForeignKey(ACL_3650, on_delete=CASCADE)
+    type = CharField(max_length=10)
+    address = GenericIPAddressField()
     
     
     

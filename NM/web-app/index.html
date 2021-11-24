@@ -6,11 +6,10 @@
 
   {% block style %}
   <style>
-    body{
-      overflow:auto;
+    body {
+      overflow: auto;
       margin: auto;
     }
-    
   </style>
   {% endblock %}
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -28,6 +27,8 @@
 
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
   <link href="{% static 'css/routers.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -38,76 +39,9 @@
         <a class="sidebar-brand" href="/">
           <span class="align-middle">{{organisation_name}}</span>
         </a>
+        {% block sidebar %}
+        {% endblock %}
 
-        <ul class="sidebar-nav">
-          <li class="sidebar-header">
-            Router - ISR4321
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#basic">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
-            </a>
-          </li>
-          <li class="sidebar-header">
-            Protocols
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_bgp">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">BGP</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_ospf">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">OSPF</span>
-            </a>
-          </li>
-          <li class="sidebar-header">
-            Advanced Options
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_ipv6 ">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">IPV6</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_nat">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NAT</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#zns">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Zone</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_aaa">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">AAA</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_default">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Default-Routes</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_acl">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">ACL</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#add_crypto">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Crypto-Keys</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="#ntp">
-              <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NTP</span>
-            </a>
-          </li>
-          <li class="sidebar-header">
-            <a style="text-decoration: none; font-size:medium; color: honeydew;" href="dashboard">Go Back </a>
-          </li>
-        </ul>
 
       </div>
     </nav>
@@ -118,7 +52,7 @@
           <i class="hamburger align-self-center"></i>
         </a>
 
-        
+
 
         <div class="navbar-collapse collapse">
           <ul class="navbar-nav navbar-align">
@@ -174,6 +108,8 @@
   </div>
 
   <script src="{% static 'js/app.js' %}"></script>
+  {% block script %}
+  {% endblock %}
 </body>
 
 </html>

@@ -1,10 +1,46 @@
-{% extends 'index_l3.html' %}
+{% extends 'index.html' %}
 
 
 
 {% load static %}
 
+{% block sidebar %}
+<ul class="sidebar-nav">
+  <li class="sidebar-header">
+    Layer 2 Switch Scripts
+</li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#basic">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
+    </a>
+  </li>
 
+ 
+
+  <li class="sidebar-header">
+    Connectivity-Vlans
+  </li>
+
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_vlan">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Access Vlans</span>
+    </a>
+  </li>
+
+  
+
+  <li class="sidebar-header">
+    Ethernet Channel Ports
+  </li>
+
+  <li class="sidebar-item">
+    <a class="sidebar-link" href="#add_trunk ">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Trunk Vlans</span>
+    </a>
+  </li>
+ 
+</ul>
+{% endblock %}
 
 
 {% block router_content %}
