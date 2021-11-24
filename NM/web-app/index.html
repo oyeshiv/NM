@@ -3,11 +3,57 @@
 <html lang="en">
 
 <head>
-
-  {% block style %}
   <style>
+    .navbar-fixed {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      margin-left: 260px;
+      z-index: 1;
+      right: 0;
+      transition: margin-left .35s ease-in-out;
+    }
 
+    .footer-fixed {
+      position: fixed !important;
+      bottom: 0;
+      left: 0;
+      margin-left: 260px;
+      z-index: 1;
+      right: 0;
+      transition: margin-left .35s ease-in-out;
+    }
+
+    body.sidebar-collapsed .footer-fixed {
+      margin-left: 0px !important;
+    }
+
+    body.sidebar-collapsed .navbar-fixed {
+      margin-left: 0px !important;
+    }
+
+    main.content {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-fixed {
+        margin-left: 0px;
+      }
+      .footer-fixed {
+        margin-left: 0px;
+      }
+      body.sidebar-collapsed .footer-fixed {
+        margin-left: 260px !important;
+      }
+      body.sidebar-collapsed .navbar-fixed {
+        margin-left: 260px !important;
+      }
+    }
   </style>
+  {% block style %}
+
   {% endblock %}
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -45,7 +91,7 @@
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
+      <nav class="navbar navbar-expand navbar-light navbar-bg navbar-fixed">
         <a class="sidebar-toggle d-flex">
           <i class="hamburger align-self-center"></i>
         </a>
@@ -83,7 +129,7 @@
         {% endblock %}
       </main>
 
-      <footer class="footer">
+      <footer class="footer footer-fixed">
         <div class="container-fluid">
           <div class="row text-muted">
             <div class="col-6 text-left">
@@ -116,7 +162,12 @@
       }, 1000);
       $('.sidebar').removeClass('collapsed');
     });
+    $('a.sidebar-toggle').click(function () {
+      $('body').toggleClass('sidebar-collapsed');
+    });
+
   });
+
 </script>
 {% block script %}
 {% endblock %}

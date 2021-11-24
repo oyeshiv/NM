@@ -467,6 +467,14 @@
 
 
 <script type="text/javascript">
+$(document).ready(function(){
+
+  $(document).on('click', '.removebtn' , function(){
+    $('.vlans div.vlanform:last-child').remove();
+    var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
+    $('.vlans div.vlanform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+      "- Remove VLAN " + id + "</button>");
+  });
 
   $('#addvlan').on('click', function () {
     $('.vlans').each(function () {
@@ -477,7 +485,7 @@
         "<div class='col-25'>" +
         "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
         "</div>" +
-        "<div class='col-75'>" +
+        "<div class='col-75 removebtnholder'>" +
         "<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
         "- Remove VLAN " + id + "</button>" +
         "</div>" +
@@ -911,6 +919,7 @@
         "</div>");
     });
   });
+});
   
   
  

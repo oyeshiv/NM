@@ -6,7 +6,7 @@
 
   {% block style %}
   <style>
-    .button-side{
+    .button-side {
       background: none;
       color: inherit;
       border: none;
@@ -15,11 +15,12 @@
       cursor: pointer;
       outline: inherit;
     }
+
     footer {
       position: fixed;
       bottom: 0;
       width: 100%;
-  }
+    }
   </style>
   {% endblock %}
 
@@ -76,8 +77,8 @@
               <input type='hidden' name='device' value='1'>
 
               <a class="sidebar-link" href="javascript:{}" onclick="this.closest('form').submit();return false;">
-                    <i class="align-middle sidebar-link-button" data-feather="briefcase"></i>Routers</a>
-              
+                <i class="align-middle sidebar-link-button" data-feather="briefcase"></i>Routers</a>
+
             </form>
           </li>
 
@@ -86,8 +87,8 @@
               {% csrf_token %}
               <input type='hidden' name='device' value='2'>
 
-             <a class="sidebar-link" href="javascript:{}" onclick="this.closest('form').submit();return false;">
-                    <i class="align-middle sidebar-link-button" data-feather="briefcase"></i>Switches</a>
+              <a class="sidebar-link" href="javascript:{}" onclick="this.closest('form').submit();return false;">
+                <i class="align-middle sidebar-link-button" data-feather="briefcase"></i>Switches</a>
             </form>
           </li>
         </ul>
@@ -103,7 +104,17 @@
         </a>
 
         <form>
-          
+          <div class="input-group input-group-navbar">
+            <input type="text" class="form-control" id="search" placeholder="Search…" aria-label="Search">
+            <button class="btn" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-search align-middle">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+          </div>
 
         </form>
 
@@ -199,6 +210,8 @@
   </div>
 
   <script src="{% static 'js/app.js' %}"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
   {% block script %}
   {% endblock %}
 
