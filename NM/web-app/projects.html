@@ -12,10 +12,11 @@
         background-color: #cce6ff !important;
         border: 1px solid #00d9ff !important;
     }
+
     .floated {
-        float:left;
-        margin-right:5px;
-     }
+        float: left;
+        margin-right: 5px;
+    }
 </style>
 {% endblock %}
 
@@ -28,15 +29,15 @@
             <h3>Dashboard &#8594;<strong> Projects</strong></h3>
         </div>
     </div>
-    <div class="row">
+    <div class="row searchobj">
         {% for project in projects %}
-        <div class="col-sm-6 col-md-5 col-lg-4 mb-3">
+        <div class="col-sm-6 col-md-5 col-lg-4 mb-3 searchres">
             <div class="card w-100 h-100">
                 <div class="card-body d-flex flex-column justify-content-between">
-                    <h5 class="card-title mb-4">{{project.client_name}}</h5>
-                    <h1 class="mt-1 mb-3">{{project.project_name}}</h1>
+                    <h5 class="client card-title mb-4">{{project.client_name}}</h5>
+                    <h1 class="project mt-1 mb-3">{{project.project_name}}</h1>
                     <div class="mb-1">
-                        <span class="text-muted">{{project.desc}}</span> <br>
+                        <span class="desc text-muted">{{project.desc}}</span> <br>
                     </div>
 
                     <div>
@@ -46,7 +47,8 @@
                             <button class="floated btn btn-primary" type="=submit">Open</button>
 
                         </form>
-                        <button class="floated btn btn-success" data-toggle="modal" data-target="#edit_project{{project.id}}">
+                        <button class="floated btn btn-success" data-toggle="modal"
+                            data-target="#edit_project{{project.id}}">
                             Edit Details
                         </button>
                     </div>
@@ -116,5 +118,18 @@
 {% endblock %}
 
 {% block script %}
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search").on('keyup', function () {
+            var value = $(this).val().toLowerCase();
+            $(".searchobj .searchres").each(function () {
+                if ($(this).find('.project').text().toLowerCase().search(value) > -1 || $(this).find('.client').text().toLowerCase().search(value) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        })
+    })
+</script>
 {% endblock %}
