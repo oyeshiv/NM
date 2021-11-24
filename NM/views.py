@@ -181,17 +181,13 @@ def save_project(request):
         redirect('/')
     else:
         if request.method == 'POST':
-            
             project_name = request.POST['pname']
             client_name = request.POST['cname']
             desc = request.POST['desc']
             organisation = User.objects.get(username=request.session['username']).groups.all()
             organisation = organisation[0]
-            if id in request.POST:
-                project = Projects.objects.get(id=request.POST['id'])
-                project.project_name = project_name
-                project.client_name = client_name
-                project.desc = desc
+            if request.POST['id'] is not None:
+                project = Projects(id=request.POST['id'],project_name=project_name, organisation=organisation, client_name=client_name, desc=desc)
                 project.save()
                 return redirect('/dashboard')
             else:
