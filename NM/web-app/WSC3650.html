@@ -8,7 +8,7 @@
     Router - ISR4321
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" href="#basic">
+    <a class="sidebar-link" gotoid="#basic">
       <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
     </a>
   </li>
@@ -16,60 +16,27 @@
     Protocols
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_bgp">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">BGP</span>
+    <a class="sidebar-link" gotoid="#radius">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Radius</span>
     </a>
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_ospf">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">OSPF</span>
+    <a class="sidebar-link" gotoid="#ntp">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NTP</span>
     </a>
   </li>
   <li class="sidebar-header">
     Advanced Options
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_ipv6 ">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">IPV6</span>
+    <a class="sidebar-link" gotoid="#login_security">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Login Security</span>
     </a>
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_nat">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NAT</span>
+    <a class="sidebar-link" gotoid="#vlan">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">VLAN</span>
     </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#zns">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Zone</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_aaa">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">AAA</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_default">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Default-Routes</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_acl">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">ACL</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#add_crypto">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Crypto-Keys</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" href="#ntp">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NTP</span>
-    </a>
-  </li>
-  <li class="sidebar-header">
-    <a style="text-decoration: none; font-size:medium; color: honeydew;" href="dashboard">Go Back </a>
   </li>
 </ul>
 {% endblock %}
@@ -86,9 +53,7 @@
 
 
       <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
-      <button class="btn btn-primary" type="submit">
-        <i class="align-middle" data-feather="check"></i>
-      </button>
+      
     </div>
     <hr>
     <div class="row">
@@ -266,7 +231,7 @@
     </div>
     <hr>
     <div class="vlans">
-      <div id="0"></div>
+      <div class="vlanform" id="0"></div>
     </div>
 
 
@@ -310,21 +275,24 @@
 {% endblock %}
 
 {% block script %}
+
+
+
+
 <script type="text/javascript">
 
-  
   $('#addvlan').on('click', function () {
     $('.vlans').each(function () {
-      var id = parseInt($('.vlans div:last').attr('id'), 10) + 1;
-      $('.vlans').append("<div id='" + id + "'>" +
+      var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
+      $('div.col-75 #removevlan').remove();
+      $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
         "<div class='row justify-content-between'>" +
         "<div class='col-25'>" +
         "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
         "</div>" +
         "<div class='col-75'>" +
-        "<button class='btn btn-secondary' type='button id='remove'>" +
-        "<i data-feather='plus'></i> <span>Remove VLAN " + id + "</span>" +
-        "</button>" +
+        "<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+        "- Remove VLAN " + id + "</button>" +
         "</div>" +
         "</div>" +
         "<div class='row'>" +
@@ -384,8 +352,12 @@
         "</div>" +
         "</div>" +
         "</div>");
-    })
+    });
   });
+  
+  
+ 
+
 </script>
 
 {% endblock %}

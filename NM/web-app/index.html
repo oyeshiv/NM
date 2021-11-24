@@ -6,10 +6,7 @@
 
   {% block style %}
   <style>
-    body {
-      overflow: auto;
-      margin: auto;
-    }
+    
   </style>
   {% endblock %}
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -27,8 +24,9 @@
 
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
   <link href="{% static 'css/routers.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  
 </head>
 
 <body>
@@ -107,9 +105,24 @@
     </div>
   </div>
 
-  <script src="{% static 'js/app.js' %}"></script>
-  {% block script %}
-  {% endblock %}
+  
 </body>
+<script src="{% static 'js/app.js' %}"></script>
+<script>
+  $('.sidebar-item a').click(function() {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $($(this).attr('gotoid')).offset().top
+    }, 1000);
+    $('.sidebar').removeClass('collapsed');
+});
+
+$('#removevlan span').click(function(){
+  console.log('1')
+  });
+
+
+</script>
+{% block script %}
+{% endblock %}
 
 </html>
