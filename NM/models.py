@@ -236,6 +236,7 @@ class ISR4321(Scripts):
 class WSC3650(Scripts):
     host_name = CharField(max_length=100)
     banner_motd = CharField(max_length=100)
+    min_length = IntegerField()
     secret = CharField(max_length=100)
     
     login_block_time = IntegerField()
@@ -244,12 +245,13 @@ class WSC3650(Scripts):
     login_delay = IntegerField()
     login_access = GenericIPAddressField()
     
+    stp_mode = CharField(max_length=100)
+    
     default_gateway = GenericIPAddressField()
     
     radius_server = CharField(max_length=100)
     radius_ip = GenericIPAddressField()
     radius_key = CharField(max_length=100)
-    radius_group = CharField(max_length=100)
     max_fail = IntegerField()
     
     ntp_server = GenericIPAddressField()

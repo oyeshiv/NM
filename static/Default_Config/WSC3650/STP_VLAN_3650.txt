@@ -1,0 +1,1 @@
+spanning-tree vlan @vlan root @root

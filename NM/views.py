@@ -399,7 +399,9 @@ def save(request):
                 ntp_server = request.POST['ntp_server'],
                 ntp_auth_key = request.POST['ntp_auth_key'],
                 ntp_pass = request.POST['ntp_pass'],
-                ntp_trust_key = request.POST['ntp_trust_key']
+                ntp_trust_key = request.POST['ntp_trust_key'],
+                stp_mode = request.POST['stp_mode'],
+                min_length = request.POST['min_length']
             )
             
             for i in range(1, request.POST['vlan_count']):
