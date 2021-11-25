@@ -30,7 +30,7 @@
       left: -9999em;
     }
     .responsive-card-table tr {
-      border: 1px solid #0a0a0a;
+      border: 1px solid transparent;
       display: block;
     }
     .responsive-card-table tr + tr {
