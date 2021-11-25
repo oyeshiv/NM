@@ -236,72 +236,90 @@
       </div>
     </div>
     <div class='dhcpexs'>
-      <input type='hidden' id='dhcp_ex_count' name='dhcp_ex_count' value="0">
+      <input type='hidden' id='dhcp_ex_count' name='dhcp_ex_count' value="{{dhcpexs|length}}">
       <div class='dhcpexform' id='0'></div>
-      <!-- <div class='dhcpexform' id='1'>
+      {% for dhcpex in dhcpexs %}
+      <div class='dhcpexform' id='{{forloop.counter}}'>
         <div class='row'>
           <div class='col-25'>
-            <label for='dhcpex1'> Excluded Address</label>
+            <label for='dhcpex{{forloop.counter}}'> Excluded Address</label>
           </div>
           <div class='col-75'>
-            <input type='text' id='dhcpex1' name='dhcpex1' placeholder=' Excluded Address'>
+            <input type='text' id='dhcpex{{forloop.counter}}' name='dhcpex{{forloop.counter}}' value="{{dhcpex.address}}" placeholder=' Excluded Address'>
           </div>
-          <div class='col-25'>
-            <button class='btn btn-primary' type='button' id='addex' addex='1'>+
-            </button>
+          <div class='col-auto addexholder'>
+            {% if forloop.counter == dhcpexs|length %}
+            <button class='btn btn-primary' type='button' id='addex' addex='{{forloop.counter}}'>
+              +</button>
+              {% endif %}
           </div>
-          <div class='col-25 removebtnholder' id='dhcpex'>
+          <div class='col-auto removebtnholder'>
+            {% if forloop.counter == dhcpexs|length %}
+            <button class='btn btn-secondary removebtn' type='button' id='removedhcpex' rmdhcp='{{forloop.counter}}'>
+              -</button>
+              {% endif %}
           </div>
         </div>
-      </div> -->
+      </div>
+      {% endfor %}
     </div>
     <div class="dhcps">
-      <input type='hidden' id='dhcp_count' name='dhcp_count' value="0">
+      <input type='hidden' id='dhcp_count' name='dhcp_count' value="{{dhcps|length}}">
       <div class="dhcpform" id="0">
       </div>
-
-      <!-- <div class="dhcpform" id="">
+      {% for dhcp in dhcps %}
+      <hr>
+      <div class="dhcpform" id="{{forloop.counter}}">
+        <div class="row justify-content-between">
+          <div class="col-25">
+            <h5 style="display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;"
+              id="dhcphead3">DHCP Form {{forloop.counter}}</h5>
+          </div>
+          <div class="col-75 removebtnholder">
+            {% if forloop.counter == dhcps|length %}
+            <button class="btn btn-secondary removebtn" type="button" id="removedhcp"
+              rmdhcp="{{forloop.counter}}">- Remove DHCP {{forloop.counter}}</button>
+              {% endif %}
+            </div>
+        </div>
         <div class="row">
           <div class="col-25">
-            <label for="dhcpname"> DHCP Name</label>
+            <label for="dhcpname{{forloop.counter}}"> DHCP Name</label>
           </div>
           <div class="col-75">
-            <input type="text" id="dhcpname" name="dhcpname" placeholder="Address">
+            <input type="text" id="dhcpname{{forloop.counter}}" name="dhcpname{{forloop.counter}}" value="{{dhcp.name}}"
+              placeholder="Address">
           </div>
         </div>
         <div class="row">
           <div class="col-25">
-            <label for="dhcpex"> Excluded Address</label>
+            <label for="dhcpnet{{forloop.counter}}"> Network IP </label>
           </div>
           <div class="col-75">
-            <input type="text" id="dhcpex" name="dhcpex" placeholder=" Excluded Address">
+            <input type="text" id="dhcpnet{{forloop.counter}}" name="dhcpnet{{forloop.counter}}"
+              value="{{dhcp.network_ip}}" placeholder="Network IP">
           </div>
         </div>
         <div class="row">
           <div class="col-25">
-            <label for="dhcpnet"> Network IP </label>
+            <label for="dhcpsub{{forloop.counter}}"> Subnet Address</label>
           </div>
           <div class="col-75">
-            <input type="text" id="dhcpnet" name="dhcpnet" placeholder="Network IP">
+            <input type="text" id="dhcpsub{{forloop.counter}}" name="dhcpsub{{forloop.counter}}"
+              value="{{dhcp.network_subnet}}" placeholder="Subnet Address">
           </div>
         </div>
         <div class="row">
           <div class="col-25">
-            <label for="dhcpsub"> Subnet Address</label>
+            <label for="dhcprout{{forloop.counter}}"> Default Router</label>
           </div>
           <div class="col-75">
-            <input type="text" id="dhcpsub" name="dhcpsub" placeholder="Subnet Address">
+            <input type="text" id="dhcprout{{forloop.counter}}" name="dhcprout{{forloop.counter}}"
+              value="{{dhcp.default_router}}" placeholder="Address">
           </div>
         </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="dhcprout"> Default Router</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="dhcprout" name="dhcprout" placeholder="Address">
-          </div>
-        </div>
-      </div> -->
+      </div>
+      {% endfor %}
     </div>
 
     <!-- ospfv3 -->
@@ -882,8 +900,8 @@
       $('input#dhcp_ex_count').val(id);
       $('.dhcpexs div.dhcpexform:last-child div.col-auto.removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removedhcpex' rmdhcp='" + id + "'>" +
         "-</button>");
-        $('.dhcpexs div.dhcpexform:last-child div.col-auto.addexholder').append("<button class='btn btn-primary' type='button' id='addex' addex='" + id + "'>" +
-          "+</button>");
+      $('.dhcpexs div.dhcpexform:last-child div.col-auto.addexholder').append("<button class='btn btn-primary' type='button' id='addex' addex='" + id + "'>" +
+        "+</button>");
     });
 
     $(document).on('click', '#addex', function () {
@@ -892,7 +910,7 @@
         $('input#dhcp_ex_count').val(id);
         $('div.col-auto #removedhcpex').remove();
         $('div.col-auto #addex').remove();
-        $('.dhcpexs').append(
+        $('.dhcpexs').append("<hr>"+
           "<div class='dhcpexform' id='" + id + "'>" +
           "<div class='row'>" +
           "<div class='col-25'>" +
@@ -1067,9 +1085,9 @@
           "<button class='btn btn-secondary removebtn' type='button' id='removeacl' rmvlan='" + id + "'>" +
           "- Remove ACL " + id + "</button>" +
           "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
-            "+ Add contorls</button>" +
-            "</div>" +
-            "</div>"+
+          "+ Add contorls</button>" +
+          "</div>" +
+          "</div>" +
           "<div class='row'>" +
           "<div class='col-25'>" +
           "<label for='aclname" + id + "'> Name</label>" +
@@ -1078,9 +1096,9 @@
           "<input type='text' id='aclname" + id + "' name='aclname" + id + "' placeholder=' ACL Name'>" +
           "</div>" +
           "</div>" +
-          "<div class='aclels' id='" + id + "'>"+
-            "<input type='hidden' id='acl_el_count" + id + "' name='acl_el_count" + id + "' value='0'>"+
-            "<div class='aclelform' id='0'>" +
+          "<div class='aclels' id='" + id + "'>" +
+          "<input type='hidden' id='acl_el_count" + id + "' name='acl_el_count" + id + "' value='0'>" +
+          "<div class='aclelform' id='0'>" +
           "</div>" +
           "</div>" +
           "</div>"
@@ -1092,36 +1110,36 @@
       var id = $(this).attr('removeaclel');
       var id2 = $(this).attr('id2');
       if (id2 == 1) {
-        $('.aclform#'+id+' .aclels .aclelform:last-child').remove();
+        $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
         id2 = parseInt(id2) - 1;
-        $('input#acl_el_count'+id).val(id2);
-        $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='"+ id2 +"' addaclel='" + id + "'>" +
+        $('input#acl_el_count' + id).val(id2);
+        $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='" + id2 + "' addaclel='" + id + "'>" +
           "+ Add contorls</button>");
       } else {
-        $('.aclform#'+id).each(function () {
-          $('.aclform#'+id+' .aclels .aclelform:last-child').remove();
+        $('.aclform#' + id).each(function () {
+          $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
           id2 = parseInt(id2) - 1;
-          $('input#acl_el_count'+id).val(id2);
-          $('.aclform#'+id+' .aclels .aclelform:last-child .row').append("<div class='col-auto addbtnholder'>" +
+          $('input#acl_el_count' + id).val(id2);
+          $('.aclform#' + id + ' .aclels .aclelform:last-child .row').append("<div class='col-auto addbtnholder'>" +
             "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
             "+</button>" +
             "</div>" +
-            "<div class='col-auto removebtnholder'>" +"<button class='btn btn-secondary' type='button' id='removeaclel' id2='"+ id2+"' removeaclel='" + id + "'>" +
-              "-</button>" +
-            "</div>" );
+            "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
+            "-</button>" +
+            "</div>");
         });
       }
-      
+
     });
 
     $(document).on('click', '#addaclel', function () {
       var id = $(this).attr('addaclel');
       $(this).remove();
-      $('.aclform#'+id).each(function () {
-        $('.aclform#'+id+' .removebtnholder').remove();
-        var id2 = parseInt($('.aclform#'+id+' .aclels .aclelform:last-child').attr('id')) + 1;
-        $('input#acl_el_count'+id).val(id2);
-        $('.aclform#'+id+' .aclels').append(
+      $('.aclform#' + id).each(function () {
+        $('.aclform#' + id + ' .removebtnholder').remove();
+        var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
+        $('input#acl_el_count' + id).val(id2);
+        $('.aclform#' + id + ' .aclels').append(
           "<div class='aclelform' id='" + id2 + "'>" +
           "<div class='row'>" +
           "<div class='col-25'>" +
@@ -1140,15 +1158,15 @@
           "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
           "+</button>" +
           "</div>" +
-          "<div class='col-auto removebtnholder'>" +"<button class='btn btn-secondary' type='button' id='removeaclel' id2='"+ id2+"' removeaclel='" + id + "'>" +
-            "-</button>" +
-          "</div>"+
+          "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
+          "-</button>" +
+          "</div>" +
           "</div>" +
           "</div>"
 
         );
-        
-        
+
+
       });
     });
 
