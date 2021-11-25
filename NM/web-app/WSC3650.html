@@ -886,7 +886,7 @@
         var id = parseInt($('.dhcps div.dhcpform:last-child').attr('id')) + 1;
         $('input#dhcp_count').val(id);
         $('div.col-75 #removedhcp').remove();
-        $('.dhcps').append(
+        $('.dhcps').append("<hr>"+
           "<div class='dhcpform' id='" + id + "'>" +
           "<div class='row justify-content-between'>" +
           "<div class='col-25'>" +
@@ -951,7 +951,7 @@
         $('input#dhcp_ex_count').val(id);
         $('div.col-auto #removedhcpex').remove();
         $('div.col-auto #addex').remove();
-        $('.dhcpexs').append("<hr>"+
+        $('.dhcpexs').append(
           "<div class='dhcpexform' id='" + id + "'>" +
           "<div class='row'>" +
           "<div class='col-25'>" +

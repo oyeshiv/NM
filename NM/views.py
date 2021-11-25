@@ -113,38 +113,73 @@ def new_script(request):
             script.save()
             scripts = [script]
             return render(request, nm_model+'.html', {'data': scripts, 'organisation_name':request.session['organisation']})
-        
+  
+def read_script(file, input):
+    input_data = ""
+    output_data = ""
+    with open(file, 'r') as input_file:
+        input_data = input_file.read()
+    input_var = []
+    input_val = []
+    for k, v in input.__dict__.items():
+        input_var.append('@'+str(k))
+        input_val.append(str(v))      
+    for i in range(len(input_var)):
+        if input_val[i] is not None and input_val[i] != "":
+            input_data = input_data.replace(str(input_var[i]),str(input_val[i]))
+        for line in input_data:
+            print(line)
+            if not any(input_v in line for input_v in input_var):
+                input_data.replace(line, "!")
+    return input_data
         
 def config_producer(request):
     if request.method == 'POST':
         script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id).nm_model
         if script_device == 'ISR4321':
             script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
-        
-            with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
-                input_data = input_file.read()
-            
-            script_var = []
-            script_val = []
-            
-            for k, v in script.__dict__.items():
-                script_var.append('@'+str(k))
-                script_val.append(str(v))
-                
-            for i in range(len(script_var)):
-                input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
-            
-            return input_data
+            file = 'static/Default_Config/ISR4321.txt'
+            return read_script(file, script)
         elif script_device == "WSC3650":
             script = WSC3650.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+            input_data = read_script('static/Default_Config/WSC3650/Base.txt',script)
+            
             vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
+            for vlan in vlans:
+                input_data += read_script('static/Default_Config/WSC3650/VLAN_C3650.txt',vlan)    
+            
             interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
+            for interface in interfaces:
+                input_data += read_script('static/Default_Config/WSC3650/Interface_C3650.txt',interface)
+            
             acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            for acl in acls:
+                input_data += read_script('static/Default_Config/WSC3650/ACL_3650.txt',acl)
+                aclels = ACL_EL_3650.objects.filter(acl_id=acl.id)
+                for aclel in aclels:
+                    input_data += read_script('static/Default_Config/WSC3650/ACL_EL_3650.txt',aclel)
+            
             users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            for user in users:
+                input_data += read_script('static/Default_Config/WSC3650/CiscoUser.txt',user)
+                
             dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
+            for dhcp in dhcps:
+                input_data += read_script('static/Default_Config/WSC3650/DHCP_3650.txt',dhcp)
+                
             dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
+            for dhcpex in dhcpexs:
+                input_data += read_script('static/Default_Config/WSC3650/DHCP_EX_C3650.txt',dhcpex)
+                
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
+            for ospf in ospfs:
+                input_data += read_script('static/Default_Config/WSC3650/OSPFv3_3650.txt',ospf)
+                
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
+            for stp_vlan in stp_vlans:
+                input_data += read_script('static/Default_Config/WSC3650/STP_VLAN_3650.txt',stp_vlan)
+                
+            return input_data
     
     else:
         return redirect('/404')
@@ -152,9 +187,7 @@ def config_producer(request):
 def text_generator(request):
     
     input_data = config_producer(request)
-    script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-    if script_device.device_model == 'ISR4321/K9':
-        scriptname = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0].script_name
+    scriptname = Scripts.objects.filter(id=request.POST['script_id'])[0].script_name
     
     response = HttpResponse(content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename='+scriptname+'.txt'
