@@ -100,24 +100,34 @@ def new_script(request):
         
 def config_producer(request):
     if request.method == 'POST':
-        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-        if script_device.device_model == 'ISR4321/K9':
+        script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id).nm_model
+        if script_device == 'ISR4321':
             script = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
         
             with open('static/Default_Config/ISR4321.txt', 'r') as input_file:
                 input_data = input_file.read()
             
-        script_var = []
-        script_val = []
-        
-        for k, v in script.__dict__.items():
-            script_var.append('@'+str(k))
-            script_val.append(str(v))
+            script_var = []
+            script_val = []
             
-        for i in range(len(script_var)):
-            input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
+            for k, v in script.__dict__.items():
+                script_var.append('@'+str(k))
+                script_val.append(str(v))
+                
+            for i in range(len(script_var)):
+                input_data = input_data.replace(str(script_var[i]),str(script_val[i]))
             
-        return input_data
+            return input_data
+        elif script_device == "WSC3650":
+            script = WSC3650.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+            vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
+            interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
+            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
+            dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
+            ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
+            stp_vlan = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
     
     else:
         return redirect('/404')
@@ -209,9 +219,6 @@ def save(request):
     if request.method == 'POST':
         nm_model = Devices.objects.get(id=request.POST['device_id']).nm_model
         if nm_model =="ISR4321":
-        #script_obj = Scripts(device_id=device_id, project_id=project_id, script_name=script_name)
-        #script_obj.save()
-        
             script = ISR4321(
                 device_id = request.POST['device_id'],
             project_id = request.session['project_id'],
@@ -382,6 +389,9 @@ def save(request):
             script.save()
         elif nm_model =="WSC3650":
             script = WSC3650(
+                device_id = 2,
+                script_name = request.POST['script_name'],
+                project_id= request.session['project_id'],
                 host_name = request.POST['host_name'],
                 banner_motd = request.POST['banner_motd'],
                 secret = request.POST['secret'],
@@ -403,8 +413,11 @@ def save(request):
                 stp_mode = request.POST['stp_mode'],
                 min_length = request.POST['min_length']
             )
+            script.save()
             
-            for i in range(1, request.POST['vlan_count']):
+            for i in range(1, int(request.POST['vlan_count'])+1):
+                
+                i=str(i)
                 
                 vlan = VLAN_C3650(
                 script = script,
@@ -418,8 +431,8 @@ def save(request):
                 )
                 vlan.save()
                 
-            for i in range(1, request.POST['int_count']):
-                
+            for i in range(1, int(request.POST['int_count'])+1):
+                i=str(i)
                 interface = Interface_C3650(
                     script =script,
                 status = request.POST['intstatus'+i],
@@ -446,8 +459,8 @@ def save(request):
                 )
                 interface.save()
                 
-            for i in range(1, request.POST['stp_count']):
-                
+            for i in range(1, int(request.POST['stp_count'])+1):
+                i=str(i)
                 stp = STP_VLAN_3650(
                     script = script,
                 vlan = request.POST['stpvlan'+i],
@@ -455,8 +468,8 @@ def save(request):
                 )
                 stp.save()
                 
-            for i in range(1, request.POST['dhcp_count']):
-                
+            for i in range(1, int(request.POST['dhcp_count'])+1):
+                i=str(i)
                 dhcp = DHCP_3650(
                     script = script,
                 name = request.POST['dhcpname'+i],
@@ -466,8 +479,8 @@ def save(request):
                 )
                 dhcp.save()
                 
-            for i in range(1, request.POST['ospf_count']):
-                
+            for i in range(1, int(request.POST['ospf_count'])+1):
+                i=str(i)
                 ospf = OSPFv3_3650(
                     script = script,
                 process = request.POST['ospfpro'+i],
@@ -475,8 +488,8 @@ def save(request):
                 )
                 ospf.save()
                 
-            for i in range(1, request.POST['user_count']):
-                
+            for i in range(1, int(request.POST['user_count'])+1):
+                i=str(i)
                 csuser = CiscoUser(
                     script = script,
                 name = request.POST['username'+i],
@@ -484,14 +497,15 @@ def save(request):
                 )
                 csuser.save()
                 
-            for i in range(1, request.POST['acl_count']):
-                
+            for i in range(1, int(request.POST['acl_count'])+1):
+                i=str(i)
                 acl = ACL_3650(
                     script = script,
                 name = request.POST['aclname'+i]
                 )
                 acl.save()
-                for j in range(1, request.POST['acl_el_count'+i]):
+                for j in range(1, int(request.POST['acl_el_count'+i])+1):
+                    j=str(j)
                     acl_el = ACL_EL_3650(
                         acl = acl,
                     type = request.POST['aclcontrol'+j],
@@ -499,8 +513,8 @@ def save(request):
                     )
                     acl_el.save()
                 
-            for i in range(1, request.POST['dhcp_count']):
-                
+            for i in range(1, int(request.POST['dhcp_ex_count'])+1):
+                i=str(i)
                 dhcp_ex = DHCP_EX_C3650(
                     script = script,
                     address = request.POST['dhcpex'+i]

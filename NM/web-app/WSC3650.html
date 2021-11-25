@@ -43,7 +43,7 @@
 
 
 {% block router_content %}
-
+{% for script in data %}
 <div class="container">
   <form method='POST' action="save">
 
@@ -53,7 +53,7 @@
 
 
       <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
-      
+
     </div>
     <hr>
     <div class="row">
@@ -138,7 +138,7 @@
     </div>
     <hr>
     <!-- NTP -->
-    
+
     <div class="row">
       <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ntp">NTP</h3>
     </div>
@@ -176,7 +176,7 @@
     </div>
     <hr>
     <!-- Login Security -->
-    
+
     <div class="row">
       <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="login_security">Login
         Security</h3>
@@ -222,66 +222,107 @@
       </div>
     </div>
     <hr>
-     <!-- DHCP -->
-     
-  <div class="row">
-    <div class="col-25">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="DHCP">DHCP
-      </h3>
-    </div>
-    
-  </div>
+    <!-- DHCP -->
+
     <div class="row">
       <div class="col-25">
-        <label for="dhcpname"> DHCP Name</label>
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="DHCP">DHCP
+        </h3>
       </div>
-      <div class="col-75">
-        <input type="text" id="dhcpname" name="dhcpname" placeholder="Address">
+      <div class="col-75"><button class="btn btn-primary" type="button" id="adddhcp"><i data-feather="plus"></i>
+          <span>Add DHCP</span></button>
+        <button class="btn btn-primary" type="button" id="addex"><i data-feather="plus"></i>
+          <span>Add DHCP Excluded Address</span></button>
       </div>
     </div>
+    <div class='dhcpexs'>
+      <input type='hidden' id='dhcp_ex_count' name='dhcp_ex_count' value="0">
+      <div class='dhcpexform' id='0'></div>
+      <!-- <div class='dhcpexform' id='1'>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='dhcpex1'> Excluded Address</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id='dhcpex1' name='dhcpex1' placeholder=' Excluded Address'>
+          </div>
+          <div class='col-25'>
+            <button class='btn btn-primary' type='button' id='addex' addex='1'>+
+            </button>
+          </div>
+          <div class='col-25 removebtnholder' id='dhcpex'>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="dhcps">
+      <input type='hidden' id='dhcp_count' name='dhcp_count' value="0">
+      <div class="dhcpform" id="0">
+      </div>
+
+      <!-- <div class="dhcpform" id="">
+        <div class="row">
+          <div class="col-25">
+            <label for="dhcpname"> DHCP Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dhcpname" name="dhcpname" placeholder="Address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="dhcpex"> Excluded Address</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dhcpex" name="dhcpex" placeholder=" Excluded Address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="dhcpnet"> Network IP </label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dhcpnet" name="dhcpnet" placeholder="Network IP">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="dhcpsub"> Subnet Address</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dhcpsub" name="dhcpsub" placeholder="Subnet Address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="dhcprout"> Default Router</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dhcprout" name="dhcprout" placeholder="Address">
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- ospfv3 -->
+    <hr>
     <div class="row">
       <div class="col-25">
-        <label for="dhcpex"> Excluded Address</label>
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ospfv3">OSPFv3
+        </h3>
       </div>
-      <div class="col-75">
-        <input type="text" id="dhcpex" name="dhcpex" placeholder=" Excluded Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="dhcpnet"> Network IP </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="dhcpnet" name="dhcpnet" placeholder="Network IP">
+      <div class="col-75"><button class="btn btn-primary" type="button" id="addospf"><i data-feather="plus"></i>
+          <span>Add OSPFv3</span></button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="dhcpsub"> Subnet Address</label>
+    <div class="ospfs">
+      <input type='hidden' id='ospf_count' name='ospf_count' value="0">
+      <div class="ospfform" id="0">
       </div>
-      <div class="col-75">
-        <input type="text" id="dhcpsub" name="dhcpsub" placeholder="Subnet Address">
-      </div>
+
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="dhcprout"> Default Router</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="dhcprout" name="dhcprout" placeholder="Address">
-      </div>
-      <div class="row">
-      <div class="col-75"><button class="btn btn-primary" type="button" id="adhcp"><i data-feather="plus"></i>
-        <span>Add DHCP</span></button>
-      </div>
-    </div>
-     <!-- ospfv3 -->
-     <hr>
-     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ospfv3">OSPFv3
-      </h3>
-    </div>
-    <div class="row">
+
+    <!-- <div class="row">
       <div class="col-25">
         <label for="ospfpro"> Process ID</label>
       </div>
@@ -296,19 +337,24 @@
       <div class="col-75">
         <input type="text" id="ospfrid" name="ospfrid" placeholder="Router ID">
       </div>
-    </div>
+    </div> -->
+
+    <!-- User Account -->
+    <hr>
     <div class="row">
-    <div class="col-75"><button class="btn btn-primary" type="button" id="addospf"><i data-feather="plus"></i>
-      <span>Add OSPFv3</span></button>
+      <div class="col-25">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="usracc">User Account
+        </h3>
+      </div>
+      <div class="col-75"><button class="btn btn-primary" type="button" id="adduser"><i data-feather="plus"></i>
+          <span>Add User</span></button>
+      </div>
     </div>
-  </div>
-     <!-- User Account -->
-     <hr>
-     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="usracc">User Account
-      </h3>
+    <div class="users">
+      <input type='hidden' id='user_count' name='user_count' value="0">
+      <div class="userform" id="0"></div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-25">
         <label for="username"> Name</label>
       </div>
@@ -323,19 +369,23 @@
       <div class="col-75">
         <input type="text" id="userpass" name="userpass" placeholder="Name">
       </div>
-    </div>
-    <div class="row">
-    <div class="col-75"><button class="btn btn-primary" type="button" id="adduser"><i data-feather="plus"></i>
-      <span>Add User</span></button>
-    </div>
-  </div>
+    </div> -->
     <!-- ACL -->
     <hr>
     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="l3acl">ACL
-      </h3>
+      <div class="col-25">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="l3acl">ACL
+        </h3>
+      </div>
+      <div class="col-75"><button class="btn btn-primary" type="button" id="addacl"><i data-feather="plus"></i>
+          <span>Add ACL</span></button>
+      </div>
     </div>
-    <div class="row">
+    <div class="acls">
+      <input type='hidden' id='acl_count' name='acl_count' value="0">
+      <div class="aclform" id="0"></div>
+    </div>
+    <!-- <div class="row">
       <div class="col-25">
         <label for="aclname"> Name</label>
       </div>
@@ -358,19 +408,34 @@
       <div class="col-75">
         <input type="text" id="acladd" name="acladd" placeholder=" ACL Address">
       </div>
-    </div>
-    <div class="row">
-    <div class="col-75"><button class="btn btn-primary" type="button" id="addacl"><i data-feather="plus"></i>
-      <span>Add ACL</span></button>
-    </div>
-  </div>
+    </div> -->
+
     <!--STP_VLAN-->
     <hr>
     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="stp">STP_VLAN
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="stp_vlan">STP
       </h3>
     </div>
-    <div class="row">
+    <div class="stpvlans">
+      <input type='hidden' id='stp_count' name='stp_count' value="0">
+      <div class="row">
+        <div class="col-25">
+          <label for="stp_mode">STP Mode</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="stp_mode" name="stp_mode" placeholder="STP Mode">
+        </div>
+      </div>
+      <div class="stpvlanform" id="0">
+        <div class='row'>
+          <div class='col-auto stpbtn'>
+            <button class='btn btn-primary' type='button' id='addstp' addex='1'>+ Add Root Bridge
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
       <div class="col-25">
         <label for="stpvlan"> Vlan</label>
       </div>
@@ -385,28 +450,26 @@
       <div class="col-75">
         <input type="text" id="stproot" name="stproot" placeholder="Root Number">
       </div>
-    </div>
+    </div> -->
+
+    <!-- Interface -->
+    <hr>
     <div class="row">
-    <div class="col-75"><button class="btn btn-primary" type="button" id="addstp"><i data-feather="plus"></i>
-      <span>Add STP</span></button>
-    </div>
-  </div>
-     <!-- Interface -->
-     <hr>
-     <div class="row">
       <div class="col-25">
-        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intrfce">Interfaces</h3>
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intrfce">Interfaces
+        </h3>
       </div>
       <div class="col-75"><button class="btn btn-primary" type="button" id="addint"><i data-feather="plus"></i>
           <span>Add Interface</span></button>
       </div>
     </div>
-    <hr>
-    <div class="intrfcs">
-      <div class="intrfceform" id="0"></div>
+    <div class="interfaces">
+      <input type='hidden' id='int_count' name='int_count' value="0">
+      <div class="interfaceform" id="0"></div>
     </div>
+    <hr>
     <!-- VLAN -->
-    
+
     <div class="row">
       <div class="col-25">
         <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="vlan">VLAN</h3>
@@ -414,12 +477,14 @@
       <div class="col-75"><button class="btn btn-primary" type="button" id="addvlan"><i data-feather="plus"></i>
           <span>Add VLAN</span></button>
       </div>
-      
+
     </div>
-    <hr>
     <div class="vlans">
+      <input type='hidden' id='vlan_count' name='vlan_count' value="0">
       <div class="vlanform" id="0"></div>
     </div>
+
+
 
 
 
@@ -430,7 +495,7 @@
 
           {% csrf_token %}
 
-          <input type='hidden' name='device_id' value='1'>
+          <input type='hidden' name='device_id' value='2'>
           {% if script.id is not null %}
           <input type='hidden' name='script_id' value='{{script.id}}'>
           {% endif %}
@@ -458,6 +523,7 @@
 </div>
 </div>
 </div>
+{% endfor %}
 
 {% endblock %}
 
@@ -467,462 +533,631 @@
 
 
 <script type="text/javascript">
-$(document).ready(function(){
+  $(document).ready(function () {
 
-  $(document).on('click', '.removebtn' , function(){
-    $('.vlans div.vlanform:last-child').remove();
-    var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
-    $('.vlans div.vlanform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
-      "- Remove VLAN " + id + "</button>");
+    $(document).on('click', '#removevlan', function () {
+      $('.vlans div.vlanform:last-child').remove();
+      var id = parseInt($('.vlans div.vlanform:last-child').attr('id'));
+      $('input#vlan_count').val(id);
+      $('.vlans div.vlanform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+        "- Remove VLAN " + id + "</button>");
+    });
+
+    $('#addvlan').on('click', function () {
+      $('.vlans').each(function () {
+        var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
+        $('input#vlan_count').val(id);
+        $('div.col-75 #removevlan').remove();
+        $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+          "- Remove VLAN " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlannum" + id + "'>VLAN</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlannum" + id + "' name='vlannum" + id + "' placeholder='VLAN Number'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanname" + id + "'>VLAN Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanname" + id + "' name='vlanname" + id + "' placeholder='VLAN Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanip" + id + "'>IPv4 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanip" + id + "' name='vlanip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlansub" + id + "'>IPv4 Subnet</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlansub" + id + "' name='vlansub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanipv6" + id + "'>IPv6 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanipv6" + id + "' name='vlanipv6" + id + "' placeholder='IPv6 Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanpre" + id + "'>IPv6 Prefix</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanpre" + id + "' name='vlanpre" + id + "' placeholder='xx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanlink" + id + "'>IPv6 Link-Local</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanlink" + id + "' name='vlanlink" + id + "' placeholder='IPv6 Link-Local'>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+      });
+    });
+
+    $(document).on('click', '#removeinterface', function () {
+      console.log($('.interfaces div.interfaceform:last-child'))
+      $('.interfaces div.interfaceform:last-child').remove();
+      var id = parseInt($('.interfaces div.interfaceform:last-child').attr('id'));
+      $('input#int_count').val(id);
+      $('.interfaces div.interfaceform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>" +
+        "- Remove Interface " + id + "</button>");
+    });
+
+    $('#addint').on('click', function () {
+      $('.interfaces').each(function () {
+        var id = parseInt($('.interfaces div.interfaceform:last-child').attr('id')) + 1;
+        $('input#int_count').val(id);
+        $('div.col-75 #removeinterface').remove();
+        $('.interfaces').append("<div class='interfaceform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='interfacehead" + id + "'>Interface Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>" +
+          "- Remove Iterface " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intstatus" + id + "'>Status</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intstatus" + id + "' name='intstatus" + id + "' placeholder=' Interface Status'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intname" + id + "'>Interface Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intname" + id + "' name='intname" + id + "' placeholder='Interface Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intsw" + id + "'>Switchport</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intsw" + id + "' name='intsw" + id + "' placeholder='Switchport Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intip" + id + "'>IPv4 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intip" + id + "' name='intip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intsub" + id + "'>IPv4 Subnet</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intsub" + id + "' name='intsub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6" + id + "'>IPv6 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6" + id + "' name='intipv6" + id + "' placeholder='IPv6 Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intpre" + id + "'>IPv6 Prefix</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intpre" + id + "' name='intpre" + id + "' placeholder='xx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intlink" + id + "'>IPv6 Link-Local</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intlink" + id + "' name='intlink" + id + "' placeholder='IPv6 Link-Local'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intswmode" + id + "'>SwitchPort Mode</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intswmode" + id + "' name='intswmode" + id + "' placeholder='SwitchPort Mode'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intswaccess" + id + "'>SwitchPort Access</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intswaccess" + id + "' name='intswaccess" + id + "' placeholder='SwitchPort Access'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intallvlan" + id + "'>Vlans Allowed</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intallvlan" + id + "' name='intallvlan" + id + "' placeholder='Vlans Allowed'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intnative" + id + "'>Native Vlan</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intnative" + id + "' name='intnative" + id + "' placeholder='Native Vlan'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intencap" + id + "'>Encapsulation</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intencap" + id + "' name='intencap" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intencap" + id + "'>Non- Negiotate</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intnoneg" + id + "' name='intnoneg" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intch" + id + "'>Channel Group</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intch" + id + "' name='intch" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intchmode" + id + "'>Channel Mode</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intchmode" + id + "' name='intchmode" + id + "' placeholder='Channel Mode'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intstpcost" + id + "'>STP Cost</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intstpcost" + id + "' name='intstpcost" + id + "' placeholder='STP Cost'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipospf" + id + "'>IPv4 OSPFv3</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipospf" + id + "' name='intipospf" + id + "' placeholder='IPv4 OSPFv3'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intiparea" + id + "'>IPv4 Area</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intiparea" + id + "' name='intiparea" + id + "' placeholder='IPv4 Area'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6ospf" + id + "'>IPv6 OSPFv3</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6ospf" + id + "' name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6area" + id + "'>IPv6 Area</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6area" + id + "' name='intipv6area" + id + "' placeholder='IPv6 Area'>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+      });
+    });
+
+    $(document).on('click', '#removedhcp', function () {
+      $('.dhcps div.dhcpform:last-child').remove();
+      var id = parseInt($('.dhcps div.dhcpform:last-child').attr('id'));
+      $('input#dhcp_count').val(id);
+      $('.dhcps div.dhcpform:last-child div.col-75.removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removedhcp' rmdhcp='" + id + "'>" +
+        "- Remove DHCP " + id + "</button>");
+    });
+
+    $(document).on('click', '#adddhcp', function () {
+      $('.dhcps').each(function () {
+        var id = parseInt($('.dhcps div.dhcpform:last-child').attr('id')) + 1;
+        $('input#dhcp_count').val(id);
+        $('div.col-75 #removedhcp').remove();
+        $('.dhcps').append(
+          "<div class='dhcpform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='dhcphead" + id + "'>DHCP Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removedhcp' rmdhcp='" + id + "'>" +
+          "- Remove DHCP " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='dhcpname" + id + "'> DHCP Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='dhcpname" + id + "' name='dhcpname" + id + "' placeholder='Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='dhcpnet" + id + "'> Network IP </label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='dhcpnet" + id + "' name='dhcpnet" + id + "' placeholder='Network IP'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='dhcpsub" + id + "'> Subnet Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='dhcpsub" + id + "' name='dhcpsub" + id + "' placeholder='Subnet Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='dhcprout" + id + "'> Default Router</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='dhcprout" + id + "' name='dhcprout" + id + "' placeholder='Address'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+
+        );
+      });
+    });
+
+    $(document).on('click', '#removedhcpex', function () {
+      $('.dhcpexs div.dhcpexform:last-child').remove();
+      var id = parseInt($('.dhcpexs div.dhcpexform:last-child').attr('id'));
+      $('input#dhcp_ex_count').val(id);
+      $('.dhcpexs div.dhcpexform:last-child div.col-auto.removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removedhcpex' rmdhcp='" + id + "'>" +
+        "-</button>");
+        $('.dhcpexs div.dhcpexform:last-child div.col-auto.addexholder').append("<button class='btn btn-primary' type='button' id='addex' addex='" + id + "'>" +
+          "+</button>");
+    });
+
+    $(document).on('click', '#addex', function () {
+      $('.dhcpexs').each(function () {
+        var id = parseInt($('.dhcpexs div.dhcpexform:last-child').attr('id')) + 1;
+        $('input#dhcp_ex_count').val(id);
+        $('div.col-auto #removedhcpex').remove();
+        $('div.col-auto #addex').remove();
+        $('.dhcpexs').append(
+          "<div class='dhcpexform' id='" + id + "'>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='dhcpex" + id + "'> Excluded Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='dhcpex" + id + "' name='dhcpex" + id + "' placeholder=' Excluded Address'>" +
+          "</div>" +
+          "<div class='col-auto addexholder'>" +
+          "<button class='btn btn-primary' type='button' id='addex' addex='" + id + "'>" +
+          "+</button>" +
+          "</div>" +
+          "<div class='col-auto removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removedhcpex' rmdhcp='" + id + "'>" +
+          "-</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+
+        );
+      });
+    });
+
+    $(document).on('click', '#removestp', function () {
+      $('.stpvlans').each(function () {
+        $('.stpvlans div.stpvlanform:last-child').remove();
+        var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id'));
+        $('input#stp_count').val(id);
+        $('div.col-auto.stpbtn').append("<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+ Add Root Bridge" +
+          "</button>");
+      });
+    });
+
+    $(document).on('click', '#addstp', function () {
+      $('.stpvlans').each(function () {
+        var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id')) + 1;
+        $('input#stp_count').val(id);
+        $('div.col-auto #addstp').remove();
+        $('.stpvlans').append(
+          "<div class='stpvlanform' id='" + id + "'>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='stpvlan" + id + "'> Vlan</label>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<input type='text' id='stpvlan" + id + "' name='stpvlan" + id + "' placeholder='Vlan'>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<label for='stproot" + id + "'> Root Number</label>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<input type='text' id='stproot" + id + "' name='stproot" + id + "' placeholder='Root Number'>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<button class='btn btn-secondary' type='button' id='removestp' removestp='1'>-" +
+          "</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+
+        );
+      });
+    });
+
+    $(document).on('click', '#removeospf', function () {
+      $('.ospfs div.ospfform:last-child').remove();
+      var id = parseInt($('.ospfs div.ospfform:last-child').attr('id'));
+      $('input#ospf_count').val(id);
+      $('.ospfs div.ospfform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeospf' rmospf='" + id + "'>" +
+        "- Remove OSPF " + id + "</button>");
+    });
+
+    $(document).on('click', '#addospf', function () {
+      $('.ospfs').each(function () {
+        var id = parseInt($('.ospfs div.ospfform:last-child').attr('id')) + 1;
+        $('input#ospf_count').val(id);
+        $('div.col-75 #removeospf').remove();
+        $('.ospfs').append("<div class='ospfform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='ospfhead" + id + "'>OSPF Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeospf' rmvlan='" + id + "'>" +
+          "- Remove OSPF " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='ospfpro" + id + "'> Process ID</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='ospfpro" + id + "' name='ospfpro" + id + "' placeholder='Process ID'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='ospfrid" + id + "'> Router ID</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='ospfrid" + id + "' name='ospfrid" + id + "' placeholder='Router ID'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      });
+    });
+
+    $(document).on('click', '#removeuser', function () {
+      $('.users div.userform:last-child').remove();
+      var id = parseInt($('.users div.userform:last-child').attr('id'));
+      $('input#user_count').val(id);
+      $('.users div.userform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeuser' rmuser='" + id + "'>" +
+        "- Remove User " + id + "</button>");
+    });
+
+    $(document).on('click', '#adduser', function () {
+      $('.users').each(function () {
+        var id = parseInt($('.users div.userform:last-child').attr('id')) + 1;
+        $('input#user_count').val(id);
+        $('div.col-75 #removeuser').remove();
+        $('.users').append("<div class='userform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='userhead" + id + "'>User Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeuser' rmvlan='" + id + "'>" +
+          "- Remove user " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='username" + id + "'> Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='username" + id + "' name='username" + id + "' placeholder='Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='userpass" + id + "'> Password</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='userpass" + id + "' name='userpass" + id + "' placeholder='Name'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      });
+    });
+
+    $(document).on('click', '#removeacl', function () {
+      $('.acls div.aclform:last-child').remove();
+      var id = parseInt($('.acls div.aclform:last-child').attr('id'));
+      $('input#acl_count').val(id);
+      $('.acls div.aclform:last-child .aclremovebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeacl' rmacl='" + id + "'>" +
+        "- Remove ACL " + id + "</button>");
+    });
+
+    $(document).on('click', '#addacl', function () {
+      $('.acls').each(function () {
+        var id = parseInt($('.acls div.aclform:last-child').attr('id')) + 1;
+        $('div.col-75 #removeacl').remove();
+        $('input#acl_count').val(id);
+        $('.acls').append("<div class='aclform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='aclhead" + id + "'>Access List Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 aclremovebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeacl' rmvlan='" + id + "'>" +
+          "- Remove ACL " + id + "</button>" +
+          "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+            "+ Add contorls</button>" +
+            "</div>" +
+            "</div>"+
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='aclname" + id + "'> Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='aclname" + id + "' name='aclname" + id + "' placeholder=' ACL Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='aclels' id='" + id + "'>"+
+            "<input type='hidden' id='acl_el_count" + id + "' name='acl_el_count" + id + "' value='0'>"+
+            "<div class='aclelform' id='0'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      });
+    });
+
+    $(document).on('click', '#removeaclel', function () {
+      var id = $(this).attr('removeaclel');
+      var id2 = $(this).attr('id2');
+      if (id2 == 1) {
+        $('.aclform#'+id+' .aclels .aclelform:last-child').remove();
+        id2 = parseInt(id2) - 1;
+        $('input#acl_el_count'+id).val(id2);
+        $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='"+ id2 +"' addaclel='" + id + "'>" +
+          "+ Add contorls</button>");
+      } else {
+        $('.aclform#'+id).each(function () {
+          $('.aclform#'+id+' .aclels .aclelform:last-child').remove();
+          id2 = parseInt(id2) - 1;
+          $('input#acl_el_count'+id).val(id2);
+          $('.aclform#'+id+' .aclels .aclelform:last-child .row').append("<div class='col-auto addbtnholder'>" +
+            "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+            "+</button>" +
+            "</div>" +
+            "<div class='col-auto removebtnholder'>" +"<button class='btn btn-secondary' type='button' id='removeaclel' id2='"+ id2+"' removeaclel='" + id + "'>" +
+              "-</button>" +
+            "</div>" );
+        });
+      }
+      
+    });
+
+    $(document).on('click', '#addaclel', function () {
+      var id = $(this).attr('addaclel');
+      $(this).remove();
+      $('.aclform#'+id).each(function () {
+        $('.aclform#'+id+' .removebtnholder').remove();
+        var id2 = parseInt($('.aclform#'+id+' .aclels .aclelform:last-child').attr('id')) + 1;
+        $('input#acl_el_count'+id).val(id2);
+        $('.aclform#'+id+' .aclels').append(
+          "<div class='aclelform' id='" + id2 + "'>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='aclcontrol" + id2 + "'>Control Type</label>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<input type='text' id='aclcontrol" + id2 + "' name='aclcontrol" + id2 + "' placeholder=' ACL Control Type'>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<label for='acladd" + id2 + "'>ACL Address</label>" +
+          "</div>" +
+          "<div class='col-auto'>" +
+          "<input type='text' id='acladd" + id2 + "' name='acladd" + id2 + "' placeholder=' ACL Address'>" +
+          "</div>" +
+          "<div class='col-auto addbtnholder'>" +
+          "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+          "+</button>" +
+          "</div>" +
+          "<div class='col-auto removebtnholder'>" +"<button class='btn btn-secondary' type='button' id='removeaclel' id2='"+ id2+"' removeaclel='" + id + "'>" +
+            "-</button>" +
+          "</div>"+
+          "</div>" +
+          "</div>"
+
+        );
+        
+        
+      });
+    });
+
+
+
   });
 
-  $('#addvlan').on('click', function () {
-    $('.vlans').each(function () {
-      var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
-      $('div.col-75 #removevlan').remove();
-      $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
-        "<div class='row justify-content-between'>" +
-        "<div class='col-25'>" +
-        "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
-        "</div>" +
-        "<div class='col-75 removebtnholder'>" +
-        "<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
-        "- Remove VLAN " + id + "</button>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlannum" + id + "'>VLAN</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlannum" + id + "' name='vlannum" + id + "' placeholder='VLAN Number'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlanname" + id + "'>VLAN Name</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlanname" + id + "' name='vlanname" + id + "' placeholder='VLAN Name'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlanip" + id + "'>IPv4 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlanip" + id + "' name='vlanip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlansub" + id + "'>IPv4 Subnet</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlansub" + id + "' name='vlansub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlanipv6" + id + "'>IPv6 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlanipv6" + id + "' name='vlanipv6" + id + "' placeholder='IPv6 Address'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlanpre" + id + "'>IPv6 Prefix</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlanpre" + id + "' name='vlanpre" + id + "' placeholder='xx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='vlanlink" + id + "'>IPv6 Link-Local</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='vlanlink" + id + "' name='vlanlink" + id + "' placeholder='IPv6 Link-Local'>" +
-        "</div>" +
-        "</div>" +
-        "</div>");
-    });
-  });
-  $('#addint').on('click', function () {
-    $('.intrfcs').each(function () {
-      var id = parseInt($('.intrfces div.intrfceform:last-child').attr('id')) + 1;
-      $('div.col-75 #removeintrfce').remove();
-      $('.intrfcs').append("<div class='intrfceform' id='" + id + "'>" +
-        "<div class='row justify-content-between'>" +
-        "<div class='col-25'>" +
-        "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='interfacehead" + id + "'>Interface Form " + id + "</h5>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<button class='btn btn-secondary removebtn' type='button' id='removeintrfce' rmintrfce='" + id + "'>" +
-        "- Remove Iterface " + id + "</button>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intstatus" + id + "'>Status</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intstatus" + id + "' name='intstatus" + id + "' placeholder=' Interface Status'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intname" + id + "'>Interface Name</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intname" + id + "' name='intname" + id + "' placeholder='Interface Name'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intsw" + id + "'>Switchport</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intsw" + id + "' name='intsw" + id + "' placeholder='Switchport Name'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intip" + id + "'>IPv4 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intip" + id + "' name='intip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intsub" + id + "'>IPv4 Subnet</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intsub" + id + "' name='intsub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6" + id + "'>IPv6 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6" + id + "' name='intipv6" + id + "' placeholder='IPv6 Address'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intpre" + id + "'>IPv6 Prefix</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intpre" + id + "' name='intpre" + id + "' placeholder='xx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intlink" + id + "'>IPv6 Link-Local</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intlink" + id + "' name='intlink" + id + "' placeholder='IPv6 Link-Local'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intswmode" + id + "'>SwitchPort Mode</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intswmode" + id + "' name='intswmode" + id + "' placeholder='SwitchPort Mode'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intswaccess" + id + "'>SwitchPort Access</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intswaccess" + id + "' name='intswaccess" + id + "' placeholder='SwitchPort Access'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intallvlan" + id + "'>Vlans Allowed</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intallvlan" + id + "' name='intallvlan" + id + "' placeholder='Vlans Allowed'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intnative" + id + "'>Native Vlan</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intnative" + id + "' name='intnative" + id + "' placeholder='Native Vlan'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intencap" + id + "'>Encapsulation</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intencap" + id + "' name='intencap" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intencap" + id + "'>Non- Negiotate</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intnoneg" + id + "' name='intnoneg" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intch" + id + "'>Channel Group</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intch" + id + "' name='intch" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intchmode" + id + "'>Channel Mode</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intchmode" + id + "' name='intchmode" + id + "' placeholder='Channel Mode'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intstpcost" + id + "'>STP Cost</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intstpcost" + id + "' name='intstpcost" + id + "' placeholder='STP Cost'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipospf" + id + "'>IPv4 OSPFv3</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipospf" + id + "' name='intipospf" + id + "' placeholder='IPv4 OSPFv3'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intiparea" + id + "'>IPv4 Area</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intiparea" + id + "' name='intiparea" + id + "' placeholder='IPv4 Area'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6ospf" + id + "'>IPv6 OSPFv3</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6ospf" + id + "' name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6area" + id + "'>IPv6 Area</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6area" + id + "' name='intipv6area" + id + "' placeholder='IPv6 Area'>" +
-        "</div>" +
-        "</div>" +
-        "</div>");
-    });
-  });
-  $('#adhcp').on('click', function () {
-    $('.intrfcs').each(function () {
-      var id = parseInt($('.intrfces div.intrfceform:last-child').attr('id')) + 1;
-      $('div.col-75 #removeintrfce').remove();
-      $('.intrfcs').append("<div class='intrfceform' id='" + id + "'>" +
-        "<div class='row justify-content-between'>" +
-        "<div class='col-25'>" +
-        "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='interfacehead" + id + "'>Interface Form " + id + "</h5>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<button class='btn btn-secondary removebtn' type='button' id='removeintrfce' rmintrfce='" + id + "'>" +
-        "- Remove Iterface " + id + "</button>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intstatus" + id + "'>Status</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intstatus" + id + "' name='intstatus" + id + "' placeholder=' Interface Status'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intname" + id + "'>Interface Name</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intname" + id + "' name='intname" + id + "' placeholder='Interface Name'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intsw" + id + "'>Switchport</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intsw" + id + "' name='intsw" + id + "' placeholder='Switchport Name'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intip" + id + "'>IPv4 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intip" + id + "' name='intip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intsub" + id + "'>IPv4 Subnet</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intsub" + id + "' name='intsub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6" + id + "'>IPv6 Address</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6" + id + "' name='intipv6" + id + "' placeholder='IPv6 Address'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intpre" + id + "'>IPv6 Prefix</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intpre" + id + "' name='intpre" + id + "' placeholder='xx'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intlink" + id + "'>IPv6 Link-Local</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intlink" + id + "' name='intlink" + id + "' placeholder='IPv6 Link-Local'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intswmode" + id + "'>SwitchPort Mode</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intswmode" + id + "' name='intswmode" + id + "' placeholder='SwitchPort Mode'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intswaccess" + id + "'>SwitchPort Access</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intswaccess" + id + "' name='intswaccess" + id + "' placeholder='SwitchPort Access'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intallvlan" + id + "'>Vlans Allowed</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intallvlan" + id + "' name='intallvlan" + id + "' placeholder='Vlans Allowed'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intnative" + id + "'>Native Vlan</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intnative" + id + "' name='intnative" + id + "' placeholder='Native Vlan'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intencap" + id + "'>Encapsulation</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intencap" + id + "' name='intencap" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intencap" + id + "'>Non- Negiotate</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intnoneg" + id + "' name='intnoneg" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intch" + id + "'>Channel Group</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intch" + id + "' name='intch" + id + "' placeholder='Encapsulation'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intchmode" + id + "'>Channel Mode</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intchmode" + id + "' name='intchmode" + id + "' placeholder='Channel Mode'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intstpcost" + id + "'>STP Cost</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intstpcost" + id + "' name='intstpcost" + id + "' placeholder='STP Cost'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipospf" + id + "'>IPv4 OSPFv3</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipospf" + id + "' name='intipospf" + id + "' placeholder='IPv4 OSPFv3'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intiparea" + id + "'>IPv4 Area</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intiparea" + id + "' name='intiparea" + id + "' placeholder='IPv4 Area'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6ospf" + id + "'>IPv6 OSPFv3</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6ospf" + id + "' name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3'>" +
-        "</div>" +
-        "</div>" +
-        "<div class='row'>" +
-        "<div class='col-25'>" +
-        "<label for='intipv6area" + id + "'>IPv6 Area</label>" +
-        "</div>" +
-        "<div class='col-75'>" +
-        "<input type='text' id='intipv6area" + id + "' name='intipv6area" + id + "' placeholder='IPv6 Area'>" +
-        "</div>" +
-        "</div>" +
-        "</div>");
-    });
-  });
-});
-  
-  
- 
+
+
 
 </script>
 

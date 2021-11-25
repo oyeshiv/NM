@@ -36,12 +36,13 @@ radius server @radius_server
 address ipv4 @radius_ip auth-port 1812 acct-port 1813 
 key @radius_key
 exit
+aaa group server radius radius_group
 aaa local authentication attempts max-fail @max_fail
-aaa authentication login default group radius local  
-aaa authorization exec default group radius 
-aaa authorization network default group radius 
-aaa accounting exec default start-stop group radius 
-aaa accounting network default start-stop group radius 
+aaa authentication login default group radius_group local  
+aaa authorization exec default group radius_group local
+aaa authorization network default group radius_group local 
+aaa accounting exec default start-stop group radius_group 
+aaa accounting network default start-stop group radius_group 
 no cdp run 
 ntp server @ntp_server
 ntp authenticate 
