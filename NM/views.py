@@ -96,6 +96,7 @@ def edit_script(request):
             dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
+            template = nm_model + ".html"
             context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
         return render(request, template,  context)
 
