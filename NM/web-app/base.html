@@ -4,24 +4,58 @@
 
 <head>
 
-  {% block style %}
+  
   <style>
-    .button-side {
-      background: none;
-      color: inherit;
-      border: none;
-      padding: 0;
-      font: inherit;
-      cursor: pointer;
-      outline: inherit;
+
+    .navbar-fixed {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      margin-left: 260px;
+      z-index: 1;
+      right: 0;
+      transition: margin-left .35s ease-in-out;
     }
 
-    footer {
-      position: fixed;
+    .footer-fixed {
+      position: fixed !important;
       bottom: 0;
-      width: 100%;
+      left: 0;
+      margin-left: 260px;
+      z-index: 1;
+      right: 0;
+      transition: margin-left .35s ease-in-out;
+    }
+
+    body.sidebar-collapsed .footer-fixed {
+      margin-left: 0px !important;
+    }
+
+    body.sidebar-collapsed .navbar-fixed {
+      margin-left: 0px !important;
+    }
+
+    main.content {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-fixed {
+        margin-left: 0px;
+      }
+      .footer-fixed {
+        margin-left: 0px;
+      }
+      body.sidebar-collapsed .footer-fixed {
+        margin-left: 260px !important;
+      }
+      body.sidebar-collapsed .navbar-fixed {
+        margin-left: 260px !important;
+      }
     }
   </style>
+  {% block style %}
   {% endblock %}
 
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -98,7 +132,7 @@
     </nav>
 
     <div class="main">
-      <nav class="navbar navbar-expand navbar-light navbar-bg">
+      <nav class="navbar navbar-expand navbar-light navbar-bg navbar-fixed">
         <a class="sidebar-toggle d-flex">
           <i class="hamburger align-self-center"></i>
         </a>
@@ -187,7 +221,7 @@
         </div>
       </main>
 
-      <footer class="footer">
+      <footer class="footer footer-fixed">
         <div class="container-fluid">
           <div class="row text-muted">
             <div class="col-6 text-left">
@@ -211,7 +245,11 @@
 
   <script src="{% static 'js/app.js' %}"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+  <script>
+    $('a.sidebar-toggle').click(function () {
+      $('body').toggleClass('sidebar-collapsed');
+    });
+  </script>
   {% block script %}
   {% endblock %}
 

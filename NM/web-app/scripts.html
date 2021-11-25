@@ -188,6 +188,7 @@
             <form method='POST' action="edit_script">
               {% csrf_token %}
               <input type='hidden' name='script_id' value='{{script.id}}'>
+              <input type='hidden' name='device' value='{{script.device.nm_model}}'>
               <button class="btn btn-info p-1" type="submit"><i class="hide-sm" data-feather="edit"></i> <span>Edit</span></button>
             </form>
             <form method='POST' action="generate_exe">

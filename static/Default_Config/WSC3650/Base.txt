@@ -38,11 +38,11 @@ key @radius_key
 exit
 aaa group server radius radius_group
 aaa local authentication attempts max-fail @max_fail
-aaa authentication login default group radius_group local  
-aaa authorization exec default group radius_group local
-aaa authorization network default group radius_group local 
-aaa accounting exec default start-stop group radius_group 
-aaa accounting network default start-stop group radius_group 
+aaa authentication login default group @radius_group local  
+aaa authorization exec default group @radius_group local
+aaa authorization network default group @radius_group local 
+aaa accounting exec default start-stop group @radius_group 
+aaa accounting network default start-stop group @radius_group 
 no cdp run 
 ntp server @ntp_server
 ntp authenticate 

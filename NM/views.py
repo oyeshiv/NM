@@ -75,13 +75,29 @@ def edit_script(request):
     if 'username' not in request.session:
         return redirect('/')
     else:
-        script_device = Scripts.objects.get(id=request.POST['script_id']).device_id
-        device = Devices.objects.get(id=script_device)
+        nm_model = request.POST['device']
         template = '404.html'
-        if device.device_model is not None:
+        context ={}
+        if nm_model == "ISR4321":
             script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
-            template = device.nm_model + ".html"
-        return render(request, template, {'data':script , 'device': device, 'organisation_name':request.session['organisation']} )
+            template = nm_model + ".html"
+            context = {'data':script , 'organisation_name':request.session['organisation']}
+        elif nm_model == "WSC3650":
+            script = WSC3650.objects.filter(id=request.POST['script_id'])
+            vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
+            interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
+            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            aclels = []
+            for acl in acls:
+                aclel= ACL_EL_3650.objects.filter(acl_id=acl.id)
+                aclels.append(aclel)
+            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
+            dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
+            ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
+            stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
+            context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
+        return render(request, template,  context)
 
 def new_script(request):
     if 'username' not in request.session:
@@ -127,7 +143,7 @@ def config_producer(request):
             dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
             dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
-            stp_vlan = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
+            stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
     
     else:
         return redirect('/404')
