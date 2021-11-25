@@ -96,7 +96,7 @@
         <label for="host_name">Device Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="host_name" name="host_name" placeholder="Device Name">
+        <input type="text" id="host_name" name="host_name" placeholder="Device Name"  value="{{script.host_name}}">
       </div>
     </div>
     <div class="row">
@@ -104,7 +104,7 @@
         <label for="banner_motd">Banner MOTD</label>
       </div>
       <div class="col-75">
-        <input type="text" id="banner_motd" name="banner_motd" placeholder="Banner MOTD">
+        <input type="text" id="banner_motd" name="banner_motd" placeholder="Banner MOTD" value="{{script.banner_motd}}">
       </div>
     </div>
     <div class="row">
@@ -112,7 +112,7 @@
         <label for="secret">Secret Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="secret" name="secret" placeholder="Secret Password">
+        <input type="text" id="secret" name="secret" placeholder="Secret Password" value="{{script.secret}}">
       </div>
     </div>
     <div class="row">
@@ -120,7 +120,7 @@
         <label for="min_length">Minimum Password Length</label>
       </div>
       <div class="col-75">
-        <input type="text" id="min_length" name="min_length" placeholder="Minimum Password Length">
+        <input type="text" id="min_length" name="min_length" placeholder="Minimum Password Length" value="{{script.min_length}}">
       </div>
     </div>
     <div class="row">
@@ -128,7 +128,7 @@
         <label for="deafult_gateway">Default Gateway</label>
       </div>
       <div class="col-75">
-        <input type="text" id="default_gateway" name="default_gateway" placeholder="xxx.xxx.xxx.xxx">
+        <input type="text" id="default_gateway" name="default_gateway" placeholder="xxx.xxx.xxx.xxx" value="{{script.default_gateway}}">
       </div>
     </div>
     <hr>
@@ -141,7 +141,7 @@
         <label for="radius_server">Radius Server Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_server" name="radius_server" placeholder="Server Name">
+        <input type="text" id="radius_server" name="radius_server" placeholder="Server Name" value="{{script.radius_server}}">
       </div>
     </div>
     <div class="row">
@@ -149,7 +149,7 @@
         <label for="radius_ip">Radius IP Address</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_ip" name="radius_ip" placeholder="xxx.xxx.xxx.xxx">
+        <input type="text" id="radius_ip" name="radius_ip" placeholder="xxx.xxx.xxx.xxx" value="{{script.radius_ip}}">
       </div>
     </div>
     <div class="row">
@@ -157,7 +157,7 @@
         <label for="radius_group">Radius Group Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_group" name="radius_group" placeholder="Group Name">
+        <input type="text" id="radius_group" name="radius_group" placeholder="Group Name" value="{{script.radius_group}}">
       </div>
     </div>
     <div class="row">
@@ -165,7 +165,7 @@
         <label for="radius_key">Radius Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="radius_key" name="radius_key" placeholder="Radius Password">
+        <input type="text" id="radius_key" name="radius_key" placeholder="Radius Password" value="{{script.radius_key}}">
       </div>
     </div>
     
@@ -174,7 +174,7 @@
         <label for="max_fail">Authentication Attempts</label>
       </div>
       <div class="col-75">
-        <input type="text" id="max_fail" name="max_fail" placeholder="Number of Attempts">
+        <input type="text" id="max_fail" name="max_fail" placeholder="Number of Attempts" value="{{script.max_fail}}">
       </div>
     </div>
     <hr>
@@ -188,7 +188,7 @@
         <label for="ntp_server">NTP Server</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_server" name="ntp_server" placeholder="xxx.xxx.xxx.xxx">
+        <input type="text" id="ntp_server" name="ntp_server" placeholder="xxx.xxx.xxx.xxx" value="{{script.ntp_server}}">
       </div>
     </div>
     <div class="row">
@@ -196,7 +196,7 @@
         <label for="ntp_auth_key">Authentication Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_auth_key" name="ntp_auth_key" placeholder="Authentication Key Number">
+        <input type="text" id="ntp_auth_key" name="ntp_auth_key" placeholder="Authentication Key Number" value="{{script.ntp_auth_key}}">
       </div>
     </div>
     <div class="row">
@@ -204,7 +204,7 @@
         <label for="ntp_trust_key">Trusted Key</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_trust_key" name="ntp_trust_key" placeholder="Trusted Key Number">
+        <input type="text" id="ntp_trust_key" name="ntp_trust_key" placeholder="Trusted Key Number" value="{{script.ntp_pass}}">
       </div>
     </div>
     <div class="row">
@@ -212,7 +212,7 @@
         <label for="ntp_pass">Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ntp_pass" name="ntp_pass" placeholder="Password">
+        <input type="text" id="ntp_pass" name="ntp_pass" placeholder="Password" value="{{script.ntp_trust_key}}">
       </div>
     </div>
     <hr>
@@ -227,7 +227,7 @@
         <label for="login_block_time">Login Block</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_block_time" name="login_block_time" placeholder="Time in Seconds">
+        <input type="text" id="login_block_time" name="login_block_time" placeholder="Time in Seconds" value="{{script.login_block_time}}">
       </div>
     </div>
     <div class="row">
@@ -235,7 +235,7 @@
         <label for="login_tries">Available Trials</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_tries" name="login_tries" placeholder="Number of Tries">
+        <input type="text" id="login_tries" name="login_tries" placeholder="Number of Tries" value="{{script.login_tries}}">
       </div>
     </div>
     <div class="row">
@@ -243,7 +243,7 @@
         <label for="tries_time">Login Timeout</label>
       </div>
       <div class="col-75">
-        <input type="text" id="tries_time" name="tries_time" placeholder="Time in Seconds">
+        <input type="text" id="tries_time" name="tries_time" placeholder="Time in Seconds" value="{{script.tries_time}}">
       </div>
     </div>
     <div class="row">
@@ -251,7 +251,7 @@
         <label for="login_delay">Login Delay</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_delay" name="login_delay" placeholder="Time in Seconds">
+        <input type="text" id="login_delay" name="login_delay" placeholder="Time in Seconds" value="{{script.login_delay}}">
       </div>
     </div>
     <div class="row">
@@ -259,7 +259,7 @@
         <label for="login_access">Login Access</label>
       </div>
       <div class="col-75">
-        <input type="text" id="login_access" name="login_access" placeholder="Access List Name">
+        <input type="text" id="login_access" name="login_access" placeholder="Access List Name" value="{{script.login_access}}">
       </div>
     </div>
     <hr>
@@ -374,29 +374,46 @@
           <span>Add OSPFv3</span></button>
       </div>
     </div>
-    <div class="ospfs">
-      <input type='hidden' id='ospf_count' name='ospf_count' value="0">
+     <div class="ospfs">
+      <input type='hidden' id='ospf_count' name='ospf_count' value="{{ospfs|length}}">
       <div class="ospfform" id="0">
       </div>
-
+      {% for ospf in ospfs %}
+      <hr>
+      <div class="ospfform" id="{{forloop.counter}}">
+        <div class='row justify-content-between'>
+           <div class='col-25'>
+              <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id="ospfhead"> OSPF Form{{forloop.counter}}</h5>
+        </div>
+       <div class='col-75 removebtnholder'>
+        {% if forloop.counter == ospfs|length %}
+        <button class='btn btn-secondary removebtn' type='button' id='removeospf' rmvlan="{{forloop.counter}}">
+        - Remove OSPF {{forloop.counter}}</button>
+        {% endif %}
+        </div>
+      </div>
+        <div class='row'>
+          <div class='col-25'>
+             <label for='ospfpro{{forloop.counter}}" + id + "'> Process ID</label>
+        </div>
+        <div class='col-75'>
+             <input type='text' id="ospfpro{{forloop.counter}}" name="ospfpro{{forloop.counter}}" value="{{ospf.process}}" placeholder='Process ID'>
+        </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+           <label for="ospfrid{{forloop.counter}}"> Router ID</label>
+          </div>
+          <div class='col-75'>
+           <input type='text' id="ospfrid{{forloop.counter}}" name="ospfrid{{forloop.counter}}" placeholder="Router ID" value="{{ospf.router_id}}">
+           </div>
+        </div>
+        </div>
+        {% endfor %}
     </div>
+  
 
-    <!-- <div class="row">
-      <div class="col-25">
-        <label for="ospfpro"> Process ID</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="ospfpro" name="ospfpro" placeholder="Process ID">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="ospfrid"> Router ID</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="ospfrid" name="ospfrid" placeholder="Router ID">
-      </div>
-    </div> -->
+    
 
     <!-- User Account -->
     <hr>
@@ -410,25 +427,40 @@
       </div>
     </div>
     <div class="users">
-      <input type='hidden' id='user_count' name='user_count' value="0">
+      <input type='hidden' id='user_count' name='user_count' value="{{users|length}}">
       <div class="userform" id="0"></div>
     </div>
-    <!-- <div class="row">
-      <div class="col-25">
-        <label for="username"> Name</label>
+    {% for usr in users %}
+    <div class="userform" id="{{forloop.counter}}">
+    <div class='row justify-content-between'>
+      <div class='col-25'>
+       <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id="userhead"> User Form{{forloop.counter}}</h5>
       </div>
-      <div class="col-75">
-        <input type="text" id="username" name="username" placeholder="Name">
+      <div class='col-75 removebtnholder'>
+        {% if forloop.counter == users|length %}
+      <button class='btn btn-secondary removebtn' type='button' id='removeuser' rmvlan='" + id + "'>
+      - Remove user {{forloop.counter}}</button>
+      {% endif %}
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="userpass"> Password</label>
       </div>
-      <div class="col-75">
-        <input type="text" id="userpass" name="userpass" placeholder="Name">
+      <div class='row'>
+      <div class='col-25'>
+      <label for='username{{forloop.counter}}" + id + "'> Name</label>
       </div>
-    </div> -->
+      <div class='col-75'>
+      <input type='text' id="username{{forloop.counter}}" name="username{{forloop.counter}}" value="{{usr.name}}" placeholder='Name'>
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='userpass{{forloop.counter}}" + id + "'> Password</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="userpass{{forloop.counter}}"  name="userpass{{forloop.counter}}" value="{{usr.password}}" placeholder="Password">
+      </div>
+      </div>
+      {% endfor %}
+      </div>
     <!-- ACL -->
     <hr>
     <div class="row">
@@ -441,33 +473,68 @@
       </div>
     </div>
     <div class="acls">
-      <input type='hidden' id='acl_count' name='acl_count' value="0">
-      <div class="aclform" id="0"></div>
-    </div>
-    <!-- <div class="row">
-      <div class="col-25">
-        <label for="aclname"> Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="aclname" name="aclname" placeholder=" ACL Name">
+      <input type='hidden' id='acl_count' name='acl_count' value="{{acls|length}}">
+      <div class="aclform" id="0">
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="aclcontrol"> Control Type</label>
+    {% for a in acls %}
+    <div class='aclform' id="{{forloop.counter}}">
+      <div class='row justify-content-between'>
+      <div class='col-25'>
+       <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id="aclhead">Acl Form {{forloop.counter}}</h5>
       </div>
-      <div class="col-75">
-        <input type="text" id="aclcontrol" name="aclcontrol" placeholder=" ACL Control Type">
+      <div class='col-75 aclremovebtnholder'>
+        {% if forloop.counter == acls|length %}
+      <button class='btn btn-secondary removebtn' type='button' id='removeacl' rmvlan='" + id + "'>
+       Remove ACL{{forloop.counter}}</button>
+      <button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>
+      + Add contorls {{forloop.counter}}</button>
+      {% endif %}
       </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="acladd"> ACL Address</label>
+      </div> 
+      <div class='row'>
+        <div class='col-25'>
+          <label for='aclname{{orloop.counter}}" + id + "'> Name</label>
+        </div>
+       <div class='col-75'>
+         <input type='text' id="aclname{{orloop.counter}}" name="aclname{{orloop.counter}}" value="{{a.name}}" placeholder=' ACL Name'>
+        </div>
       </div>
-      <div class="col-75">
-        <input type="text" id="acladd" name="acladd" placeholder=" ACL Address">
-      </div>
-    </div> -->
+      {% endfor %}
+      <div class='aclels' id='" + id + "'>
+           <input type='hidden' id='acl_el_count" + id + "' name='acl_el_count" + id + "' value="{{aclels|length}}">
+        <div class='aclelform' id='0'>
+        </div>
+       </div>
+       {% for ae in aclels %}
+       <div class='aclelform' id="{{forloop.counter}}">
+        <div class='row'>
+        <div class='col-25'>
+          <label for='aclcontrol{{forloop.counter}}" + id2rol + "'> Type </label>
+        </div>
+        <div class='col-auto'>
+        <input type='text' id="aclcontrol{{forloop.counter}}" name="aclcontrol{{forloop.counter}}" placeholder=' ACL Control Type' value="{{ae.type}}">
+        </div>
+        <div class='col-auto'>
+        <label for='acladd{{forloop.counter}}" + id2 + "'>ACL Address</label>
+        </div>
+        <div class='col-auto'>
+          <input type='text' id="acladd{{forloop.counter}}" name="acladd{{forloop.counter}}" placeholder=' ACL Addreaa' value="{{ae.address}}">
+          </div>
+        <div class='col-auto addbtnholder'>
+          {% if forloop.counter == aclels|length %}
+        <button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>+
+        </button>
+        </div>
+        <div class='col-auto removebtnholder'><button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>
+        -</button>
+        </div>
+        </div>
+        {% endif %}
+        </div>
+      {% endfor %}
+   
 
     <!--STP_VLAN-->
     <hr>
@@ -482,18 +549,42 @@
           <label for="stp_mode">STP Mode</label>
         </div>
         <div class="col-75">
-          <input type="text" id="stp_mode" name="stp_mode" placeholder="STP Mode">
+          <input type="text" id="stp_mode" name="stp_mode" placeholder="STP Mode" value="{{script.stp_mode}}" >
         </div>
       </div>
-      <div class="stpvlanform" id="0">
-        <div class='row'>
-          <div class='col-auto stpbtn'>
-            <button class='btn btn-primary' type='button' id='addstp' addex='1'>+ Add Root Bridge
-            </button>
+      <div class='row'>
+        <div class='col-auto stpbtn'>
+          <button class='btn btn-primary' type='button' id='addstp' addex='1'>+ Add Root Bridge
+          </button>
+        </div>
+      </div>
+      {% for stp_vlans in stpvlans %}
+      <div class="stpvlanform" id="{{forloop.counter}}">
+        
+          <div class='row'>
+          <div class='col-25'>
+          <label for='stpvlan{{forloop.counter}}" + id + "'> Vlan</label>
           </div>
-        </div>
-      </div>
-    </div>
+          <div class='col-auto'>
+          <input type='text' id="stpvlan{{forloop.counter}}" name="stpvlan{{forloop.counter}}"  placeholder='Vlan' value="{{script.vlan}}">
+          </div>
+          <div class='col-auto'>
+          <label for="stproot{{forloop.counter}}"> Root Number</label>
+          </div>
+          <div class='col-auto'>
+          <input type='text' id="stproot{{forloop.counter}}" name="stproot{{forloop.counter}}" placeholder='Root Number' value="{{stp_vlans.root}}">
+          </div>
+          <div class='col-auto'>
+            {% if forloop.counter == stpvlans|length %}
+          <button class='btn btn-secondary' type='button' id='removestp' removestp='1'>-
+          </button>
+          {% endif %}
+          </div>
+          </div>
+          {% endfor %}
+          </div>
+      
+      
     <!-- <div class="row">
       <div class="col-25">
         <label for="stpvlan"> Vlan</label>
@@ -526,6 +617,189 @@
       <input type='hidden' id='int_count' name='int_count' value="0">
       <div class="interfaceform" id="0"></div>
     </div>
+    {% for intr in interfaces %}
+    <div class='interfaceform' id="{{forloop.counter}}">
+      <div class='row justify-content-between'>
+         <div class='col-25'>
+      <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id="interfacehead">Interface Form{{forloop.counter}}</h5>
+      </div>
+      <div class='col-75 removebtnholder'>
+        {% if forloop.counter == interfaces|length %}
+      <button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>
+      - Remove Iterface"{{forloop.counter}}"</button>
+      {% endif %}
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intstatus{{forloop.counter}}" + id + "'>Status</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intstatus{{forloop.counter}}" name="intstatus{{forloop.counter}}" placeholder=' Interface Status' value="{{intr.status}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intname{{forloop.counter}}" + id + "'>Interface Name</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intname{{forloop.counter}}" name="intname{{forloop.counter}}" placeholder='Interface Name' value="{{intr.name}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intsw{{forloop.counter}}" + id + "'>Switchport</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intsw{{forloop.counter}}" name="intsw{{forloop.counter}}" placeholder='Switchport Name' value="{{intr.switchport}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intip{{forloop.counter}}" + id + "'>IPv4 Address</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intip{{forloop.counter}}" name="intip{{forloop.counter}}" placeholder='xxx.xxx.xxx.xxx' value="{{intr.ipv4_address}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intsub{{forloop.counter}}" + id + "'>IPv4 Subnet</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intsub{{forloop.counter}}"  name="intsub{{forloop.counter}}" placeholder='xxx.xxx.xxx.xxx' value="{{intr.ipv4_subnet}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intipv6{{forloop.counter}}" + id + "'>IPv6 Address</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intipv6{{forloop.counter}}" name="intipv6{{forloop.counter}}" placeholder='IPv6 Address' value="{{intr.ipv6_address}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intpre{{forloop.counter}}" + id + "'>IPv6 Prefix</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intpre{{forloop.counter}}" name="intpre{{forloop.counter}}" placeholder='xx' value="{{intr.ipv6_prefix}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intlink{{forloop.counter}}" + id + "'>IPv6 Link-Local</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intlink{{forloop.counter}}" name="intlink{{forloop.counter}}"placeholder='IPv6 Link-Local' value="{{intr.ipv6_link}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+         <label for='intswmode{{forloop.counter}}"" + id + "'>SwitchPort Mode</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intswmode{{forloop.counter}}" name="intswmode{{forloop.counter}}" placeholder='SwitchPort Mode' value="{{intr.sw_mode}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intswaccess{{forloop.counter}}" + id + "'>SwitchPort Access</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intswaccess{{forloop.counter}}" name="intswaccess{{forloop.counter}}" placeholder='SwitchPort Access' value="{{intr.sw_access}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intallvlan{{forloop.counter}}" + id + "'>Vlans Allowed</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intallvlan{{forloop.counter}}" name="intallvlan{{forloop.counter}}" placeholder='Vlans Allowed' value="{{intr.allowed_vlan}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intnative{{forloop.counter}}" + id + "'>Native Vlan</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intnative{{forloop.counter}}"  name="intnative{{forloop.counter}}"  placeholder='Native Vlan' value="{{intr.native_vlan}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intencap{{forloop.counter}}" + id + "'>Encapsulation</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intencap{{forloop.counter}}" name="intencap{{forloop.counter}}"placeholder='Encapsulation' value="{{intr.encapsulation}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intencap{{forloop.counter}}" + id + "'>Non- Negiotate</label>
+    </div>
+      <div class='col-75'>
+      <input type='text' id="intnoneg{{forloop.counter}}"  name="intnoneg{{forloop.counter}}"  placeholder='Non- Negiotate' value="{{intr.nonegotiate}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intch{{forloop.counter}}" + id + "'>Channel Group</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intch{{forloop.counter}}" name="intch{{forloop.counter}}" placeholder='Channel Group' value="{{intr.channel_group}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intchmode{forloop.counter}}" + id + "'>Channel Mode</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intchmode{forloop.counter}}" name="intchmode{forloop.counter}}" placeholder='Channel Mode' value="{{intr.channel_mode}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intstpcost{forloop.counter}}" + id + "'>STP Cost</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intstpcost{forloop.counter}}" name="intstpcost{forloop.counter}}" placeholder='STP Cost' value="{{intr.stp_cost}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intipospf{forloop.counter}}" + id + "'>IPv4 OSPFv3</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intipospf{{forloop.counter}}" name="intipospf{forloop.counter}}" placeholder='IPv4 OSPFv3' value="{{intr.ipv4_ospfv3}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intiparea{forloop.counter}}" + id + "'>IPv4 Area</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intiparea{{forloop.counter}}"name="intiparea{{forloop.counter}}" placeholder='IPv4 Area' value="{{intr.ipv4_area}}" >
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intipv6ospf{{forloop.counter}}" + id + "'>IPv6 OSPFv3</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intipv6ospf{{forloop.counter}}" name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3' value="{{intr.ipv6_ospfv3}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='intipv6area{{forloop.counter}}" + id + "'>IPv6 Area</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="intipv6area{{forloop.counter}}"  name="intipv6area{{forloop.counter}}"  placeholder='IPv6 Area' value="{{intr.ipv6_area}}">
+      </div>
+      </div>
+      {% endfor %}
+      </div>
     <hr>
     <!-- VLAN -->
 
@@ -542,6 +816,77 @@
       <input type='hidden' id='vlan_count' name='vlan_count' value="0">
       <div class="vlanform" id="0"></div>
     </div>
+    {% for vlan in vlans %}
+    <div class='vlanform' id='" + id + "'>
+      <div class='row justify-content-between'>
+      <div class='col-25'>
+      <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id="vlanhead" >Vlan Form {{forloop.counter}} </h5>
+      </div>
+      
+      <div class='col-75 removebtnholder'>
+        {% if forloop.counter == vlans|length %}
+      <button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>
+      - Remove VLAN {{forloop.counter}}</button>
+      {% endif %}
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlannum{{forloop.counter}}" + id + "'>VLAN</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlannum{{forloop.counter}}" name="vlannum{{forloop.counter}}" placeholder='VLAN Number' value="{{vlan.number}}"> 
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlanname{{forloop.counter}}" + id + "'>VLAN Name</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlanname{{forloop.counter}}" name="vlanname{{forloop.counter}}" placeholder='VLAN Name' value="{{vlan.name}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlanip{{forloop.counter}}" + id + "'>IPv4 Address</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlanip{{forloop.counter}}" name="vlanip{{forloop.counter}}" placeholder='xxx.xxx.xxx.xxx' value="{{vlan.ipv4_address}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlansub{{forloop.counter}}" + id + "'>IPv4 Subnet</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlansub{{forloop.counter}}" name="vlansub{{forloop.counter}}" placeholder='xxx.xxx.xxx.xxx' value="{{vlan.ipv4_subnet}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlanipv6{{forloop.counter}}" + id + "'>IPv6 Address</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlanipv6{{forloop.counter}}" name="vlanipv6{{forloop.counter}}" placeholder='IPv6 Address' value="{{vlan.ipv6_address}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlanpre{{forloop.counter}}" + id + "'>IPv6 Prefix</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlanpre{{forloop.counter}}" name="vlanpre{{forloop.counter}}" placeholder='xx' value="{{vlan.ipv6_prefix}}">
+      </div>
+      </div>
+      <div class='row'>
+      <div class='col-25'>
+      <label for='vlanlink{{forloop.counter}}" + id + "'>IPv6 Link-Local</label>
+      </div>
+      <div class='col-75'>
+      <input type='text' id="vlanlink{{forloop.counter}}" name="vlanlink{{forloop.counter}}" placeholder='IPv6 Link-Local' value="{{vlan.ipv6_link}}">
+      </div>
+      </div>
+      {% endfor %}
+      </div>
 
 
 
