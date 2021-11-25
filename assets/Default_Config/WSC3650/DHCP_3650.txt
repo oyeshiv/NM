@@ -1,0 +1,4 @@
+ip dhcp pool @name
+network @network_ip @network_subnet
+default-router @default_router 
+exit 
