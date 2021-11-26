@@ -11,5 +11,8 @@ switchport trunk native vlan @native_vlan
 switchport @nonegotiate
 ospfv3 @ipv4_ospfv3 ipv4 area @ipv4_area
 ospfv3 @ipv6_ospfv3 ipv6 area @ipv6_area
+shutdown
 channel-group @channel_group mode @channel_mode
+no shutdown
 spanning-tree cost @stp_cost
+@status shutdown

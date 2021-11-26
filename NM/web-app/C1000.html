@@ -1,476 +1,1116 @@
 {% extends 'index.html' %}
 
-
-
 {% load static %}
 
 {% block sidebar %}
 <ul class="sidebar-nav">
   <li class="sidebar-header">
-    Layer 2 Switch Scripts
-</li>
+    Layer 3 Switch -WSC3650
+  </li>
   <li class="sidebar-item">
     <a class="sidebar-link" gotoid="#basic">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Function</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#intg1/0">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Interface g1/0</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#intg1/1">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Interface g1/1</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#intg1/2">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Interface g1/2</span>
-    </a>
-  </li>
-  <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#intg1/3">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Interface g1/3</span>
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Basic Functions</span>
     </a>
   </li>
   <li class="sidebar-header">
-    Port Channel
+    Protocols
   </li>
-
   <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#pch1">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Port Channel 1</span>
+    <a class="sidebar-link" gotoid="#radius">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Radius</span>
     </a>
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#pch2">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Port Channel 2</span>
+    <a class="sidebar-link" gotoid="#ntp">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">NTP</span>
     </a>
   </li>
-
   <li class="sidebar-header">
-        Security
+    Advanced Options
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#login_security">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Login Security</span>
+    </a>
   </li>
 
   <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#login">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Login Protection</span>
+    <a class="sidebar-link" gotoid="#dhcp">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">DHCP</span>
     </a>
   </li>
   <li class="sidebar-item">
-    <a class="sidebar-link" gotoid="#s2aaa">
-      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">AAA</span>
+    <a class="sidebar-link" gotoid="#usracc">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">User Settings</span>
     </a>
   </li>
- 
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#ospfv3">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">VLAN</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#l3acl">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">ACL</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#stp_vlan">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">STP VLAN</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#intrfce">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Interfaces</span>
+    </a>
+  </li>
+  <li class="sidebar-item">
+    <a class="sidebar-link" gotoid="#vlan">
+      <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">VLAN</span>
+    </a>
+  </li>
 
-  
-
-  
- 
 </ul>
 {% endblock %}
 
 
 {% block router_content %}
+{% for script in data %}
+<div class="container">
+  <form method='POST' action="save">
 
-<div class="container"> 
-  <div class="input-group">
+    <div class="input-group">
 
-    <label for="script_name">Script Name</label>
+      <label for="script_name">Script Name</label>
 
 
-    <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
-    <button class="btn btn-primary" type="submit">
-      <i class="align-middle" data-feather="check"></i>
-    </button>
-  </div>
-  <hr>
-  <div class="row">
-    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic"> BASIC </h3>
-  </div>
-  <div class="row">
-        <div class="col-25">
-          <label for="sname">Device Name</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="sname" name="sname" placeholder="Switch Name......">
-        </div>
-  </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="s2uname">User Name</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="s2uname" name="s2uname" placeholder="User Name......">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="motds2">MOTD BANNER</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="motds2" name="motds2" placeholder="Write your MOTD banner">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="s2pwd">Security Password </label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="s2pwd" name="s2pwd" placeholder="Priviledge Password">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="s2enpwd">Encryption Password </label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="s2enpwd" name="s2enpwd" placeholder="Encryption Password">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="minlen"> Password Minimum Length </label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="minlen" name="minlen" placeholder="Password Minimum Length">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="time"> Executive Timeout</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="time" name="time" placeholder="Executive Timeout">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="minlen"> Password Minimum Length </label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="minlen" name="minlen" placeholder="Password Minimum Length">
-        </div>
-      </div>
-     <!-- login Details -->
+      <input type="text" class="form-control" name="script_name" value="{{script.script_name}}" aria-label="Script">
+
+    </div>
     <hr>
     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="login"> Login Protection </h3>
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="basic">BASIC</h3>
     </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="secblk">Block Login</label>
+    <div class="row">
+      <div class="col-25">
+        <label for="host_name">Device Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="host_name" name="host_name" placeholder="Device Name" value="{{script.host_name}}">
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="secblk" name="secblk" placeholder="Block login (seconds) ">
+    <div class="row">
+      <div class="col-25">
+        <label for="banner_motd">Banner MOTD</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="banner_motd" name="banner_motd" placeholder="Banner MOTD" value="{{script.banner_motd}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="alwatmpt">Allowed Attempts</label>
+    <div class="row">
+      <div class="col-25">
+        <label for="secret">Secret Password</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="secret" name="secret" placeholder="Secret Password" value="{{script.secret}}">
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="alwatmpt" name="alwatmpt" placeholder="Allowed Attempts (number)) ">
+    <div class="row">
+      <div class="col-25">
+        <label for="min_length">Minimum Password Length</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="min_length" name="min_length" placeholder="Minimum Password Length"
+          value="{{script.min_length}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="occur">Occurence</label>
+    <hr>
+    <!-- Radius -->
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="radius">Radius</h3>
     </div>
-    <div class="col-75">
-      <input type="text" id="occur" name="occur" placeholder="Occurence attempts in (seconds) ">
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_server">Radius Server Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_server" name="radius_server" placeholder="Server Name"
+          value="{{script.radius_server}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="acl">ACL List Name</label>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_ip">Radius IP Address</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_ip" name="radius_ip" placeholder="xxx.xxx.xxx.xxx" value="{{script.radius_ip}}">
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="acl" name="acl" placeholder="ACL List Name">
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_group">Radius Group Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_group" name="radius_group" placeholder="Group Name"
+          value="{{script.radius_group}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="admipv4">Admin IPv4 Address</label>
+    <div class="row">
+      <div class="col-25">
+        <label for="radius_key">Radius Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="radius_key" name="radius_key" placeholder="Radius Password"
+          value="{{script.radius_key}}">
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="admipv4" name="admipv4" placeholder="Admin IPv4 Address">
+
+    <div class="row">
+      <div class="col-25">
+        <label for="max_fail">Authentication Attempts</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="max_fail" name="max_fail" placeholder="Number of Attempts" value="{{script.max_fail}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="admipv6">Admin IPv6 Address</label>
+    <hr>
+    <!-- NTP -->
+
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="ntp">NTP</h3>
     </div>
-    <div class="col-75">
-      <input type="text" id="admipv6" name="admipv6" placeholder="Admin IPv6 Address">
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_server">NTP Server</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_server" name="ntp_server" placeholder="xxx.xxx.xxx.xxx"
+          value="{{script.ntp_server}}">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="delay">Login Delay</label>
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_auth_key">Authentication Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_auth_key" name="ntp_auth_key" placeholder="Authentication Key Number"
+          value="{{script.ntp_auth_key}}">
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="delay" name="delay" placeholder="Login Delay in (seconds) ">
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_trust_key">Trusted Key</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_trust_key" name="ntp_trust_key" placeholder="Trusted Key Number"
+          value="{{script.ntp_trust_key}}">
+      </div>
     </div>
-  </div>
-  
-    <!--port channel 1 -->
+    <div class="row">
+      <div class="col-25">
+        <label for="ntp_pass">Password</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ntp_pass" name="ntp_pass" placeholder="Password" value="{{script.ntp_pass}}">
+      </div>
+    </div>
+    <hr>
+    <!-- Login Security -->
+
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="login_security">Login
+        Security</h3>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_block_time">Login Block</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_block_time" name="login_block_time" placeholder="Time in Seconds"
+          value="{{script.login_block_time}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_tries">Available Trials</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_tries" name="login_tries" placeholder="Number of Tries"
+          value="{{script.login_tries}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="tries_time">Login Timeout</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="tries_time" name="tries_time" placeholder="Time in Seconds"
+          value="{{script.tries_time}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_delay">Login Delay</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_delay" name="login_delay" placeholder="Time in Seconds"
+          value="{{script.login_delay}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="login_access">Login Access</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="login_access" name="login_access" placeholder="Access List Name"
+          value="{{script.login_access}}">
+      </div>
+    </div>
+    <hr>
+
+    <!-- User Account -->
     <hr>
     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="pch1"> Port Channel 1 </h3>
+      <div class="col-25">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="usracc">User Account
+        </h3>
+      </div>
+      <div class="col-75"><button class="btn btn-primary" type="button" id="adduser"><i data-feather="plus"></i>
+          <span>Add User</span></button>
+      </div>
     </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="portchannel1">Port Channel (g1/0-1)</label>
+    <div class="users">
+      <input type='hidden' id='user_count' name='user_count' value="{{users|length}}">
+      <div class="userform" id="0"></div>
     </div>
-    <div class="col-75">
-      <input type="text" id="portchannel1" name="portchannel1" placeholder="Port Channel Number 1 ">
+    {% for usr in users %}
+    <div class="userform" id="{{forloop.counter}}">
+      <div class='row justify-content-between'>
+        <div class='col-25'>
+          <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;'
+            id="userhead"> User Form{{forloop.counter}}</h5>
+        </div>
+        <div class='col-75 removebtnholder'>
+          {% if forloop.counter == users|length %}
+          <button class='btn btn-secondary removebtn' type='button' id='removeuser' rmvlan='" + id + "'>
+            - Remove user {{forloop.counter}}</button>
+          {% endif %}
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-25'>
+          <label for='username{{forloop.counter}}'> Name</label>
+        </div>
+        <div class='col-75'>
+          <input type='text' id="username{{forloop.counter}}" name="username{{forloop.counter}}" value="{{usr.name}}"
+            placeholder='Name'>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-25'>
+          <label for='userpass{{forloop.counter}}'> Password</label>
+        </div>
+        <div class='col-75'>
+          <input type='text' id="userpass{{forloop.counter}}" name="userpass{{forloop.counter}}"
+            value="{{usr.password}}" placeholder="Password">
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-  <div class="col-25"> 
-    <label for="tvlan1">Trunk Vlan 1</label>
-  </div>
-  <div class="col-75">
-    <input type="text" id="tvlan1" name="tvlan1" placeholder="Trunk Vlan 1 ">
-  </div>
- </div>
- <div class="row">
-  <div class="col-25"> 
-    <label for="tvlan1">Trunk Vlan 2</label>
-  </div>
-  <div class="col-75">
-    <input type="text" id="tvlan2" name="tvlan2" placeholder="Trunk Vlan 2">
-  </div>
- </div>
- <div class="row">
-  <div class="col-25"> 
-    <label for="tvlan1">Trunk Vlan 3</label>
-  </div>
-  <div class="col-75">
-    <input type="text" id="tvlan3" name="tvlan3" placeholder="Trunk Vlan 3">
-  </div>
- </div>
- <div class="row">
-  <div class="col-25"> 
-    <label for="native">Native Trunk Vlan</label>
-  </div>
-  <div class="col-75">
-    <input type="text" id="native" name="native" placeholder="Native Trunk Vlan">
-  </div>
- </div>
-   <!--port channel 2 -->
-   <hr>
-   <div class="row">
-    <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="pch2"> Port Channel 2 </h3>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="portchannel2">Port Channel (g1/2-3)</label>
+    {% endfor %}
+    <!-- ACL -->
+    <hr>
+    <div class="row">
+      <div class="col-25">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="l3acl">ACL
+        </h3>
+      </div>
+      <div class="col-75"><button class="btn btn-primary" type="button" id="addacl"><i data-feather="plus"></i>
+          <span>Add ACL</span></button>
+      </div>
     </div>
-    <div class="col-75">
-      <input type="text" id="portchannel2" name="portchanne2" placeholder="Port Channel Number 2">
+    <div class="acls">
+      <input type='hidden' id='acl_count' name='acl_count' value="{{acls|length}}">
+      <div class="aclform" id="0"></div>
+      {% for aclel in aclels %}
+      {% for acl in acls %}
+      {% with outer_counter=forloop.counter %}
+      <div class='aclform' id="{{outer_counter}}">
+        <div class='row justify-content-between'>
+          <div class='col-25'>
+            <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;'
+              id="aclhead">Acl Form {{outer_counter}}</h5>
+          </div>
+          <div class='col-75 aclremovebtnholder'>
+            {% if forloop.counter == acls|length %}
+            <button class='btn btn-secondary removebtn' type='button' id='removeacl' rmvlan='{{outer_counter}}'>
+              - Remove ACL {{outer_counter}}</button>
+            {% endif %}
+            {% if aclel|length == 0 %}
+            <button class='btn btn-primary' type='button' id='addaclel' addaclel='{{outer_counter}}'>
+              + Add contorls {{outer_counter}}</button>
+            {% endif %}
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='aclname{{forloop.counter}}'> Name</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="aclname{{forloop.counter}}" name="aclname{{forloop.counter}}" value="{{acl.name}}"
+              placeholder=' ACL Name'>
+          </div>
+        </div>
+        <div class='aclels' id="{{outer_counter}}">
+          <input type='hidden' id='acl_el_count{{outer_counter}}' name='acl_el_count{{outer_counter}}'
+            value="{{aclel|length}}">
+          <div class='aclelform' id='0'>
+          </div>
+
+          {% for acle in aclel %}
+          <div class='aclelform' id='{{forloop.counter}}'>
+            <div class='row'>
+              <div class='col-25'>
+                <label for='aclcontrol{{forloop.counter}}'>Control Type</label>
+              </div>
+              <div class='col-auto'>
+                <select type='text' id='aclcontrol{{forloop.counter}}' name='aclcontrol{{forloop.counter}}'>
+                  {% if acle.type == "permit" %}
+                  <option value="permit" selected>Permit</option>
+                  <option value="deny">Deny</option>
+                  {% elif acle.type == "deny" %}
+                  <option value="permit">Permit</option>
+                  <option value="deny" selected>Deny</option>
+                  {% endif %}
+                </select>
+              </div>
+              <div class='col-auto'>
+                <label for='acladd{{forloop.counter}}'>ACL Address</label>
+              </div>
+              <div class='col-auto'>
+                <input type='text' id='acladd{{forloop.counter}}' value="{{acle.address}}"
+                  name='acladd{{forloop.counter}}' placeholder=' ACL Address'>
+              </div>
+              {% if forloop.counter == aclel|length %}
+              <div class='col-auto addbtnholder'>
+                <button class='btn btn-primary' type='button' id='addaclel' addaclel='{{outer_counter}}'>
+                  +</button>
+              </div>
+              <div class='col-auto removebtnholder'><button class='btn btn-secondary' type='button' id='removeaclel'
+                  id2='{{forloop.counter}}' removeaclel='{{outer_counter}}'>
+                  -</button>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endwith %}
+      {% endfor %}
+      {% endfor %}
     </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="tvlan1">Trunk Vlan 1</label>
+
+
+
+    <!--STP_VLAN-->
+    <hr>
+    <div class="row">
+      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="stp_vlan">STP
+      </h3>
     </div>
-    <div class="col-75">
-      <input type="text" id="tvlan1" name="tvlan1" placeholder="Trunk Vlan 1 ">
-    </div>
- </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="tvlan1">Trunk Vlan 2</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="tvlan2" name="tvlan2" placeholder="Trunk Vlan 2">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="tvlan1">Trunk Vlan 3</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="tvlan3" name="tvlan3" placeholder="Trunk Vlan 3">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-25"> 
-      <label for="native">Native Trunk Vlan</label>
-    </div>
-    <div class="col-75">
-      <input type="text" id="native" name="native" placeholder="Native Trunk Vlan">
-    </div>
-  </div>
-      <!--Interface g1/0-->
-      <hr>
+    <div class="stpvlans">
+      <input type='hidden' id='stp_count' name='stp_count' value="{{stp_vlans|length}}">
       <div class="row">
-        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/0"> Interface g1/0</h3>
-      </div>
-    <div class="row">
-      <div class="col-25"> 
-        <label for="channel">Channel Group</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="channel" name="channel" placeholder="Channel group number">
-      </div>
+        <div class="col-25">
+          <label for="stp_mode">STP Mode</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="stp_mode" name="stp_mode" placeholder="STP Mode" value="{{script.stp_mode}}">
+        </div>
+      </div>      
     </div>
-     
-   
-     <!--Interface g1/1-->
-     <hr>
-     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/1"> Interface g1/1</h3>
-    </div>
-     <div class="row">
-      <div class="col-25"> 
-        <label for="channel1.1">Channel Group</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="channel1.1" name="channel1.1" placeholder="Channel group number">
-      </div>
-    </div>
-    <!--Interface g1/2-->
     <hr>
     <div class="row">
-     <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/2"> Interface g1/2</h3>
-   </div>
-      
-    <div class="row">
-      <div class="col-25"> 
-        <label for="channel2">Channel Group</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="channel2" name="channel2" placeholder="Channel group number 2">
-      </div>
-    </div>
-     <!--Interface g1/3-->
-     <hr>
-     <div class="row">
-      <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intg1/2"> Interface g1/3</h3>
-    </div>
-      
-      
-    <div class="row">
-      <div class="col-25"> 
-        <label for="channel2.2">Channel Group</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="channel2.2" name="channel2.2" placeholder="Channel group number">
-      </div>
-    </div>
-     
-    <!--AAA-->
-    <hr></hr>
-    <div class="row">
-      
-      <h3 style="text-align: left; color: darkblue; font-family: monospace;" id="#s2aaa"> AAA </h3>
-    </div>
-    <div class="row">
-      <div class="col-25"> 
-        <label for="rserver"> Radius Server Name </label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="rserver" name="rserver" placeholder="Radius Server Name">
-      </div>
-    </div>
-    <div class="row">
       <div class="col-25">
-        <label for="ipserver">Server IP Address</label>
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="intrfce">Interfaces
+        </h3>
       </div>
-      <div class="col-75">
-        <input type="text" id="ipserver" name="ipserver" placeholder=" Server IP Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="keypwd">Key Password</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="keypwd" name="keypwd" placeholder="Keyword">
+      <div class="col-75"><button class="btn btn-primary" type="button" id="addint"><i data-feather="plus"></i>
+          <span>Add Interface</span></button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="max1">Max Fail</label>
+    <div class="interfaces">
+      <input type='hidden' id='int_count' name='int_count' value="{{interfaces|length}}">
+      <div class="interfaceform" id="0"></div>
+      {% for intr in interfaces %}
+      <div class='interfaceform' id="{{forloop.counter}}">
+        <div class='row justify-content-between'>
+          <div class='col-25'>
+            <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;'
+              id="interfacehead">Interface Form{{forloop.counter}}</h5>
+          </div>
+          <div class='col-75 removebtnholder'>
+            {% if forloop.counter == interfaces|length %}
+            <button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>
+              - Remove Iterface {{forloop.counter}}</button>
+            {% endif %}
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intstatus{{forloop.counter}}" + id + "'>Status</label>
+          </div>
+          <div class='col-75'>
+            <select type='text' id='intstatus{{forloop.counter}}' name='intstatus{{forloop.counter}}'>
+              {% if intr.status == "" %}
+              <option value="" selected>Shutdown</option>
+              <option value="no">Up</option>
+              {% elif intr.status == "no" %}
+              <option value="">Shutdown</option>
+              <option value="no" selected>Up</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intname{{forloop.counter}}'>Interface Name</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intname{{forloop.counter}}" name="intname{{forloop.counter}}"
+              placeholder='Interface Name' value="{{intr.name}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intswmode{{forloop.counter}}'>SwitchPort Mode</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intswmode{{forloop.counter}}" name="intswmode{{forloop.counter}}"
+              placeholder='SwitchPort Mode' value="{{intr.sw_mode}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intswaccess{{forloop.counter}}'>SwitchPort Access</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intswaccess{{forloop.counter}}" name="intswaccess{{forloop.counter}}"
+              placeholder='SwitchPort Access' value="{{intr.sw_access}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intallvlan{{forloop.counter}}'>Vlans Allowed</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intallvlan{{forloop.counter}}" name="intallvlan{{forloop.counter}}"
+              placeholder='Vlans Allowed' value="{{intr.allowed_vlan}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intnative{{forloop.counter}}'>Native Vlan</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intnative{{forloop.counter}}" name="intnative{{forloop.counter}}"
+              placeholder='Native Vlan' value="{{intr.native_vlan}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intch{{forloop.counter}}'>Channel Group</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intch{{forloop.counter}}" name="intch{{forloop.counter}}" placeholder='Channel Group'
+              value="{{intr.channel_group}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='intchmode{forloop.counter}}'>Channel Mode</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="intchmode{forloop.counter}}" name="intchmode{forloop.counter}}"
+              placeholder='Channel Mode' value="{{intr.channel_mode}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='bdpufilter{{forloop.counter}}'>BDPU Filter</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="bdpufilter{{forloop.counter}}" name='bdpufilter{{forloop.counter}}'
+              placeholder='BDPU Filter' value="{{intr.bdpu_guard}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='bdpuguard{{forloop.counter}}'>BDPU Guard</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="bdpuguard{{forloop.counter}}" name="bdpuguard{{forloop.counter}}"
+              placeholder='BDPU Guard' value="{{intr.bdpu_guard}}">
+          </div>
+        </div>
       </div>
-      <div class="col-75">
-        <input type="text" id="max1" name="max1" placeholder="Max Fail">
-      </div>
+      {% endfor %}
     </div>
-    <!-- NTP-->
-    <div class="row">
-      <div class="col-25">
-        <label for="r1add">Router's IP Address</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="r1add" name="r1add" placeholder="Router's IP Address">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="ntpauth">Authentication Key</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="ntpauth" name="ntpauth" placeholder="Authentication Key">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="md5pwd">Md5 SHA Password</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="md5pwd" name="md5pwd" placeholder="Md5 SHA Password">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="trstkey">Trusted Key</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="trstkey" name="trstkey" placeholder="Trusted Key">
-      </div>
-    </div>
-    <hr></hr>
-    
-  
-  
-</div>
-<div class="row">
-  <hr>
-  <div class="col">
-    <div class='d-flex justify-content-between'>
 
-      {% csrf_token %}
+    <hr>
+    <!-- VLAN -->
 
-      <input type='hidden' name='device_id' value='1'>
-      {% if script.id is not null %}
-      <input type='hidden' name='script_id' value='{{script.id}}'>
-      {% endif %}
-      <button class="btn btn-primary" type="=submit"><i data-feather="save"></i> <span>Save</span></button>
-</form>
+    <div class="row">
+      <div class="col-25">
+        <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="vlan">VLAN</h3>
+      </div>
+      <div class="col-75"><button class="btn btn-primary" type="button" id="addvlan"><i data-feather="plus"></i>
+          <span>Add VLAN</span></button>
+      </div>
+
+    </div>
+    <div class="vlans">
+      <input type='hidden' id='vlan_count' name='vlan_count' value="{{vlans|length}}">
+      <div class="vlanform" id="0"></div>
+      {% for vlan in vlans %}
+      <div class='vlanform' id='{{forloop.counter}}'>
+        <div class='row justify-content-between'>
+          <div class='col-25'>
+            <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;'
+              id="vlanhead">Vlan Form {{forloop.counter}} </h5>
+          </div>
+
+          <div class='col-75 removebtnholder'>
+            {% if forloop.counter == vlans|length %}
+            <button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='{{forloop.counter}}'>
+              - Remove VLAN {{forloop.counter}}</button>
+            {% endif %}
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='vlannum{{forloop.counter}}'>VLAN</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="vlannum{{forloop.counter}}" name="vlannum{{forloop.counter}}"
+              placeholder='VLAN Number' value="{{vlan.number}}">
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-25'>
+            <label for='vlanname{{forloop.counter}}'>VLAN Name</label>
+          </div>
+          <div class='col-75'>
+            <input type='text' id="vlanname{{forloop.counter}}" name="vlanname{{forloop.counter}}"
+              placeholder='VLAN Name' value="{{vlan.name}}">
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <hr>
+    <div class="row text-center">
+        <h5 style="display: inline; float: left; color: red; font-family: monospace;" id="note">Note: If you have made changes, save the form before generating the script.</h5>
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div class='d-flex justify-content-between'>
+
+          {% csrf_token %}
+
+          <input type='hidden' name='device_id' value='2'>
+          {% if script.id is not null %}
+          <input type='hidden' name='script_id' value='{{script.id}}'>
+          {% endif %}
+          <button class="btn btn-primary" type="submit"><i data-feather="save"></i> <span>Save</span></button>
+  </form>
+
+
+
   {% if script.id is not null %}
   <form method='POST' action="generate_exe">
     {% csrf_token %}
     <input type='hidden' name='script_id' value='{{script.id}}'>
-    <button class="btn btn-success" type="=submit"><i data-feather="download"></i>
+    <button class="btn btn-success" type="submit"><i data-feather="download"></i>
       <span>Executable</span></button>
   </form>
   <form method='POST' action="generate_text">
     {% csrf_token %}
     <input type='hidden' name='script_id' value='{{script.id}}'>
-    <button class="btn btn-success" type="=submit"><i data-feather="download"></i> <span>Text</span></button>
+    <button class="btn btn-success" type="submit"><i data-feather="download"></i> <span>Text</span></button>
   </form>
   {% endif %}
   <button class="btn btn-primary">
-    <span><a href="dash" class="text-white">Cancel</a></span></button>
+    <span><a href="dashboard" class="text-white">Cancel</a></span></button>
 </div>
-
+</div>
+</div>
+</div>
+{% endfor %}
 
 {% endblock %}
- 
 
+{% block script %}
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    $(document).on('click', '#removevlan', function () {
+      $('.vlans div.vlanform:last-child').remove();
+      var id = parseInt($('.vlans div.vlanform:last-child').attr('id'));
+      $('input#vlan_count').val(id);
+      $('.vlans div.vlanform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+        "- Remove VLAN " + id + "</button>");
+    });
+
+    $('#addvlan').on('click', function () {
+      $('.vlans').each(function () {
+        var id = parseInt($('.vlans div.vlanform:last-child').attr('id')) + 1;
+        $('.vlans input#vlan_count').val(id);
+        $('div.col-75 #removevlan').remove();
+        $('.vlans').append("<div class='vlanform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='vlanhead" + id + "'>Vlan Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removevlan' rmvlan='" + id + "'>" +
+          "- Remove VLAN " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlannum" + id + "'>VLAN</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlannum" + id + "' name='vlannum" + id + "' placeholder='VLAN Number'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanname" + id + "'>VLAN Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanname" + id + "' name='vlanname" + id + "' placeholder='VLAN Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanip" + id + "'>IPv4 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanip" + id + "' name='vlanip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlansub" + id + "'>IPv4 Subnet</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlansub" + id + "' name='vlansub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanipv6" + id + "'>IPv6 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanipv6" + id + "' name='vlanipv6" + id + "' placeholder='IPv6 Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanpre" + id + "'>IPv6 Prefix</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanpre" + id + "' name='vlanpre" + id + "' placeholder='xx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='vlanlink" + id + "'>IPv6 Link-Local</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='vlanlink" + id + "' name='vlanlink" + id + "' placeholder='IPv6 Link-Local'>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+      });
+    });
+
+    $(document).on('click', '#removeinterface', function () {
+      console.log($('.interfaces div.interfaceform:last-child'))
+      $('.interfaces div.interfaceform:last-child').remove();
+      var id = parseInt($('.interfaces div.interfaceform:last-child').attr('id'));
+      $('input#int_count').val(id);
+      $('.interfaces div.interfaceform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>" +
+        "- Remove Interface " + id + "</button>");
+    });
+
+    $('#addint').on('click', function () {
+      $('.interfaces').each(function () {
+        var id = parseInt($('.interfaces div.interfaceform:last-child').attr('id')) + 1;
+        $('input#int_count').val(id);
+        $('div.col-75 #removeinterface').remove();
+        $('.interfaces').append("<div class='interfaceform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='interfacehead" + id + "'>Interface Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeinterface' rminterface='" + id + "'>" +
+          "- Remove Iterface " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intstatus" + id + "'>Status</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<select type='text' id='intstatus" + id + "' name='intstatus" + id + "'>" +
+          "<option value=''>Shutdown</option>" +
+          "<option value='no'>Up</option>" +
+          "</select>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intname" + id + "'>Interface Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intname" + id + "' name='intname" + id + "' placeholder='Interface Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intsw" + id + "'>Switchport</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intsw" + id + "' name='intsw" + id + "' placeholder='Switchport Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intip" + id + "'>IPv4 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intip" + id + "' name='intip" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intsub" + id + "'>IPv4 Subnet</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intsub" + id + "' name='intsub" + id + "' placeholder='xxx.xxx.xxx.xxx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6" + id + "'>IPv6 Address</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6" + id + "' name='intipv6" + id + "' placeholder='IPv6 Address'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intpre" + id + "'>IPv6 Prefix</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intpre" + id + "' name='intpre" + id + "' placeholder='xx'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intlink" + id + "'>IPv6 Link-Local</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intlink" + id + "' name='intlink" + id + "' placeholder='IPv6 Link-Local'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intswmode" + id + "'>SwitchPort Mode</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intswmode" + id + "' name='intswmode" + id + "' placeholder='SwitchPort Mode'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intswaccess" + id + "'>SwitchPort Access</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intswaccess" + id + "' name='intswaccess" + id + "' placeholder='SwitchPort Access'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intallvlan" + id + "'>Vlans Allowed</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intallvlan" + id + "' name='intallvlan" + id + "' placeholder='Vlans Allowed'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intnative" + id + "'>Native Vlan</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intnative" + id + "' name='intnative" + id + "' placeholder='Native Vlan'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intencap" + id + "'>Encapsulation</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intencap" + id + "' name='intencap" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intencap" + id + "'>Non- Negiotate</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intnoneg" + id + "' name='intnoneg" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intch" + id + "'>Channel Group</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intch" + id + "' name='intch" + id + "' placeholder='Encapsulation'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intchmode" + id + "'>Channel Mode</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intchmode" + id + "' name='intchmode" + id + "' placeholder='Channel Mode'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intstpcost" + id + "'>STP Cost</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intstpcost" + id + "' name='intstpcost" + id + "' placeholder='STP Cost'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipospf" + id + "'>IPv4 OSPFv3</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipospf" + id + "' name='intipospf" + id + "' placeholder='IPv4 OSPFv3'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intiparea" + id + "'>IPv4 Area</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intiparea" + id + "' name='intiparea" + id + "' placeholder='IPv4 Area'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6ospf" + id + "'>IPv6 OSPFv3</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6ospf" + id + "' name='intipv6ospf" + id + "' placeholder='IPv6 OSPFv3'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='intipv6area" + id + "'>IPv6 Area</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='intipv6area" + id + "' name='intipv6area" + id + "' placeholder='IPv6 Area'>" +
+          "</div>" +
+          "</div>" +
+          "</div>");
+      });
+    });
+
+    $(document).on('click', '#removeuser', function () {
+      $('.users div.userform:last-child').remove();
+      var id = parseInt($('.users div.userform:last-child').attr('id'));
+      $('input#user_count').val(id);
+      $('.users div.userform:last-child .removebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeuser' rmuser='" + id + "'>" +
+        "- Remove User " + id + "</button>");
+    });
+
+    $(document).on('click', '#adduser', function () {
+      $('.users').each(function () {
+        var id = parseInt($('.users div.userform:last-child').attr('id')) + 1;
+        $('input#user_count').val(id);
+        $('div.col-75 #removeuser').remove();
+        $('.users').append("<div class='userform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='userhead" + id + "'>User Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 removebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeuser' rmvlan='" + id + "'>" +
+          "- Remove user " + id + "</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='username" + id + "'> Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='username" + id + "' name='username" + id + "' placeholder='Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='userpass" + id + "'> Password</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='userpass" + id + "' name='userpass" + id + "' placeholder='Name'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      });
+    });
+
+    $(document).on('click', '#removeacl', function () {
+      $('.acls div.aclform:last-child').remove();
+      var id = parseInt($('.acls div.aclform:last-child').attr('id'));
+      $('input#acl_count').val(id);
+      $('.acls div.aclform:last-child .aclremovebtnholder').append("<button class='btn btn-secondary removebtn' type='button' id='removeacl' rmacl='" + id + "'>" +
+        "- Remove ACL " + id + "</button>");
+    });
+
+    $(document).on('click', '#addacl', function () {
+      $('.acls').each(function () {
+        var id = parseInt($('.acls div.aclform:last-child').attr('id')) + 1;
+        $('div.col-75 #removeacl').remove();
+        $('input#acl_count').val(id);
+        $('.acls').append("<div class='aclform' id='" + id + "'>" +
+          "<div class='row justify-content-between'>" +
+          "<div class='col-25'>" +
+          "<h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;' id='aclhead" + id + "'>Access List Form " + id + "</h5>" +
+          "</div>" +
+          "<div class='col-75 aclremovebtnholder'>" +
+          "<button class='btn btn-secondary removebtn' type='button' id='removeacl' rmvlan='" + id + "'>" +
+          "- Remove ACL " + id + "</button>" +
+          "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+          "+ Add contorls</button>" +
+          "</div>" +
+          "</div>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='aclname" + id + "'> Name</label>" +
+          "</div>" +
+          "<div class='col-75'>" +
+          "<input type='text' id='aclname" + id + "' name='aclname" + id + "' placeholder=' ACL Name'>" +
+          "</div>" +
+          "</div>" +
+          "<div class='aclels' id='" + id + "'>" +
+          "<input type='hidden' id='acl_el_count" + id + "' name='acl_el_count" + id + "' value='0'>" +
+          "<div class='aclelform' id='0'>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+        );
+      });
+    });
+
+    $(document).on('click', '#removeaclel', function () {
+      var id = $(this).attr('removeaclel');
+      var id2 = $(this).attr('id2');
+      if (id2 == 1) {
+        $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
+        id2 = parseInt(id2) - 1;
+        $('input#acl_el_count' + id).val(id2);
+        $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='" + id2 + "' addaclel='" + id + "'>" +
+          "+ Add contorls</button>");
+      } else {
+        $('.aclels').each(function () {
+          $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
+          id2 = parseInt(id2) - 1;
+          $('input#acl_el_count' + id).val(id2);
+          $('.aclform#' + id + ' .aclels .aclelform:last-child .row').append("<div class='col-auto addbtnholder'>" +
+            "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+            "+</button>" +
+            "</div>" +
+            "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
+            "-</button>" +
+            "</div>");
+        });
+      }
+
+    });
+
+    $(document).on('click', '#addaclel', function () {
+      var id = $(this).attr('addaclel');
+      $(this).remove();
+      console.log(id)
+      var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
+      console.log(id2)
+      $('.aclels').each(function () {
+        console.log('done')
+        $('.aclform#' + id + ' .removebtnholder').remove();
+        $('.aclform#' + id + ' .addbtnholder').remove();
+        var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
+        console.log('done')
+        $('input#acl_el_count' + id).val(id2);
+        console.log('done')
+        $('.aclform#' + id + ' .aclels').append(
+          "<div class='aclelform' id='" + id2 + "'>" +
+          "<div class='row'>" +
+          "<div class='col-25'>" +
+          "<label for='aclcontrol" + id2 + "'>Control Type</label>" +
+          "</div>" +
+          "<div class='col-auto col-sm-75'>" +
+          "<select type='text' id='aclcontrol" + id2 + "'" +
+          "name='aclcontrol" + id2 + "' placeholder='ACL Control Type'>" +
+          "<option value='permit'>Permit</option>" +
+          "<option value='deny'>Deny</option>" +
+          "</select>" +
+          "</div>" +
+          "<div class='col-auto col-sm-25'>" +
+          "<label for='acladd" + id2 + "'>ACL Address</label>" +
+          "</div>" +
+          "<div class='col-auto col-sm-75'>" +
+          "<input type='text' id='acladd" + id2 + "' name='acladd" + id2 + "' placeholder=' ACL Address'>" +
+          "</div>" +
+          "<div class='col-auto addbtnholder'>" +
+          "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+          "+</button>" +
+          "</div>" +
+          "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
+          "-</button>" +
+          "</div>" +
+          "</div>" +
+          "</div>"
+
+        );
+
+
+      });
+    });
+
+
+
+  });
+
+
+
+
+</script>
+
+{% endblock %}

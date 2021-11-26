@@ -41,8 +41,8 @@ def login_user(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                request.session.set_expiry(600)
                 request.session['username'] = username
-                logged_user = User.objects.get(username=request.session['username'])
                 if username != 'shivam' and user.groups.all() is not None:
                     request.session['organisation_id'] = user.groups.all()[0].id
                 result = redirect('/dashboard')
@@ -98,6 +98,19 @@ def edit_script(request):
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
             template = nm_model + ".html"
             context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
+            print(context)
+        elif nm_model == "C1000":
+            script = C1000.objects.filter(id=request.POST['script_id'])
+            vlans = VLAN_C1000.objects.filter(script_id=request.POST['script_id'])
+            interfaces = Interface_C1000.objects.filter(script_id=request.POST['script_id'])
+            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            aclels = []
+            for acl in acls:
+                aclel= ACL_EL_3650.objects.filter(acl_id=acl.id)
+                aclels.append(aclel)
+            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            template = nm_model + ".html"
+            context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
         return render(request, template,  context)
 
 def new_script(request):
@@ -116,7 +129,6 @@ def new_script(request):
   
 def read_script(file, input):
     input_data = ""
-    output_data = ""
     with open(file, 'r') as input_file:
         input_data = input_file.read()
     input_var = []
@@ -125,13 +137,22 @@ def read_script(file, input):
         input_var.append('@'+str(k))
         input_val.append(str(v))      
     for i in range(len(input_var)):
-        if input_val[i] is not None and input_val[i] != "":
+        if str(input_val[i]) != "None" and input_val[i] != "":
             input_data = input_data.replace(str(input_var[i]),str(input_val[i]))
-        for line in input_data:
-            print(line)
-            if not any(input_v in line for input_v in input_var):
-                input_data.replace(line, "!")
-    return input_data
+    temp_file = open('static/Temp/temp-playground.txt', 'w')  
+    temp_file.write(input_data)
+    temp_file.close()
+    temp_file = open('static/Temp/temp-playground.txt', 'r')
+    output_file = open('static/Temp/playground.txt', 'w')
+    for line in temp_file:
+        x = line.split('@')
+        if len(x) == 1:
+            output_file.writelines(line)
+    output_file.close()
+    output_file = open('static/Temp/playground.txt', 'r')
+    output_data = output_file.read()
+              
+    return output_data
         
 def config_producer(request):
     if request.method == 'POST':
@@ -146,38 +167,62 @@ def config_producer(request):
             
             vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
             for vlan in vlans:
-                input_data += read_script('static/Default_Config/WSC3650/VLAN_C3650.txt',vlan)    
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/VLAN_C3650.txt',vlan)    
             
             interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
             for interface in interfaces:
-                input_data += read_script('static/Default_Config/WSC3650/Interface_C3650.txt',interface)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/Interface_C3650.txt',interface)
             
             acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
             for acl in acls:
-                input_data += read_script('static/Default_Config/WSC3650/ACL_3650.txt',acl)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/ACL_3650.txt',acl)
                 aclels = ACL_EL_3650.objects.filter(acl_id=acl.id)
                 for aclel in aclels:
-                    input_data += read_script('static/Default_Config/WSC3650/ACL_EL_3650.txt',aclel)
+                    input_data += "\n" + read_script('static/Default_Config/WSC3650/ACL_EL_3650.txt',aclel)
             
             users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
             for user in users:
-                input_data += read_script('static/Default_Config/WSC3650/CiscoUser.txt',user)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/CiscoUser.txt',user)
                 
             dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
             for dhcp in dhcps:
-                input_data += read_script('static/Default_Config/WSC3650/DHCP_3650.txt',dhcp)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/DHCP_3650.txt',dhcp)
                 
             dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
             for dhcpex in dhcpexs:
-                input_data += read_script('static/Default_Config/WSC3650/DHCP_EX_C3650.txt',dhcpex)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/DHCP_EX_C3650.txt',dhcpex)
                 
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
             for ospf in ospfs:
-                input_data += read_script('static/Default_Config/WSC3650/OSPFv3_3650.txt',ospf)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/OSPFv3_3650.txt',ospf)
                 
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
             for stp_vlan in stp_vlans:
-                input_data += read_script('static/Default_Config/WSC3650/STP_VLAN_3650.txt',stp_vlan)
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/STP_VLAN_3650.txt',stp_vlan)
+                
+            return input_data
+        elif script_device == "C1000":
+            script = C1000.objects.filter(scripts_ptr_id=request.POST['script_id'])[0]
+            input_data = read_script('static/Default_Config/C1000/Base.txt',script)
+            
+            vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
+            for vlan in vlans:
+                input_data += "\n" + read_script('static/Default_Config/C1000/VLAN_C1000.txt',vlan)    
+            
+            interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
+            for interface in interfaces:
+                input_data += "\n" + read_script('static/Default_Config/C1000/Interface_C1000.txt',interface)
+            
+            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            for acl in acls:
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/ACL_3650.txt',acl)
+                aclels = ACL_EL_3650.objects.filter(acl_id=acl.id)
+                for aclel in aclels:
+                    input_data += "\n" + read_script('static/Default_Config/WSC3650/ACL_EL_3650.txt',aclel)
+            
+            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            for user in users:
+                input_data += "\n" + read_script('static/Default_Config/WSC3650/CiscoUser.txt',user)
                 
             return input_data
     
@@ -199,9 +244,7 @@ def text_generator(request):
 def exe_generator(request):
     
     input_data = config_producer(request)
-    script_device = Devices.objects.get(id=Scripts.objects.get(id=request.POST['script_id']).device_id)
-    if script_device.device_model == 'ISR4321/K9':
-        scriptname = ISR4321.objects.filter(scripts_ptr_id=request.POST['script_id'])[0].script_name
+    scriptname = Scripts.objects.filter(scripts_ptr_id=request.POST['script_id'])[0].script_name
     
     output_file = open('static/Temp/playground.txt', 'wt')
     python_output = open('static/Temp/python_playground.txt', 'wt')
@@ -270,7 +313,7 @@ def save(request):
         nm_model = Devices.objects.get(id=request.POST['device_id']).nm_model
         if nm_model =="ISR4321":
             script = ISR4321(
-                device_id = request.POST['device_id'],
+                device_id = 1,
             project_id = request.session['project_id'],
             script_name = request.POST['script_name'],
             host_name = request.POST['rname'],
@@ -436,41 +479,56 @@ def save(request):
             bgp_ipv6_neighbor_wan_route_map_in = request.POST['bgp_ipv6_neighbor_wan_route_map_in'],
             bgp_ipv6_community = request.POST['bgp_ipv6_community']
             )
+            if 'script_id' in request.POST:
+                script.scripts_ptr_id = request.POST['script_id']
             script.save()
         elif nm_model =="WSC3650":
+            
             script = WSC3650(
-                device_id = 2,
-                script_name = request.POST['script_name'],
-                project_id= request.session['project_id'],
-                host_name = request.POST['host_name'],
-                banner_motd = request.POST['banner_motd'],
-                secret = request.POST['secret'],
-                login_block_time = request.POST['login_block_time'],
-                login_tries = request.POST['login_tries'],
-                tries_time = request.POST['tries_time'],
-                login_delay = request.POST['login_delay'],
-                login_access = request.POST['login_access'],
-                default_gateway = request.POST['default_gateway'],
-                radius_server = request.POST['radius_server'],
-                radius_ip = request.POST['radius_ip'],
-                radius_key = request.POST['radius_key'],
-                radius_group = request.POST['radius_group'],
-                max_fail = request.POST['max_fail'],
-                ntp_server = request.POST['ntp_server'],
-                ntp_auth_key = request.POST['ntp_auth_key'],
-                ntp_pass = request.POST['ntp_pass'],
-                ntp_trust_key = request.POST['ntp_trust_key'],
-                stp_mode = request.POST['stp_mode'],
-                min_length = request.POST['min_length']
-            )
+            device_id = 2,
+            script_name = request.POST['script_name'],
+            project_id= request.session['project_id'],
+            host_name = request.POST['host_name'],
+            banner_motd = request.POST['banner_motd'],
+            secret = request.POST['secret'],
+            login_block_time = request.POST['login_block_time'],
+            login_tries = request.POST['login_tries'],
+            tries_time = request.POST['tries_time'],
+            login_delay = request.POST['login_delay'],
+            login_access = request.POST['login_access'],
+            default_gateway = request.POST['default_gateway'],
+            radius_server = request.POST['radius_server'],
+            radius_ip = request.POST['radius_ip'],
+            radius_key = request.POST['radius_key'],
+            radius_group = request.POST['radius_group'],
+            max_fail = request.POST['max_fail'],
+            ntp_server = request.POST['ntp_server'],
+            ntp_auth_key = request.POST['ntp_auth_key'],
+            ntp_pass = request.POST['ntp_pass'],
+            ntp_trust_key = request.POST['ntp_trust_key'],
+            stp_mode = request.POST['stp_mode'],
+            min_length = request.POST['min_length'])
             script.save()
             
+            vlan = None
+            interface = None
+            stp = None
+            dhcp = None
+            dhcp_ex = None
+            ospf = None
+            csuser = None
+            acl = None
+            acl_el = None
+            
+            if 'script_id' in request.POST:
+                script.scripts_ptr_id = request.POST['script_id']
+        
             for i in range(1, int(request.POST['vlan_count'])+1):
                 
                 i=str(i)
                 
                 vlan = VLAN_C3650(
-                script = script,
+                script_id = script.scripts_ptr_id,
                 number = request.POST['vlannum'+i],
                 name = request.POST['vlanname'+i],
                 ipv4_address = request.POST['vlanip'+i],
@@ -481,10 +539,12 @@ def save(request):
                 )
                 vlan.save()
                 
+                
             for i in range(1, int(request.POST['int_count'])+1):
                 i=str(i)
+                
                 interface = Interface_C3650(
-                    script =script,
+                    script_id = script.scripts_ptr_id,
                 status = request.POST['intstatus'+i],
                 name = request.POST['intname'+i],
                 switchport = request.POST['intsw'+i],
@@ -511,8 +571,9 @@ def save(request):
                 
             for i in range(1, int(request.POST['stp_count'])+1):
                 i=str(i)
+                
                 stp = STP_VLAN_3650(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                 vlan = request.POST['stpvlan'+i],
                 root = request.POST['stproot'+i]
                 )
@@ -520,8 +581,9 @@ def save(request):
                 
             for i in range(1, int(request.POST['dhcp_count'])+1):
                 i=str(i)
+                
                 dhcp = DHCP_3650(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                 name = request.POST['dhcpname'+i],
                 network_ip = request.POST['dhcpnet'+i],
                 network_subnet = request.POST['dhcpsub'+i],
@@ -531,8 +593,9 @@ def save(request):
                 
             for i in range(1, int(request.POST['ospf_count'])+1):
                 i=str(i)
+                
                 ospf = OSPFv3_3650(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                 process = request.POST['ospfpro'+i],
                 router_id = request.POST['ospfrid'+i]
                 )
@@ -540,8 +603,9 @@ def save(request):
                 
             for i in range(1, int(request.POST['user_count'])+1):
                 i=str(i)
+                
                 csuser = CiscoUser(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                 name = request.POST['username'+i],
                 password = request.POST['userpass'+i]
                 )
@@ -549,15 +613,17 @@ def save(request):
                 
             for i in range(1, int(request.POST['acl_count'])+1):
                 i=str(i)
+                
                 acl = ACL_3650(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                 name = request.POST['aclname'+i]
                 )
                 acl.save()
                 for j in range(1, int(request.POST['acl_el_count'+i])+1):
                     j=str(j)
+                    ACL_EL_3650.objects.filter(acl_id = acl.id).delete()
                     acl_el = ACL_EL_3650(
-                        acl = acl,
+                        acl_id = acl.id,
                     type = request.POST['aclcontrol'+j],
                     address = request.POST['acladd'+j]
                     )
@@ -565,11 +631,106 @@ def save(request):
                 
             for i in range(1, int(request.POST['dhcp_ex_count'])+1):
                 i=str(i)
+                
                 dhcp_ex = DHCP_EX_C3650(
-                    script = script,
+                    script_id = script.scripts_ptr_id,
                     address = request.POST['dhcpex'+i]
                 )
                 dhcp_ex.save()
+        elif nm_model =="C1000":
+            
+            script = WSC3650(
+            device_id = 2,
+            script_name = request.POST['script_name'],
+            project_id= request.session['project_id'],
+            host_name = request.POST['host_name'],
+            banner_motd = request.POST['banner_motd'],
+            secret = request.POST['secret'],
+            login_block_time = request.POST['login_block_time'],
+            login_tries = request.POST['login_tries'],
+            tries_time = request.POST['tries_time'],
+            login_delay = request.POST['login_delay'],
+            login_access = request.POST['login_access'],
+            radius_server = request.POST['radius_server'],
+            radius_ip = request.POST['radius_ip'],
+            radius_key = request.POST['radius_key'],
+            radius_group = request.POST['radius_group'],
+            max_fail = request.POST['max_fail'],
+            ntp_server = request.POST['ntp_server'],
+            ntp_auth_key = request.POST['ntp_auth_key'],
+            ntp_pass = request.POST['ntp_pass'],
+            ntp_trust_key = request.POST['ntp_trust_key'],
+            stp_mode = request.POST['stp_mode'],
+            min_length = request.POST['min_length'])
+            script.save()
+            
+            vlan = None
+            interface = None
+            csuser = None
+            acl = None
+            acl_el = None
+            
+            if 'script_id' in request.POST:
+                script.scripts_ptr_id = request.POST['script_id']
+        
+            for i in range(1, int(request.POST['vlan_count'])+1):
+                
+                i=str(i)
+                
+                vlan = VLAN_C3650(
+                script_id = script.scripts_ptr_id,
+                number = request.POST['vlannum'+i],
+                name = request.POST['vlanname'+i]
+                )
+                vlan.save()
+                
+                
+            for i in range(1, int(request.POST['int_count'])+1):
+                i=str(i)
+                
+                interface = Interface_C3650(
+                    script_id = script.scripts_ptr_id,
+                status = request.POST['intstatus'+i],
+                name = request.POST['intname'+i],
+                sw_mode = request.POST['intswmode'+i],
+                sw_access = request.POST['intswaccess'+i],
+                allowed_vlan = request.POST['intallvlan'+i],
+                native_vlan = request.POST['intnative'+i],
+                channel_group = request.POST['intch'+i],
+                channel_mode = request.POST['intchmode'+i],
+                bdpu_filter = request.POST['bdpufilter'+i],
+                bdpu_guard = request.POST['bdpuguard'+i],
+                )
+                interface.save()
+                
+              
+            for i in range(1, int(request.POST['user_count'])+1):
+                i=str(i)
+                
+                csuser = CiscoUser(
+                    script_id = script.scripts_ptr_id,
+                name = request.POST['username'+i],
+                password = request.POST['userpass'+i]
+                )
+                csuser.save()
+                
+            for i in range(1, int(request.POST['acl_count'])+1):
+                i=str(i)
+                
+                acl = ACL_3650(
+                    script_id = script.scripts_ptr_id,
+                name = request.POST['aclname'+i]
+                )
+                acl.save()
+                for j in range(1, int(request.POST['acl_el_count'+i])+1):
+                    j=str(j)
+                    ACL_EL_3650.objects.filter(acl_id = acl.id).delete()
+                    acl_el = ACL_EL_3650(
+                        acl_id = acl.id,
+                    type = request.POST['aclcontrol'+j],
+                    address = request.POST['acladd'+j]
+                    )
+                    acl_el.save()
             
         
         

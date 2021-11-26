@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.db.models import *
+import django.utils.timezone
 
 class DeviceCategories(Model):
     category_name = CharField(max_length=100)
@@ -31,9 +32,12 @@ class Projects(Model):
 class Scripts(Model):
     device = ForeignKey(Devices, on_delete=RESTRICT)
     project = ForeignKey(Projects, on_delete=RESTRICT)
-    date_created = DateField(auto_now_add=True)
-    date_modified = DateField(auto_now=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    date_created = models.DateTimeField(default=django.utils.timezone.now)
     script_name = CharField(max_length=100)
+    
+    def __str__(self):
+        return self.script_name + " | " + str(self.date_created)
 
 class ISR4321(Scripts):
     
@@ -328,6 +332,50 @@ class ACL_EL_3650(Model):
     acl = ForeignKey(ACL_3650, on_delete=CASCADE)
     type = CharField(max_length=10)
     address = GenericIPAddressField()
+    
+class C1000(Scripts):
+    host_name = CharField(max_length=100)
+    banner_motd = CharField(max_length=100)
+    min_length = IntegerField()
+    secret = CharField(max_length=100)
+    
+    login_block_time = IntegerField()
+    login_tries = IntegerField()
+    tries_time = IntegerField()
+    login_delay = IntegerField()
+    login_access = CharField(max_length=100)
+    
+    stp_mode = CharField(max_length=100)
+    
+    radius_server = CharField(max_length=100)
+    radius_group = CharField(max_length=100)
+    radius_ip = GenericIPAddressField()
+    radius_key = CharField(max_length=100)
+    max_fail = IntegerField()
+    
+    ntp_server = GenericIPAddressField()
+    ntp_auth_key = IntegerField()
+    ntp_pass = CharField(max_length=100)
+    ntp_trust_key = IntegerField()
+    
+class VLAN_C1000(Model):
+    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    number = IntegerField()
+    name = CharField(max_length=100, null = True)
+    
+class Interface_C1000(Model):
+    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    status = CharField(max_length=8, null = True)
+    name = CharField(max_length=100)
+    sw_mode = CharField(max_length=10,null = True)
+    sw_access = CharField(max_length=100,null = True)
+    allowed_vlan = CharField(max_length=100,null = True)
+    native_vlan = CharField(max_length=100,null = True)
+    channel_group = CharField(max_length=100,null = True)
+    channel_mode = CharField(max_length=10, null = True)
+    bdpu_filter = CharField(max_length=10, null=True)
+    bdpu_guard = CharField(max_length=10, null=True)
+
     
     
     
