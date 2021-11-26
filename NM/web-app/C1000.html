@@ -75,7 +75,7 @@
 
 
 {% block router_content %}
-{% for script in data %}
+
 <div class="container">
   <form method='POST' action="save">
 
@@ -269,7 +269,6 @@
     <hr>
 
     <!-- User Account -->
-    <hr>
     <div class="row">
       <div class="col-25">
         <h3 style="display: inline; float: left; color: darkblue; font-family: monospace;" id="usracc">User Account
@@ -620,7 +619,7 @@
 
           {% csrf_token %}
 
-          <input type='hidden' name='device_id' value='2'>
+          <input type='hidden' name='device_id' value='3'>
           {% if script.id is not null %}
           <input type='hidden' name='script_id' value='{{script.id}}'>
           {% endif %}
@@ -648,7 +647,6 @@
 </div>
 </div>
 </div>
-{% endfor %}
 
 {% endblock %}
 

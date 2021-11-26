@@ -178,7 +178,7 @@
         {% for script in scripts %}
         <tr>
           <td data-title="Type">{% if script.device_id == 1 %}<span class="badge bg-success">Router</span> {% endif %}
-            {% if script.device_id == 2 %}<span class="badge bg-info">L3 Switch</span> {% endif %}{% if script.device_id == 2 %}<span class="badge bg-primary">L2 Switch</span> {% endif %}
+            {% if script.device_id == 2 %}<span class="badge bg-info">L3 Switch</span> {% endif %}{% if script.device_id == 3 %}<span class="badge bg-primary">L2 Switch</span> {% endif %}
           </td>
           <td class="script_name" data-title="Name">{{script.script_name}}</td>
           <td class="script_device" data-title="Devices">{{script.device.device_manufacturer}} {{script.device.device_model}}</td>

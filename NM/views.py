@@ -81,7 +81,7 @@ def edit_script(request):
         if nm_model == "ISR4321":
             script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
             template = nm_model + ".html"
-            context = {'data':script , 'organisation_name':request.session['organisation']}
+            context = {'script':script , 'organisation_name':request.session['organisation']}
         elif nm_model == "WSC3650":
             script = WSC3650.objects.filter(id=request.POST['script_id'])
             vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
@@ -97,7 +97,7 @@ def edit_script(request):
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
             template = nm_model + ".html"
-            context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
+            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
             print(context)
         elif nm_model == "C1000":
             script = C1000.objects.filter(id=request.POST['script_id'])
@@ -110,7 +110,7 @@ def edit_script(request):
                 aclels.append(aclel)
             users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
             template = nm_model + ".html"
-            context = {'data':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
+            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
         return render(request, template,  context)
 
 def new_script(request):
@@ -639,8 +639,8 @@ def save(request):
                 dhcp_ex.save()
         elif nm_model =="C1000":
             
-            script = WSC3650(
-            device_id = 2,
+            script = C1000(
+            device_id = 3,
             script_name = request.POST['script_name'],
             project_id= request.session['project_id'],
             host_name = request.POST['host_name'],
@@ -677,7 +677,7 @@ def save(request):
                 
                 i=str(i)
                 
-                vlan = VLAN_C3650(
+                vlan = VLAN_C1000(
                 script_id = script.scripts_ptr_id,
                 number = request.POST['vlannum'+i],
                 name = request.POST['vlanname'+i]
@@ -688,7 +688,7 @@ def save(request):
             for i in range(1, int(request.POST['int_count'])+1):
                 i=str(i)
                 
-                interface = Interface_C3650(
+                interface = Interface_C1000(
                     script_id = script.scripts_ptr_id,
                 status = request.POST['intstatus'+i],
                 name = request.POST['intname'+i],
