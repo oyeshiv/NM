@@ -61,7 +61,7 @@
       <tbody>
         {% for device in devices %}
         <tr>
-          <td data-label="Type"> {% if device.device_category_id == 1 %}<span class="badge bg-success">Supported</span>  {% endif %}{% if device.device_category_id == 2 %}<span class="badge bg-danger"> Under Development </span>{% endif %}</td>
+          <td data-label="Type"><span class="badge bg-success">Supported</span></td>
           <td data-label="Dtae Modified">{% if device.device_category_id == 1 %} Router {% endif %}{% if device.device_category_id == 2 %} Switch {% endif %}</td>
           <td data-label="Devices">{{device.device_manufacturer}}</td>
           <td data-label="Name">{{device.device_model}}</td>
