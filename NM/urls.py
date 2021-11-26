@@ -25,9 +25,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     #admin
     path('admin/', admin.site.urls),
-
+    
+    #home-page
+    path('', views.home, name='home'),
+    path('team', views.team, name='about_us'),
+    
     #login-logout
-    path('', views.login_user, name='home'),
+    path('login', views.login_user, name='login'),
     path('login', include('django.contrib.auth.urls')),
     path('logout', views.logout_user, name='Logout'),
     path('profile', views.profile, name='Profile'),
@@ -50,19 +54,5 @@ urlpatterns = [
     
     #statics
     path('devices', views.device_list, name='Devices'),
-
-    #forms
-    path('index', views.index, name='index'),
-    path('base', views.base, name='Base'),
-    path('base_router', views.base_router, name='base_router'),
-    path('form_router', views.form_router, name='form_router'),
-    path('C1000', views.base_switch, name='base_switch'),
-    path('WSC3650', views.base_switch3, name='base_switch3'),
-    path('form_layer3', views.form_layer3, name='form_layer3'),
-    path('form_switch2', views.form_switch2, name='form_switch2'),
-    path('ISR4321', views.rout, name='ISR4321'),
-    path('dynamic_menu', views.dynamic_menu, name='dynamic_menu'),
-    path('team', views.team, name='about_us'),
-    path('home', views.home, name='home'),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

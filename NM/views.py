@@ -17,7 +17,7 @@ from NM.settings import STATIC_URL
 
 def dashboard(request):
     if 'username' not in request.session:
-        return redirect('/')
+        return redirect('/login')
     else:
         if request.session['username']=='shivam':
             return redirect('admin/')
@@ -31,7 +31,7 @@ def dashboard(request):
 def login_user(request):
 
     if 'username' in request.session:
-        result = redirect('/dashboard')
+        result = redirect('/login')
     
     else:
         result = render(request, 'login.html')
@@ -48,7 +48,7 @@ def login_user(request):
                 result = redirect('/dashboard')
             else:
                 messages.success(request, ('Incorrect User Credentials!'))
-                result = redirect('/')
+                result = redirect('/login')
     
     return result
 
@@ -59,7 +59,7 @@ def logout_user(request):
 
 def scripts(request):
     if 'username' not in request.session:
-        return redirect('/')
+        return redirect('/login')
     else:
         if request.method == 'POST':
             request.session['project_id'] = request.POST['id']
@@ -73,7 +73,7 @@ def scripts(request):
 
 def edit_script(request):
     if 'username' not in request.session:
-        return redirect('/')
+        return redirect('/login')
     else:
         nm_model = request.POST['device']
         template = '404.html'
@@ -115,7 +115,7 @@ def edit_script(request):
 
 def new_script(request):
     if 'username' not in request.session:
-        return redirect('/')
+        return redirect('/login')
     else:
         if request.method == 'POST':
             project_id = request.POST['project']
@@ -281,7 +281,7 @@ def exe_generator(request):
 
 def save_project(request):
     if 'username' not in request.session:
-        redirect('/')
+        redirect('/login')
     else:
         if request.method == 'POST':
             project_name = request.POST['pname']
@@ -301,12 +301,12 @@ def save_project(request):
 
 def device_list(request):
     if 'username' not in request.session:
-        return redirect('/')
+        return redirect('/login')
     else:
         if request.method == 'POST':
             devices = Devices.objects.filter(device_category_id=request.POST['device']).select_related('device_category')
             return render(request, 'devices.html', {'devices': devices, 'category': devices[0].device_category.category_name, 'organisation_name':request.session['organisation']} )
-    return redirect('/')
+    return redirect('/login')
 
 def save(request):
     if request.method == 'POST':
@@ -736,7 +736,7 @@ def save(request):
         
         return redirect('/scripts')
         
-    return redirect('/')
+    return redirect('/dashboard')
 
 def profile(request):
     
