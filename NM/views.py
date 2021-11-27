@@ -19,6 +19,7 @@ def dashboard(request):
     if 'username' not in request.session:
         return redirect('/login')
     else:
+        request.session.set_expiry(1000)
         if request.session['username']=='shivam':
             return redirect('admin/')
         elif request.session['organisation_id'] == 2:
@@ -61,6 +62,7 @@ def scripts(request):
     if 'username' not in request.session:
         return redirect('/login')
     else:
+        request.session.set_expiry(1000)
         if request.method == 'POST':
             request.session['project_id'] = request.POST['id']
         project = Projects.objects.filter(id=request.session['project_id'])[0]
@@ -119,6 +121,7 @@ def new_script(request):
         return redirect('/login')
     else:
         if request.method == 'POST':
+            request.session.set_expiry(None)
             project_id = request.POST['project']
             device_id = request.POST['device']
             nm_model = Devices.objects.get(id=device_id).nm_model
