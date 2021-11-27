@@ -75,6 +75,7 @@ def edit_script(request):
     if 'username' not in request.session:
         return redirect('/login')
     else:
+        request.session.set_expiry(None)
         nm_model = request.POST['device']
         template = '404.html'
         context ={}
