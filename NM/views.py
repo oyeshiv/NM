@@ -41,7 +41,7 @@ def login_user(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                request.session.set_expiry(600)
+                request.session.set_expiry(1000)
                 request.session['username'] = username
                 if username != 'shivam' and user.groups.all() is not None:
                     request.session['organisation_id'] = user.groups.all()[0].id
@@ -81,7 +81,7 @@ def edit_script(request):
         if nm_model == "ISR4321":
             script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
             template = nm_model + ".html"
-            context = {'script':script , 'organisation_name':request.session['organisation']}
+            context = {'script':script[0] , 'organisation_name':request.session['organisation']}
         elif nm_model == "WSC3650":
             script = WSC3650.objects.filter(id=request.POST['script_id'])
             vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
@@ -97,7 +97,7 @@ def edit_script(request):
             ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
             stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
             template = nm_model + ".html"
-            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
+            context = {'script':script[0], 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
             print(context)
         elif nm_model == "C1000":
             script = C1000.objects.filter(id=request.POST['script_id'])
@@ -110,7 +110,7 @@ def edit_script(request):
                 aclels.append(aclel)
             users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
             template = nm_model + ".html"
-            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
+            context = {'script':script[0], 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
         return render(request, template,  context)
 
 def new_script(request):
@@ -734,7 +734,7 @@ def save(request):
             
         
         
-        return redirect('/scripts')
+        return render(request, template,  context)
         
     return redirect('/dashboard')
 

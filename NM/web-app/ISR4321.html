@@ -102,7 +102,7 @@
         <label for="rname">Device Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="rname" name="rname" placeholder="Router Name......" value="{{script.isr4321.host_name}}">
+        <input type="text" id="rname" name="rname" placeholder="Router Name......" value="{{script.host_name}}">
       </div>
     </div>
     <div class="row">
@@ -110,7 +110,7 @@
         <label for="uname">User Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="uname" name="uname" placeholder="User Name......" value='{{script.isr4321.user_name}}'>
+        <input type="text" id="uname" name="uname" placeholder="User Name......" value='{{script.user_name}}'>
       </div>
     </div>
     <div class="row">
@@ -119,7 +119,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="motdr" name="motdr" placeholder="Write your MOTD banner"
-          value='{{script.isr4321.banner_motd}}'>
+          value='{{script.banner_motd}}'>
       </div>
     </div>
     <div class="row">
@@ -128,7 +128,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="enpwd" name="en_pass_length" placeholder="Encryption Password"
-          value='{{script.isr4321.en_pass_length}}'>
+          value='{{script.en_pass_length}}'>
       </div>
     </div>
     <div class="row">
@@ -136,7 +136,7 @@
         <label for="secpwd">Security Password </label>
       </div>
       <div class="col-75">
-        <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password" value='{{script.isr4321.user_pass}}'>
+        <input type="text" id="spwd" name="spwd" placeholder="Priviledge Password" value='{{script.user_pass}}'>
       </div>
     </div>
     <div class="row">
@@ -144,7 +144,7 @@
         <label for="enpwd">Enable Password </label>
       </div>
       <div class="col-75">
-        <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.isr4321.en_pass}}'>
+        <input type="text" id="enpwd" name="enpwd" placeholder="Encryption Password" value='{{script.en_pass}}'>
       </div>
     </div>
     <div class="row">
@@ -153,7 +153,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="dname" name="dname" placeholder="Encryption Password"
-          value='{{script.isr4321.domain_name}}'>
+          value='{{script.domain_name}}'>
       </div>
     </div>
     <div class="row">
@@ -162,7 +162,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="login" name="login" placeholder="Login block"
-          value='{{script.isr4321.login_block_time}}'>
+          value='{{script.login_block_time}}'>
       </div>
     </div>
     <div class="row">
@@ -170,7 +170,7 @@
         <label for="atmpt">Number of login attempt/s </label>
       </div>
       <div class="col-75">
-        <input type="text" id="atmpt" name="atmpt" placeholder="Login block" value='{{script.isr4321.login_tries}}'>
+        <input type="text" id="atmpt" name="atmpt" placeholder="Login block" value='{{script.login_tries}}'>
       </div>
     </div>
     <div class="row">
@@ -178,7 +178,7 @@
         <label for="sec">Within seconds</label>
       </div>
       <div class="col-75">
-        <input type="text" id="sec" name="sec" placeholder="Within seconds" value='{{script.isr4321.tries_time}}'>
+        <input type="text" id="sec" name="sec" placeholder="Within seconds" value='{{script.tries_time}}'>
       </div>
     </div>
     <div class="row">
@@ -186,7 +186,7 @@
         <label for="delay">Login Delay</label>
       </div>
       <div class="col-75">
-        <input type="text" id="delay" name="delay" placeholder="Login Delay" value='{{script.isr4321.login_delay}}'>
+        <input type="text" id="delay" name="delay" placeholder="Login Delay" value='{{script.login_delay}}'>
       </div>
     </div>
     <div class="row">
@@ -195,7 +195,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="lghost" name="lghost" placeholder="Logging Host IP Address"
-          value='{{script.isr4321.login_host}}'>
+          value='{{script.login_host}}'>
       </div>
     </div>
     <div class="row">
@@ -203,7 +203,7 @@
         <label for="Trap">Logging Trap</label>
       </div>
       <div class="col-75">
-        <input type="text" id="Trap" name="Trap" placeholder="Logging Trap" value='{{script.isr4321.login_trap_level}}'>
+        <input type="text" id="Trap" name="Trap" placeholder="Logging Trap" value='{{script.login_trap_level}}'>
       </div>
     </div>
     <div class="row">
@@ -212,7 +212,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="src_int" name="src_int" placeholder=">Login Source Interface"
-          value='{{script.isr4321.login_source}}'>
+          value='{{script.login_source}}'>
       </div>
     </div>
     <div class="row">
@@ -221,7 +221,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="intg00" name="g00_ip" placeholder="Ip address for g0/0"
-          value='{{script.isr4321.g00_ipv4}}'>
+          value='{{script.g00_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -230,7 +230,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="subg00" name="g00_subnet" placeholder="Subnet for g0/0"
-          value='{{script.isr4321.g00_subnet}}'>
+          value='{{script.g00_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -239,7 +239,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="intg0/1" name="g01_ip" placeholder=" Private Ip address for g0/1"
-          value='{{script.isr4321.g01_ipv4}}'>
+          value='{{script.g01_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -248,7 +248,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="subg01" name="g01_subnet" placeholder="Subnet for g0/1"
-          value='{{script.isr4321.g01_subnet}}'>
+          value='{{script.g01_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -257,7 +257,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="intg0/2" name="g02_ip" placeholder=" Private Ip address for g0/2"
-          value='{{script.isr4321.g02_ipv4}}'>
+          value='{{script.g02_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -266,7 +266,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="subg02" name="g02_subnet" placeholder="Subnet for g0/2 "
-          value='{{script.isr4321.g02_subnet}}'>
+          value='{{script.g02_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -275,7 +275,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="intg0/2" name="lo1_ip" placeholder=" Private Ip address for g0/2"
-          value='{{script.isr4321.lo1_ip}}'>
+          value='{{script.lo1_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -284,7 +284,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="subg02" name="lo1_subnet" placeholder="Subnet for g0/2 "
-          value='{{script.isr4321.lo1_subnet}}'>
+          value='{{script.lo1_subnet}}'>
       </div>
     </div>
     <!--g0/0-->
@@ -299,7 +299,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="vrrp" name="g00_vrrp_num" placeholder="VRRP number"
-          value='{{script.isr4321.g00_vrrp_num}}'>
+          value='{{script.g00_vrrp_num}}'>
       </div>
     </div>
     <div class="row">
@@ -308,7 +308,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="vip" name="g00_vrrp_address" placeholder="Virtual IP Address"
-          value='{{script.isr4321.g00_vrrp_address}}'>
+          value='{{script.g00_vrrp_address}}'>
       </div>
     </div>
     <div class="row">
@@ -317,9 +317,9 @@
       </div>
       <div class="col-75">
         <input type="number" id="vipinc" name="g00_track_num" placeholder="Track start number"
-          value='{{script.isr4321.g00_track_num}}'>
+          value='{{script.g00_track_num}}'>
         <input type="number" id="vipdec" name="g00_track_dec" placeholder="Track end number"
-          value='{{script.isr4321.g00_track_dec}}'>
+          value='{{script.g00_track_dec}}'>
       </div>
     </div>
     <div class="row">
@@ -328,7 +328,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="priority" name="g00_priority" placeholder="Priority Number"
-          value='{{script.isr4321.g00_priority}}'>
+          value='{{script.g00_priority}}'>
       </div>
     </div>
     <div class="row">
@@ -337,7 +337,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="vrrp" name="g00_ipv6_vrrp_num" placeholder="VRRP number"
-          value='{{script.isr4321.g00_ipv6_vrrp_num}}'>
+          value='{{script.g00_ipv6_vrrp_num}}'>
       </div>
     </div>
     <div class="row">
@@ -346,7 +346,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="vip" name="g00_ipv6_vrrp_address" placeholder="Virtual IP Address"
-          value='{{script.isr4321.g00_ipv6_vrrp_address}}'>
+          value='{{script.g00_ipv6_vrrp_address}}'>
       </div>
     </div>
     <div class="row">
@@ -355,9 +355,9 @@
       </div>
       <div class="col-75">
         <input type="number" id="vipinc" name="g00_ipv6_track_num" placeholder="Track start number"
-          value='{{script.isr4321.g00_ipv6_track_num}}'>
+          value='{{script.g00_ipv6_track_num}}'>
         <input type="number" id="vipdec" name="g00_ipv6_track_dec" placeholder="Track end number"
-          value='{{script.isr4321.g00_ipv6_track_dec}}'>
+          value='{{script.g00_ipv6_track_dec}}'>
       </div>
     </div>
     <div class="row">
@@ -366,7 +366,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="priority" name="g00_ipv6_priority" placeholder="Priority Number"
-          value='{{script.isr4321.g00_ipv6_priority}}'>
+          value='{{script.g00_ipv6_priority}}'>
       </div>
     </div>
     <!--OSPF-->
@@ -389,7 +389,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="oname" name="g01_ospfv3_ipv4" placeholder="Enter your OSPFv3 number "
-          value='{{script.isr4321.g01_ospfv3_ipv4}}'>
+          value='{{script.g01_ospfv3_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -398,7 +398,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g01_ospfv3_area" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g01_ospfv3_area}}'>
+          value='{{script.g01_ospfv3_area}}'>
       </div>
     </div>
     <div class="row">
@@ -407,7 +407,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="oname" name="g01_ospfv3_ipv6" placeholder="Enter your OSPFv3 number "
-          value='{{script.isr4321.g01_ospfv3_ipv6}}'>
+          value='{{script.g01_ospfv3_ipv6}}'>
       </div>
     </div>
     <div class="row">
@@ -416,7 +416,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g01_ospfv3_v6_area" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g01_ospfv3_v6_area}}'>
+          value='{{script.g01_ospfv3_v6_area}}'>
       </div>
     </div>
     <div class="row">
@@ -425,7 +425,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g01_ospfv3_encryption_num" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g01_ospfv3_encryption_num}}'>
+          value='{{script.g01_ospfv3_encryption_num}}'>
       </div>
     </div>
     <div class="row">
@@ -434,7 +434,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g01_ospfv3_encryption_sha" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g01_ospfv3_encryption_sha}}'>
+          value='{{script.g01_ospfv3_encryption_sha}}'>
       </div>
     </div>
     <div class="row">
@@ -447,7 +447,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="oname" name="g02_ospfv3_ipv4" placeholder="Enter your OSPFv3 number "
-          value='{{script.isr4321.g02_ospfv3_ipv4}}'>
+          value='{{script.g02_ospfv3_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -456,7 +456,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g02_ospfv3_area" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g02_ospfv3_area}}'>
+          value='{{script.g02_ospfv3_area}}'>
       </div>
     </div>
     <div class="row">
@@ -465,7 +465,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="oname" name="g02_ospfv3_ipv6" placeholder="Enter your OSPFv3 number "
-          value='{{script.isr4321.g02_ospfv3_ipv6}}'>
+          value='{{script.g02_ospfv3_ipv6}}'>
       </div>
     </div>
     <div class="row">
@@ -474,7 +474,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g02_ospfv3_v6_area" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g02_ospfv3_v6_area}}'>
+          value='{{script.g02_ospfv3_v6_area}}'>
       </div>
     </div>
     <div class="row">
@@ -483,7 +483,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g02_ospfv3_encryption_num" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g02_ospfv3_encryption_num}}'>
+          value='{{script.g02_ospfv3_encryption_num}}'>
       </div>
     </div>
     <div class="row">
@@ -492,7 +492,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="g02_ospfv3_encryption_sha" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.g02_ospfv3_encryption_sha}}'>
+          value='{{script.g02_ospfv3_encryption_sha}}'>
       </div>
     </div>
     <div class="row">
@@ -505,7 +505,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="oname" name="lo1_ospfv3_ipv4" placeholder="Enter your OSPFv3 number "
-          value='{{script.isr4321.lo1_ospfv3_ipv4}}'>
+          value='{{script.lo1_ospfv3_ipv4}}'>
       </div>
     </div>
     <div class="row">
@@ -514,7 +514,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="lo1_ospfv3_area" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.lo1_ospfv3_area}}'>
+          value='{{script.lo1_ospfv3_area}}'>
       </div>
     </div>
     <div class="row">
@@ -523,7 +523,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="ospf_process_id" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.ospf_process_id}}'>
+          value='{{script.ospf_process_id}}'>
       </div>
     </div>
     <div class="row">
@@ -532,7 +532,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="ospfv3_ipv4_rid" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.ospfv3_ipv4_rid}}'>
+          value='{{script.ospfv3_ipv4_rid}}'>
       </div>
     </div>
     <div class="row">
@@ -541,7 +541,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v4anum" name="ospfv3_ipv6_rid" placeholder="IPv4 Area Number"
-          value='{{script.isr4321.ospfv3_ipv6_rid}}'>
+          value='{{script.ospfv3_ipv6_rid}}'>
       </div>
     </div>
 
@@ -558,7 +558,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanlpbk" name="route_wan_lo_network" placeholder="WAN Loopback Network"
-          value='{{script.isr4321.route_wan_lo_network}}'>
+          value='{{script.route_wan_lo_network}}'>
       </div>
     </div>
     <div class="row">
@@ -567,7 +567,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanlpbksub" name="route_wan_lo_subnet" placeholder="WAN Loopback Network Subnet"
-          value='{{script.isr4321.route_wan_lo_subnet}}'>
+          value='{{script.route_wan_lo_subnet}}'>
       </div>
     </div>
 
@@ -577,7 +577,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanexthop" name="next_hop_wan" placeholder=" Next WAN Hop Address"
-          value='{{script.isr4321.next_hop_wan}}'>
+          value='{{script.next_hop_wan}}'>
       </div>
     </div>
 
@@ -587,7 +587,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="roppnet" name="route_opp_lo_network" placeholder=" R opposite Loopback  Network "
-          value='{{script.isr4321.route_opp_lo_network}}'>
+          value='{{script.route_opp_lo_network}}'>
       </div>
     </div>
     <div class="row">
@@ -596,7 +596,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="roppnetsub" name="route_opp_lo_subnet"
-          placeholder=" R opposite Loopback  Network Subnet " value='{{script.isr4321.route_opp_lo_subnet}}'>
+          placeholder=" R opposite Loopback  Network Subnet " value='{{script.route_opp_lo_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -605,7 +605,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="nexthop" name="next_hop_router" placeholder="  Route next hop"
-          value='{{script.isr4321.next_hop_router}}'>
+          value='{{script.next_hop_router}}'>
       </div>
     </div>
     <hr>
@@ -619,7 +619,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="bgpname" name="bgp_process_id" placeholder="Enter your BGP number "
-          value='{{script.isr4321.bgp_process_id}}'>
+          value='{{script.bgp_process_id}}'>
       </div>
     </div>
     <div class="row">
@@ -628,7 +628,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="bgprouter" name="bgp_router_id" placeholder="Enter your BGP number "
-          value='{{script.isr4321.bgp_router_id}}'>
+          value='{{script.bgp_router_id}}'>
       </div>
     </div>
     <div class="row">
@@ -637,7 +637,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanlo" name="neighbor_wan_lo_ip" placeholder="Enter Neighbor WAN Loopback "
-          value='{{script.isr4321.neighbor_wan_lo_ip}}'>
+          value='{{script.neighbor_wan_lo_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -646,7 +646,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanas" name="neighbor_wan_lo_as" placeholder="Enter your AS number  "
-          value='{{script.isr4321.neighbor_wan_lo_as}}'>
+          value='{{script.neighbor_wan_lo_as}}'>
       </div>
     </div>
     <div class="row">
@@ -655,7 +655,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanupdt" name="neighbor_wan_lo_update_ip" placeholder="WAN Update IP"
-          value='{{script.isr4321.neighbor_wan_lo_update_ip}}'>
+          value='{{script.neighbor_wan_lo_update_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -664,7 +664,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanint" name="neighbor_wan_lo_update_int" placeholder="WAN Update Interface"
-          value='{{script.isr4321.neighbor_wan_lo_update_int}}'>
+          value='{{script.neighbor_wan_lo_update_int}}'>
       </div>
     </div>
     <div class="row">
@@ -673,7 +673,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="bgpipv6add" name="neighbor_ipv6_add" placeholder="Neighbour IPV6 Address"
-          value='{{script.isr4321.neighbor_ipv6_add}}'>
+          value='{{script.neighbor_ipv6_add}}'>
       </div>
     </div>
     <div class="row">
@@ -682,7 +682,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="neighipv6as" name="neighbor_ipv6_as" placeholder="Neighbour AS (IPV6)"
-          value='{{script.isr4321.neighbor_ipv6_as}}'>
+          value='{{script.neighbor_ipv6_as}}'>
       </div>
     </div>
     <div class="row">
@@ -691,7 +691,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="neighipv4" name="bgp_ipv4_neighbor_ip" placeholder="IPV4 Neighbor (IP)"
-          value='{{script.isr4321.bgp_ipv4_neighbor_ip}}'>
+          value='{{script.bgp_ipv4_neighbor_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -700,7 +700,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanineighnet4p" name="bgp_ipv4_network" placeholder="Neighbor IPv4 Network"
-          value='{{script.isr4321.bgp_ipv4_network}}'>
+          value='{{script.bgp_ipv4_network}}'>
       </div>
     </div>
     <div class="row">
@@ -709,7 +709,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="neighsub4" name="bgp_ipv4_subnet" placeholder="Neighbor IPv4 Network Subnet"
-          value='{{script.isr4321.bgp_ipv4_subnet}}'>
+          value='{{script.bgp_ipv4_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -718,7 +718,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wanip" name="bgp_ipv4_neighbor_wan_ip_in" placeholder="WAN IP Address"
-          value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_in}}'>
+          value='{{script.bgp_ipv4_neighbor_wan_ip_in}}'>
       </div>
     </div>
     <div class="row">
@@ -727,7 +727,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="routemapwan" name="bgp_ipv4_neighbor_wan_route_map_in"
-          placeholder="Neighbor WAN Route Map" value='{{script.isr4321.bgp_ipv4_neighbor_wan_route_map_in}}'>
+          placeholder="Neighbor WAN Route Map" value='{{script.bgp_ipv4_neighbor_wan_route_map_in}}'>
       </div>
     </div>
     <div class="row">
@@ -736,7 +736,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="comipv4" name="bgp_ipv4_community" placeholder="NIPV4 Community"
-          value='{{script.isr4321.bgp_ipv4_community}}'>
+          value='{{script.bgp_ipv4_community}}'>
       </div>
     </div>
     <div class="row">
@@ -745,7 +745,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="neighwanout" name="bgp_ipv4_neighbor_wan_ip_out" placeholder="Neighbor WAN (Outward)"
-          value='{{script.isr4321.bgp_ipv4_neighbor_wan_ip_out}}'>
+          value='{{script.bgp_ipv4_neighbor_wan_ip_out}}'>
       </div>
     </div>
 
@@ -755,7 +755,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="routemaroutemapwanoutpwan" name="bgp_ipv4_neighbor_wan_route_map_out"
-          placeholder="Neighbor WAN Route Map (outward)" value='{{script.isr4321.bgp_ipv4_neighbor_wan_route_map_out}}'>
+          placeholder="Neighbor WAN Route Map (outward)" value='{{script.bgp_ipv4_neighbor_wan_route_map_out}}'>
       </div>
     </div>
     <div class="row">
@@ -764,7 +764,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="ipv6neigh" name="bgp_ipv6_neighbor_ip" placeholder="Neighbor WAN IPv6 Address"
-          value='{{script.isr4321.bgp_ipv6_neighbor_ip}}'>
+          value='{{script.bgp_ipv6_neighbor_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -773,7 +773,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="ipv6net" name="bgp_ipv6_network" placeholder="Neighbor IPv6 Network"
-          value='{{script.isr4321.bgp_ipv6_network}}'>
+          value='{{script.bgp_ipv6_network}}'>
       </div>
     </div>
     <div class="row">
@@ -782,7 +782,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="ipv6sub" name="bgp_ipv6_subnet" placeholder="Neighbor IPv6 Network Subnet"
-          value='{{script.isr4321.bgp_ipv6_subnet}}'>
+          value='{{script.bgp_ipv6_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -791,7 +791,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="neighwanIPV6" name="bgp_ipv6_neighbor_wan_ip_in" placeholder="Neighbor IPv6 WAN (Inside)"
-          value='{{script.isr4321.bgp_ipv6_neighbor_wan_ip_in}}'>
+          value='{{script.bgp_ipv6_neighbor_wan_ip_in}}'>
       </div>
     </div>
     <div class="row">
@@ -800,7 +800,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="comipv6" name="bgp_ipv6_community" placeholder="IPV6 Community"
-          value='{{script.isr4321.bgp_ipv6_community}}'>
+          value='{{script.bgp_ipv6_community}}'>
       </div>
     </div>
     <div class="row">
@@ -809,7 +809,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="routemapwanin" name="bgp_ipv6_neighbor_wan_route_map_in"
-          placeholder=" Neighbor WAN Route Map (Inside)" value='{{script.isr4321.bgp_ipv6_neighbor_wan_route_map_in}}'>
+          placeholder=" Neighbor WAN Route Map (Inside)" value='{{script.bgp_ipv6_neighbor_wan_route_map_in}}'>
       </div>
     </div>
 
@@ -827,7 +827,7 @@
       </div>
       <div class="col-75">
         <input type="text" class="form-control" id="acl" name="acl_name" placeholder="ACL Number"
-          value='{{script.isr4321.acl_name}}'>
+          value='{{script.acl_name}}'>
       </div>
     </div>
     <div class="row">
@@ -836,7 +836,7 @@
       </div>
       <div class="col-75">
         <input type="text" class="form-control" id="privnet" name="acl_string" placeholder=" DENY/PERMIT "
-          value='{{script.isr4321.acl_string}}'>
+          value='{{script.acl_string}}'>
       </div>
     </div>
 
@@ -855,7 +855,7 @@
       </div>
       <div class="col-75">
         <input type="text" class="form-control" id="v6g00" name="g00_ipv6_address" placeholder="Ipv6 address for g0/0"
-          value='{{script.isr4321.g00_ipv6_address}}'>
+          value='{{script.g00_ipv6_address}}'>
       </div>
     </div>
     <div class="row">
@@ -864,7 +864,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="linkadd" name="g00_ipv6_link" placeholder="Link Local address for g0/0"
-          value='{{script.isr4321.g00_ipv6_link}}'>
+          value='{{script.g00_ipv6_link}}'>
       </div>
     </div>
     <div class="row">
@@ -877,7 +877,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v6g01" name="g01_ipv6_address" placeholder="Ipv6 address for g0/1"
-          value='{{script.isr4321.g01_ipv6_address}}'>
+          value='{{script.g01_ipv6_address}}'>
       </div>
     </div>
     <div class="row">
@@ -886,7 +886,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="linkg01" name="g01_ipv6_link" placeholder="Link Local address for g0/1"
-          value='{{script.isr4321.g01_ipv6_link}}'>
+          value='{{script.g01_ipv6_link}}'>
       </div>
     </div>
     <div class="row">
@@ -899,7 +899,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="v6g02" name="g02_ipv6_address" placeholder="Ipv6 address for g0/2"
-          value='{{script.isr4321.g02_ipv6_address}}'>
+          value='{{script.g02_ipv6_address}}'>
       </div>
     </div>
     <div class="row">
@@ -908,7 +908,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="linkg02" name="g02_ipv6_link" placeholder="Link Local address for g0/2"
-          value='{{script.isr4321.g02_ipv6_link}}'>
+          value='{{script.g02_ipv6_link}}'>
       </div>
     </div>
     <!-- <div class="col-25">
@@ -945,7 +945,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="nat" name="nat_pool_name" placeholder="NAT Name"
-          value='{{script.isr4321.nat_pool_name}}'>
+          value='{{script.nat_pool_name}}'>
       </div>
     </div>
     <div class="row">
@@ -953,7 +953,7 @@
         <label for="nat">Interface g0/0 NAT</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nat" name="g00_nat" placeholder="NAT Name" value='{{script.isr4321.g00_nat}}'>
+        <input type="text" id="nat" name="g00_nat" placeholder="NAT Name" value='{{script.g00_nat}}'>
       </div>
     </div>
     <div class="row">
@@ -961,7 +961,7 @@
         <label for="nat">Interface g0/1 NAT</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nat" name="g01_nat" placeholder="NAT Name" value='{{script.isr4321.g01_nat}}'>
+        <input type="text" id="nat" name="g01_nat" placeholder="NAT Name" value='{{script.g01_nat}}'>
       </div>
     </div>
     <div class="row">
@@ -969,7 +969,7 @@
         <label for="nat">Interface g0/2 NAT</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nat" name="g02_nat" placeholder="NAT Name" value='{{script.isr4321.g02_nat}}'>
+        <input type="text" id="nat" name="g02_nat" placeholder="NAT Name" value='{{script.g02_nat}}'>
       </div>
     </div>
     <div class="row">
@@ -978,7 +978,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="pubstrt" name="nat_start_address" placeholder="Start public address"
-          value='{{script.isr4321.nat_start_address}}'>
+          value='{{script.nat_start_address}}'>
       </div>
     </div>
     <div class="row">
@@ -987,7 +987,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="pubend" name="nat_end_address" placeholder="Last public address"
-          value='{{script.isr4321.nat_end_address}}'>
+          value='{{script.nat_end_address}}'>
       </div>
     </div>
     <div class="row">
@@ -995,7 +995,7 @@
         <label for="netmask"> Netmask </label>
       </div>
       <div class="col-75">
-        <input type="text" id="netmask" name="nat_subnet" placeholder="Netmask" value='{{script.isr4321.nat_subnet}}'>
+        <input type="text" id="netmask" name="nat_subnet" placeholder="Netmask" value='{{script.nat_subnet}}'>
       </div>
     </div>
     <div class="row">
@@ -1004,7 +1004,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="nno" name="nat_acl_number" placeholder="NAT Number"
-          value='{{script.isr4321.nat_acl_number}}'>
+          value='{{script.nat_acl_number}}'>
       </div>
     </div>
     <div class="row">
@@ -1013,7 +1013,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="nno" name="nat_acl_permit_ip" placeholder="NAT Number"
-          value='{{script.isr4321.nat_acl_permit_ip}}'>
+          value='{{script.nat_acl_permit_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -1022,7 +1022,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="nno" name="nat_acl_permit_wildcard" placeholder="NAT Number"
-          value='{{script.isr4321.nat_acl_permit_wildcard}}'>
+          value='{{script.nat_acl_permit_wildcard}}'>
       </div>
     </div>
 
@@ -1036,7 +1036,7 @@
         <label for="aaa"> Radius Group Name</label>
       </div>
       <div class="col-75">
-        <input type="text" id="aaa" name="group_name" placeholder="Radius name" value='{{script.isr4321.group_name}}'>
+        <input type="text" id="aaa" name="group_name" placeholder="Radius name" value='{{script.group_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1045,7 +1045,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="aaa" name="radius_server_name" placeholder="Radius name"
-          value='{{script.isr4321.radius_server_name}}'>
+          value='{{script.radius_server_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1053,7 +1053,7 @@
         <label for="aaa"> Radius Password</label>
       </div>
       <div class="col-75">
-        <input type="text" id="aaa" name="radius_pass" placeholder="Radius name" value='{{script.isr4321.radius_pass}}'>
+        <input type="text" id="aaa" name="radius_pass" placeholder="Radius name" value='{{script.radius_pass}}'>
       </div>
     </div>
     <div class="row">
@@ -1062,7 +1062,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="aaa" name="server_address" placeholder="Radius name"
-          value='{{script.isr4321.server_address}}'>
+          value='{{script.server_address}}'>
       </div>
     </div>
     <div class="row">
@@ -1070,7 +1070,7 @@
         <label for="server"> Maximum Failure</label>
       </div>
       <div class="col-75">
-        <input type="text" id="server" name="max_fail" placeholder="server name" value='{{script.isr4321.max_fail}}'>
+        <input type="text" id="server" name="max_fail" placeholder="server name" value='{{script.max_fail}}'>
       </div>
     </div>
     <!--ZONE and ssh-->
@@ -1084,7 +1084,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="sshversion" name="ssh_timeout" placeholder="SSH Time-out"
-          value='{{script.isr4321.ssh_timeout}}'>
+          value='{{script.ssh_timeout}}'>
       </div>
     </div>
     <div class="row">
@@ -1093,7 +1093,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="cryptokey" name="ssh_crypto_key" placeholder="SSH Time-out"
-          value='{{script.isr4321.ssh_crypto_key}}'>
+          value='{{script.ssh_crypto_key}}'>
       </div>
     </div>
     <div class="row">
@@ -1102,7 +1102,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="auth" name="ssh_retries" placeholder="Authenication Retirement"
-          value='{{script.isr4321.ssh_retries}}'>
+          value='{{script.ssh_retries}}'>
       </div>
     </div>
     <div class="row">
@@ -1124,7 +1124,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="zsec" name="g00_zone" placeholder="Zone Security Name"
-          value='{{script.isr4321.g00_zone}}'>
+          value='{{script.g00_zone}}'>
       </div>
     </div>
     <div class="row">
@@ -1133,7 +1133,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="zsec" name="g01_zone" placeholder="Zone Security Name"
-          value='{{script.isr4321.g01_zone}}'>
+          value='{{script.g01_zone}}'>
       </div>
     </div>
     <div class="row">
@@ -1142,7 +1142,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="zsec" name="g02_zone" placeholder="Zone Security Name2"
-          value='{{script.isr4321.g02_zone}}'>
+          value='{{script.g02_zone}}'>
       </div>
     </div>
     <div class="row">
@@ -1151,7 +1151,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="zsec" name="zone_name" placeholder="Zone Security Name"
-          value='{{script.isr4321.zone_name}}'>
+          value='{{script.zone_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1160,7 +1160,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="zint" name="zone_internet" placeholder="Zone Security Internet"
-          value='{{script.isr4321.zone_internet}}'>
+          value='{{script.zone_internet}}'>
       </div>
     </div>
     <div class="row">
@@ -1169,7 +1169,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policy" name="policy_map" placeholder=" Policy Map Nmae"
-          value='{{script.isr4321.policy_map}}'>
+          value='{{script.policy_map}}'>
       </div>
     </div>
     <div class="row">
@@ -1178,7 +1178,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="route" name="class_map_name" placeholder="Route Map Name"
-          value='{{script.isr4321.class_map_name}}'>
+          value='{{script.class_map_name}}'>
       </div>
     </div>
     <!--ROUTE MAP-->
@@ -1193,7 +1193,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="route_map_name" placeholder="Route Map Name"
-          value='{{script.isr4321.route_map_name}}'>
+          value='{{script.route_map_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1202,7 +1202,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="route_map_permit_1" placeholder="Route Map Permit"
-          value='{{script.isr4321.route_map_permit_1}}'>
+          value='{{script.route_map_permit_1}}'>
       </div>
     </div>
     <div class="row">
@@ -1211,7 +1211,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="route_map_match_list" placeholder="Route Map Match List"
-          value='{{script.isr4321.route_map_match_list}}'>
+          value='{{script.route_map_match_list}}'>
       </div>
     </div>
     <div class="row">
@@ -1220,7 +1220,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="set_weight" placeholder="Set Weight"
-          value='{{script.isr4321.set_weight}}'>
+          value='{{script.set_weight}}'>
       </div>
     </div>
     <div class="row">
@@ -1229,7 +1229,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="set_metric" placeholder="Set Metric"
-          value='{{script.isr4321.set_metric}}'>
+          value='{{script.set_metric}}'>
       </div>
     </div>
     <div class="row">
@@ -1238,7 +1238,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="route_map_permit_2" placeholder="Route Map Permit 2"
-          value='{{script.isr4321.route_map_permit_2}}'>
+          value='{{script.route_map_permit_2}}'>
       </div>
     </div>
 
@@ -1258,7 +1258,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_num" placeholder="Policy Number"
-          value='{{script.isr4321.tunnel_num}}'>
+          value='{{script.tunnel_num}}'>
       </div>
     </div>
     <div class="row">
@@ -1267,7 +1267,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_ipv6_add" placeholder="Tunnel IPV6 Address"
-          value='{{script.isr4321.tunnel_ipv6_add}}'>
+          value='{{script.tunnel_ipv6_add}}'>
       </div>
     </div>
     <div class="row">
@@ -1276,7 +1276,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_ipv6_prefix" placeholder="unnel IPV6 Prefix"
-          value='{{script.isr4321.tunnel_ipv6_prefix}}'>
+          value='{{script.tunnel_ipv6_prefix}}'>
       </div>
     </div>
     <div class="row">
@@ -1285,7 +1285,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_source_interface" placeholder="Tunnel Source Address"
-          value='{{script.isr4321.tunnel_source_interface}}'>
+          value='{{script.tunnel_source_interface}}'>
       </div>
     </div>
     <div class="row">
@@ -1294,7 +1294,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_destination_address" placeholder="Tunnel Destination Address"
-          value='{{script.isr4321.tunnel_destination_address}}'>
+          value='{{script.tunnel_destination_address}}'>
       </div>
     </div>
     <div class="row">
@@ -1303,7 +1303,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="tunnel_protection_profile" placeholder="Tunnel Protection Profile"
-          value='{{script.isr4321.tunnel_protection_profile}}'>
+          value='{{script.tunnel_protection_profile}}'>
       </div>
     </div>
     <div class="row">
@@ -1312,7 +1312,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="ip_prefix_list_name" placeholder="Ip Prefix List Name"
-          value='{{script.isr4321.ip_prefix_list_name}}'>
+          value='{{script.ip_prefix_list_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1321,7 +1321,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="ip_prefix_list_network" placeholder="Policy Number"
-          value='{{script.isr4321.ip_prefix_list_network}}'>
+          value='{{script.ip_prefix_list_network}}'>
       </div>
     </div>
     <div class="row">
@@ -1330,7 +1330,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="ip_prefix_list_subnet" placeholder="Policy Number"
-          value='{{script.isr4321.ip_prefix_list_subnet}}'>
+          value='{{script.ip_prefix_list_subnet}}'>
       </div>
     </div>
     <!--crypto keys-->
@@ -1346,7 +1346,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="policynum" name="isakmp_policy" placeholder="Policy Number"
-          value='{{script.isr4321.isakmp_policy}}'>
+          value='{{script.isakmp_policy}}'>
       </div>
     </div>
     <div class="row">
@@ -1355,7 +1355,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="iskapwd" name="iskapwd" placeholder="Isakmp Password"
-          value='{{script.isr4321.isakmp_password}}'>
+          value='{{script.isakmp_password}}'>
       </div>
     </div>
     <div class="row">
@@ -1364,7 +1364,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="remotepeer" name="remotepeer" placeholder="Isakmp Remote Peer"
-          value='{{script.isr4321.isakmp_remote_peer}}'>
+          value='{{script.isakmp_remote_peer}}'>
       </div>
     </div>
     <div class="row">
@@ -1372,7 +1372,7 @@
         <label for="tag"> Isakmp Tag </label>
       </div>
       <div class="col-75">
-        <input type="text" id="tag" name="tag" placeholder="Isakmp TAG" value='{{script.isr4321.isakmp_tag}}'>
+        <input type="text" id="tag" name="tag" placeholder="Isakmp TAG" value='{{script.isakmp_tag}}'>
       </div>
     </div>
     <div class="row">
@@ -1381,7 +1381,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="srtip" name="acl" placeholder="Crytpo Strat id"
-          value='{{script.isr4321.crypto_access_list}}'>
+          value='{{script.crypto_access_list}}'>
       </div>
     </div>
     <div class="row">
@@ -1390,7 +1390,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="srtip" name="srtip" placeholder="Crytpo Strat id"
-          value='{{script.isr4321.crypto_permit_ip_start}}'>
+          value='{{script.crypto_permit_ip_start}}'>
       </div>
     </div>
     <div class="row">
@@ -1399,7 +1399,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="wldstrtip" name="wldstrtip" placeholder="Crypto Wildcard Start ID"
-          value='{{script.isr4321.crypto_permit_start_wild}}'>
+          value='{{script.crypto_permit_start_wild}}'>
       </div>
     </div>
     <div class="row">
@@ -1408,7 +1408,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="endip" name="endip" placeholder="Crypto last address"
-          value='{{script.isr4321.crypto_permit_ip_end}}'>
+          value='{{script.crypto_permit_ip_end}}'>
       </div>
     </div>
     <div class="row">
@@ -1417,7 +1417,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="tag" name="lstid" placeholder="Last Wildcard ID"
-          value='{{script.isr4321.crypto_permit_end_wild}}'>
+          value='{{script.crypto_permit_end_wild}}'>
       </div>
     </div>
     <div class="row">
@@ -1426,7 +1426,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="mcacl" name="mcacl" placeholder=" Match Crytpo ACL"
-          value='{{script.isr4321.crypto_map_match_access_list}}'>
+          value='{{script.crypto_map_match_access_list}}'>
       </div>
     </div>
     <div class="row">
@@ -1435,7 +1435,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="peerwan" name="peerwan" placeholder="Peer Address Network "
-          value='{{script.isr4321.crypto_map_peer}}'>
+          value='{{script.crypto_map_peer}}'>
       </div>
     </div>
 
@@ -1445,7 +1445,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="keyname" name="keyname" placeholder="Key Ring Name "
-          value='{{script.isr4321.crypto_keyring}}'>
+          value='{{script.crypto_keyring}}'>
       </div>
     </div>
 
@@ -1455,7 +1455,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="cpwd" name="cpwd" placeholder="Isakmp IPV6 Password "
-          value='{{script.isr4321.isakmp_ipv6_password}}'>
+          value='{{script.isakmp_ipv6_password}}'>
       </div>
     </div>
     <div class="row">
@@ -1464,7 +1464,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="remotepeer" name="isakmp_ipv6_remote_peer" placeholder=" Isakmp ipv6 remote peer"
-          value='{{script.isr4321.isakmp_ipv6_remote_peer_ip}}'>
+          value='{{script.isakmp_ipv6_remote_peer_ip}}'>
       </div>
     </div>
     <div class="row">
@@ -1473,7 +1473,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="prefixpeer" name="prefixpeer" placeholder="Isakmp remote peer prefix "
-          value='{{script.isr4321.isakmp_ipv6_remote_peer_prefix}}'>
+          value='{{script.isakmp_ipv6_remote_peer_prefix}}'>
       </div>
     </div>
     <div class="row">
@@ -1482,7 +1482,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="preshared" name="preshared" placeholder="Pre shared Key IPv6 "
-          value='{{script.isr4321.crypto_pre_shared_key_ipv6}}'>
+          value='{{script.crypto_pre_shared_key_ipv6}}'>
       </div>
     </div>
     <div class="row">
@@ -1491,7 +1491,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="presharedpre" name="presharedpre" placeholder="Shared Key Prefix "
-          value='{{script.isr4321.crypto_pre_shared_key_prefix}}'>
+          value='{{script.crypto_pre_shared_key_prefix}}'>
       </div>
     </div>
     <div class="row">
@@ -1500,7 +1500,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="lftime" name="crypto_pre_shared_key" placeholder="Lifetime Seconds "
-          value='{{script.isr4321.crypto_pre_shared_key}}'>
+          value='{{script.crypto_pre_shared_key}}'>
       </div>
     </div>
     <div class="row">
@@ -1509,7 +1509,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="iptrans" name="crypto_ipsec_transform_set" placeholder="Ipsecd Transoform Set "
-          value='{{script.isr4321.crypto_ipsec_transform_set}}'>
+          value='{{script.crypto_ipsec_transform_set}}'>
       </div>
     </div>
     <div class="row">
@@ -1518,7 +1518,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="trans" name="ipsec_transform_set" placeholder="Ipsec Transoform Set"
-          value='{{script.isr4321.ipsec_transform_set}}'>
+          value='{{script.ipsec_transform_set}}'>
       </div>
     </div>
     <div class="row">
@@ -1527,7 +1527,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="isakmpset" name="isakmp_profile" placeholder="isakmp set"
-          value='{{script.isr4321.isakmp_profile}}'>
+          value='{{script.isakmp_profile}}'>
       </div>
     </div>
     <div class="row">
@@ -1536,7 +1536,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="isakmpset" name="isakmpset" placeholder="isakmp set"
-          value='{{script.isr4321.isakmp_match_ipv6_add}}'>
+          value='{{script.isakmp_match_ipv6_add}}'>
       </div>
     </div>
     <div class="row">
@@ -1545,7 +1545,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="iskampre" name="isakmp_match_ipv6_prefix" placeholder="isakmp set"
-          value='{{script.isr4321.isakmp_match_ipv6_prefix}}'>
+          value='{{script.isakmp_match_ipv6_prefix}}'>
       </div>
     </div>
     <div class="row">
@@ -1554,7 +1554,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="transet" name="crypto_map_name" placeholder="Transform Set "
-          value='{{script.isr4321.crypto_map_name}}'>
+          value='{{script.crypto_map_name}}'>
       </div>
     </div>
     <div class="row">
@@ -1563,7 +1563,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="transet" name="crypto_map_num" placeholder="Transform Set "
-          value='{{script.isr4321.crypto_map_num}}'>
+          value='{{script.crypto_map_num}}'>
       </div>
     </div>
     <div class="row">
@@ -1572,7 +1572,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="transet" name="crypto_map_transform_set" placeholder="Transform Set "
-          value='{{script.isr4321.crypto_map_transform_set}}'>
+          value='{{script.crypto_map_transform_set}}'>
       </div>
     </div>
     <div class="row">
@@ -1581,7 +1581,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="lftime" name="crypto_map_lifetime_seconds" placeholder="Lifetime Seconds "
-          value='{{script.isr4321.crypto_map_lifetime_seconds}}'>
+          value='{{script.crypto_map_lifetime_seconds}}'>
       </div>
     </div>
     <div class="row">
@@ -1590,7 +1590,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="pro" name="ipsec_profile" placeholder="Name Profile "
-          value='{{script.isr4321.ipsec_profile}}'>
+          value='{{script.ipsec_profile}}'>
       </div>
     </div>
     <div class="row">
@@ -1599,7 +1599,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="lftime" name="isakmp_ipv6_policy" placeholder="Lifetime Seconds "
-          value='{{script.isr4321.isakmp_ipv6_policy}}'>
+          value='{{script.isakmp_ipv6_policy}}'>
       </div>
     </div>
 
@@ -1615,7 +1615,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="peer1" name="ntp_peer_add1" placeholder="NTP Peer Address 1"
-          value='{{script.isr4321.ntp_peer_add1}}'>
+          value='{{script.ntp_peer_add1}}'>
       </div>
     </div>
     <div class="row">
@@ -1624,7 +1624,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="peer2" name="ntp_peer_add2" placeholder="NTP Peer Address 2"
-          value='{{script.isr4321.ntp_peer_add2}}'>
+          value='{{script.ntp_peer_add2}}'>
       </div>
     </div>
 
@@ -1634,7 +1634,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="ntpnum" name="ntpnum" placeholder="NTP Master "
-          value='{{script.isr4321.ntp_master_num}}'>
+          value='{{script.ntp_master_num}}'>
       </div>
     </div>
     <div class="row">
@@ -1643,7 +1643,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="authkey" name="ntp_auth_key_num" placeholder="Authentication Key "
-          value='{{script.isr4321.ntp_auth_key_num}}'>
+          value='{{script.ntp_auth_key_num}}'>
       </div>
     </div>
     <div class="row">
@@ -1652,7 +1652,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="Md5" name="ntp_auth_key_pass" placeholder="Md5 Password "
-          value='{{script.isr4321.ntp_auth_key_pass}}'>
+          value='{{script.ntp_auth_key_pass}}'>
       </div>
     </div>
     <div class="row">
@@ -1661,7 +1661,7 @@
       </div>
       <div class="col-75">
         <input type="text" id="trstkey" name="ntp_trust_key" placeholder="Trust Key"
-          value='{{script.isr4321.ntp_trust_key}}'>
+          value='{{script.ntp_trust_key}}'>
       </div>
     </div>
     <div class="row">
@@ -1694,7 +1694,7 @@
   </form>
   {% endif %}
   <button class="btn btn-primary">
-    <span><a href="dashboard" class="text-white">Cancel</a></span></button>
+    <span><a href="scripts" class="text-white">Cancel</a></span></button>
 </div>
 </div>
 </div>

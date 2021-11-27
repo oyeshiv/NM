@@ -156,13 +156,14 @@
 <script src="{% static 'js/app.js' %}"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-item a').click(function () {
+    $('.sidebar-item a').on('click', function () {
+
       $([document.documentElement, document.body]).animate({
-        scrollTop: $($(this).attr('gotoid')).offset().top
-      }, 1000);
+        scrollTop: $($(this).attr('gotoid')).offset().top -100
+      }, 700);
       
     });
-    $('a.sidebar-toggle').click(function () {
+    $('a.sidebar-toggle').on('click', function () {
       $('body').toggleClass('sidebar-collapsed');
     });
 
