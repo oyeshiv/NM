@@ -1,0 +1,18 @@
+interface @name
+@switchport switchport 
+ip address @ipv4_address @ipv4_subnet
+ipv6 address @ipv6_address/@ipv6_prefix
+ipv6 address @ipv6_link link-local 
+switchport trunk encapsulation @encapsulation
+switchport mode @sw_mode
+switchport access @sw_access
+switchport trunk allowed vlan @allowed_vlan
+switchport trunk native vlan @native_vlan
+switchport @nonegotiate
+ospfv3 @ipv4_ospfv3 ipv4 area @ipv4_area
+ospfv3 @ipv6_ospfv3 ipv6 area @ipv6_area
+shutdown
+channel-group @channel_group mode @channel_mode
+no shutdown
+spanning-tree cost @stp_cost
+@status shutdown

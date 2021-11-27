@@ -32,7 +32,7 @@ def dashboard(request):
 def login_user(request):
 
     if 'username' in request.session:
-        result = redirect('/login')
+        result = redirect('/dashboard')
     
     else:
         result = render(request, 'login.html')

@@ -1,0 +1,3 @@
+vlan @number
+name @name
+exit
