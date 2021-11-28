@@ -126,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = '/var/www/netman.azurewebsites.net/static/'
+STATIC_ROOT = 'assets'
 STATIC_URL = '/static/'
 
 # use this in development
