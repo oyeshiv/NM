@@ -776,46 +776,7 @@ def profile(request):
     
     return redirect('/')
     
-
-
-
-def index(request):
-    return render(request, 'index.html')
-
 def home(request):
     return render(request, 'home.html')
-
-def base_router(request):
-    return render(request, 'base_router.html')
-
-def form_router(request):
-    return render(request, 'form_router.html')
-
-def base_switch(request):
-    return render(request, 'C1000.html')
-
-def base_switch3(request):
-    return render(request, 'WSC3650.html')
-
-def form_layer3(request):
-    return render(request, 'form_layer3.html')
-
-def form_switch2(request):
-    return render(request, 'form_switch2.html')
-
-def dynamic_menu(request):
-    return render(request, 'dynamic_menu.html')
-
-def index_l3(request):
-    return render(request, 'index_l3.html')
-
-def team(request):
-    return render(request, 'team.html')
-
-def rout(request):
-    return render(request, 'ISR4321.html')
-
-def base(request):
-    return render(request, 'base.html')
 
 
