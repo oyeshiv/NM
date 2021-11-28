@@ -1,0 +1,3 @@
+router ospfv3 @process
+router-id @router_id
+exit 

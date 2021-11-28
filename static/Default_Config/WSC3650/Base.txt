@@ -15,7 +15,7 @@ login quiet-mode access-class @login_access
 login delay @login_delay
 login on-success log 
 login on-failure log 
-security authentication failure rate 10 log 
+security authentication failure rate 1024 log 
 line con 0 
 exec-timeout 3 30 
 logging synchronous 

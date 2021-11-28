@@ -106,7 +106,6 @@ track @g00_ipv6_track_num decrement @g00_ipv6_track_dec
 exit 
 ip nat outside 
 zone-member security @zone_internet
-crypto map @crypto_map_name 
 no shutdown 
 ! 
 interface g0/1 
@@ -132,11 +131,13 @@ ospfv3 encryption ipsec spi @g02_ospfv3_encryption_num esp null sha1 @g02_ospfv3
 ip nat inside 
 zone-member security @g02_zone 
 no shutdown 
+exit
 !
 interface loopback 1
 ip address @lo1_ip @lo1_subnet
 ipv6 enable 
 ospfv3 @lo1_ospfv3_ipv4 ipv4 area @lo1_ospfv3_area
+exit
 ! 
 ip nat pool @nat_pool_name @nat_start_address @nat_end_address netmask @nat_subnet
 access-list @nat_acl_number permit @nat_acl_permit_ip @nat_acl_permit_wildcard
@@ -251,3 +252,8 @@ set metric @set_metric
 exit 
 route-map @route_map_name permit @route_map_permit_2
 ! 
+int g0/0
+crypto map CMAP
+no shutdown
+exit
+!
