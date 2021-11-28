@@ -1,13 +1,13 @@
 interface @name
 switchport mode @sw_mode
-switchport access vlan @sw_access
+switchport access @sw_access
 switchport trunk allowed vlan @allowed_vlan
 switchport trunk native vlan @native_vlan
+spanning-tree portfast 
 spanning-tree bpduguard @bpduguard
 spanning-tree bpdufilter @bpdufilter 
 shutdown
 channel-group @channel_group mode @channel_mode
 no shutdown
-shutdown
 @status shutdown
 exit
