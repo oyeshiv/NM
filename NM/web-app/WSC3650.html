@@ -69,9 +69,6 @@
       <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">VLAN</span>
     </a>
   </li>
-  <li class="sidebar-header">
-    <a style="text-decoration: none; font-size:medium; color: honeydew;" href="scripts">Go Back </a>
-  </li>
 
 </ul>
 {% endblock %}
@@ -631,9 +628,13 @@
             <input type='text' id="stpvlan{{forloop.counter}}" name="stpvlan{{forloop.counter}}" placeholder='Vlan'
               value="{{stp_vlan.vlan}}">
           </div>
-          <div class='col-auto'>
+          <div class='col-auto stpbtnhndl'>
+            {% if forloop.counter == stp_vlans|length %}
+            <button class='btn btn-primary' type='button' id='addstp' removestp='1'>+
+            </button>
             <button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X
             </button>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -1422,8 +1423,14 @@
         $('.stpvlans div.stpvlanform:last-child').remove();
         var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id'));
         $('input#stp_count').val(id);
+        if (parseInt(id)==0){
         $('div.col-auto.stpbtn').append("<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+ Add Root Bridge" +
           "</button>");
+        } else {
+          $('div.col-auto.stpbtnhndl#'+id).append("<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+" +
+            "</button><button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X" +
+            "</button>");
+        }
       });
     });
 
@@ -1432,6 +1439,7 @@
         var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id')) + 1;
         $('input#stp_count').val(id);
         $('div.col-auto #addstp').remove();
+        $('div.col-auto #removestp').remove();
         $('.stpvlans').append(
           "<div class='stpvlanform' id='" + id + "'>" +
           "<div class='row'>" +
@@ -1451,7 +1459,9 @@
           "<div class='col-auto'>" +
           "<input type='text' id='stpvlan" + id + "' name='stpvlan" + id + "' placeholder='Vlan'>" +
           "</div>" +
-          "<div class='col-auto'>" +
+          "<div class='col-auto stpbtnhndl' id='" + id + "'>" +
+            "<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+" +
+              "</button>" +
           "<button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X" +
           "</button>" +
           "</div>" +
@@ -1603,7 +1613,6 @@
         $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='" + id2 + "' addaclel='" + id + "'>" +
           "+ Add contorls</button>");
       } else {
-        $('.aclels').each(function () {
           $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
           id2 = parseInt(id2) - 1;
           $('input#acl_el_count' + id).val(id2);
@@ -1614,7 +1623,6 @@
             "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
             "-</button>" +
             "</div>");
-        });
       }
 
     });
@@ -1625,7 +1633,6 @@
       console.log(id)
       var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
       console.log(id2)
-      $('.aclels').each(function () {
         console.log('done')
         $('.aclform#' + id + ' .removebtnholder').remove();
         $('.aclform#' + id + ' .addbtnholder').remove();
@@ -1665,7 +1672,6 @@
         );
 
 
-      });
     });
 
 

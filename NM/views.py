@@ -78,40 +78,47 @@ def edit_script(request):
         return redirect('/login')
     else:
         request.session.set_expiry(None)
-        nm_model = request.POST['device']
+        script_id = None
+        nm_model = None
+        if 'script_id' in request.session is not None:
+            script_id = request.session.pop('script_id')
+            nm_model = request.session.pop('device')
+        elif 'script_id' in request.POST is not None:
+            script_id = request.POST['script_id']
+            nm_model = request.POST['device']
         template = '404.html'
         context = {}
         if nm_model == "ISR4321":
-            script = ISR4321.objects.filter(id=request.POST['script_id'])
+            script = ISR4321.objects.filter(id=script_id)
             template = nm_model + ".html"
             context = {'script':script[0] , 'organisation_name':request.session['organisation']}
         elif nm_model == "WSC3650":
-            script = WSC3650.objects.filter(id=request.POST['script_id'])
-            vlans = VLAN_C3650.objects.filter(script_id=request.POST['script_id'])
-            interfaces = Interface_C3650.objects.filter(script_id=request.POST['script_id'])
-            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            script = WSC3650.objects.filter(id=script_id)
+            vlans = VLAN_C3650.objects.filter(script_id=script_id)
+            interfaces = Interface_C3650.objects.filter(script_id=script_id)
+            acls = ACL_3650.objects.filter(script_id=script_id)
             aclels = []
             for acl in acls:
                 aclel= ACL_EL_3650.objects.filter(acl_id=acl.id)
                 aclels.append(aclel)
-            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
-            dhcps = DHCP_3650.objects.filter(script_id=request.POST['script_id'])
-            dhcpexs = DHCP_EX_C3650.objects.filter(script_id=request.POST['script_id'])
-            ospfs = OSPFv3_3650.objects.filter(script_id=request.POST['script_id'])
-            stp_vlans = STP_VLAN_3650.objects.filter(script_id=request.POST['script_id'])
+            users = CiscoUser.objects.filter(script_id=script_id)
+            dhcps = DHCP_3650.objects.filter(script_id=script_id)
+            dhcpexs = DHCP_EX_C3650.objects.filter(script_id=script_id)
+            ospfs = OSPFv3_3650.objects.filter(script_id=script_id)
+            stp_vlans = STP_VLAN_3650.objects.filter(script_id=script_id)
             template = nm_model + ".html"
             context = {'script':script[0], 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
             print(context)
         elif nm_model == "C1000":
-            script = C1000.objects.filter(id=request.POST['script_id'])
-            vlans = VLAN_C1000.objects.filter(script_id=request.POST['script_id'])
-            interfaces = Interface_C1000.objects.filter(script_id=request.POST['script_id'])
-            acls = ACL_3650.objects.filter(script_id=request.POST['script_id'])
+            script = C1000.objects.filter(id=script_id)
+            vlans = VLAN_C1000.objects.filter(script_id=script_id)
+            interfaces = Interface_C1000.objects.filter(script_id=script_id)
+            acls = ACL_3650.objects.filter(script_id=script_id)
             aclels = []
             for acl in acls:
                 aclel= ACL_EL_3650.objects.filter(acl_id=acl.id)
                 aclels.append(aclel)
-            users = CiscoUser.objects.filter(script_id=request.POST['script_id'])
+            users = CiscoUser.objects.filter(script_id=script_id)
             template = nm_model + ".html"
             context = {'script':script[0], 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
         return render(request, template,  context)
@@ -293,7 +300,7 @@ def save_project(request):
             desc = request.POST['desc']
             organisation = User.objects.get(username=request.session['username']).groups.all()
             organisation = organisation[0]
-            if request.POST['id'] is not None:
+            if id in request.POST is not None:
                 project = Projects(id=request.POST['id'],project_name=project_name, organisation=organisation, client_name=client_name, desc=desc)
                 project.save()
                 return redirect('/dashboard')
@@ -315,7 +322,7 @@ def device_list(request):
 def save(request):
     if request.method == 'POST':
         nm_model = Devices.objects.get(id=request.POST['device_id']).nm_model
-        context = {}
+        script = None
         if nm_model =="ISR4321":
             script = ISR4321(
                 device_id = 1,
@@ -487,7 +494,6 @@ def save(request):
             if 'script_id' in request.POST:
                 script.scripts_ptr_id = request.POST['script_id']
             script.save()
-            context = {'script':script, 'organisation_name':request.session['organisation']}
         elif nm_model =="WSC3650":
             
             script = WSC3650(
@@ -514,6 +520,8 @@ def save(request):
             ntp_trust_key = request.POST['ntp_trust_key'],
             stp_mode = request.POST['stp_mode'],
             min_length = request.POST['min_length'])
+            if 'script_id' in request.POST:
+                script.scripts_ptr_id = request.POST['script_id']
             script.save()
             
             vlans = {}
@@ -526,8 +534,16 @@ def save(request):
             acls = {}
             aclels = {}
             
-            if 'script_id' in request.POST:
-                script.scripts_ptr_id = request.POST['script_id']
+            VLAN_C3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            Interface_C3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            STP_VLAN_3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            DHCP_3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            DHCP_EX_C3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            ACL_3650.objects.filter(script_id=script.scripts_ptr_id).select_related('acl_el_3650').delete()
+            OSPFv3_3650.objects.filter(script_id=script.scripts_ptr_id).delete()
+            CiscoUser.objects.filter(script_id=script.scripts_ptr_id).delete()
+            
+           
         
             for i in range(1, int(request.POST['vlan_count'])+1):
                 
@@ -643,7 +659,7 @@ def save(request):
                     address = request.POST['dhcpex'+i]
                 )
                 dhcpexs[i].save()
-            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
+        
         elif nm_model =="C1000":
             
             script = C1000(
@@ -669,6 +685,8 @@ def save(request):
             ntp_trust_key = request.POST['ntp_trust_key'],
             stp_mode = request.POST['stp_mode'],
             min_length = request.POST['min_length'])
+            if 'script_id' in request.POST:
+                script.scripts_ptr_id = request.POST['script_id']
             script.save()
             
             vlans = {}
@@ -677,8 +695,10 @@ def save(request):
             acls = {}
             aclels = {}
             
-            if 'script_id' in request.POST:
-                script.scripts_ptr_id = request.POST['script_id']
+            VLAN_C1000.objects.filter(script_id=script.scripts_ptr_id).delete()
+            Interface_C1000.objects.filter(script_id=script.scripts_ptr_id).delete()
+            ACL_3650.objects.filter(script_id=script.scripts_ptr_id).select_related('acl_el_3650').delete()
+            CiscoUser.objects.filter(script_id=script.scripts_ptr_id).delete()
         
             for i in range(1, int(request.POST['vlan_count'])+1):
                 
@@ -738,11 +758,13 @@ def save(request):
                     address = request.POST['acladd'+j]
                     )
                     aclels[i][j].save()
-            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
+        request.session['script_id'] = script.scripts_ptr_id
+        request.session['device'] = nm_model
+            
            
         
         
-        return render(request, nm_model + '.html',  context)
+        return redirect('/scripts')
         
     return redirect('/dashboard')
 
