@@ -82,7 +82,7 @@ def edit_script(request):
         template = '404.html'
         context ={}
         if nm_model == "ISR4321":
-            script = Scripts.objects.filter(id=request.POST['script_id']).select_related('isr4321')
+            script = ISR4321.objects.filter(id=request.POST['script_id'])
             template = nm_model + ".html"
             context = {'script':script[0] , 'organisation_name':request.session['organisation']}
         elif nm_model == "WSC3650":
