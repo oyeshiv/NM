@@ -66,7 +66,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
 				<span class="login100-form-title p-b-51">
-					<img class="logo" src='{% static "img/logo.png" %}'>
+					<img class="logo" src='https://drive.google.com/uc?export=view&id=1LT7ySur7cIjF87wibPhlj1wmxmZUTkXx'>
 				</span>
 
 				{% if messages %}
@@ -95,7 +95,7 @@
 
 					<div class="flex-sb-m w-full p-t-3 p-b-24">
 						<div>
-							<a href="#" class="txt1">
+							<a data-toggle="modal" data-target="#forgot" class="txt1">
 								Forgot?
 							</a>
 						</div>
@@ -108,7 +108,22 @@
 					</div>
 
 				</form>
+
 			</div>
+			<div class="modal" id="forgot" role="dialog" style="display: none;" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+				  <div class="modal-content" style="background:#222e3c">
+					<div class="modal-header">
+					  <h4 class="modal-title text-white" id="myModalLabel">Forgot Credentials?</h4>
+					  <button type="button" class="close text-white" data-dismiss="modal">
+						<span aria-hidden="true">×</span>
+						<span class="sr-only">Close</span>
+					  </button>
+					</div>
+					Contact your administartor.
+				  </div>
+				</div>
+			  </div>
 		</div>
 	</div>
 

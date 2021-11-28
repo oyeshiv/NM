@@ -9,6 +9,7 @@ from django.contrib.auth.models import Group, User
 from django.contrib.sessions.models import Session
 from NM.models import *
 from shutil import copyfile
+from django.core.mail import send_mail, BadHeaderError
 import PyInstaller.__main__
 
 from NM.settings import STATIC_URL
@@ -772,50 +773,19 @@ def save(request):
         
     return redirect('/edit_script')
 
-def profile(request):
-    
-    return redirect('/')
-    
-
-
-
-def index(request):
-    return render(request, 'index.html')
 
 def home(request):
     return render(request, 'home.html')
 
-def base_router(request):
-    return render(request, 'base_router.html')
+def contact(request):
+    
+    subject = "NETMAN | Inquiry"
+    body = "Name:" + request.POST['fullName'] + "\nEmail:"+ request.POST['email']+"\nPhone:"+ request.POST['phone']+"\nMessage:"+ request.POST['message']
+    try:
+        send_mail(subject, body, 'nm_contactform@gmail.com', ['nm_contactform@gmail.com']) 
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+    return render(request, 'home.html')
 
-def form_router(request):
-    return render(request, 'form_router.html')
-
-def base_switch(request):
-    return render(request, 'C1000.html')
-
-def base_switch3(request):
-    return render(request, 'WSC3650.html')
-
-def form_layer3(request):
-    return render(request, 'form_layer3.html')
-
-def form_switch2(request):
-    return render(request, 'form_switch2.html')
-
-def dynamic_menu(request):
-    return render(request, 'dynamic_menu.html')
-
-def index_l3(request):
-    return render(request, 'index_l3.html')
-
-def team(request):
-    return render(request, 'team.html')
-
-def rout(request):
-    return render(request, 'ISR4321.html')
-
-def base(request):
-    return render(request, 'base.html')
-
+    
 
