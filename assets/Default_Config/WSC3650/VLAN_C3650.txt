@@ -5,4 +5,3 @@ interface vlan @number
 ip address @ipv4_address @ipv4_subnet
 ipv6 address @ipv6_address/@ipv6_prefix
 ipv6 address @ipv6_link link-local 
-exit
