@@ -80,7 +80,7 @@ def edit_script(request):
         request.session.set_expiry(None)
         nm_model = request.POST['device']
         template = '404.html'
-        context ={}
+        context = {}
         if nm_model == "ISR4321":
             script = ISR4321.objects.filter(id=request.POST['script_id'])
             template = nm_model + ".html"
@@ -315,6 +315,7 @@ def device_list(request):
 def save(request):
     if request.method == 'POST':
         nm_model = Devices.objects.get(id=request.POST['device_id']).nm_model
+        context = {}
         if nm_model =="ISR4321":
             script = ISR4321(
                 device_id = 1,
@@ -481,12 +482,12 @@ def save(request):
             bgp_ipv6_subnet = request.POST['bgp_ipv6_subnet'],
             bgp_ipv6_neighbor_wan_ip_in = request.POST['bgp_ipv6_neighbor_wan_ip_in'],
             bgp_ipv6_neighbor_wan_route_map_in = request.POST['bgp_ipv6_neighbor_wan_route_map_in'],
-            bgp_ipv6_community = request.POST['bgp_ipv6_community'],
-            context=''
+            bgp_ipv6_community = request.POST['bgp_ipv6_community']
             )
             if 'script_id' in request.POST:
                 script.scripts_ptr_id = request.POST['script_id']
             script.save()
+            context = {'script':script, 'organisation_name':request.session['organisation']}
         elif nm_model =="WSC3650":
             
             script = WSC3650(
@@ -515,15 +516,15 @@ def save(request):
             min_length = request.POST['min_length'])
             script.save()
             
-            vlan = None
-            interface = None
-            stp = None
-            dhcp = None
-            dhcp_ex = None
-            ospf = None
-            csuser = None
-            acl = None
-            acl_el = None
+            vlans = {}
+            interfaces = {}
+            stp_vlans = {}
+            dhcps = {}
+            dhcpexs = {}
+            ospfs = {}
+            users = {}
+            acls = {}
+            aclels = {}
             
             if 'script_id' in request.POST:
                 script.scripts_ptr_id = request.POST['script_id']
@@ -532,7 +533,7 @@ def save(request):
                 
                 i=str(i)
                 
-                vlan = VLAN_C3650(
+                vlans[i] = VLAN_C3650(
                 script_id = script.scripts_ptr_id,
                 number = request.POST['vlannum'+i],
                 name = request.POST['vlanname'+i],
@@ -542,13 +543,13 @@ def save(request):
                 ipv6_prefix = request.POST['vlanpre'+i],
                 ipv6_link = request.POST['vlanlink'+i]
                 )
-                vlan.save()
+                vlans[i].save()
                 
                 
             for i in range(1, int(request.POST['int_count'])+1):
                 i=str(i)
                 
-                interface = Interface_C3650(
+                interfaces[i] = Interface_C3650(
                     script_id = script.scripts_ptr_id,
                 status = request.POST['intstatus'+i],
                 name = request.POST['intname'+i],
@@ -572,76 +573,77 @@ def save(request):
                 ipv6_ospfv3 = request.POST['intipv6ospf'+i],
                 ipv6_area = request.POST['intipv6area'+i],
                 )
-                interface.save()
+                interfaces[i].save()
                 
             for i in range(1, int(request.POST['stp_count'])+1):
                 i=str(i)
                 
-                stp = STP_VLAN_3650(
+                stp_vlans[i] = STP_VLAN_3650(
                     script_id = script.scripts_ptr_id,
                 vlan = request.POST['stpvlan'+i],
                 root = request.POST['stproot'+i]
                 )
-                stp.save()
+                stp_vlans[i].save()
                 
             for i in range(1, int(request.POST['dhcp_count'])+1):
                 i=str(i)
                 
-                dhcp = DHCP_3650(
+                dhcps[i] = DHCP_3650(
                     script_id = script.scripts_ptr_id,
                 name = request.POST['dhcpname'+i],
                 network_ip = request.POST['dhcpnet'+i],
                 network_subnet = request.POST['dhcpsub'+i],
                 default_router = request.POST['dhcprout'+i]
                 )
-                dhcp.save()
+                dhcps[i].save()
                 
             for i in range(1, int(request.POST['ospf_count'])+1):
                 i=str(i)
                 
-                ospf = OSPFv3_3650(
+                ospfs[i] = OSPFv3_3650(
                     script_id = script.scripts_ptr_id,
                 process = request.POST['ospfpro'+i],
                 router_id = request.POST['ospfrid'+i]
                 )
-                ospf.save()
+                ospfs[i].save()
                 
             for i in range(1, int(request.POST['user_count'])+1):
                 i=str(i)
                 
-                csuser = CiscoUser(
+                users[i] = CiscoUser(
                     script_id = script.scripts_ptr_id,
                 name = request.POST['username'+i],
                 password = request.POST['userpass'+i]
                 )
-                csuser.save()
+                users[i].save()
                 
             for i in range(1, int(request.POST['acl_count'])+1):
                 i=str(i)
                 
-                acl = ACL_3650(
+                acls[i] = ACL_3650(
                     script_id = script.scripts_ptr_id,
                 name = request.POST['aclname'+i]
                 )
-                acl.save()
+                acls[i].save()
                 for j in range(1, int(request.POST['acl_el_count'+i])+1):
                     j=str(j)
-                    ACL_EL_3650.objects.filter(acl_id = acl.id).delete()
-                    acl_el = ACL_EL_3650(
-                        acl_id = acl.id,
+                    ACL_EL_3650.objects.filter(acl_id = acls[i].id).delete()
+                    aclels[i][j] = ACL_EL_3650(
+                        acl_id = acls[i].id,
                     type = request.POST['aclcontrol'+j],
                     address = request.POST['acladd'+j]
                     )
-                    acl_el.save()
+                    aclels[i][j].save()
                 
             for i in range(1, int(request.POST['dhcp_ex_count'])+1):
                 i=str(i)
                 
-                dhcp_ex = DHCP_EX_C3650(
+                dhcpexs[i] = DHCP_EX_C3650(
                     script_id = script.scripts_ptr_id,
                     address = request.POST['dhcpex'+i]
                 )
-                dhcp_ex.save()
+                dhcpexs[i].save()
+            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'dhcps':dhcps, 'dhcpexs':dhcpexs, 'ospfs':ospfs, 'stp_vlans':stp_vlans, 'organisation_name':request.session['organisation']}
         elif nm_model =="C1000":
             
             script = C1000(
@@ -669,11 +671,11 @@ def save(request):
             min_length = request.POST['min_length'])
             script.save()
             
-            vlan = None
-            interface = None
-            csuser = None
-            acl = None
-            acl_el = None
+            vlans = {}
+            interfaces = {}
+            users = {}
+            acls = {}
+            aclels = {}
             
             if 'script_id' in request.POST:
                 script.scripts_ptr_id = request.POST['script_id']
@@ -682,18 +684,18 @@ def save(request):
                 
                 i=str(i)
                 
-                vlan = VLAN_C1000(
+                vlans[i] = VLAN_C1000(
                 script_id = script.scripts_ptr_id,
                 number = request.POST['vlannum'+i],
                 name = request.POST['vlanname'+i]
                 )
-                vlan.save()
+                vlans[i].save()
                 
                 
             for i in range(1, int(request.POST['int_count'])+1):
                 i=str(i)
                 
-                interface = Interface_C1000(
+                interfaces[i] = Interface_C1000(
                     script_id = script.scripts_ptr_id,
                 status = request.POST['intstatus'+i],
                 name = request.POST['intname'+i],
@@ -706,37 +708,38 @@ def save(request):
                 bdpu_filter = request.POST['bdpufilter'+i],
                 bdpu_guard = request.POST['bdpuguard'+i],
                 )
-                interface.save()
+                interfaces[i].save()
                 
               
             for i in range(1, int(request.POST['user_count'])+1):
                 i=str(i)
                 
-                csuser = CiscoUser(
+                users[i] = CiscoUser(
                     script_id = script.scripts_ptr_id,
                 name = request.POST['username'+i],
                 password = request.POST['userpass'+i]
                 )
-                csuser.save()
+                users[i].save()
                 
             for i in range(1, int(request.POST['acl_count'])+1):
                 i=str(i)
                 
-                acl = ACL_3650(
+                acls[i] = ACL_3650(
                     script_id = script.scripts_ptr_id,
                 name = request.POST['aclname'+i]
                 )
-                acl.save()
+                acls[i].save()
                 for j in range(1, int(request.POST['acl_el_count'+i])+1):
                     j=str(j)
-                    ACL_EL_3650.objects.filter(acl_id = acl.id).delete()
-                    acl_el = ACL_EL_3650(
-                        acl_id = acl.id,
+                    ACL_EL_3650.objects.filter(acl_id = acls[i].id).delete()
+                    aclels[i][j] = ACL_EL_3650(
+                        acl_id = acls[i].id,
                     type = request.POST['aclcontrol'+j],
                     address = request.POST['acladd'+j]
                     )
-                    acl_el.save()
-            
+                    aclels[i][j].save()
+            context = {'script':script, 'vlans':vlans, 'interfaces':interfaces, 'acls':acls, 'aclels':aclels, 'users':users, 'organisation_name':request.session['organisation']}
+           
         
         
         return render(request, nm_model + '.html',  context)
