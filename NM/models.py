@@ -136,7 +136,7 @@ class ISR4321(Scripts):
     g01_ospfv3_ipv6 = IntegerField()
     g01_ospfv3_v6_area = IntegerField()
     g01_ospfv3_encryption_num = IntegerField()
-    g01_ospfv3_encryption_sha = PositiveBigIntegerField()
+    g01_ospfv3_encryption_sha = CharField(max_length=40)
     g01_nat = CharField(max_length=100)
     g01_zone = CharField(max_length=100)
 
@@ -151,7 +151,7 @@ class ISR4321(Scripts):
     g02_ospfv3_ipv6 = IntegerField()
     g02_ospfv3_v6_area = IntegerField()
     g02_ospfv3_encryption_num = IntegerField()
-    g02_ospfv3_encryption_sha = PositiveBigIntegerField()
+    g02_ospfv3_encryption_sha = CharField(max_length=40)
     
     g02_nat = CharField(max_length=100)
     g02_zone = CharField(max_length=100)
