@@ -481,7 +481,8 @@ def save(request):
             bgp_ipv6_subnet = request.POST['bgp_ipv6_subnet'],
             bgp_ipv6_neighbor_wan_ip_in = request.POST['bgp_ipv6_neighbor_wan_ip_in'],
             bgp_ipv6_neighbor_wan_route_map_in = request.POST['bgp_ipv6_neighbor_wan_route_map_in'],
-            bgp_ipv6_community = request.POST['bgp_ipv6_community']
+            bgp_ipv6_community = request.POST['bgp_ipv6_community'],
+            context=''
             )
             if 'script_id' in request.POST:
                 script.scripts_ptr_id = request.POST['script_id']
@@ -738,7 +739,7 @@ def save(request):
             
         
         
-        return render(request, template,  context)
+        return render(request, nm_model + '.html',  context)
         
     return redirect('/dashboard')
 
