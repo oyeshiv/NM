@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 username admin algorithm-type script locpass101
 =======
+=======
+>>>>>>> parent of 7a525d4 (..)
 =======
 >>>>>>> parent of 7a525d4 (..)
 =======
@@ -127,7 +130,11 @@ ospfv3 10 ipv4 area 0
 ospfv3 10 ipv6 area 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ospfv3 encryption ipsec spi 1000 esp null sha1 1231213121312123123123123123123123123123
+=======
+ospfv3 encryption ipsec spi 1000 esp null sha1 1231213121312
+>>>>>>> parent of 7a525d4 (..)
 =======
 ospfv3 encryption ipsec spi 1000 esp null sha1 1231213121312
 >>>>>>> parent of 7a525d4 (..)
@@ -147,7 +154,11 @@ ospfv3 10 ipv4 area 0
 ospfv3 10 ipv6 area 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ospfv3 encryption ipsec spi 1000 esp null sha1 1231321231654612312312312312312312312312
+=======
+ospfv3 encryption ipsec spi 1000 esp null sha1 12313212316546
+>>>>>>> parent of 7a525d4 (..)
 =======
 ospfv3 encryption ipsec spi 1000 esp null sha1 12313212316546
 >>>>>>> parent of 7a525d4 (..)
@@ -273,6 +284,10 @@ set metric 50
 exit 
 route-map AS10 permit 20
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+! 
+>>>>>>> parent of 7a525d4 (..)
 =======
 ! 
 >>>>>>> parent of 7a525d4 (..)
