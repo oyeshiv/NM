@@ -320,12 +320,12 @@ class OSPFv3_3650(Model):
     router_id = GenericIPAddressField()
     
 class CiscoUser(Model):
-    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    script = ForeignKey(Scripts, on_delete=CASCADE)
     name = CharField(max_length=100)
     password = CharField(max_length=100)
     
 class ACL_3650(Model):
-    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    script = ForeignKey(Scripts, on_delete=CASCADE)
     name = CharField(max_length=100)
     
 class ACL_EL_3650(Model):
@@ -359,12 +359,12 @@ class C1000(Scripts):
     ntp_trust_key = IntegerField()
     
 class VLAN_C1000(Model):
-    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    script = ForeignKey(C1000, on_delete=CASCADE)
     number = IntegerField()
     name = CharField(max_length=100, null = True)
     
 class Interface_C1000(Model):
-    script = ForeignKey(WSC3650, on_delete=CASCADE)
+    script = ForeignKey(C1000, on_delete=CASCADE)
     status = CharField(max_length=8, null = True)
     name = CharField(max_length=100)
     sw_mode = CharField(max_length=10,null = True)
