@@ -396,12 +396,11 @@
       <div class="ospfform" id="0">
       </div>
       {% for ospf in ospfs %}
-      <hr>
       <div class="ospfform" id="{{forloop.counter}}">
         <div class='row justify-content-between'>
           <div class='col-25'>
             <h5 style='display: inline; float: left; color:darkslategrey; font-family: monospace; font-weight: bolder;'
-              id="ospfhead"> OSPF Form{{forloop.counter}}</h5>
+              id="ospfhead"> OSPF Form {{forloop.counter}}</h5>
           </div>
           <div class='col-75 removebtnholder'>
             {% if forloop.counter == ospfs|length %}
@@ -616,11 +615,11 @@
           <div class='col-auto'>
             <select type='text' id='stproot{{forloop.counter}}' name='stproot{{forloop.counter}}'>
               {% if stp_vlan.root == "primary" %}
-              <option value="permit" selected>Primary</option>
-              <option value="deny">Secondary</option>
+              <option value="primary" selected>Primary</option>
+              <option value="secondary">Secondary</option>
               {% elif stp_vlan.root == "secondary" %}
-              <option value="permit">Primary</option>
-              <option value="deny" selected>Secondary</option>
+              <option value="primary">Primary</option>
+              <option value="secondary" selected>Secondary</option>
               {% endif %}
             </select>
           </div>
@@ -631,9 +630,13 @@
             <input type='text' id="stpvlan{{forloop.counter}}" name="stpvlan{{forloop.counter}}" placeholder='Vlan'
               value="{{stp_vlan.vlan}}">
           </div>
-          <div class='col-auto'>
+          <div class='col-auto stpbtnhndl'>
+            {% if stp_vlans|length == forloop.counter %}
+            <button class='btn btn-primary' type='button' id='addstp' removestp='1'>+
+              </button>
             <button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X
             </button>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -1008,7 +1011,7 @@
     {% csrf_token %}
     <input type='hidden' name='script_id' value='{{script.id}}'>
     <button class="btn btn-success" type="submit"><i data-feather="download"></i>
-      <span>Executable</span></button>
+      <span>Executable(Linux-Beta)</span></button>
   </form>
   <form method='POST' action="generate_text">
     {% csrf_token %}
@@ -1422,8 +1425,13 @@
         $('.stpvlans div.stpvlanform:last-child').remove();
         var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id'));
         $('input#stp_count').val(id);
+        $('div.col-auto.stpbtnhndl').append("<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+" +
+          "</button>"+ "<button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X" +
+            "</button>");
+        if (parseInt(id) == 0){
         $('div.col-auto.stpbtn').append("<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+ Add Root Bridge" +
           "</button>");
+        }
       });
     });
 
@@ -1432,6 +1440,7 @@
         var id = parseInt($('.stpvlans div.stpvlanform:last-child').attr('id')) + 1;
         $('input#stp_count').val(id);
         $('div.col-auto #addstp').remove();
+        $('div.col-auto #removestp').remove();
         $('.stpvlans').append(
           "<div class='stpvlanform' id='" + id + "'>" +
           "<div class='row'>" +
@@ -1451,7 +1460,9 @@
           "<div class='col-auto'>" +
           "<input type='text' id='stpvlan" + id + "' name='stpvlan" + id + "' placeholder='Vlan'>" +
           "</div>" +
-          "<div class='col-auto'>" +
+          "<div class='col-auto stpbtnhndl'>" +
+            "<button class='btn btn-primary' type='button' id='addstp' removestp='1'>+" +
+              "</button>" +
           "<button class='btn btn-secondary' type='button' id='removestp' removestp='1'>X" +
           "</button>" +
           "</div>" +
@@ -1603,7 +1614,6 @@
         $('.aclremovebtnholder').append("<button class='btn btn-primary' type='button' id='addaclel' id2='" + id2 + "' addaclel='" + id + "'>" +
           "+ Add contorls</button>");
       } else {
-        $('.aclels').each(function () {
           $('.aclform#' + id + ' .aclels .aclelform:last-child').remove();
           id2 = parseInt(id2) - 1;
           $('input#acl_el_count' + id).val(id2);
@@ -1614,7 +1624,6 @@
             "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
             "-</button>" +
             "</div>");
-        });
       }
 
     });
@@ -1625,47 +1634,45 @@
       console.log(id)
       var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
       console.log(id2)
-      $('.aclels').each(function () {
-        console.log('done')
-        $('.aclform#' + id + ' .removebtnholder').remove();
-        $('.aclform#' + id + ' .addbtnholder').remove();
-        var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
-        console.log('done')
-        $('input#acl_el_count' + id).val(id2);
-        console.log('done')
-        $('.aclform#' + id + ' .aclels').append(
-          "<div class='aclelform' id='" + id2 + "'>" +
-          "<div class='row'>" +
-          "<div class='col-25'>" +
-          "<label for='aclcontrol" + id2 + "'>Control Type</label>" +
-          "</div>" +
-          "<div class='col-auto col-sm-75'>" +
-          "<select type='text' id='aclcontrol" + id2 + "'" +
-          "name='aclcontrol" + id2 + "' placeholder='ACL Control Type'>" +
-          "<option value='permit'>Permit</option>" +
-          "<option value='deny'>Deny</option>" +
-          "</select>" +
-          "</div>" +
-          "<div class='col-auto col-sm-25'>" +
-          "<label for='acladd" + id2 + "'>ACL Address</label>" +
-          "</div>" +
-          "<div class='col-auto col-sm-75'>" +
-          "<input type='text' id='acladd" + id2 + "' name='acladd" + id2 + "' placeholder=' ACL Address'>" +
-          "</div>" +
-          "<div class='col-auto addbtnholder'>" +
-          "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
-          "+</button>" +
-          "</div>" +
-          "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
-          "-</button>" +
-          "</div>" +
-          "</div>" +
-          "</div>"
+      console.log('done')
+      $('.aclform#' + id + ' .removebtnholder').remove();
+      $('.aclform#' + id + ' .addbtnholder').remove();
+      var id2 = parseInt($('.aclform#' + id + ' .aclels .aclelform:last-child').attr('id')) + 1;
+      console.log('done')
+      $('input#acl_el_count' + id).val(id2);
+      console.log('done')
+      $('.aclform#' + id + ' .aclels').append(
+        "<div class='aclelform' id='" + id2 + "'>" +
+        "<div class='row'>" +
+        "<div class='col-25'>" +
+        "<label for='aclcontrol" + id2 + "'>Control Type</label>" +
+        "</div>" +
+        "<div class='col-auto col-sm-75'>" +
+        "<select type='text' id='aclcontrol" + id2 + "'" +
+        "name='aclcontrol" + id2 + "' placeholder='ACL Control Type'>" +
+        "<option value='permit'>Permit</option>" +
+        "<option value='deny'>Deny</option>" +
+        "</select>" +
+        "</div>" +
+        "<div class='col-auto col-sm-25'>" +
+        "<label for='acladd" + id2 + "'>ACL Address</label>" +
+        "</div>" +
+        "<div class='col-auto col-sm-75'>" +
+        "<input type='text' id='acladd" + id2 + "' name='acladd" + id2 + "' placeholder=' ACL Address'>" +
+        "</div>" +
+        "<div class='col-auto addbtnholder'>" +
+        "<button class='btn btn-primary' type='button' id='addaclel' addaclel='" + id + "'>" +
+        "+</button>" +
+        "</div>" +
+        "<div class='col-auto removebtnholder'>" + "<button class='btn btn-secondary' type='button' id='removeaclel' id2='" + id2 + "' removeaclel='" + id + "'>" +
+        "-</button>" +
+        "</div>" +
+        "</div>" +
+        "</div>"
 
         );
 
 
-      });
     });
 
 
