@@ -9,5 +9,6 @@ spanning-tree bpdufilter @bpdufilter
 shutdown
 channel-group @channel_group mode @channel_mode
 no shutdown
+shutdown
 @status shutdown
 exit
