@@ -641,6 +641,7 @@ def save(request):
                 name = request.POST['aclname'+i]
                 )
                 acls[i].save()
+                aclels[i]={}
                 for j in range(1, int(request.POST['acl_el_count'+i])+1):
                     j=str(j)
                     ACL_EL_3650.objects.filter(acl_id = acls[i].id).delete()
@@ -749,6 +750,7 @@ def save(request):
                 name = request.POST['aclname'+i]
                 )
                 acls[i].save()
+                aclels[i]={}
                 for j in range(1, int(request.POST['acl_el_count'+i])+1):
                     j=str(j)
                     ACL_EL_3650.objects.filter(acl_id = acls[i].id).delete()

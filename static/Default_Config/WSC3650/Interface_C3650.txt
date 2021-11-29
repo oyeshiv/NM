@@ -15,4 +15,6 @@ shutdown
 channel-group @channel_group mode @channel_mode
 no shutdown
 spanning-tree cost @stp_cost
+shutdown
 @status shutdown
+exit
