@@ -3,8 +3,7 @@ configure terminal
 hostname @host_name
 banner motd # @banner_motd #
 no ip domain-lookup 
-ipv6 enable 
-ipv6 unicast-routing
+no cdp run
 security passwords min-length @min_length
 service password-encryption 
 enable algorithm-type sha256 secret @secret
@@ -13,7 +12,7 @@ login quiet-mode access-class @login_access
 login delay @login_delay
 login on-success log 
 login on-failure log 
-security authentication failure rate 10 log 
+security authentication failure rate 1024 log 
 line con 0 
 exec-timeout 3 30 
 logging synchronous 
@@ -37,12 +36,12 @@ key @radius_key
 exit
 aaa group server radius radius_group
 aaa local authentication attempts max-fail @max_fail
-aaa authentication login default group @radius_group local  
-aaa authorization exec default group @radius_group local
-aaa authorization network default group @radius_group local 
-aaa accounting exec default start-stop group @radius_group 
-aaa accounting network default start-stop group @radius_group 
-no cdp run 
+aaa authentication login default group local  
+aaa authorization exec default group local
+aaa authorization network default group local 
+aaa accounting exec default start-stop group
+aaa accounting network default start-stop group 
+ 
 ntp server @ntp_server
 ntp authenticate 
 ntp authentication-key @ntp_auth_key md5 @ntp_pass

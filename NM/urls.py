@@ -28,13 +28,11 @@ urlpatterns = [
     
     #home-page
     path('', views.home, name='home'),
-    path('team', views.team, name='about_us'),
     
     #login-logout
     path('login', views.login_user, name='login'),
     path('login', include('django.contrib.auth.urls')),
     path('logout', views.logout_user, name='Logout'),
-    path('profile', views.profile, name='Profile'),
 
     #dashboard
     path('dashboard', views.dashboard, name='Dashboard'),
